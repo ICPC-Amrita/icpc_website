@@ -90,7 +90,7 @@ export default function AnnouncementModal() {
                 
                 <p>
                   To accommodate this change, <strong>the last date for registration and fee submission is extended to October
-                  24, 2025.</strong>
+                  31, 2025.</strong>
                 </p>
                 <p>
                   This decision has been taken to ensure maximum participation and to minimize inconvenience for

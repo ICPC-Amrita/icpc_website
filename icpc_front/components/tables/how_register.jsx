@@ -104,11 +104,12 @@ export default function HowToRegister() {
       <div className="bg-yellow-500 rounded-full h-[8vw] w-[8vw] max-md:h-[18vw] max-md:w-[18vw] flex justify-center items-center mb-[1vw] max-md:mb-[1.5vw]">
         <div className="text-white text-center">
           <div className="text-[3vw] max-md:text-[7vw] font-bold leading-none">
-            24
+            31
           </div>
           <div className="text-[1vw] max-md:text-[2.5vw] mt-[0.2vw]">
             OCT 2025
           </div>
+          
         </div>
       </div>
       <div className="text-center">
@@ -123,17 +124,19 @@ export default function HowToRegister() {
       <div className="bg-red-700 rounded-full h-[8vw] w-[8vw] max-md:h-[18vw] max-md:w-[18vw] flex justify-center items-center mb-[1vw] max-md:mb-[1.5vw]">
         <div className="text-white text-center">
           <div className="text-[3vw] max-md:text-[7vw] font-bold leading-none">
-            TBD
+            8
           </div>
-          {/* <div className="text-[1vw] max-md:text-[2.5vw] mt-[0.2vw]">
-            OCT 2025
-          </div> */}
+          <div className="text-[1vw] max-md:text-[2.5vw] mt-[0.2vw]">
+            NOV 2025
+          </div>
         </div>
       </div>
       <div className="text-center">
-        <p className="text-[1.2vw] max-md:text-[3.5vw] text-white">
+        <p className="text-[1.2vw] max-md:text-[3.5vw] text-white block">
           Online Prelims
         </p>
+        <p className="text-white"> Time: 1:30 PM to 4:30 PM</p>
+
       </div>
     </div>
 

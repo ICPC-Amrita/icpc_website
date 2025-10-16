@@ -27,7 +27,7 @@ const Faq = () => {
     },
     {
       question: "Last date for payment?",
-      answer: "October 8, 2025."
+      answer: "October 31, 2025."
     },
     {
       question: "How to cancel a team in ICPC Registration Site?",

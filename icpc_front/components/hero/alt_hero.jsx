@@ -134,12 +134,13 @@ export default function AltHero() {
                     {/* Timeline */}
                     <div className="mt-6 flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-3 text-center">
                         <div className="px-3 py-2 rounded-xl text-white text-sm sm:text-base md:text-lg font-semibold">
-                            <span className="block text-white">24 OCT</span>
+                            <span className="block text-white">31 OCT</span>
                             <span>Registration Ends</span>
                         </div> 
                         <div className="px-3 py-2 rounded-xl text-white text-sm sm:text-base md:text-lg font-semibold">
-                            <span className="block text-white">TBD</span>
-                            <span>Online Prelims</span>
+                            <span className="block text-white">8 NOV</span>
+                            <span className="block">Online Prelims</span>
+                            <span className="text-sm">1:30 PM to 4:30 PM</span>
                         </div>
                         <div className="px-3 py-2 rounded-xl text-white text-sm sm:text-base md:text-lg font-semibold">
                             <span className="block text-white">2–3 JAN</span>
