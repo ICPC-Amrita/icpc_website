@@ -16,7 +16,7 @@ export default function AltHero() {
                     {/* Highlight Badge */}
                     <div className="mb-6">
                         <span className="inline-block bg-blue-50 text-blue-700 text-sm font-medium px-4 py-2 rounded-full border border-blue-200">
-                            highlights: 320+ Onsite sites !
+                            highlights: 320+ on-site slots !
                         </span>
                     </div>
 
@@ -46,7 +46,7 @@ export default function AltHero() {
                             href="https://icpc.global/regionals/finder/Asia-Amritapuri-First-Round-2026"
                             className="bg-blue-600 hover:bg-blue-700 text-white text-base font-semibold py-4 px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
                         >
-                            Registration Open
+                            Register Now
                         </Link>
 
                         <Link
