@@ -38,5 +38,5 @@ jobs:
           context: ${{ github.workspace }}/icpc_front
           file: ${{ github.workspace }}/icpc_front/Dockerfile
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/icpc_web:latest
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/icpc_website:latest
           no-cache: true
