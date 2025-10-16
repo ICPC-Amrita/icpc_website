@@ -117,12 +117,17 @@ export default function AltHero() {
 
                         <figure 
                             style={{ clipPath: 'url(#clip-main-image)' }} 
-                            className="w-full aspect-[3/4]"
+                            className="w-full aspect-[3/4] relative"
                         >
-                            <img
+                            <Image
                                 src="/coursel_images/2.jpg"
                                 alt="ICPC 2025 Regionals"
-                                className="w-full h-full object-cover transition-all duration-300 hover:scale-105"
+                                fill
+                                className="object-cover transition-all duration-300 hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                quality={100}
+                                priority
+                                unoptimized
                             />
                         </figure>
                     </div>
@@ -135,7 +140,7 @@ export default function AltHero() {
                     <div className="flex justify-center items-center gap-4 sm:gap-8 md:gap-12 lg:gap-16">
                         
                         <div className="text-center">
-                            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">24 OCT</div>
+                            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">31 OCT</div>
                             <div className="text-[10px] sm:text-xs md:text-sm text-gray-600 font-medium">Registration Ends</div>
                         </div>
                         
