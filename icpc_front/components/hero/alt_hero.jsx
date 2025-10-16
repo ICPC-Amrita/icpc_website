@@ -1,193 +1,159 @@
 'use client';
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 // import AnnouncementModal from "../tables/announcement-modal";
 
 export default function AltHero() {
-    const IMAGE_PATH = '/coursel_images/';
-    const IMAGE_COUNT = 5;
-    const IMAGE_EXTENSION = '.jpg';
-    
-    // Generate images array dynamically
-    const images = Array.from({ length: IMAGE_COUNT }, (_, index) => ({
-        id: String(index + 1),
-        src: `${IMAGE_PATH}${index + 1}${IMAGE_EXTENSION}`,
-        alt: `ICPC 2025 Regionals - Image ${index + 1}`
-    }));
-
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-    // Auto-change images every 4 seconds
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) => 
-                prevIndex === images.length - 1 ? 0 : prevIndex + 1
-            );
-        }, 4000);
-
-        return () => clearInterval(interval);
-    }, [images.length]);
-
-    const goToImage = (index) => {
-        setCurrentImageIndex(index);
-    };
-
     return (
-        <div className="relative w-full min-h-[85vh] lg:min-h-[80vh] overflow-hidden mt-0">
+        <div className="relative w-full min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
             
-            {/* Background Image Carousel with Auto-Change */}
-            <div className="absolute inset-0 w-full h-full">
-                {images.length > 0 ? (
-                    <>
-                        {/* Image Container */}
-                        <div className="relative w-full h-full">
-                            {images.map((image, index) => (
-                                <div
-                                    key={image.id}
-                                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                                        index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                                    }`}
-                                >
-                                    <Image
-                                        src={image.src}
-                                        alt={image.alt}
-                                        fill
-                                        className="object-cover"
-                                        priority={index === 0}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                        
-                        {/* Navigation Dots - positioned above content with better spacing */}
-                        <div className="absolute bottom-6 sm:bottom-8 md:bottom-12 lg:bottom-16 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
-                            {images.map((image, index) => (
-                                <button
-                                    key={image.id}
-                                    onClick={() => goToImage(index)}
-                                    className={`w-5 h-1 rounded-full transition-all duration-300 shadow-lg border-2 border-white/20
-                                        ${index === currentImageIndex 
-                                            ? 'bg-white/70 scale-110' 
-                                            : 'bg-white/30 hover:bg-white/50'
-                                        }`}
-                                />
-                            ))}
-                        </div>
-                    </>
-                ) : (
-                    <div className="flex items-center justify-center w-full h-full bg-gray-200">
-                        <p className="text-gray-500">Loading images...</p>
-                    </div>
-                )}
-            </div>
-
-            {/* Dark Overlay for better text readability */}
-            <div className="absolute inset-0 bg-black/40 z-5"></div>
-            
-            {/* Main Content Container - Fixed top spacing */}
-            <div className="relative z-10 flex flex-col justify-center items-center w-full h-full min-h-[85vh] lg:min-h-[80vh] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-32 sm:pt-36 md:pt-40 lg:pt-32 pb-24 sm:pb-28 md:pb-32 lg:pb-36">
+            {/* Main Content Container - Added more top spacing */}
+            <div className="flex flex-col lg:flex-row min-h-screen pt-28 sm:pt-32 md:pt-36 lg:pt-24 xl:pt-20">
                 
-                {/* Text Content */}
-                <div className="flex flex-col justify-center items-center text-center max-w-3xl">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold text-white mb-3 sm:mb-4 md:mb-6 leading-tight tracking-tighter">
-                        ICPC 2025 Regionals
+                {/* Left Content Section */}
+                <div className="flex-1 flex flex-col justify-center px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-8 lg:py-20">
+                    
+                    {/* Highlight Badge */}
+                    <div className="mb-6">
+                        <span className="inline-block bg-blue-50 text-blue-700 text-sm font-medium px-4 py-2 rounded-full border border-blue-200">
+                            highlights: 320+ Onsite sites !
+                        </span>
+                    </div>
+
+                    {/* Main Title */}
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-4 leading-tight">
+                        ICPC 2025
+                        <br />
+                        <span className="text-blue-600">REGIONALS</span>
                     </h1>
                     
-                    <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white font-medium mb-2 sm:mb-2 md:mb-3">
-                        <Link href={'/reach-us/bengaluru'} className="hover:text-blue-300 transition-colors duration-300">
+                    {/* Location List */}
+                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 font-medium mb-8 leading-relaxed">
+                        <Link href={'/reach-us/bengaluru'} className="hover:text-blue-600 transition-colors duration-300">
                             Bengaluru
-                        </Link> | <Link href={'/reach-us/coimbatore'} className="hover:text-blue-300 transition-colors duration-300">
+                        </Link> , <Link href={'/reach-us/coimbatore'} className="hover:text-blue-600 transition-colors duration-300">
                             Coimbatore
-                        </Link> | <Link href={'/reach-us/amritapuri'} className="hover:text-blue-300 transition-colors duration-300">
+                        </Link> , <Link href={'/reach-us/amritapuri'} className="hover:text-blue-600 transition-colors duration-300">
                             Kollam
-                        </Link> | <span className="hover:text-blue-300 transition-colors duration-300">
+                        </Link> , <span className="hover:text-blue-600 transition-colors duration-300">
                             Mysuru
                         </span>
                     </p>
-                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white pb-3">
-                        ~350+ Onsite Slots Available 
-                    </p>
                     
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center">
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 mb-12">
                         <Link
-  href="https://icpc.global/regionals/finder/Asia-Amritapuri-First-Round-2026"
-  className="bg-blue-500 hover:bg-blue-600 text-white text-base md:text-lg py-3 px-8 rounded-md transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl min-w-[220px] text-center"
->
-  Registration Open
-</Link>
+                            href="https://icpc.global/regionals/finder/Asia-Amritapuri-First-Round-2026"
+                            className="bg-blue-600 hover:bg-blue-700 text-white text-base font-semibold py-4 px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
+                        >
+                            Registration Open
+                        </Link>
 
-<Link
-  href="/data/Declaration_form.pdf"
-  download
-  className="bg-blue-500 hover:bg-blue-600 text-white text-base md:text-lg py-3 px-8 rounded-md transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 min-w-[220px]"
->
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-  </svg>
-  <span className="hidden sm:inline">College Declaration Form</span>
-  <span className="sm:hidden">College Form</span>
-</Link>
-
-                    </div>
-                    
-                    {/* Timeline */}
-                    <div className="mt-6 flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-3 text-center">
-                        <div className="px-3 py-2 rounded-xl text-white text-sm sm:text-base md:text-lg font-semibold">
-                            <span className="block text-white">31 OCT</span>
-                            <span>Registration Ends</span>
-                        </div> 
-                        <div className="px-3 py-2 rounded-xl text-white text-sm sm:text-base md:text-lg font-semibold">
-                            <span className="block text-white">8 NOV</span>
-                            <span className="block">Online Prelims</span>
-                            <span className="text-sm">1:30 PM to 4:30 PM</span>
-                        </div>
-                        <div className="px-3 py-2 rounded-xl text-white text-sm sm:text-base md:text-lg font-semibold">
-                            <span className="block text-white">2–3 JAN</span>
-                            <span>Onsite Regionals</span>
-                        </div>
+                        <Link
+                            href="/data/Declaration_form.pdf"
+                            download
+                            className="bg-blue-600 hover:bg-blue-700 text-white border-2 border-blue-600 text-base font-semibold py-4 px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                            <span className="hidden sm:inline">College Declaration Form</span>
+                            <span className="sm:hidden">College Form</span>
+                        </Link>
                     </div>
 
-                    {/* Sponsored by section with improved spacing */}
-                    <div className="mt-8 sm:mt-10 md:mt-12 flex flex-col items-center">
-                        <p className="text-white/80 text-xs sm:text-sm font-medium mb-4 uppercase tracking-wider">
-                            Sponsored by
+                    {/* Sponsored by section */}
+                    <div className="mb-8">
+                        <p className="text-gray-500 text-sm font-medium mb-4 uppercase tracking-wider">
+                            Sponsored By
                         </p>
                         <div className="flex items-start gap-6 sm:gap-8">
-                            <div className="flex flex-col items-center">
-                                <div className="h-10 sm:h-8 md:h-14 flex items-center justify-center mb-2">
+                            <div className="flex flex-col items-start">
+                                <div className="h-8 sm:h-10 md:h-12 flex items-center justify-start mb-2">
                                     <Image
-                                        src="/janestreet_white2.png"
+                                        src="/jane2.png"
                                         alt="Jane Street"
-                                        width={100}
+                                        width={120}
                                         height={40}
-                                        className="h-full w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                                        className="h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
                                     />
                                 </div>
-                                <p className="text-white text-xs sm:text-xs md:text-sm text-center font-light">
-                                    ICPC Titanium Multi-Regional Sponsor
+                                <p className="text-gray-600 text-xs font-medium">
+                                    ICPC Titanium Multi-<br />Regional Sponsor
                                 </p>
                             </div>
 
-                            <div className="flex flex-col items-center">
-                                <div className="h-10 sm:h-8 md:h-14 flex items-center justify-center mb-2">
+                            <div className="flex flex-col items-start">
+                                <div className="h-8 sm:h-10 md:h-12 flex items-center justify-start mb-2">
                                     <Image
-                                        src="/JetBrains_white_logo.svg"
+                                        src="/jetbrains_logo.svg"
                                         alt="JetBrains"
-                                        width={60}
+                                        width={80}
                                         height={30}
-                                        className="h-3/4 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                                        className="h-3/4 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
                                     />
                                 </div>
-                                <p className="text-white text-xs sm:text-xs md:text-sm text-center font-light">
-                                    ICPC Global Sponsor Programming Tools
+                                <p className="text-gray-600 text-xs font-medium">
+                                    ICPC Global Sponsor<br />Programming Tools
                                 </p>
                             </div>
                         </div>
                     </div>
-                    {/* <AnnouncementModal /> */}
+                </div>
+
+                {/* Right Image Section */}
+                <div className="flex-1 relative min-h-[400px] sm:min-h-[500px] lg:min-h-screen mt-6 lg:mt-0 flex items-center justify-center px-4 lg:px-8">
+                    <div className="relative w-full max-w-lg lg:max-w-xl">
+                        <svg className="absolute -top-[999px] -left-[999px] w-0 h-0">
+                            <defs>
+                                <clipPath id="clip-main-image" clipPathUnits={'objectBoundingBox'}>
+                                    <path
+                                        d='M0.0998072 1H0.422076H0.749756C0.767072 1 0.774207 0.961783 0.77561 0.942675V0.807325C0.777053 0.743631 0.791844 0.731953 0.799059 0.734076H0.969813C0.996268 0.730255 1.00088 0.693206 0.999875 0.675159V0.0700637C0.999875 0.0254777 0.985045 0.00477707 0.977629 0H0.902473C0.854975 0 0.890448 0.138535 0.850165 0.138535H0.0204424C0.00408849 0.142357 0 0.180467 0 0.199045V0.410828C0 0.449045 0.0136283 0.46603 0.0204424 0.469745H0.0523086C0.0696245 0.471019 0.0735527 0.497877 0.0733523 0.511146V0.915605C0.0723903 0.983121 0.090588 1 0.0998072 1Z'
+                                        fill='#D9D9D9'
+                                    />
+                                </clipPath>
+                            </defs>
+                        </svg>
+
+                        <figure 
+                            style={{ clipPath: 'url(#clip-main-image)' }} 
+                            className="w-full aspect-[3/4]"
+                        >
+                            <img
+                                src="/coursel_images/2.jpg"
+                                alt="ICPC 2025 Regionals"
+                                className="w-full h-full object-cover transition-all duration-300 hover:scale-105"
+                            />
+                        </figure>
+                    </div>
                 </div>
             </div>
+
+            {/* Timeline Section - Full Width Bottom */}
+            <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-200">
+                <div className="max-w-4xl mx-auto px-6 sm:px-8 py-4 sm:py-6">
+                    <div className="flex justify-center items-center gap-6 sm:gap-12 md:gap-16">
+                        
+                        <div className="text-center">
+                            <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1">24 OCT</div>
+                            <div className="text-xs sm:text-sm text-gray-600 font-medium">Registration Ends</div>
+                        </div>
+                        
+                        <div className="text-center">
+                            <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1">8 NOV</div>
+                            <div className="text-xs sm:text-sm text-gray-600 font-medium">Online Prelims</div>
+                        </div>
+                        
+                        <div className="text-center">
+                            <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1">2-3 JAN</div>
+                            <div className="text-xs sm:text-sm text-gray-600 font-medium">Onsite Regionals</div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            {/* <AnnouncementModal /> */}
         </div>
     )
 }

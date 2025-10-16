@@ -135,7 +135,7 @@ export default function HowToRegister() {
         <p className="text-[1.2vw] max-md:text-[3.5vw] text-white block">
           Online Prelims
         </p>
-        <p className="text-white"> Time: 1:30 PM to 4:30 PM</p>
+        <p className="text-white text-[1.2vw] max-md:text-[3.5vw]"> Time: 1:30 PM to 4:30 PM</p>
 
       </div>
     </div>
