@@ -63,7 +63,7 @@ export default function PartnerSupport() {
        Sponsoring ICPC Amritapuri connects your brand with India’s top student programmers and builds deep visibility among future leaders in tech
       </p>
 
-      <h3 className="text-2xl font-semibold mb-6">Key Benifits:</h3>
+      <h3 className="text-2xl font-semibold mb-6">Key Benefits:</h3>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-800 text-[16px] leading-relaxed">
         {/* Box 1 */}
