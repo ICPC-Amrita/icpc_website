@@ -52,12 +52,12 @@ const Sponsors = () => {
                                             <br /><br />
                                             Jane Street also runs various educational programs in London, Hong Kong, and New York to help educate students on how Jane Street applies mathematical and computer science concepts in everyday work. For more information, check out their educational initiatives: {" "}
                                             <a 
-                                                href="https://www.janestreet.com/join/jane-street/programs-and-events/" 
+                                                href="https://www.janestreet.com/join-jane-street/programs-and-events/" 
                                                 target="_blank" 
                                                 rel="noopener noreferrer"
                                                 className="text-blue-600 hover:text-blue-800 underline"
                                             >
-                                                https://www.janestreet.com/join/jane-street/programs-and-events/
+                                                https://www.janestreet.com/join-jane-street/programs-and-events/
                                             </a>
                                         </p>
                                     </div>

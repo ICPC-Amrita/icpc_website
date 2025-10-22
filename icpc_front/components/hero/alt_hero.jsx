@@ -8,10 +8,10 @@ export default function AltHero() {
         <div className="relative w-full min-h-screen bg-white overflow-hidden">
             
             {/* Main Content Container - Reduced padding for mobile */}
-            <div className="flex flex-col lg:flex-row min-h-screen pt-20 sm:pt-24 md:pt-28 lg:pt-24 xl:pt-20">
+            <div className="flex flex-col lg:flex-row min-h-screen pt-20 sm:pt-24 md:pt-28 lg:pt-24 xl:pt-20 max-w-7xl mx-auto gap-x-8">
                 
                 {/* Left Content Section */}
-                <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 md:px-12 lg:px-16 xl:px-20 py-4 sm:py-6 lg:py-20">
+                <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 md:px-12 lg:px-16 xl:px-8 py-4 sm:py-6 lg:py-20">
                     
                     {/* Highlight Badge */}
                     <div className="mb-3 sm:mb-4 md:mb-6">

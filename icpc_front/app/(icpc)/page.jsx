@@ -13,7 +13,7 @@ export default function Trial(){
         <div className="min-h-[100vh]">
             {/* <Hero/> */}
             <AltHero/>
-            <WebinarBanner/>
+            {/* <WebinarBanner/> */}
             <WhatsICPC/>
             <WhyParticipate/>
             <ExclusivePerks2/>
