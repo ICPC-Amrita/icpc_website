@@ -5,6 +5,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/navbar/navbar";
 // import Terminal from "@/components/ui_elems/terminal/terminalnew";
 import Script from "next/script";
+import { BannerComponent } from "@/components/banner";
 
 export default function Layout({ children }) {
     const [open, setOpen] = useState(true);
@@ -112,6 +113,7 @@ export default function Layout({ children }) {
                 src="https://www.noupe.com/embed/019905659e8679fbb1ba96d551a1a44d4324.js"
             /> */}
             
+            <BannerComponent />
             <Navbar open={open} hero={hero} darkSection={darkSection} />
             <div className="max-w-screen md:-mt-[6vw] max-md:-mt-[-9vw] bg-stone-30 bg-white">
                 {children}
