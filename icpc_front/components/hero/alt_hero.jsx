@@ -1,9 +1,35 @@
 'use client';
 import Image from "next/image";
 import Link from "next/link";
+import React, { useEffect, useState } from "react"; 
 // import AnnouncementModal from "../tables/announcement-modal";
 
 export default function AltHero() {
+        const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+         useEffect(() => {
+        const prelimsDate = new Date('2025-11-08T00:00:00').getTime();
+        
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = prelimsDate - now;
+
+            if (distance > 0) {
+                setTimeLeft({
+                    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                    seconds: Math.floor((distance % (1000 * 60)) / 1000)
+                });
+            } else {
+                setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+            }
+        };
+
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
     return (
         <div className="relative w-full min-h-screen bg-white overflow-hidden">
             
@@ -24,7 +50,7 @@ export default function AltHero() {
                     <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 leading-tight">
                         ICPC 2025
                         <br />
-                        <span className="text-blue-600">REGIONALS</span>
+                        <span className="text-blue-600">AMRITAPURI REGIONALS</span>
                     </h1>
                     
                     {/* Location List */}
@@ -39,7 +65,8 @@ export default function AltHero() {
                             Mysuru
                         </span>
                     </p>
-                    
+            
+
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12">
                         <Link
@@ -61,6 +88,91 @@ export default function AltHero() {
                             <span className="sm:hidden">College Declaration Form</span>
                         </Link>
                     </div>
+
+     
+                   {/* Countdown and Quick Links Section */}
+<div className="mb-6 sm:mb-8 border-t border-gray-200 pt-6">
+  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-10">
+
+    {/* Countdown Timer - Left Side */}
+    <div>
+      <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
+        Prelims starts in:
+      </p>
+      <div className="flex gap-1 sm:gap-2 items-center">
+        <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+          <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.days}</span>
+          <span className="text-[10px] text-gray-600 font-medium mt-1">Days</span>
+        </div>
+        <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+          <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.hours}</span>
+          <span className="text-[10px] text-gray-600 font-medium mt-1">Hrs</span>
+        </div>
+        <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+          <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.minutes}</span>
+          <span className="text-[10px] text-gray-600 font-medium mt-1">Mins</span>
+        </div>
+      </div>
+    </div>
+
+    {/* Optional Divider for Desktop */}
+    <div className="hidden sm:block w-px bg-gray-200 h-16"></div>
+
+    {/* Quick Links - Right Side */}
+    <div>
+      <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
+        Download important documents:
+      </p>
+      <div className="flex flex-wrap justify-start gap-x-4 gap-y-2 text-[#0066FF] text-sm font-semibold">
+        <a
+          href="/data/FAQ ICPC_V2.0.pdf"
+          download="FAQ ICPC_V2.0.pdf"
+          className="hover:underline hover:text-blue-700 transition-colors flex items-center gap-1"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fillRule="evenodd"
+              d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+          FAQ
+        </a>
+
+        <a
+          href="/data/ICPC Contest Guidelines_V2.0 .pdf"
+          download="ICPC Contest Guidelines_V2.0 .pdf"
+          className="hover:underline hover:text-blue-700 transition-colors flex items-center gap-1"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fillRule="evenodd"
+              d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+          Rules
+        </a>
+
+        <a
+          href="/data/Onsite selction Process 2025_V 2.0 .pdf"
+          download="Onsite_Selection_Process_2025_V2.0.pdf"
+          className="hover:underline hover:text-blue-700 transition-colors flex items-center gap-1"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fillRule="evenodd"
+              d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+          Selection Process
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
                     {/* Sponsored by section */}
                     <div className="mb-4 sm:mb-6 md:mb-8">
