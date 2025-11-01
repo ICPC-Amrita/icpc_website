@@ -69,12 +69,12 @@ export default function AltHero() {
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12">
-                        <Link
+                        {/* <Link
                             href="https://icpc.global/regionals/finder/Asia-Amritapuri-First-Round-2026"
                             className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
                         >
                             Register Now
-                        </Link>
+                        </Link> */}
 
                         <Link
                             href="/data/Declaration_form.pdf"
