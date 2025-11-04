@@ -69,12 +69,12 @@ export default function AltHero() {
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12">
-                        {/* <Link
+                        <Link
                             href="https://icpc.global/regionals/finder/Asia-Amritapuri-First-Round-2026"
                             className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
                         >
                             Register Now
-                        </Link> */}
+                        </Link>
 
                         <Link
                             href="/data/Declaration_form.pdf"
@@ -167,6 +167,20 @@ export default function AltHero() {
             />
           </svg>
           Selection Process
+        </a>
+          <a
+          href="/data/OBS Setup Guide for ICPC Proctoring - V2.pdf"
+          download="OBS Setup Guide for ICPC Proctoring - V2.pdf"
+          className="hover:underline hover:text-blue-700 transition-colors flex items-center gap-1"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fillRule="evenodd"
+              d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+          OBS Setup Guide
         </a>
       </div>
     </div>
