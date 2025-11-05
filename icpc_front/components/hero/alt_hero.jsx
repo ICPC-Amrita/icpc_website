@@ -140,8 +140,8 @@ export default function AltHero() {
         </a>
 
         <a
-          href="/data/ICPC Contest Guidelines_V2.0 .pdf"
-          download="ICPC Contest Guidelines_V2.0 .pdf"
+          href="/data/ICPC_Contest_Guidelines_V2.0.pdf"
+          download="ICPC_Contest_Guidelines_V2.0.pdf"
           className="hover:underline hover:text-blue-700 transition-colors flex items-center gap-1"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
