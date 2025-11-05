@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 export default function AltHero() {
         const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
          useEffect(() => {
-        const prelimsDate = new Date('2025-11-08T00:00:00').getTime();
+        const prelimsDate = new Date('2025-11-08T13:30:00').getTime();
         
         const updateCountdown = () => {
             const now = new Date().getTime();
