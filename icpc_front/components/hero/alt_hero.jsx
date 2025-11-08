@@ -1,17 +1,28 @@
 'use client';
+import { FileQuestion } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react"; 
 // import AnnouncementModal from "../tables/announcement-modal";
 
 export default function AltHero() {
-        const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-         useEffect(() => {
+    const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+    const [showProblemSets, setShowProblemSets] = useState(false);
+    const [showTimer, setShowTimer] = useState(true);
+    
+    useEffect(() => {
         const prelimsDate = new Date('2025-11-08T13:30:00').getTime();
+        const problemSetDisplayTime = new Date('2025-11-08T13:40:00').getTime();
         
         const updateCountdown = () => {
             const now = new Date().getTime();
             const distance = prelimsDate - now;
+
+            // Check if we should show problem sets
+            setShowProblemSets(now >= problemSetDisplayTime);
+
+            // Hide timer when contest starts (at 1:30 PM)
+            setShowTimer(distance > 0);
 
             if (distance > 0) {
                 setTimeLeft({
@@ -30,6 +41,7 @@ export default function AltHero() {
 
         return () => clearInterval(interval);
     }, []);
+
     return (
         <div className="relative w-full min-h-screen bg-white overflow-hidden">
             
@@ -41,8 +53,17 @@ export default function AltHero() {
                     
                     {/* Highlight Badge */}
                     <div className="mb-3 sm:mb-4 md:mb-6">
-                        <span className="inline-block bg-blue-50 text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-blue-200">
-                            highlights: 320+ on-site slots !
+                        <span className="inline-block text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 sm:px-4 sm:py-2">
+                            Do keep visiting{' '}
+                            <a 
+                                href="https://indiaicpc.in" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="underline hover:text-blue-900 font-semibold transition-colors"
+                            >
+                                indiaicpc.in
+                            </a>
+                            {' '}for latest updates on the ICPC India Preliminary Online Contest.
                         </span>
                     </div>
 
@@ -89,37 +110,75 @@ export default function AltHero() {
                         </Link>
                     </div>
 
+                    {/* Small Quick Links Buttons - Show only after 11:50 AM */}
+                    {showProblemSets && (
+                        <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+                            <Link
+                                href="https://drive.google.com/drive/folders/17EeWUv5dLfnYgL2f37Uc_hd3ysMFeYjs?usp=sharing"
+                                target="_blank"
+                                className="text-blue-600 hover:text-blue-700 border border-blue-600 hover:border-blue-700 text-xs sm:text-sm font-semibold py-1.5 px-3 sm:py-2 sm:px-4 rounded-md transition duration-200 hover:bg-blue-50"
+                            >
+                                Link 1
+                            </Link>
+                            <Link
+                                href="https://drive.google.com/drive/folders/1I0L0ToUdkvHfv_q0ljwOFnFNC8QXTuOO?usp=sharing"
+                                target="_blank"
+                                className="text-blue-600 hover:text-blue-700 border border-blue-600 hover:border-blue-700 text-xs sm:text-sm font-semibold py-1.5 px-3 sm:py-2 sm:px-4 rounded-md transition duration-200 hover:bg-blue-50"
+                            >
+                                Link 2
+                            </Link>
+                            <Link
+                                href="https://drive.google.com/drive/folders/1O0k-SHeSRjSLUR5482gy5rM9_3-7Qyy7?usp=sharing"
+                                target="_blank"
+                                className="text-blue-600 hover:text-blue-700 border border-blue-600 hover:border-blue-700 text-xs sm:text-sm font-semibold py-1.5 px-3 sm:py-2 sm:px-4 rounded-md transition duration-200 hover:bg-blue-50"
+                            >
+                                Link 3
+                            </Link>
+                        </div>
+                    )}
+
+                    {/* Show message before problem sets are available */}
+                    {!showProblemSets && (
+                        <div className="mb-6 sm:mb-8">
+                            <p className="text-gray-600 text-sm sm:text-base font-medium px-4 py-3">
+                                <FileQuestion  className="inline-block mr-2"/> Problem sets will be available 10 minutes after the contest begins
+                            </p>
+                        </div>
+                    )}
+
      
                    {/* Countdown and Quick Links Section */}
 <div className="mb-6 sm:mb-8 border-t border-gray-200 pt-6">
   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-10">
 
-    {/* Countdown Timer - Left Side */}
-    <div>
-      <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
-        Prelims starts in:
-      </p>
-      <div className="flex gap-1 sm:gap-2 items-center">
-        <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
-          <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.days}</span>
-          <span className="text-[10px] text-gray-600 font-medium mt-1">Days</span>
-        </div>
-        <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
-          <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.hours}</span>
-          <span className="text-[10px] text-gray-600 font-medium mt-1">Hrs</span>
-        </div>
-        <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
-          <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.minutes}</span>
-          <span className="text-[10px] text-gray-600 font-medium mt-1">Mins</span>
+    {/* Countdown Timer - Left Side - Only show before contest starts */}
+    {showTimer && (
+      <div>
+        <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
+          Prelims starts in:
+        </p>
+        <div className="flex gap-1 sm:gap-2 items-center">
+          <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+            <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.hours}</span>
+            <span className="text-[10px] text-gray-600 font-medium mt-1">Hr</span>
+          </div>
+          <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+            <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.minutes}</span>
+            <span className="text-[10px] text-gray-600 font-medium mt-1">Min</span>
+          </div>
+          <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+            <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.seconds}</span>
+            <span className="text-[10px] text-gray-600 font-medium mt-1">Sec</span>
+          </div>
         </div>
       </div>
-    </div>
+    )}
 
-    {/* Optional Divider for Desktop */}
-    <div className="hidden sm:block w-px bg-gray-200 h-16"></div>
+    {/* Optional Divider for Desktop - Only show when timer is visible */}
+    {showTimer && <div className="hidden sm:block w-px bg-gray-200 h-16"></div>}
 
     {/* Quick Links - Right Side */}
-    <div>
+    <div className={showTimer ? "" : "w-full"}>
       <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
         Download important documents:
       </p>
