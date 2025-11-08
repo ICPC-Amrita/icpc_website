@@ -1,5 +1,4 @@
 'use client';
-import { FileQuestion } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react"; 
@@ -7,19 +6,14 @@ import React, { useEffect, useState } from "react";
 
 export default function AltHero() {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-    const [showProblemSets, setShowProblemSets] = useState(false);
     const [showTimer, setShowTimer] = useState(true);
     
     useEffect(() => {
         const prelimsDate = new Date('2025-11-08T13:30:00').getTime();
-        const problemSetDisplayTime = new Date('2025-11-08T13:40:00').getTime();
         
         const updateCountdown = () => {
             const now = new Date().getTime();
             const distance = prelimsDate - now;
-
-            // Check if we should show problem sets
-            setShowProblemSets(now >= problemSetDisplayTime);
 
             // Hide timer when contest starts (at 1:30 PM)
             setShowTimer(distance > 0);
@@ -110,9 +104,12 @@ export default function AltHero() {
                         </Link>
                     </div>
 
-                    {/* Small Quick Links Buttons - Show only after 11:50 AM */}
-                    {showProblemSets && (
-                        <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+                    {/* Problem Sets - Always visible */}
+                    <div className="mb-6 sm:mb-8">
+                        <p className="text-gray-700 text-sm sm:text-base mb-3 font-medium">
+                            Access the contest problem set link below:
+                        </p>
+                        <div className="flex flex-wrap gap-2">
                             <Link
                                 href="https://drive.google.com/drive/folders/17EeWUv5dLfnYgL2f37Uc_hd3ysMFeYjs?usp=sharing"
                                 target="_blank"
@@ -135,18 +132,8 @@ export default function AltHero() {
                                 Link 3
                             </Link>
                         </div>
-                    )}
+                    </div>
 
-                    {/* Show message before problem sets are available */}
-                    {!showProblemSets && (
-                        <div className="mb-6 sm:mb-8">
-                            <p className="text-gray-600 text-sm sm:text-base font-medium px-4 py-3">
-                                <FileQuestion  className="inline-block mr-2"/> Problem sets will be available 10 minutes after the contest begins
-                            </p>
-                        </div>
-                    )}
-
-     
                    {/* Countdown and Quick Links Section */}
 <div className="mb-6 sm:mb-8 border-t border-gray-200 pt-6">
   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-10">
