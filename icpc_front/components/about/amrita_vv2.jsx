@@ -90,7 +90,7 @@ export default function AboutAmrita() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="https://icpc.global/regionals/finder/Asia-Amritapuri-First-Round-2026" className="transition-colors hover:text-sky-400">
+                  <Link href="" className="transition-colors hover:text-sky-400">
                     Registration
                   </Link>
                 </li>

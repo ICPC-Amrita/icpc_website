@@ -47,19 +47,10 @@ export default function AltHero() {
                     
                     {/* Highlight Badge */}
                     <div className="mb-3 sm:mb-4 md:mb-6">
-                        <span className="inline-block text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 sm:px-4 sm:py-2">
-                            Do keep visiting{' '}
-                            <a 
-                                href="https://indiaicpc.in" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="underline hover:text-blue-900 font-semibold transition-colors"
-                            >
-                                indiaicpc.in
-                            </a>
-                            {' '}for latest updates on the ICPC India Preliminary Online Contest.
-                        </span>
-                    </div>
+    <span className="inline-block text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-50 rounded-full border border-blue-200">
+        Highlights: 350+ Onsite Slots !
+    </span>
+</div>
 
                     {/* Main Title */}
                     <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 leading-tight">
@@ -83,7 +74,7 @@ export default function AltHero() {
             
 
                     {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12">
+                    {/* <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12">
                         <Link
                             href="https://icpc.global/regionals/finder/Asia-Amritapuri-First-Round-2026"
                             className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
@@ -102,10 +93,10 @@ export default function AltHero() {
                             <span className="hidden sm:inline">College Declaration Form</span>
                             <span className="sm:hidden">College Declaration Form</span>
                         </Link>
-                    </div>
+                    </div> */}
 
                     {/* Problem Sets - Always visible */}
-                    <div className="mb-6 sm:mb-8">
+                    {/* <div className="mb-6 sm:mb-8">
                         <p className="text-gray-700 text-sm sm:text-base mb-3 font-medium">
                             Access the contest problem set link below:
                         </p>
@@ -132,7 +123,7 @@ export default function AltHero() {
                                 Link 3
                             </Link>
                         </div>
-                    </div>
+                    </div> */}
 
                    {/* Countdown and Quick Links Section */}
 <div className="mb-6 sm:mb-8 border-t border-gray-200 pt-6">
@@ -214,7 +205,7 @@ export default function AltHero() {
           </svg>
           Selection Process
         </a>
-          <a
+          {/* <a
           href="/data/OBS Setup Guide for ICPC Proctoring - V2.pdf"
           download="OBS Setup Guide for ICPC Proctoring - V2.pdf"
           className="hover:underline hover:text-blue-700 transition-colors flex items-center gap-1"
@@ -227,7 +218,7 @@ export default function AltHero() {
             />
           </svg>
           OBS Setup Guide
-        </a>
+        </a> */}
       </div>
     </div>
   </div>
