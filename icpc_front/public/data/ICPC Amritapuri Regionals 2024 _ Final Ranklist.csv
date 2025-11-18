@@ -1,219 +1,219 @@
-rank,teamName,institution,problemsSolved,totalTime,penalty
-1,Ice shard,Chennai Mathematical Institute,10,17:14:43,3
-2,on_the_spectrum,Indian Institute of Technology Delhi,10,20:12:08,4
-3,404_solution_not_found,Indian Institute of Technology Indore,9,10:37:08,1
-4,poocha kya,Indian Institute of Technology (BHU) Varanasi,9,13:33:53,3
-5,Code_Dawgs,Indian Institute Of Technology - Kanpur,9,14:15:02,4
-6,Seg3,Indian Institute of Technology Delhi,9,14:54:34,2
-7,segment_trACk,Indian Institute Of Technology - Kanpur,9,15:09:58,2
-8,Prefer Not To Say,Indian Institute of Technology (BHU) Varanasi,9,15:36:27,1
-9,hehe i do cp,Indian Institute of Technology Roorkee,9,17:32:05,12
-10,HSS433,Indian Institute of Technology Guwahati,9,17:52:19,5
-11,Wasted_apples,Indian Institute of Technology Mandi,9,19:24:56,9
-12,bytemASKers,Indian Institute of Technology Roorkee,9,19:52:37,5
-13,lazy three,"International Institute of Information Technology, Hyderabad",9,21:06:43,9
-14,SubtasksWhere,"International Institute of Information Technology, Hyderabad",8,10:27:18,1
-15,Fast and Fourier,"School Of Computer Engineering, KIIT",8,13:19:41,5
-16,whitepilled again,"International Institute of Information Technology, Bangalore",8,13:25:29,0
-17,Soup,Indian Institute of Technology Madras,8,14:11:59,3
-18,Trie Harder,National Institute of Technology Karnataka,8,14:12:36,5
-19,SRS sus,"Birla Institute of Technology & Science Pilani, Pilani Campus",8,14:15:09,2
-20,Cheetah,Indian Institute of Technology Ropar,8,14:37:09,2
-21,AlooParatha,Indian Institute of Technology Kharagpur,8,15:02:04,5
-22,HackstreetBoys,Indian Institute Of Technology - Bombay,8,15:08:34,7
-23,100sage,Indian Institute of Technology Hyderabad,8,15:10:23,3
-24,kabhikabhicpp,Indian Institute Of Technology - Bombay,8,15:21:56,3
-25,Lazy Coders,"Walchand College of Engineering, Sangli",8,15:28:42,6
-26,IcyPeasy,National Institute of Technology Tiruchirappalli,8,15:36:39,3
-27,mangal_daku,Indian Institute of Technology Delhi,8,15:59:21,5
-28,HeheKyaHua,Indian Institute of Technology Kharagpur,8,16:14:48,6
-29,Silent 3lers,"Dhirubhai Ambani Institute of Information and Communication Technology, Gandhinagar",8,18:19:25,8
-30,The Endgame,Delhi Technological University,7,08:40:35,1
-31,Adhoc,Indian Institute of Technology Dhanbad,7,09:27:53,2
-32,Bholenath Bhakt,"National Institute of Technology, Jamshedpur",7,09:53:56,3
-33,Chaiitea,Indian Institute of Technology Madras,7,09:54:08,1
-34,WeirdFishes,Indian Institute of Technology Hyderabad,7,09:54:20,2
-35,LockedIn,"International Institute of Information Technology, Hyderabad",7,10:31:30,2
-36,Null Pointers,Indian Institute Of Technology - Kanpur,7,10:40:57,4
-37,Bugs sabke niklenge,"Institute of Engineering and Technology, Lucknow",7,10:50:30,1
-38,While (Not Winning);,Indian Institute of Technology Dhanbad,7,10:50:59,1
-39,Bhakarwadi,Indian Institute of Technology Indore,7,10:56:45,2
-40,using namespace icpc;,Indian Institute Of Technology - Kanpur,7,11:01:49,3
-41,DistortedPrimes,"School Of Computer Engineering, KIIT",7,11:34:06,5
-42,penalty_plus_plus,"Birla Institute of Technology & Science Pilani, Pilani Campus",7,11:56:17,4
-43,BLE,"Indian Institute of Information Technology, Design and Manufacturing, Jabalpur",7,12:00:35,1
-44,Tree-mendous Coders,Indian Institute of Technology (BHU) Varanasi,7,12:15:41,4
-45,VoidORNullBack,"National Institute of Technology, Kurukshetra",7,12:26:41,3
-46,1e9_plus_7,National Institute of Technology Agartala,7,12:51:54,4
-47,AAA_Battery,"Birla Institute of Technology & Science Pilani, Goa Campus",7,12:53:44,3
-48,VON,"Birla Institute of Technology & Science Pilani, Goa Campus",7,12:55:31,5
-49,AamPanna,Indian Institute of Technology Roorkee,7,13:36:33,7
-50,std::builtin_orz,"Indian Institute of Information Technology, Kottayam",7,14:29:58,4
-51,Ternary,"Vellore Institute of Technology, Vellore",7,15:00:25,2
-52,KalKeJuwari,Indian Institute of Technology Guwahati,7,15:12:18,4
-53,Void,Indian Institute of Technology Guwahati,7,15:34:26,7
-54,IPCC,Indian Institute of Technology Patna,7,16:11:58,5
-55,assert(rand()),"International Institute of Information Technology, Bangalore",6,05:22:22,0
-56,ethOS,Indian Institute of Technology Hyderabad,6,05:59:43,0
-57,Chaotic Coders,"Dhirubhai Ambani Institute of Information and Communication Technology, Gandhinagar",6,06:24:18,3
-58,Segmentation Assault,Thadomal Shahani Engineering College,6,06:41:41,1
-59,Vector,Indian Institute of Technology Roorkee,6,06:44:02,0
-60,8aByte,National Institute of Technology Karnataka,6,06:55:05,2
-61,I_Love_36B_TTs,Jadavpur University,6,07:02:02,1
-62,Dead_lock,National Institute of Technology Silchar,6,07:06:27,1
-63,DAM Aloo,"International Institute of Information Technology, Bangalore",6,07:08:05,4
-64,BoaConstructors,"Vellore Institute of Technology, Chennai",6,07:12:54,1
-65,Phantom_Beasts,Nirma University,6,07:20:06,1
-66,Car Bhavani,"Indian Institute of Information Technology, Ranchi",6,07:20:35,4
-67,Triple_S,"National Institute of Technology, Durgapur",6,07:21:16,3
-68,GreedyGeeks,"Indian Institute of Information Technology, Allahabad",6,07:32:13,3
-69,Cache us if you can,"Sri Sivasubramaniya Nadar College of Engineering, Chennai",6,07:36:36,1
-70,Coding Lobby,"Indian Institute of Technology, Jodhpur",6,07:47:08,5
-71,Nah We'd Win,Indian Institute of Technology Dhanbad,6,08:01:43,3
-72,The Blasters,Indian Institute of Technology Madras,6,08:04:29,1
-73,takeabyte,Jadavpur University,6,08:05:37,0
-74,Goblin Barrel,"National Institute of Technology, Calicut",6,08:07:26,4
-75,Retired_Retards,"International Institute of Information Technology, Naya Raipur",6,08:22:03,3
-76,LAL Fund,"Indian Institute of Information Technology, Allahabad",6,08:25:49,3
-77,Zhakaas,"International Institute of Information Technology, Bangalore",6,08:26:37,1
-78,Hope_is_hard,"Veermata Jijabai Technological Institute, Mumbai",6,08:36:17,1
-79,descendants of Tourist,"National Institute of Technology, Rourkela",6,08:38:55,3
-80,ThreeStacks,Indian Institute of Technology Ropar,6,08:48:27,3
-81,Array of hope,"Indraprastha Institute of Information Technology, Delhi",6,08:50:57,5
-82,3+3>5,"Indian Institute of Information Technology, Nagpur",6,09:00:43,6
-83,NoIdea,Indian Institute of Technology (BHU) Varanasi,6,09:00:55,3
-84,O(R^2*T),Indian Institute of Technology Guwahati,6,09:01:30,1
-85,Koders Klub,"Walchand College of Engineering, Sangli",6,09:06:21,4
-86,bit_manipulators,Delhi Technological University,6,09:13:16,1
-87,Equinox,Indian Institute of Technology Ropar,6,09:14:29,4
-88,mdspan,"Indian Institute of Information Technology, Sri City",6,09:14:31,5
-89,owo,National Institute of Technology Raipur,6,09:24:00,1
-90,Wrong Angled Triangle,VNR Vignana Jyothi Institute of Engineering and Technology,6,09:31:19,3
-91,MSB_overflow,"Birla Institute of Technology & Science Pilani, Pilani Campus",6,09:38:45,5
-92,Debugging ducks,"National Institute of Technology, Calicut",6,09:47:24,2
-93,just_better,Indian Institute Of Technology - Bombay,6,09:52:14,3
-94,XoRiers,"Pandit Deendayal Energy University, Gandhinagar",6,09:59:32,4
-95,CppOnly,"Indian Institute of Information Technology, Pune",6,10:10:35,5
-96,We_only_know_BruteForce,Nirma University,6,10:13:48,6
-97,CrystaLMatH,"Indian Institute of Technology, Jodhpur",6,10:13:49,3
-98,BLWs,Jaypee Institute of Information Technology,6,10:17:58,5
-99,TLE : Talent Limit Exceeded,Chandigarh University,6,10:23:22,3
-100,Guffawed,Indian Institute of Technology Guwahati,6,10:29:13,4
-101,ERRor not found,Indian Institute of Technology Kharagpur,6,10:57:39,7
-102,TripleEyeTea_DMK,"Indian Institute of Information Technology Design and Manufacturing, Kurnool",6,11:08:48,2
-103,Cheta3Tea,National Institute of Technology Tiruchirappalli,6,11:09:57,5
-104,3-STOOD,Indian Institute of Technology Dhanbad,6,11:10:20,7
-105,tourist_ka_baap,"Indian Institute of Information Technology, Lucknow",6,11:12:47,6
-106,way2AC,Indian Institute of Technology Gandhinagar,6,11:24:32,1
-107,WA_addicts,Indian Institute of Technology Guwahati,6,11:27:00,7
-108,Naam bade Darshan chote,"Indian Institute of Information Technology, Pune",6,11:28:06,6
-109,Mamba_Out,"National Institute of Technology, Hamirpur",6,11:29:11,6
-110,EMO,"Harcourt Butler Technical University, Kanpur",6,11:30:35,4
-111,Primary_key,Netaji Subhas University of Technology,6,11:33:52,3
-112,Hetro Sapiens,Rishihood University,6,11:46:58,2
-113,meow,Indian Institute of Technology Patna,6,11:54:51,5
-114,ISeePSee,Indian Institute of Technology Dhanbad,6,12:02:38,3
-115,Wowwies,Dwarkadas Jivanlal Sanghvi College of Engineering,6,12:09:54,7
-116,Peaky Blinders,"Indian Institute of Information Technology, Allahabad",6,12:18:58,6
-117,Nip Pulse,"Vishwakarma Institute of Technology, Pune",6,12:19:56,7
-118,DhruvNnoobs,Datta Meghe College of Engineering,6,12:21:43,3
-119,Team Teleforces,Indian Institute of Technology Patna,6,12:35:45,8
-120,PretestTwo,Jadavpur University,6,12:45:14,3
-121,TRIEfecta,M S Ramaiah Institute of Technology,6,13:04:30,11
-122,Enigma,"Dhirubhai Ambani Institute of Information and Communication Technology, Gandhinagar",6,13:56:48,8
-123,Snack Overflow,Indian Institute of Information Technology Tiruchirappalli,6,14:02:48,2
+rank,teamName,institution,problemsSolved,totalTime,penalty,isWomanOnly
+1,Ice shard,Chennai Mathematical Institute,10,17:14:43,3,true
+2,on_the_spectrum,Indian Institute of Technology Delhi,10,20:12:08,4,false
+3,404_solution_not_found,Indian Institute of Technology Indore,9,10:37:08,1,true
+4,poocha kya,Indian Institute of Technology (BHU) Varanasi,9,13:33:53,3,false
+5,Code_Dawgs,Indian Institute Of Technology - Kanpur,9,14:15:02,4,false
+6,Seg3,Indian Institute of Technology Delhi,9,14:54:34,2,false
+7,segment_trACk,Indian Institute Of Technology - Kanpur,9,15:09:58,2,false
+8,Prefer Not To Say,Indian Institute of Technology (BHU) Varanasi,9,15:36:27,1,false
+9,hehe i do cp,Indian Institute of Technology Roorkee,9,17:32:05,12,false
+10,HSS433,Indian Institute of Technology Guwahati,9,17:52:19,5,false
+11,Wasted_apples,Indian Institute of Technology Mandi,9,19:24:56,9,false
+12,bytemASKers,Indian Institute of Technology Roorkee,9,19:52:37,5,false
+13,lazy three,"International Institute of Information Technology, Hyderabad",9,21:06:43,9,false
+14,SubtasksWhere,"International Institute of Information Technology, Hyderabad",8,10:27:18,1,false
+15,Fast and Fourier,"School Of Computer Engineering, KIIT",8,13:19:41,5,false
+16,whitepilled again,"International Institute of Information Technology, Bangalore",8,13:25:29,0,false
+17,Soup,Indian Institute of Technology Madras,8,14:11:59,3,false
+18,Trie Harder,National Institute of Technology Karnataka,8,14:12:36,5,false
+19,SRS sus,"Birla Institute of Technology & Science Pilani, Pilani Campus",8,14:15:09,2,false
+20,Cheetah,Indian Institute of Technology Ropar,8,14:37:09,2,false
+21,AlooParatha,Indian Institute of Technology Kharagpur,8,15:02:04,5,false
+22,HackstreetBoys,Indian Institute Of Technology - Bombay,8,15:08:34,7,false
+23,100sage,Indian Institute of Technology Hyderabad,8,15:10:23,3,false
+24,kabhikabhicpp,Indian Institute Of Technology - Bombay,8,15:21:56,3,false
+25,Lazy Coders,"Walchand College of Engineering, Sangli",8,15:28:42,6,false
+26,IcyPeasy,National Institute of Technology Tiruchirappalli,8,15:36:39,3,false
+27,mangal_daku,Indian Institute of Technology Delhi,8,15:59:21,5,false
+28,HeheKyaHua,Indian Institute of Technology Kharagpur,8,16:14:48,6,false
+29,Silent 3lers,"Dhirubhai Ambani Institute of Information and Communication Technology, Gandhinagar",8,18:19:25,8,false
+30,The Endgame,Delhi Technological University,7,08:40:35,1,false
+31,Adhoc,Indian Institute of Technology Dhanbad,7,09:27:53,2,false
+32,Bholenath Bhakt,"National Institute of Technology, Jamshedpur",7,09:53:56,3,false
+33,Chaiitea,Indian Institute of Technology Madras,7,09:54:08,1,false
+34,WeirdFishes,Indian Institute of Technology Hyderabad,7,09:54:20,2,false
+35,LockedIn,"International Institute of Information Technology, Hyderabad",7,10:31:30,2,false
+36,Null Pointers,Indian Institute Of Technology - Kanpur,7,10:40:57,4,false
+37,Bugs sabke niklenge,"Institute of Engineering and Technology, Lucknow",7,10:50:30,1,false
+38,While (Not Winning);,Indian Institute of Technology Dhanbad,7,10:50:59,1,false
+39,Bhakarwadi,Indian Institute of Technology Indore,7,10:56:45,2,false
+40,using namespace icpc;,Indian Institute Of Technology - Kanpur,7,11:01:49,3,false
+41,DistortedPrimes,"School Of Computer Engineering, KIIT",7,11:34:06,5,false
+42,penalty_plus_plus,"Birla Institute of Technology & Science Pilani, Pilani Campus",7,11:56:17,4,false
+43,BLE,"Indian Institute of Information Technology, Design and Manufacturing, Jabalpur",7,12:00:35,1,false
+44,Tree-mendous Coders,Indian Institute of Technology (BHU) Varanasi,7,12:15:41,4,false
+45,VoidORNullBack,"National Institute of Technology, Kurukshetra",7,12:26:41,3,false
+46,1e9_plus_7,National Institute of Technology Agartala,7,12:51:54,4,false
+47,AAA_Battery,"Birla Institute of Technology & Science Pilani, Goa Campus",7,12:53:44,3,false
+48,VON,"Birla Institute of Technology & Science Pilani, Goa Campus",7,12:55:31,5,false
+49,AamPanna,Indian Institute of Technology Roorkee,7,13:36:33,7,false
+50,std::builtin_orz,"Indian Institute of Information Technology, Kottayam",7,14:29:58,4,false
+51,Ternary,"Vellore Institute of Technology, Vellore",7,15:00:25,2,false
+52,KalKeJuwari,Indian Institute of Technology Guwahati,7,15:12:18,4,false
+53,Void,Indian Institute of Technology Guwahati,7,15:34:26,7,false
+54,IPCC,Indian Institute of Technology Patna,7,16:11:58,5,false
+55,assert(rand()),"International Institute of Information Technology, Bangalore",6,05:22:22,0,false
+56,ethOS,Indian Institute of Technology Hyderabad,6,05:59:43,0,false
+57,Chaotic Coders,"Dhirubhai Ambani Institute of Information and Communication Technology, Gandhinagar",6,06:24:18,3,false
+58,Segmentation Assault,Thadomal Shahani Engineering College,6,06:41:41,1,false
+59,Vector,Indian Institute of Technology Roorkee,6,06:44:02,0,false
+60,8aByte,National Institute of Technology Karnataka,6,06:55:05,2,false
+61,I_Love_36B_TTs,Jadavpur University,6,07:02:02,1,false
+62,Dead_lock,National Institute of Technology Silchar,6,07:06:27,1,false
+63,DAM Aloo,"International Institute of Information Technology, Bangalore",6,07:08:05,4,false
+64,BoaConstructors,"Vellore Institute of Technology, Chennai",6,07:12:54,1,false
+65,Phantom_Beasts,Nirma University,6,07:20:06,1,false
+66,Car Bhavani,"Indian Institute of Information Technology, Ranchi",6,07:20:35,4,false
+67,Triple_S,"National Institute of Technology, Durgapur",6,07:21:16,3,false
+68,GreedyGeeks,"Indian Institute of Information Technology, Allahabad",6,07:32:13,3,false
+69,Cache us if you can,"Sri Sivasubramaniya Nadar College of Engineering, Chennai",6,07:36:36,1,false
+70,Coding Lobby,"Indian Institute of Technology, Jodhpur",6,07:47:08,5,false
+71,Nah We'd Win,Indian Institute of Technology Dhanbad,6,08:01:43,3,false
+72,The Blasters,Indian Institute of Technology Madras,6,08:04:29,1,false
+73,takeabyte,Jadavpur University,6,08:05:37,0,false
+74,Goblin Barrel,"National Institute of Technology, Calicut",6,08:07:26,4,false
+75,Retired_Retards,"International Institute of Information Technology, Naya Raipur",6,08:22:03,3,false
+76,LAL Fund,"Indian Institute of Information Technology, Allahabad",6,08:25:49,3,false
+77,Zhakaas,"International Institute of Information Technology, Bangalore",6,08:26:37,1,false
+78,Hope_is_hard,"Veermata Jijabai Technological Institute, Mumbai",6,08:36:17,1,false
+79,descendants of Tourist,"National Institute of Technology, Rourkela",6,08:38:55,3,false
+80,ThreeStacks,Indian Institute of Technology Ropar,6,08:48:27,3,false
+81,Array of hope,"Indraprastha Institute of Information Technology, Delhi",6,08:50:57,5,false
+82,3+3>5,"Indian Institute of Information Technology, Nagpur",6,09:00:43,6,false
+83,NoIdea,Indian Institute of Technology (BHU) Varanasi,6,09:00:55,3,false
+84,O(R^2*T),Indian Institute of Technology Guwahati,6,09:01:30,1,false
+85,Koders Klub,"Walchand College of Engineering, Sangli",6,09:06:21,4,false
+86,bit_manipulators,Delhi Technological University,6,09:13:16,1,false
+87,Equinox,Indian Institute of Technology Ropar,6,09:14:29,4,false
+88,mdspan,"Indian Institute of Information Technology, Sri City",6,09:14:31,5,false
+89,owo,National Institute of Technology Raipur,6,09:24:00,1,false
+90,Wrong Angled Triangle,VNR Vignana Jyothi Institute of Engineering and Technology,6,09:31:19,3,false
+91,MSB_overflow,"Birla Institute of Technology & Science Pilani, Pilani Campus",6,09:38:45,5,false
+92,Debugging ducks,"National Institute of Technology, Calicut",6,09:47:24,2,false
+93,just_better,Indian Institute Of Technology - Bombay,6,09:52:14,3,false
+94,XoRiers,"Pandit Deendayal Energy University, Gandhinagar",6,09:59:32,4,false
+95,CppOnly,"Indian Institute of Information Technology, Pune",6,10:10:35,5,false
+96,We_only_know_BruteForce,Nirma University,6,10:13:48,6,false
+97,CrystaLMatH,"Indian Institute of Technology, Jodhpur",6,10:13:49,3,false
+98,BLWs,Jaypee Institute of Information Technology,6,10:17:58,5,false
+99,TLE : Talent Limit Exceeded,Chandigarh University,6,10:23:22,3,false
+100,Guffawed,Indian Institute of Technology Guwahati,6,10:29:13,4,false
+101,ERRor not found,Indian Institute of Technology Kharagpur,6,10:57:39,7,false
+102,TripleEyeTea_DMK,"Indian Institute of Information Technology Design and Manufacturing, Kurnool",6,11:08:48,2,false
+103,Cheta3Tea,National Institute of Technology Tiruchirappalli,6,11:09:57,5,false
+104,3-STOOD,Indian Institute of Technology Dhanbad,6,11:10:20,7,false
+105,tourist_ka_baap,"Indian Institute of Information Technology, Lucknow",6,11:12:47,6,false
+106,way2AC,Indian Institute of Technology Gandhinagar,6,11:24:32,1,false
+107,WA_addicts,Indian Institute of Technology Guwahati,6,11:27:00,7,false
+108,Naam bade Darshan chote,"Indian Institute of Information Technology, Pune",6,11:28:06,6,false
+109,Mamba_Out,"National Institute of Technology, Hamirpur",6,11:29:11,6,false
+110,EMO,"Harcourt Butler Technical University, Kanpur",6,11:30:35,4,false
+111,Primary_key,Netaji Subhas University of Technology,6,11:33:52,3,false
+112,Hetro Sapiens,Rishihood University,6,11:46:58,2,false
+113,meow,Indian Institute of Technology Patna,6,11:54:51,5,false
+114,ISeePSee,Indian Institute of Technology Dhanbad,6,12:02:38,3,false
+115,Wowwies,Dwarkadas Jivanlal Sanghvi College of Engineering,6,12:09:54,7,false
+116,Peaky Blinders,"Indian Institute of Information Technology, Allahabad",6,12:18:58,6,false
+117,Nip Pulse,"Vishwakarma Institute of Technology, Pune",6,12:19:56,7,false
+118,DhruvNnoobs,Datta Meghe College of Engineering,6,12:21:43,3,false
+119,Team Teleforces,Indian Institute of Technology Patna,6,12:35:45,8,false
+120,PretestTwo,Jadavpur University,6,12:45:14,3,false
+121,TRIEfecta,M S Ramaiah Institute of Technology,6,13:04:30,11,false
+122,Enigma,"Dhirubhai Ambani Institute of Information and Communication Technology, Gandhinagar",6,13:56:48,8,false
+123,Snack Overflow,Indian Institute of Information Technology Tiruchirappalli,6,14:02:48,2,false
 124,Chota Haathi,"Delhi Skill and Entrepreneurship University
-",6,14:19:35,8
-125,The three tier coders,Jalpaiguri Government Engineering College,6,15:17:46,4
-126,69/70TestCasesPassed,"Manipal Institute of Technology, Manipal",6,15:26:48,9
-127,SegThreee,"Indian Institute of Information Technology, Surat",6,15:51:30,10
-128,DP,Dr. BR Ambedkar National Institute of Technology,6,16:21:00,6
-129,Velaris,Bundelkhand Institute of Engineering and Technology,6,16:32:49,5
-130,NamePending,"International Institute of Information Technology, Hyderabad",5,03:37:06,0
-131,FFT IIITD,"Indraprastha Institute of Information Technology, Delhi",5,03:53:07,0
-132,Placeholder,Indian Institute of Technology (BHU) Varanasi,5,04:15:11,1
-133,void *(*(*(**x[])())[])(),"Birla Institute of Technology & Science Pilani, Hyderabad Campus",5,04:40:28,0
-134,ICPCmaxxing,National Institute of Technology Silchar,5,04:43:25,2
-135,Placed,Indian Institute of Technology Patna,5,04:48:05,1
-136,Probabilistic Losers,Nirma University,5,05:21:14,2
-137,StrawHatz,VNR Vignana Jyothi Institute of Engineering and Technology,5,05:22:58,2
-138,scoops troop,"Indian Institute of Information Technology, Nagpur",5,05:26:30,2
-139,neela_hai_aasman,Army Institute of Technology,5,05:29:46,3
-140,CODEGEEKS,"Indian Institute of Information Technology, Design and Manufacturing, Jabalpur",5,06:21:02,2
-141,Straw_hat_Pirates,Motilal Nehru National Institute of Technology Allahabad,5,06:46:44,2
-142,CodeWIZ,"International Institute of Information Technology, Hyderabad",5,06:51:17,4
-143,Exceptionals,"Indian Institute of Information Technology, Nagpur",5,06:52:51,4
-144,Queue Underflow,Scaler School Of Technology,5,07:02:37,4
-145,RRR,Delhi Technological University,5,07:07:59,4
-146,CodeForced,"Indian Institute of Engineering Science and Technology, Shibpur",5,07:09:04,2
-147,JMD,"Birla Institute of Technology & Science Pilani, Goa Campus",5,07:14:04,2
-148,__Infinity_,Army Institute of Technology,5,07:22:55,3
-149,The Forkers,National Institute of Technology Raipur,5,07:23:56,3
-150,Damodar,"Jawaharlal Nehru University, New Delhi",5,07:25:23,2
-151,EXCEPTION EXORCISTS,"Indian Institute of Technology, Tirupati",5,08:07:29,4
-152,Compile and Conquer,"Indian Institute of Technology, Bhubaneswar",5,08:32:29,2
-153,Verbatim,"Vishwakarma Institute of Technology, Pune",5,09:07:12,4
-154,TLE_ka O(mlette),Chennai Mathematical Institute,5,09:15:09,5
-155,__O(3)__,Pimpri Chinchwad College of Engineering,5,09:42:09,2
-156,Haigure Haigure,Scaler School Of Technology,5,09:54:42,4
-157,Inversions,"Graphic Era Hill University, Dehradun",5,09:59:12,5
-158,Stardust Crusaders,National Institute of Technology Warangal,5,10:08:11,4
-159,Pretesters,"KIET Group of Institutions, Ghaziabad",5,10:12:58,4
-160,TLE_Pretest11,"Indian Institute of Information Technology, Ranchi",5,10:14:16,7
-161,arrow_head_,Army Institute of Technology,5,10:57:23,8
-162,Bipartite Boys,National Institute of Technology Karnataka,5,11:13:40,8
-163,BinaryBrains 2.0,K L University,5,14:00:18,8
-164,gotta_WA_em_all,"International Institute of Information Technology, Naya Raipur",5,14:46:31,6
-165,Forge,"Indian Institute of Information Technology, Una",4,02:08:16,0
-166,Ec_warriors,Motilal Nehru National Institute of Technology Allahabad,4,02:09:56,0
-167,Algorithm Acharyas,National Institute of Technology Agartala,4,02:19:22,1
-168,TLE_gives_tears,"Vellore Institute of Technology, Chennai",4,03:00:03,0
-169,is_it_so?,Manav Rachna University,4,03:07:25,2
-170,Byte Buddies,"BMS College of Engineering, Bangalore",4,03:13:37,2
-171,TreepyTreaps,"Pandit Deendayal Energy University, Gandhinagar",4,03:33:14,0
-172,Fake_Coders,"Indian Institute of Information Technology, Allahabad",4,03:41:07,0
-173,Lazy Propagators,"Indian Institute of Information Technology, Bhagalpur",4,03:41:15,1
-174,The Windblown,"Sardar Patel Institute Of Technology, Mumbai",4,03:53:09,1
-175,Tripod,"National Institute of Technology, Jamshedpur",4,04:00:03,1
-176,Outlaws,Thapar Institute of Engineering and Technology,4,04:00:35,1
-177,echo CP,National Institute of Technology Tiruchirappalli,4,04:02:19,2
-178,System Reboot,RNS Institute of Technology,4,04:14:41,1
-179,Hugs For Bugs,Graphic Era University,4,04:17:30,2
-180,Lazy propagators,"Indian Institute of Information Technology, Nagpur",4,04:17:31,3
-181,SweetCODE,"Rajiv Gandhi Institute of Petroleum Technology, Rae Bareli",4,04:32:49,2
-182,Mavericks45,"MIT Academy of Engineering, Alandi",4,04:42:51,1
-183,Do chai ek coffee,Indian Institute of Technology Patna,4,04:43:23,1
-184,Algo Primes,Indian Institute of Information Technology Guwahati,4,04:50:17,0
-185,AlphaQ,"Indian Institute of Information Technology, Kota",4,04:50:58,2
-186,binary_lifters,"Indian Institute of Information Technology, Kottayam",4,05:04:56,2
-187,Spec 3,"Visvesvaraya National Institute of Technology, Nagpur",4,05:17:02,3
-188,who cares,Scaler School Of Technology,4,05:18:04,1
-189,TEAM_X,"Harcourt Butler Technical University, Kanpur",4,05:24:02,4
-190,Brahmaputra,National Institute of Technology Silchar,4,05:30:18,3
-191,ToBeDecided,"Vellore Institute of Technology, Bhopal",4,05:46:54,5
-192,I_C_Pookiesss,"Marathwada Mitra Mandal's College of Engineering, Pune",4,05:53:02,1
-193,Sudo Delete Bios,National Institute of Technology Warangal,4,06:01:02,2
-194,Lazy_Propagators,"Government College of Engineering and Leather Technology, Kolkata",4,06:10:39,7
-195,fafda,"Dharmsinh Desai University, Nadiad",4,06:22:35,1
-196,Pathfinders2k24,"Rashtreeya Vidyalaya College of Engineering, Bangalore",4,06:51:52,5
-197,Ice Cold,"Indian Institute of Information Technology, Una",4,06:57:47,5
-198,AlgoARP,"Shiv Nadar University, Chennai",4,07:00:59,3
-199,Bit by Bit,Sharda University,4,07:04:09,0
-200,Runtimesleuths,"Maharaja Agrasen Institute of Technology, New Delhi",4,07:36:57,4
-201,chinki_shinki,"Indian Institute of Information Technology, Una",4,07:39:29,3
-202,Code_Crafters,"Maulana Azad National Institute of Technology, Bhopal",4,07:42:39,3
-203,Levi Squad,ABV - Indian Institute of Information Technology and Management Gwalior,4,08:10:23,1
-204,ERROR404,"Indian Institute of Engineering Science and Technology, Shibpur",4,10:14:50,7
-205,TechnoTitans,"Indian Institute of Information Technology, Kota",4,11:56:38,9
-206,bug_bounty,"Vellore Institute of Technology, Chennai",3,03:11:20,1
-207,Ctrl+Alt+Defeat,RV Institute of Technology and Management,3,03:18:10,2
-208,random(3),Indian Institute of Technology Ropar,3,03:19:10,1
-209,intutive,Chitkara University,3,03:56:59,3
-210,Geeky Nerds,"BML Munjal University, Gurgaon",3,04:38:10,3
-211,BitByeBit,M S Ramaiah Institute of Technology,3,05:58:59,2
-212,whoCares,"Sardar Vallabhbhai National Institute of Technology, Surat",3,06:47:03,5
-213,Proof by AC,"Graphic Era Hill University, Dehradun",2,01:10:33,0
-214,Coding Pirates,"GLA University, Mathura",2,01:50:04,1
-215,Code Alchemy,Thapar Institute of Engineering and Technology,2,04:33:51,5
-216,Code Chicks,Anil Neerukonda Institute of Technology and Sciences,1,00:35:12,0
-217,Binary Coders,"PES College of Engineering, Mandya",1,03:33:56,2
+",6,14:19:35,8,false
+125,The three tier coders,Jalpaiguri Government Engineering College,6,15:17:46,4,false
+126,69/70TestCasesPassed,"Manipal Institute of Technology, Manipal",6,15:26:48,9,false
+127,SegThreee,"Indian Institute of Information Technology, Surat",6,15:51:30,10,false
+128,DP,Dr. BR Ambedkar National Institute of Technology,6,16:21:00,6,false
+129,Velaris,Bundelkhand Institute of Engineering and Technology,6,16:32:49,5,false
+130,NamePending,"International Institute of Information Technology, Hyderabad",5,03:37:06,0,false
+131,FFT IIITD,"Indraprastha Institute of Information Technology, Delhi",5,03:53:07,0,false
+132,Placeholder,Indian Institute of Technology (BHU) Varanasi,5,04:15:11,1,false
+133,void *(*(*(**x[])())[])(),"Birla Institute of Technology & Science Pilani, Hyderabad Campus",5,04:40:28,0,false
+134,ICPCmaxxing,National Institute of Technology Silchar,5,04:43:25,2,false
+135,Placed,Indian Institute of Technology Patna,5,04:48:05,1,false
+136,Probabilistic Losers,Nirma University,5,05:21:14,2,false
+137,StrawHatz,VNR Vignana Jyothi Institute of Engineering and Technology,5,05:22:58,2,false
+138,scoops troop,"Indian Institute of Information Technology, Nagpur",5,05:26:30,2,false
+139,neela_hai_aasman,Army Institute of Technology,5,05:29:46,3,false
+140,CODEGEEKS,"Indian Institute of Information Technology, Design and Manufacturing, Jabalpur",5,06:21:02,2,false
+141,Straw_hat_Pirates,Motilal Nehru National Institute of Technology Allahabad,5,06:46:44,2,false
+142,CodeWIZ,"International Institute of Information Technology, Hyderabad",5,06:51:17,4,false
+143,Exceptionals,"Indian Institute of Information Technology, Nagpur",5,06:52:51,4,false
+144,Queue Underflow,Scaler School Of Technology,5,07:02:37,4,false
+145,RRR,Delhi Technological University,5,07:07:59,4,false
+146,CodeForced,"Indian Institute of Engineering Science and Technology, Shibpur",5,07:09:04,2,false
+147,JMD,"Birla Institute of Technology & Science Pilani, Goa Campus",5,07:14:04,2,false
+148,__Infinity_,Army Institute of Technology,5,07:22:55,3,false
+149,The Forkers,National Institute of Technology Raipur,5,07:23:56,3,false
+150,Damodar,"Jawaharlal Nehru University, New Delhi",5,07:25:23,2,false
+151,EXCEPTION EXORCISTS,"Indian Institute of Technology, Tirupati",5,08:07:29,4,false
+152,Compile and Conquer,"Indian Institute of Technology, Bhubaneswar",5,08:32:29,2,true
+153,Verbatim,"Vishwakarma Institute of Technology, Pune",5,09:07:12,4,true
+154,TLE_ka O(mlette),Chennai Mathematical Institute,5,09:15:09,5,true
+155,__O(3)__,Pimpri Chinchwad College of Engineering,5,09:42:09,2,true
+156,Haigure Haigure,Scaler School Of Technology,5,09:54:42,4,true
+157,Inversions,"Graphic Era Hill University, Dehradun",5,09:59:12,5,true
+158,Stardust Crusaders,National Institute of Technology Warangal,5,10:08:11,4,true
+159,Pretesters,"KIET Group of Institutions, Ghaziabad",5,10:12:58,4,true
+160,TLE_Pretest11,"Indian Institute of Information Technology, Ranchi",5,10:14:16,7,true
+161,arrow_head_,Army Institute of Technology,5,10:57:23,8,true
+162,Bipartite Boys,National Institute of Technology Karnataka,5,11:13:40,8,false
+163,BinaryBrains 2.0,K L University,5,14:00:18,8,true
+164,gotta_WA_em_all,"International Institute of Information Technology, Naya Raipur",5,14:46:31,6,true
+165,Forge,"Indian Institute of Information Technology, Una",4,02:08:16,0,true
+166,Ec_warriors,Motilal Nehru National Institute of Technology Allahabad,4,02:09:56,0,true
+167,Algorithm Acharyas,National Institute of Technology Agartala,4,02:19:22,1,true
+168,TLE_gives_tears,"Vellore Institute of Technology, Chennai",4,03:00:03,0,false
+169,is_it_so?,Manav Rachna University,4,03:07:25,2,false
+170,Byte Buddies,"BMS College of Engineering, Bangalore",4,03:13:37,2,true
+171,TreepyTreaps,"Pandit Deendayal Energy University, Gandhinagar",4,03:33:14,0,true
+172,Fake_Coders,"Indian Institute of Information Technology, Allahabad",4,03:41:07,0,true
+173,Lazy Propagators,"Indian Institute of Information Technology, Bhagalpur",4,03:41:15,1,true
+174,The Windblown,"Sardar Patel Institute Of Technology, Mumbai",4,03:53:09,1,true
+175,Tripod,"National Institute of Technology, Jamshedpur",4,04:00:03,1,true
+176,Outlaws,Thapar Institute of Engineering and Technology,4,04:00:35,1,true
+177,echo CP,National Institute of Technology Tiruchirappalli,4,04:02:19,2,false
+178,System Reboot,RNS Institute of Technology,4,04:14:41,1,false
+179,Hugs For Bugs,Graphic Era University,4,04:17:30,2,false
+180,Lazy propagators,"Indian Institute of Information Technology, Nagpur",4,04:17:31,3,false
+181,SweetCODE,"Rajiv Gandhi Institute of Petroleum Technology, Rae Bareli",4,04:32:49,2,false
+182,Mavericks45,"MIT Academy of Engineering, Alandi",4,04:42:51,1,false
+183,Do chai ek coffee,Indian Institute of Technology Patna,4,04:43:23,1,false
+184,Algo Primes,Indian Institute of Information Technology Guwahati,4,04:50:17,0,false
+185,AlphaQ,"Indian Institute of Information Technology, Kota",4,04:50:58,2,false
+186,binary_lifters,"Indian Institute of Information Technology, Kottayam",4,05:04:56,2,false
+187,Spec 3,"Visvesvaraya National Institute of Technology, Nagpur",4,05:17:02,3,false
+188,who cares,Scaler School Of Technology,4,05:18:04,1,false
+189,TEAM_X,"Harcourt Butler Technical University, Kanpur",4,05:24:02,4,false
+190,Brahmaputra,National Institute of Technology Silchar,4,05:30:18,3,false
+191,ToBeDecided,"Vellore Institute of Technology, Bhopal",4,05:46:54,5,false
+192,I_C_Pookiesss,"Marathwada Mitra Mandal's College of Engineering, Pune",4,05:53:02,1,false
+193,Sudo Delete Bios,National Institute of Technology Warangal,4,06:01:02,2,false
+194,Lazy_Propagators,"Government College of Engineering and Leather Technology, Kolkata",4,06:10:39,7,false
+195,fafda,"Dharmsinh Desai University, Nadiad",4,06:22:35,1,false
+196,Pathfinders2k24,"Rashtreeya Vidyalaya College of Engineering, Bangalore",4,06:51:52,5,false
+197,Ice Cold,"Indian Institute of Information Technology, Una",4,06:57:47,5,false
+198,AlgoARP,"Shiv Nadar University, Chennai",4,07:00:59,3,false
+199,Bit by Bit,Sharda University,4,07:04:09,0,false
+200,Runtimesleuths,"Maharaja Agrasen Institute of Technology, New Delhi",4,07:36:57,4,false
+201,chinki_shinki,"Indian Institute of Information Technology, Una",4,07:39:29,3,false
+202,Code_Crafters,"Maulana Azad National Institute of Technology, Bhopal",4,07:42:39,3,false
+203,Levi Squad,ABV - Indian Institute of Information Technology and Management Gwalior,4,08:10:23,1,false
+204,ERROR404,"Indian Institute of Engineering Science and Technology, Shibpur",4,10:14:50,7,false
+205,TechnoTitans,"Indian Institute of Information Technology, Kota",4,11:56:38,9,false
+206,bug_bounty,"Vellore Institute of Technology, Chennai",3,03:11:20,1,false
+207,Ctrl+Alt+Defeat,RV Institute of Technology and Management,3,03:18:10,2,false
+208,random(3),Indian Institute of Technology Ropar,3,03:19:10,1,false
+209,intutive,Chitkara University,3,03:56:59,3,false
+210,Geeky Nerds,"BML Munjal University, Gurgaon",3,04:38:10,3,false
+211,BitByeBit,M S Ramaiah Institute of Technology,3,05:58:59,2,false
+212,whoCares,"Sardar Vallabhbhai National Institute of Technology, Surat",3,06:47:03,5,false
+213,Proof by AC,"Graphic Era Hill University, Dehradun",2,01:10:33,0,false
+214,Coding Pirates,"GLA University, Mathura",2,01:50:04,1,false
+215,Code Alchemy,Thapar Institute of Engineering and Technology,2,04:33:51,5,false
+216,Code Chicks,Anil Neerukonda Institute of Technology and Sciences,1,00:35:12,0,false
+217,Binary Coders,"PES College of Engineering, Mandya",1,03:33:56,2,false

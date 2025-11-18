@@ -256,10 +256,7 @@ teamId,teamName,institution,isWomanOnly
 1012220,Lazy Coders,"Walchand College of Engineering, Sangli",false
 1024411,Koders Klub,"Walchand College of Engineering, Sangli",false
 1019138,Ymca_bhediyas,"YMCA University of Science and Technology, Faridabad",false
-1029485,mas00m pupils,"YMCA University of Science and Technology, Faridabad"
-,,
-,,
-,ICPC Selected Teams for Amritapuri Regionals 2024 (Women Only),
+1029485,mas00m pupils,"YMCA University of Science and Technology, Faridabad",
 1017513,Code Chicks,Anil Neerukonda Institute of Technology and Sciences,true
 1028681,O(R^2*T),Indian Institute of Technology - Guwahati,true
 1031644,byte_sized_dreamers,Indian Institute of Technology - Roorkee,true
@@ -269,7 +266,4 @@ teamId,teamName,institution,isWomanOnly
 1030795,gotta_WA_em_all,International Institute of Information Technology - Naya Raipur,true
 1032792,CodingQueen,National Institute of Technology Hamirpur,true
 1032910,Tapu_Sena,"National Institute of Technology, Silchar",true
-1035794,Blaze,Rajkiya Engineering College Mainpuri,true
-,,
-,,
-"Disclaimer: This team list is provisional and subject to change. As we continue to check for plagiarism, teams found guilty of plagiarism will be removed, while those cleared may be reinstated.",,
+1035794,Blaze,Rajkiya Engineering College Mainpuri,true,
