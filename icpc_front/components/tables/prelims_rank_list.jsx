@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse';
-import MagnifyingGlass from '../svg/magnifying-glass';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function PrelimsRankList() {
     const [teamsData, setTeamsData] = useState([]);
@@ -11,12 +10,11 @@ export default function PrelimsRankList() {
     const [currentPage, setCurrentPage] = useState(1);
     const [showStats, setShowStats] = useState(false);
     const [showWomenOnly, setShowWomenOnly] = useState(false);
-    const [ showAllTeams, setShowAllTeams] = useState(true);
     const teamsPerPage = 40;
 
     useEffect(() => {
         const fetchCSVData = async () => {
-            const response = await fetch('/data/ICPC Amritapuri Regionals 2024 _ Final Ranklist.csv');
+            const response = await fetch('/data/ICPC Selected Teams for Amritapuri Regionals 2024 Total team_prelims.csv');
             const csvText = await response.text();
             const parsedData = Papa.parse(csvText, {
                 header: true,
@@ -33,10 +31,10 @@ export default function PrelimsRankList() {
             !searchedVal.length ||
             row.teamName?.toLowerCase().includes(searchedVal.toLowerCase()) ||
             row.teamId?.toString().toLowerCase().includes(searchedVal.toLowerCase()) ||
-            row.institution?.toLowerCase().includes(searchedVal.toLowerCase());
+            row.institution?.toLowerCase().includes(searchedVal.toLowerCase()) ||
+            row.username?.toLowerCase().includes(searchedVal.toLowerCase());
 
-        const matchesWomenFilter = !showWomenOnly || row.isWomanOnly?.toLowerCase() === 'true';
-        const showAllTeams = !showWomenOnly;
+        const matchesWomenFilter = !showWomenOnly || row.isWomenOnly?.toLowerCase() === 'true';
 
         return matchesSearch && matchesWomenFilter;
     });
@@ -69,13 +67,13 @@ export default function PrelimsRankList() {
     };
 
     return (
-        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 md:pt-32 pb-8">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 md:pt-32 pb-8">
             {/* Header */}
             <div className="mb-8 text-center">
-                <h1 className="text-3xl font-bold text-foreground mb-2">
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">
                     Final Rank List for ICPC Amritapuri Prelims Round 2025
                 </h1>
-                <p className="text-muted-foreground">
+                <p className="text-gray-600">
                     Congratulations to all the prelims qualifiers of the ICPC Amritapuri Prelims Round 2025.
                 </p>
             </div>
@@ -83,47 +81,35 @@ export default function PrelimsRankList() {
             {/* Search and Filter Buttons */}
             <div className="flex flex-col md:flex-row justify-center items-center gap-3 mb-6">
                 {/* Search Input */}
-                <div className="flex rounded-full min-h-[3rem] w-full md:w-96 px-4 gap-2 bg-white items-center border border-border shadow-sm">
-                    <div className="text-muted-foreground w-5 h-5">
-                        <MagnifyingGlass />
-                    </div>
+                <div className="flex rounded-full min-h-[3rem] w-full md:w-96 px-4 gap-2 bg-white items-center border border-gray-300 shadow-sm">
+                    <Search className="w-5 h-5 text-gray-400" />
                     <input
                         type="text"
-                        className="text-sm md:text-base text-foreground flex-1 min-h-[3rem] outline-none bg-transparent"
-                        placeholder="Search team name, ID, or institution"
+                        className="text-sm md:text-base text-gray-900 flex-1 min-h-[3rem] outline-none bg-transparent"
+                        placeholder="Search team, username, or institution"
                         onChange={(e) => setSearchedVal(e.target.value)}
                         value={searchedVal}
                     />
                 </div>
-                  {/* <button
-                    className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                        showAllTeams
-                            ? 'bg-primary text-primary-foreground'
-                            : 'bg-card text-foreground border border-border hover:bg-secondary'
-                    }`}
-                    onClick={() => setShowAllTeams(!showAllTeams)}
-                >
-                    {showAllTeams ? ' All Teams' : ' All Teams'}
-                </button> */}
 
                 {/* Women Only Teams Button */}
-                {/* <button
+                <button
                     className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
                         showWomenOnly
-                            ? 'bg-primary text-primary-foreground'
-                            : 'bg-card text-foreground border border-border hover:bg-secondary'
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
                     }`}
                     onClick={() => setShowWomenOnly(!showWomenOnly)}
                 >
                     {showWomenOnly ? '✓ Women Only Teams' : 'Women Only Teams'}
-                </button> */}
+                </button>
 
                 {/* Show Stats Button (Mobile) */}
                 <button
                     className={`md:hidden px-6 py-2 rounded-full text-sm font-medium transition-colors ${
                         showStats
-                            ? 'bg-primary text-primary-foreground'
-                            : 'bg-card text-foreground border border-border hover:bg-secondary'
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
                     }`}
                     onClick={() => setShowStats(!showStats)}
                 >
@@ -133,24 +119,26 @@ export default function PrelimsRankList() {
 
             {/* No Results Message */}
             {filteredTeams.length === 0 && (
-                <div className="text-center py-12 bg-card rounded-lg border border-border">
-                    <p className="text-muted-foreground">No teams found matching your search.</p>
+                <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
+                    <p className="text-gray-600">No teams found matching your search.</p>
                 </div>
             )}
 
             {/* Desktop Table */}
             {filteredTeams.length > 0 && (
-                <div className="hidden md:block bg-card rounded-lg border border-border overflow-hidden shadow-sm">
+                <div className="hidden md:block bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
                     <div className="overflow-x-auto">
                         <table className="w-full">
-                            <thead className="bg-table-header border-b border-border">
+                            <thead className="bg-gray-50 border-b border-gray-200">
                                 <tr>
-                                    <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Rank</th>
-                                    <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Team Name</th>
-                                    <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Institution</th>
-                                    <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Problems Solved</th>
-                                    <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Time</th>
-                                    <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Penalty</th>
+                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Rank</th>
+                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Team ID</th>
+                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Team Name</th>
+                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Institution</th>
+                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Username</th>
+                                    <th className="text-center py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Total Time</th>
+                                    <th className="text-center py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Score</th>
+                                    <th className="text-center py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Problems Solved</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -158,37 +146,43 @@ export default function PrelimsRankList() {
                                     <tr
                                         key={index}
                                         className={`
-                                            border-b border-border last:border-b-0 transition-colors duration-150
-                                            ${index % 2 === 0 ? 'bg-table-row-even' : 'bg-table-row-odd'}
-                                            hover:bg-table-hover
+                                            border-b border-gray-200 last:border-b-0 transition-colors duration-150
+                                            ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+                                            hover:bg-blue-50
                                         `}
                                     >
-                                        <td className="py-4 px-6">
-                                            <span className="text-lg font-semibold text-foreground">
+                                        <td className="py-4 px-4">
+                                            <span className="text-lg font-semibold text-gray-900">
                                                 {getRankDisplay(entry.rank)}
                                             </span>
                                         </td>
-                                        <td className="py-4 px-6">
+                                        <td className="py-4 px-4">
+                                            <div className="text-gray-700">{entry.teamId}</div>
+                                        </td>
+                                        <td className="py-4 px-4">
                                             <div className="flex items-center gap-2">
-                                                <span className="font-semibold text-foreground">{entry.teamName}</span>
-                                                {/* {entry.isWomanOnly?.toLowerCase() === 'true' && (
+                                                <span className="font-semibold text-gray-900">{entry.teamName}</span>
+                                                {/* {entry.isWomenOnly?.toLowerCase() === 'true' && (
                                                     <span className="px-2 py-0.5 text-xs font-semibold bg-pink-100 text-pink-700 rounded-full">
-                                                        Women Only
+                                                        Women
                                                     </span>
                                                 )} */}
                                             </div>
                                         </td>
-                                        <td className="py-4 px-6">
-                                            <div className="text-muted-foreground">{entry.institution}</div>
+                                        <td className="py-4 px-4">
+                                            <div className="text-gray-600 text-sm">{entry.institution}</div>
                                         </td>
-                                        <td className="py-4 px-6 text-center">
-                                            <div className="font-semibold text-primary">{entry.problemsSolved}</div>
+                                        <td className="py-4 px-4">
+                                            <div className="text-gray-700">{entry.username}</div>
                                         </td>
-                                        <td className="py-4 px-6 text-center">
-                                            <div className="text-muted-foreground">{entry.totalTime}</div>
+                                        <td className="py-4 px-4 text-center">
+                                            <div className="text-gray-600">{entry.totalTime}</div>
                                         </td>
-                                        <td className="py-4 px-6 text-center">
-                                            <div className="text-muted-foreground">{entry.penalty}</div>
+                                        <td className="py-4 px-4 text-center">
+                                            <div className="font-semibold text-blue-600">{entry.Score}</div>
+                                        </td>
+                                        <td className="py-4 px-4 text-center">
+                                            <div className="text-gray-600">{entry.problemsSolved}</div>
                                         </td>
                                     </tr>
                                 ))}
@@ -204,7 +198,7 @@ export default function PrelimsRankList() {
                     {currentTeams.map((entry, index) => (
                         <div
                             key={index}
-                            className="bg-card border border-border rounded-lg p-4 shadow-sm"
+                            className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
                         >
                             <div className="flex items-start gap-3 mb-3">
                                 <div className="flex-shrink-0">
@@ -213,12 +207,19 @@ export default function PrelimsRankList() {
                                     </div>
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <div className="flex items-center gap-2 flex-wrap">
-                                        <span className="font-semibold text-foreground break-words">{entry.teamName}</span>
-                                   
+                                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                                        <span className="font-semibold text-gray-900 break-words">{entry.teamName}</span>
+                                        {/* {entry.isWomenOnly?.toLowerCase() === 'true' && (
+                                            <span className="px-2 py-0.5 text-xs font-semibold bg-pink-100 text-pink-700 rounded-full">
+                                                Women
+                                            </span>
+                                        )} */}
+                                    </div>
+                                    <div className="text-sm text-gray-600 mb-1">
+                                        @{entry.username}
                                     </div>
                                     {!showStats && (
-                                        <div className="text-sm text-muted-foreground mt-1 break-words">
+                                        <div className="text-sm text-gray-600 break-words">
                                             {entry.institution}
                                         </div>
                                     )}
@@ -226,18 +227,18 @@ export default function PrelimsRankList() {
                             </div>
                             
                             {showStats && (
-                                <div className="grid grid-cols-3 gap-2 pt-3 border-t border-border">
+                                <div className="grid grid-cols-3 gap-2 pt-3 border-t border-gray-200">
                                     <div className="text-center">
-                                        <div className="text-xs text-muted-foreground">Solved</div>
-                                        <div className="font-semibold text-primary">{entry.problemsSolved}</div>
+                                        <div className="text-xs text-gray-600">Score</div>
+                                        <div className="font-semibold text-blue-600">{entry.Score}</div>
                                     </div>
                                     <div className="text-center">
-                                        <div className="text-xs text-muted-foreground">Time</div>
-                                        <div className="font-semibold text-foreground">{entry.totalTime}</div>
+                                        <div className="text-xs text-gray-600">Solved</div>
+                                        <div className="font-semibold text-gray-900">{entry.problemsSolved}</div>
                                     </div>
                                     <div className="text-center">
-                                        <div className="text-xs text-muted-foreground">Penalty</div>
-                                        <div className="font-semibold text-foreground">{entry.penalty}</div>
+                                        <div className="text-xs text-gray-600">Time</div>
+                                        <div className="font-semibold text-gray-900">{entry.totalTime}</div>
                                     </div>
                                 </div>
                             )}
@@ -249,7 +250,7 @@ export default function PrelimsRankList() {
             {/* Pagination */}
             {filteredTeams.length > 0 && (
                 <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mt-6">
-                    <div className="text-sm text-muted-foreground text-center md:text-left">
+                    <div className="text-sm text-gray-600 text-center md:text-left">
                         Showing {indexOfFirstTeam + 1} to {Math.min(indexOfLastTeam, filteredTeams.length)} of {filteredTeams.length} teams
                     </div>
 
@@ -260,8 +261,8 @@ export default function PrelimsRankList() {
                             className={`
                                 flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
                                 ${currentPage === 1
-                                    ? 'bg-muted text-muted-foreground border-border cursor-not-allowed'
-                                    : 'bg-card text-foreground border-border hover:bg-secondary hover:text-secondary-foreground'
+                                    ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
+                                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                                 }
                             `}
                         >
@@ -288,8 +289,8 @@ export default function PrelimsRankList() {
                                         className={`
                                             px-3 py-2 text-sm font-medium rounded-md transition-colors
                                             ${page === currentPage
-                                                ? 'bg-primary text-primary-foreground'
-                                                : 'bg-card text-foreground hover:bg-secondary hover:text-secondary-foreground border border-border'
+                                                ? 'bg-blue-600 text-white'
+                                                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
                                             }
                                         `}
                                     >
@@ -305,8 +306,8 @@ export default function PrelimsRankList() {
                             className={`
                                 flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
                                 ${currentPage === totalPages
-                                    ? 'bg-muted text-muted-foreground border-border cursor-not-allowed'
-                                    : 'bg-card text-foreground border-border hover:bg-secondary hover:text-secondary-foreground'
+                                    ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
+                                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                                 }
                             `}
                         >
@@ -316,6 +317,7 @@ export default function PrelimsRankList() {
                     </div>
                 </div>
             )}
+            <p>** - Institution name will be updated later.</p>
         </div>
     );
 }

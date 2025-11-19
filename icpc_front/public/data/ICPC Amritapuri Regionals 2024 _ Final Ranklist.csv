@@ -1,6 +1,6 @@
-rank,teamName,institution,problemsSolved,totalTime,penalty,isWomanOnly
-1,Ice shard,Chennai Mathematical Institute,10,17:14:43,3,true
-2,on_the_spectrum,Indian Institute of Technology Delhi,10,20:12:08,4,false
+rank,teamName,institution,problemsSolved,totalTime,penalty,isWomanOnly,username
+1,Ice shard,Chennai Mathematical Institute,10,17:14:43,3,true,abcd
+2,on_the_spectrum,Indian Institute of Technology Delhi,10,20:12:08,4,false,
 3,404_solution_not_found,Indian Institute of Technology Indore,9,10:37:08,1,true
 4,poocha kya,Indian Institute of Technology (BHU) Varanasi,9,13:33:53,3,false
 5,Code_Dawgs,Indian Institute Of Technology - Kanpur,9,14:15:02,4,false
