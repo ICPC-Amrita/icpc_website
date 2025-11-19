@@ -60,14 +60,14 @@ export default function FinalRankList() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center bg-[#92133b] pt-[8vw]">
+        <div className="min-h-screen flex flex-col items-center bg-white pt-[8vw]">
             <div className="flex-1 flex flex-col min-w-[80vw] max-md:min-w-[95vw] max-md:max-w-[95vw] items-center">
                 <div className="text-center mb-[4vw] max-w-[80vw] max-md:min-w-[95vw]">
-                    <h1 className="text-[3vw] font-bold mb-[1vw] max-md:text-[8vw] text-white">
+                    <h1 className="text-[3vw] font-bold mb-[1vw] max-md:text-[8vw] text-black">
                         Final Rank List for
                     </h1>
-                    <h1 className="text-[3vw] font-bold mb-[1vw] max-md:text-[8vw] text-white -mt-[2vw]">
-                        Amritapuri Multisite Round 2024
+                    <h1 className="text-[3vw] font-bold mb-[1vw] max-md:text-[8vw] text-black -mt-[2vw]">
+                        ICPC Amritapuri Prelims Round 2025
                     </h1>
                     {/* <p className="text-[1.2vw] max-md:text-[3.5vw] text-gray-200 mb-[1vw]">
                         Please note that this list is prepared on the basis&nbsp; 
@@ -77,13 +77,13 @@ export default function FinalRankList() {
                         To accommodate all teams from R1 and R2, we have increased the intake by <span className="font-semibold">38</span> additional slots than originally published, bringing the total to <span className="font-semibold">268</span> slots (220 + 10(all women) + 38).
                         <span> This team list is <span className="font-semibold">provisional</span> and subject to change. As we continue to check for plagiarism, teams found guilty of plagiarism will be removed, while those cleared may be reinstated.</span>
                     </p> */}
-                    <p className="text-[1.2vw] max-md:text-[3.5vw] text-gray-200">
-                        Congratulations to all the finalists of the ICPC Amritapuri Regionals.
+                    <p className="text-[1.2vw] max-md:text-[3.5vw] text-gray-800">
+                        Congratulations to all the prelims qualifiers of the ICPC Amritapuri Prelims Round 2025.
                     </p>
                 </div>
                 <div className="flex justify-center items-center mb-[2vw]">
                     {/* Search Input */}
-                    <div className="flex rounded-full min-h-[3vw] max-md:min-h-[8vw] min-w-[25vw] px-[.5vw] gap-[.5vw] overflow-hidden bg-white items-center">
+                    <div className="flex rounded-full min-h-[3vw] max-md:min-h-[8vw] min-w-[25vw] px-[.5vw] gap-[.5vw] overflow-hidden bg-white items-center border border-solid border-gray-300 max-md:min-w-[70vw]">
                         <p className="text-stone-400 size-[2vw] max-md:size-[4vw]">
                             <MagnifyingGlass />
                         </p>
@@ -115,8 +115,8 @@ export default function FinalRankList() {
                     <button className={`text-[3.5vw] ${viewSite?"bg-gray-800":""}`} onClick={()=>{setViewSite(!viewSite)}}>{viewSite?"Click to view institute":"Click to view site"}</button>
                 </div> */}
 
-                <div className='md:hidden flex max-md:text-[3.5vw] max-md:my-[5vw] justify-center max-md:gap-[1vw] [&>*]:px-[2vw] [&>*]:max-md:pb-[2vw] [&>*]:rounded-[1vw] text-[1.1vw] [&>*]:pt-[1vw] [&>*]:pb-[1vw] mb-[2vw]'>
-                    <button className={`${showStats?"bg-slate-800":"border border-slate-500"} rounded-full flex items-center`} onClick={()=>{
+                <div className='md:hidden flex max-md:text-[3.5vw] max-md:my-[5vw]  justify-center max-md:gap-[1vw] [&>*]:px-[2vw] [&>*]:max-md:pb-[2vw] [&>*]:rounded-[1vw] text-[1.1vw] [&>*]:pt-[1vw] [&>*]:pb-[1vw] mb-[2vw]'>
+                    <button className={`${showStats?"bg-blue-600 text-white":"border border-gray-800 text-black"} rounded-full flex items-center`} onClick={()=>{
                         setShowStats(!showStats);
                         }}
                         >
@@ -125,7 +125,7 @@ export default function FinalRankList() {
                 </div>
 
                 {/* Table */}
-                <div className="flex min-h-[4vw] items-center text-[1.2vw] max-md:text-[3.5vw] font-semibold text-white border-b border-white/30 pb-[1vw] max-md:min-w-[95vw] min-w-[80vw]">
+                <div className="flex min-h-[4vw] items-center text-[1.2vw] max-md:text-[3.5vw] font-semibold text-black border-b border-black/30 pb-[1vw] max-md:min-w-[95vw] min-w-[80vw]">
                     <div className="flex-1 max-md:text-center">Rank</div>
                     <div className={`${showStats?"max-md:flex-[3]":""} flex-[2] max-md:text-center`}>Team Name</div>
                     <div className={`flex-[2] ${showStats?"max-md:hidden":""}`}>Institution</div>
@@ -140,22 +140,22 @@ export default function FinalRankList() {
                             key={index}
                             className="flex items-center min-h-[4vw] hover:bg-white/5 rounded-lg transition-all duration-300 py-[1vw] gap-[.5vw]"
                         >
-                            <div className="flex-1 max-md:text-center text-[1.1vw] max-md:text-[3.5vw] text-gray-300">
+                            <div className="flex-1 max-md:text-center text-[1.1vw] max-md:text-[3.5vw] text-black font-medium">
                                 #{entry.rank}
                             </div>
                             <div className={`${showStats?"max-md:flex-[3]":""} flex-[2] text-[1.1vw] max-md:text-[3.5vw] break-all`}>
-                                <span className="font-semibold text-white">{entry.teamName}</span>
+                                <span className="font-semibold text-black">{entry.teamName}</span>
                             </div>
-                            <div className={`flex-[2] text-[1.1vw] max-md:text-[3.5vw] text-gray-200 ${showStats?"max-md:hidden":""}`}>
+                            <div className={`flex-[2] text-[1.1vw] max-md:text-[3.5vw] text-gray-800 ${showStats?"max-md:hidden":""}`}>
                                 {entry.institution}
                             </div>
-                            <div className={`flex-[1] max-md:text-center ${showStats?"":"max-md:hidden"} text-[1.1vw] max-md:text-[3.5vw] text-gray-300`}>
+                            <div className={`flex-[1] max-md:text-center ${showStats?"":"max-md:hidden"} text-[1.1vw] max-md:text-[3.5vw] text-gray-800`}>
                                 {entry.problemsSolved}
                             </div>
-                            <div className={`flex-1 max-md:text-center ${showStats?"":"max-md:hidden"} text-[1.1vw] max-md:text-[3.5vw] text-gray-300`}>
+                            <div className={`flex-1 max-md:text-center ${showStats?"":"max-md:hidden"} text-[1.1vw] max-md:text-[3.5vw] text-gray-800`}>
                                 {entry.totalTime}
                             </div>
-                            <div className={`flex-1 max-md:text-center ${showStats?"":"max-md:hidden"} text-[1.1vw] max-md:text-[3.5vw] text-gray-300`}>
+                            <div className={`flex-1 max-md:text-center ${showStats?"":"max-md:hidden"} text-[1.1vw] max-md:text-[3.5vw] text-gray-800`}>
                                 {entry.penalty}
                             </div>
                             {/* <div className={`flex-1 text-[1.1vw] max-md:text-[3.5vw] text-gray-300 ${viewSite?"":"hidden"}`}>
@@ -165,9 +165,9 @@ export default function FinalRankList() {
                     ))}
                 </div>
 
-                <div className="flex justify-center items-center my-[2vw] text-white gap-4 text-[1.1vw] max-md:text-[3.5vw]">
+                <div className="flex justify-center items-center my-[2vw] text-black gap-4 text-[1.1vw] max-md:text-[3.5vw]">
                     <button
-                        className={`px-[1vw] py-[.5vw] rounded-[.2vw] ${currentPage === 1 ? 'bg-gray-500 cursor-not-allowed' : 'bg-gray-800 hover:bg-gray-700'}`}
+                        className={`px-[1vw] py-[.5vw] rounded-[.2vw] ${currentPage === 1 ? 'bg-gray-500 text-white cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
                         onClick={handlePrevPage}
                         disabled={currentPage === 1}
                     >
@@ -175,7 +175,7 @@ export default function FinalRankList() {
                     </button>
                     <span>Page {currentPage} of {totalPages}</span>
                     <button
-                        className={`px-[1vw] py-[.5vw] rounded-[.2vw] ${currentPage === totalPages ? 'bg-gray-500 cursor-not-allowed' : 'bg-gray-800 hover:bg-gray-700'}`}
+                        className={`px-[1vw] py-[.5vw] rounded-[.2vw] ${currentPage === totalPages ? 'bg-gray-500 text-white cursor-not-allowed' : 'bg-blue-600  text-white hover:bg-blue-700'}`}
                         onClick={handleNextPage}
                         disabled={currentPage === totalPages}
                     >

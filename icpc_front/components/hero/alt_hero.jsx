@@ -74,26 +74,25 @@ export default function AltHero() {
             
 
                     {/* Action Buttons */}
-                    {/* <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12">
                         <Link
-                            href="https://icpc.global/regionals/finder/Asia-Amritapuri-First-Round-2026"
+                            href="/prelims-ranklist"
                             className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
                         >
-                            Register Now
+                        View Amritapuri Prelims Ranklist
                         </Link>
 
-                        <Link
-                            href="/data/Declaration_form.pdf"
-                            download
+                        {/* <Link
+                            href="/campus-wiselist"
                             className="bg-blue-600 hover:bg-blue-700 text-white border-2 border-blue-600 text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+                        > */}
+                            {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                            </svg>
-                            <span className="hidden sm:inline">College Declaration Form</span>
-                            <span className="sm:hidden">College Declaration Form</span>
-                        </Link>
-                    </div> */}
+                            </svg> */}
+                            {/* <span className="hidden sm:inline"> View Campus Wise Ranklist</span>
+                            <span className="sm:hidden">View Campus Wise Ranklist</span>
+                        </Link> */}
+                    </div>
 
                     {/* Problem Sets - Always visible */}
                     {/* <div className="mb-6 sm:mb-8">
@@ -129,8 +128,8 @@ export default function AltHero() {
 <div className="mb-6 sm:mb-8 border-t border-gray-200 pt-6">
   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-10">
 
-    {/* Countdown Timer - Left Side - Only show before contest starts */}
-    {showTimer && (
+    {/* Countdown Timer - Left Side - Only show before contest start/s */}
+    {/* {showTimer && (
       <div>
         <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
           Prelims starts in:
@@ -150,7 +149,7 @@ export default function AltHero() {
           </div>
         </div>
       </div>
-    )}
+    )} */}
 
     {/* Optional Divider for Desktop - Only show when timer is visible */}
     {showTimer && <div className="hidden sm:block w-px bg-gray-200 h-16"></div>}
