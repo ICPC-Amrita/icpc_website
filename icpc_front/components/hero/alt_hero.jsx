@@ -48,7 +48,7 @@ export default function AltHero() {
                     {/* Highlight Badge */}
                     <div className="mb-3 sm:mb-4 md:mb-6">
     <span className="inline-block text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-50 rounded-full border border-blue-200">
-        Highlights: 350+ Onsite Slots !
+        Highlights: 310+ Onsite Slots !
     </span>
 </div>
 

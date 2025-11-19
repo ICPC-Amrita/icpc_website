@@ -17,7 +17,7 @@ export default function WhyParticipate(){
                             {/* <strong className="text-white">Amrita</strong> isn&apos;t just an institution—it&apos;s a diverse experience across multiple campuses, each offering something unique. At <strong className="text-white">Amritapuri</strong>, 
                             you&apos;ll be inspired by the tranquil backwaters of Kerala; <strong className="text-white">Coimbatore</strong> surrounds you with scenic hills that fuel focus and creativity; and 
                             in <strong className="text-white">Bangalore</strong>, you&apos;re at the heart of India&apos;s Silicon Valley. Here&apos;s what you can expect at the regionals: */}
-                         This year, <strong>Amritapuri</strong> offers <strong>~350 onsite slots</strong>, giving more teams the chance to qualify and experience the excitement of onsite competition.
+                         This year, <strong>Amritapuri</strong> offers <strong>~310 onsite slots</strong>, giving more teams the chance to qualify and experience the excitement of onsite competition.
 
 We also provide a dedicated Telegram channel for participant support at every stage.
 
