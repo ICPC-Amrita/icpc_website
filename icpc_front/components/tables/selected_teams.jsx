@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse';
-import MagnifyingGlass from '../svg/magnifying-glass';
-import DownlaodIcon from '../svg/download';
+import { Search, Download, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import { FaClinicMedical, FaEmber, FaMedal, FaRegClock, FaRegTimesCircle } from 'react-icons/fa';
 
 export default function SelectedTeams() {
     const [teamsData, setTeamsData] = useState([]);
@@ -12,7 +12,37 @@ export default function SelectedTeams() {
     const [currentPage, setCurrentPage] = useState(1);
     const [showWomenOnly, setShowWomenOnly] = useState(false);
     const teamsPerPage = 40;
-    const [selectedSite, setSelectedSite]=useState("");
+    const [selectedSite, setSelectedSite] = useState("");
+    const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        const [showTimer, setShowTimer] = useState(true);
+        
+        useEffect(() => {
+            const prelimsDate = new Date('2025-11-24T23:59:59').getTime();
+            
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = prelimsDate - now;
+    
+                // Hide timer when contest starts (at 1:30 PM)
+                setShowTimer(distance > 0);
+    
+                if (distance > 0) {
+                    setTimeLeft({
+                        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+                    });
+                } else {
+                    setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+                }
+            };
+    
+            updateCountdown();
+            const interval = setInterval(updateCountdown, 1000);
+    
+            return () => clearInterval(interval);
+        }, []);
 
     useEffect(() => {
         const fetchCSVData = async () => {
@@ -24,7 +54,7 @@ export default function SelectedTeams() {
             });
             setTeamsData(parsedData.data.map(row => ({
                 ...row,
-                isWomenOnly: row.isWomenOnly == 'true',// for converting from string true to boolean true
+                isWomenOnly: row.isWomenOnly == 'true',
             })));
         };
 
@@ -45,6 +75,11 @@ export default function SelectedTeams() {
         return matchesSearch && matchesToggle && matchesSite;
     });
 
+    // Reset to page 1 when search or filter changes
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchedVal, showWomenOnly, selectedSite]);
+
     // Pagination
     const indexOfLastTeam = currentPage * teamsPerPage;
     const indexOfFirstTeam = indexOfLastTeam - teamsPerPage;
@@ -60,142 +95,328 @@ export default function SelectedTeams() {
         if (currentPage < totalPages) setCurrentPage(currentPage + 1);
     };
 
+    const handleSiteFilter = (site) => {
+        setShowWomenOnly(false);
+        setSelectedSite(site);
+    };
+
     return (
-        <div className="min-h-screen flex flex-col items-center bg-[#92133b] pt-[8vw]">
-            <div className="flex-1 flex flex-col min-w-[80vw] max-md:min-w-[95vw] max-md:max-w-[95vw] items-center">
-                <div className="text-center mb-[4vw] max-w-[80vw] max-md:min-w-[95vw]">
-                    <h1 className="text-[3vw] font-bold mb-[1vw] max-md:text-[8vw] text-white">
-                        Selected Teams for
-                    </h1>
-                    <h1 className="text-[3vw] font-bold mb-[1vw] max-md:text-[8vw] text-white -mt-[2vw]">
-                        Amritapuri Multisite Round 2024
-                    </h1>
-                    <p className="text-[1.2vw] max-md:text-[3.5vw] text-gray-200 mb-[1vw]">
-                        Please note that this list is prepared on the basis&nbsp; 
-                        <Link href="/team-selection-process"><span className="font-semibold text-blue-500 hover:text-purple-900 underline mt-[1vw]">The Team Selection Criteria</span></Link> 
-                        &nbsp;for Amritapuri Multi Site and&nbsp;
-                        <Link href="/ranking-process"><span className="font-semibold text-blue-500 hover:text-purple-900 underline mt-[1vw]">The Ranking Process</span></Link>. 
-                        To accommodate all teams from R1 and R2, we have increased the intake by <span className="font-semibold">38</span> additional slots than originally published, bringing the total to <span className="font-semibold">268</span> slots (220 + 10(all women) + 38).
-                        <span> This team list is <span className="font-semibold">provisional</span> and subject to change. As we continue to check for plagiarism, teams found guilty of plagiarism will be removed, while those cleared may be reinstated.</span>
-                    </p>
-                    <p className="text-[1.2vw] max-md:text-[3.5vw] text-gray-200">
-                        Congratulations to all who have been selected to the ICPC Amritapuri Regionals.
-                    </p>
-                </div>
-                <div className="flex justify-center items-center mb-[2vw] max-md:mb-[5vw]">
-                    {/* Search Input */}
-                    <div className="flex rounded-full min-h-[3vw] max-md:min-h-[8vw] min-w-[25vw] px-[.5vw] gap-[.5vw] overflow-hidden bg-white items-center">
-                        <p className="text-stone-400 size-[2vw]">
-                            <MagnifyingGlass />
-                        </p>
-                        <input
-                            type="text"
-                            className="text-[1.1vw] max-md:text-[3.5vw] text-black flex-1 min-h-[3vw] outline-none"
-                            placeholder="Search ID or team name"
-                            onChange={(e) => setSearchedVal(e.target.value)}
-                        />
-                    </div>
-                    {/* <div className="relative bg-white rounded-r-full max-md:text-[3.5vw]">
-                        <select
-                            onChange={(e) => setShowWomenOnly(e.target.value === 'womenOnly')}
-                            value={showWomenOnly ? 'womenOnly' : 'allTeams'}
-                            className="px-[1vw] max-md:px-[2.5vw] rounded-full py-[.5vw] min-h-[3vw] max-md:min-h-[8vw] bg-gray-800 border border-solid border-gray-800 text-white cursor-pointer"
-                        >
-                            <option value="allTeams" className="bg-gray-800 text-white">
-                                All Teams
-                            </option>
-                            <option value="womenOnly" className="bg-gray-800 text-white">
-                                Women Only
-                            </option>
-                        </select>
-                    </div> */}
-                    <Link href="selected-teams-v1" title='Download the pdf containing selected teams' className='mx-[.5vw] p-[.5vw] hover:bg-gray-800 rounded-full min-h-[3vw] max-md:min-h-[8vw] max-md:min-w-[8vw] min-w-[3vw] flex justify-center items-center'><DownlaodIcon/></Link>
-                </div>
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 md:pt-32 pb-8">
+            {/* Header */}
+           <div className="mb-8 text-center">
+  <h1 className="text-3xl font-bold text-gray-900 mb-4">
+    Teams Qualified for Amritapuri Onsite Round 
+  </h1>
 
-                {/* <div className='md:hidden flex min-h-[1vh] justify-center'>
-                    <button className={`text-[3.5vw] ${viewSite?"bg-gray-800":""}`} onClick={()=>{setViewSite(!viewSite)}}>{viewSite?"Click to view institute":"Click to view site"}</button>
-                </div> */}
+  <div className="text-sm md:text-base text-gray-600 space-y-4 max-w-4xl mx-auto">
 
-                <div className='flex max-md:text-[3.5vw] max-md:my-[5vw] justify-center max-md:gap-[1vw] [&>*]:px-[2vw] [&>*]:max-md:pb-[2vw] [&>*]:rounded-[1vw] text-[1.1vw] [&>*]:pt-[1vw] [&>*]:pb-[1vw] mb-[2vw]'>
-                    <button className={`${selectedSite==""?"bg-slate-800":""}`} onClick={()=>{
-                        setShowWomenOnly(false);
-                        setSelectedSite("");
-                        }}
-                        >All Sites
-                    </button>
-                    <button className={`${selectedSite=="Kollam"?"bg-slate-800":""}`} onClick={()=>{
-                        setShowWomenOnly(false);
-                        setSelectedSite("Kollam");
-                        }}
-                        >Kollam
-                    </button>
-                    <button className={`${selectedSite=="Coimbatore"?"bg-slate-800":""}`} onClick={()=>{
-                        setShowWomenOnly(false);
-                        setSelectedSite("Coimbatore");}}>Coimbatore</button>
-                    <button className={`${selectedSite=="Bengaluru"?"bg-slate-800":""}`} onClick={()=>{
-                        setShowWomenOnly(false);
-                        setSelectedSite("Bengaluru");
-                        }}
-                        >Bengaluru
-                    </button>
-                    {/* <div className='min-h-full flex items-center min-w-[1px] -mx-[2vw]'>|</div>&nbsp; */}
-                    <button className={`${showWomenOnly?"bg-slate-800":""}`} onClick={()=>{
+    {/* Registration Fee Info - responsive */}
+    <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-center">
+      <FaRegClock className="text-base sm:text-lg shrink-0" />
+
+      <div className="flex flex-wrap justify-center gap-2">
+        <span className="inline-flex items-center rounded-full border px-3 py-1 text-xs sm:text-sm font-semibold">
+          Registration Fee Deadline: 24 November, 11:59 PM
+        </span>
+        <span className="inline-flex items-center rounded-full border px-3 py-1 text-xs sm:text-sm font-semibold">
+          Fee: ₹4400 per team
+        </span>
+      </div>
+    </div>
+
+    {/* Info text */}
+    <p className="text-left sm:text-center">
+      Qualified teams are requested to pay the registration fees and submit their details through the form provided below. 
+      Failing this will result in your slot
+      being allotted to the next eligible team in the waitlist. Do remember that the registration fee
+      is non-refundable.
+    </p>
+
+    {/* Countdown + Button */}
+    {showTimer && (
+      <div className="space-y-4">
+        <div className="text-left sm:text-center">
+          <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
+            Time remaining:
+          </p>
+
+          <div className="flex justify-start sm:justify-center gap-1 sm:gap-2 items-center">
+            <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+              <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.days}</span>
+              <span className="text-[10px] text-gray-600 font-medium mt-1">Days</span>
+            </div>
+            <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+              <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.hours}</span>
+              <span className="text-[10px] text-gray-600 font-medium mt-1">Hr</span>
+            </div>
+            <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+              <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.minutes}</span>
+              <span className="text-[10px] text-gray-600 font-medium mt-1">Min</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12">
+          <Link
+            href="/prelims-ranklist"
+            className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
+          >
+            Fill the Registration fee form
+          </Link>
+        </div>
+      </div>
+    )}
+  </div>
+</div>
+
+
+            {/* Search and Download */}
+            <div className="flex flex-col md:flex-row justify-center items-center gap-3 mb-6">
+                {/* Search Input */}
+                <div className="flex rounded-full min-h-[3rem] w-full md:w-96 px-4 gap-2 bg-white items-center border border-gray-300 shadow-sm">
+                    <Search className="w-5 h-5 text-gray-400" />
+                    <input
+                        type="text"
+                        className="text-sm md:text-base text-gray-900 flex-1 min-h-[3rem] outline-none bg-transparent"
+                        placeholder="Search ID, team, institution, or site"
+                        onChange={(e) => setSearchedVal(e.target.value)}
+                        value={searchedVal}
+                    />
+                </div>
+                
+
+                {/* Download Button */}
+                {/* <Link
+                    href="selected-teams-v1"
+                    title="Download the pdf containing selected teams"
+                    className="flex items-center gap-2 px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors shadow-sm"
+                >
+                    <Download className="w-5 h-5" />
+                    <span className="text-sm font-medium hidden sm:inline">Download PDF</span>
+                </Link> */}
+            </div>
+
+            {/* Site Filters */}
+            <div className="flex flex-wrap justify-center gap-2 mb-6">
+                <button
+                    className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                        selectedSite === ""
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                    }`}
+                    onClick={() => handleSiteFilter("")}
+                >
+                    All Sites
+                </button>
+                <button
+                    className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                        selectedSite === "Kollam"
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                    }`}
+                    onClick={() => handleSiteFilter("Kollam")}
+                >
+                    Kollam
+                </button>
+                <button
+                    className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                        selectedSite === "Coimbatore"
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                    }`}
+                    onClick={() => handleSiteFilter("Coimbatore")}
+                >
+                    Coimbatore
+                </button>
+                <button
+                    className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                        selectedSite === "Bengaluru"
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                    }`}
+                    onClick={() => handleSiteFilter("Bengaluru")}
+                >
+                    Bengaluru
+                </button>
+                <button
+                    className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                        showWomenOnly
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                    }`}
+                    onClick={() => {
                         setShowWomenOnly(!showWomenOnly);
                         setSelectedSite("");
-                        }}
-                        >
-                            Women Teams
-                    </button>
-                </div>
+                    }}
+                >
+                    {showWomenOnly ? '✓ Women Teams' : 'Women Teams'}
+                </button>
+            </div>
 
-                {/* Table */}
-                <div className="flex min-h-[4vw] items-center text-[1.2vw] max-md:text-[3.5vw] font-semibold text-white border-b border-white/30 pb-[1vw] max-md:min-w-[95vw] min-w-[80vw]">
-                    <div className="flex-1">Team ID</div>
-                    <div className="flex-[2]">Team Name</div>
-                    <div className="flex-[2]">Institution</div>
-                    {/* <div className={`flex-1 ${viewSite?"":""}`}>Site</div> */}
+            {/* No Results Message */}
+            {filteredTeams.length === 0 && (
+                <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
+                    <p className="text-gray-600">No teams found matching your search.</p>
                 </div>
+            )}
 
-                <div className="mt-[2vw] space-y-[2vw] min-w-[80vw]">
+            {/* Desktop Table */}
+            {filteredTeams.length > 0 && (
+                <div className="hidden md:block bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+                    <div className="overflow-x-auto">
+                        <table className="w-full">
+                            <thead className="bg-gray-50 border-b border-gray-200">
+                                <tr>
+                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Team ID</th>
+                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Team Name</th>
+                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Institution</th>
+                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Site</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {currentTeams.map((entry, index) => (
+                                    <tr
+                                        key={index}
+                                        className={`
+                                            border-b border-gray-200 last:border-b-0 transition-colors duration-150
+                                            ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+                                            hover:bg-blue-50
+                                        `}
+                                    >
+                                        <td className="py-4 px-4">
+                                            <div className="text-gray-700">{entry.teamId}</div>
+                                        </td>
+                                        <td className="py-4 px-4">
+                                            <div className="flex items-center gap-2">
+                                                <span className="font-semibold text-gray-900">{entry.teamName}</span>
+                                                {/* {entry.isWomenOnly && (
+                                                    <span className="px-2 py-0.5 text-xs font-semibold bg-pink-100 text-pink-700 rounded-full">
+                                                        Women
+                                                    </span>
+                                                )} */}
+                                            </div>
+                                        </td>
+                                        <td className="py-4 px-4">
+                                            <div className="text-gray-600 text-sm">{entry.institution}</div>
+                                        </td>
+                                        <td className="py-4 px-4">
+                                            <div className="text-gray-700">{entry.site}</div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )}
+
+            {/* Mobile Cards */}
+            {filteredTeams.length > 0 && (
+                <div className="md:hidden space-y-3">
                     {currentTeams.map((entry, index) => (
                         <div
                             key={index}
-                            className="flex items-center min-h-[4vw] hover:bg-white/5 rounded-lg transition-all duration-300 p-[1vw] gap-[.5vw]"
+                            className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
                         >
-                            <div className="flex-1 text-[1.1vw] max-md:text-[3.5vw] text-gray-300">
-                                {entry.teamId}
+                            <div className="flex items-start justify-between mb-3">
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                                        <span className="font-semibold text-gray-900 break-words">{entry.teamName}</span>
+                                        {/* {entry.isWomenOnly && (
+                                            <span className="px-2 py-0.5 text-xs font-semibold bg-pink-100 text-pink-700 rounded-full">
+                                                Women
+                                            </span>
+                                        )} */}
+                                    </div>
+                                    <div className="text-sm text-gray-600 mb-1">
+                                        ID: {entry.teamId}
+                                    </div>
+                                    <div className="text-sm text-gray-600 break-words">
+                                        {entry.institution}
+                                    </div>
+                                </div>
                             </div>
-                            <div className="flex-[2] text-[1.1vw] max-md:text-[3.5vw]">
-                                <span className="font-semibold text-white">{entry.teamName}</span>
+                            <div className="pt-3 border-t border-gray-200">
+                                <div className="text-sm">
+                                    <span className="text-gray-600">Site: </span>
+                                    <span className="font-semibold text-gray-900">{entry.site}</span>
+                                </div>
                             </div>
-                            <div className="flex-[2] text-[1.1vw] max-md:text-[3.5vw] text-gray-200">
-                                {entry.institution}
-                            </div>
-                            {/* <div className={`flex-1 text-[1.1vw] max-md:text-[3.5vw] text-gray-300 ${viewSite?"":"hidden"}`}>
-                                {entry.site}
-                            </div> */}
                         </div>
                     ))}
                 </div>
+            )}
 
-                <div className="flex justify-center items-center my-[2vw] text-white gap-4 text-[1.1vw] max-md:text-[3.5vw]">
-                    <button
-                        className={`px-[1vw] py-[.5vw] rounded-[.2vw] ${currentPage === 1 ? 'bg-gray-500 cursor-not-allowed' : 'bg-gray-800 hover:bg-gray-700'}`}
-                        onClick={handlePrevPage}
-                        disabled={currentPage === 1}
-                    >
-                        Previous
-                    </button>
-                    <span>Page {currentPage} of {totalPages}</span>
-                    <button
-                        className={`px-[1vw] py-[.5vw] rounded-[.2vw] ${currentPage === totalPages ? 'bg-gray-500 cursor-not-allowed' : 'bg-gray-800 hover:bg-gray-700'}`}
-                        onClick={handleNextPage}
-                        disabled={currentPage === totalPages}
-                    >
-                        Next
-                    </button>
+            {/* Pagination */}
+            {filteredTeams.length > 0 && (
+                <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mt-6">
+                    <div className="text-sm text-gray-600 text-center md:text-left">
+                        Showing {indexOfFirstTeam + 1} to {Math.min(indexOfLastTeam, filteredTeams.length)} of {filteredTeams.length} teams
+                    </div>
+
+                    <div className="flex items-center gap-2 justify-center md:justify-end">
+                        <button
+                            onClick={handlePrevPage}
+                            disabled={currentPage === 1}
+                            className={`
+                                flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
+                                ${currentPage === 1
+                                    ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
+                                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                                }
+                            `}
+                        >
+                            <ChevronLeft className="w-4 h-4" />
+                            Previous
+                        </button>
+
+                        <div className="flex items-center gap-1 flex-wrap">
+                            {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+                                let page;
+                                if (totalPages <= 5) {
+                                    page = i + 1;
+                                } else if (currentPage <= 3) {
+                                    page = i + 1;
+                                } else if (currentPage >= totalPages - 2) {
+                                    page = totalPages - 4 + i;
+                                } else {
+                                    page = currentPage - 2 + i;
+                                }
+                                return (
+                                    <button
+                                        key={page}
+                                        onClick={() => setCurrentPage(page)}
+                                        className={`
+                                            px-3 py-2 text-sm font-medium rounded-md transition-colors
+                                            ${page === currentPage
+                                                ? 'bg-blue-600 text-white'
+                                                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
+                                            }
+                                        `}
+                                    >
+                                        {page}
+                                    </button>
+                                );
+                            })}
+                        </div>
+
+                        <button
+                            onClick={handleNextPage}
+                            disabled={currentPage === totalPages}
+                            className={`
+                                flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
+                                ${currentPage === totalPages
+                                    ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
+                                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                                }
+                            `}
+                        >
+                            Next
+                            <ChevronRight className="w-4 h-4" />
+                        </button>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }
