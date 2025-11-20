@@ -206,7 +206,7 @@ export default function SelectedTeams() {
                     }`}
                     onClick={() => handleSiteFilter("")}
                 >
-                    All Sites
+                    All Centres
                 </button>
                 <button
                     className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors ${
