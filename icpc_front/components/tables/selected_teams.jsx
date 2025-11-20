@@ -46,7 +46,7 @@ export default function SelectedTeams() {
 
     useEffect(() => {
         const fetchCSVData = async () => {
-            const response = await fetch('/data/ICPC Selected Teams for Amritapuri Regionals 2024.csv');
+            const response = await fetch('/data/Shortlisted Team -V1.csv');
             const csvText = await response.text();
             const parsedData = Papa.parse(csvText, {
                 header: true,
@@ -158,7 +158,7 @@ export default function SelectedTeams() {
 
         <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12">
           <Link
-            href="/prelims-ranklist"
+            href="https://aoap.amrita.edu/gateway/index/index?ekey=ICPCR_25"
             className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
           >
             Fill the Registration fee form
@@ -210,13 +210,13 @@ export default function SelectedTeams() {
                 </button>
                 <button
                     className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                        selectedSite === "Kollam"
+                        selectedSite === "Amritapuri"
                             ? 'bg-blue-600 text-white'
                             : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
                     }`}
-                    onClick={() => handleSiteFilter("Kollam")}
+                    onClick={() => handleSiteFilter("Amritapuri")}
                 >
-                    Kollam
+                    Amritapuri
                 </button>
                 <button
                     className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors ${
@@ -230,13 +230,23 @@ export default function SelectedTeams() {
                 </button>
                 <button
                     className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                        selectedSite === "Bengaluru"
+                        selectedSite === "Bangalore"
                             ? 'bg-blue-600 text-white'
                             : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
                     }`}
-                    onClick={() => handleSiteFilter("Bengaluru")}
+                    onClick={() => handleSiteFilter("Bangalore")}
                 >
-                    Bengaluru
+                    Bangalore
+                </button>
+                 <button
+                    className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                        selectedSite === "Mysuru"
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                    }`}
+                    onClick={() => handleSiteFilter("Mysuru")}
+                >
+                    Mysuru
                 </button>
                 <button
                     className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors ${
@@ -249,7 +259,7 @@ export default function SelectedTeams() {
                         setSelectedSite("");
                     }}
                 >
-                    {showWomenOnly ? '✓ Women Teams' : 'Women Teams'}
+                    {showWomenOnly ? '✓ Women Only Slot' : 'Women Only Slot'}
                 </button>
             </div>
 
