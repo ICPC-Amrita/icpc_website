@@ -73,9 +73,9 @@ export default function PrelimsRankList() {
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">
                     Final Rank List for ICPC Amritapuri Prelims Round 2025
                 </h1>
-                <p className="text-gray-600">
+                {/* <p className="text-gray-600">
                     Congratulations to all the prelims qualifiers of the ICPC Amritapuri Prelims Round 2025.
-                </p>
+                </p> */}
             </div>
 
             {/* Search and Filter Buttons */}
