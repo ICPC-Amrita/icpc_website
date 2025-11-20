@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react"; 
+import { FaMedal } from "react-icons/fa";
 // import AnnouncementModal from "../tables/announcement-modal";
 
 export default function AltHero() {
@@ -72,35 +73,46 @@ export default function AltHero() {
                         </span>
                     </p>
             
+{/* Announcement Section */}
+{/* Announcement Section */}
+<div className="mb-6 sm:mb-8 md:mb-12 space-y-3">
 
-                    {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12">
-                        <Link
-                            href="/prelims-ranklist"
-                            className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
-                        >
-                        View Amritapuri Prelims Ranklist
-                        </Link>
+  {/* Inline Heading */}
+  <p className="text-base sm:text-lg font-semibold leading-snug flex flex-wrap items-center gap-1">
+    <span className="whitespace-nowrap">Announcement:</span>
+    <strong className="font-semibold">Teams Selected for Amritapuri Onsite Round</strong>
+  </p>
 
-                        {/* <Link
-                            href="/campus-wiselist"
-                            className="bg-blue-600 hover:bg-blue-700 text-white border-2 border-blue-600 text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                        > */}
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                            </svg> */}
-                            {/* <span className="hidden sm:inline"> View Campus Wise Ranklist</span>
-                            <span className="sm:hidden">View Campus Wise Ranklist</span>
-                        </Link> */}
-                    </div>
+  {/* Description */}
+  <p className="text-gray-700 text-sm sm:text-base font-medium leading-relaxed">
+    The list of teams qualified for the ICPC Amritapuri Onsite Regional Contest,
+    to be held at the Amritapuri, Coimbatore, Bengaluru, and Mysuru Amrita campuses 
+    on 2–3 January 2026, is now available.
+  </p>
+
+</div>
 
                     {/* Problem Sets - Always visible */}
-                    {/* <div className="mb-6 sm:mb-8">
-                        <p className="text-gray-700 text-sm sm:text-base mb-3 font-medium">
-                            Access the contest problem set link below:
-                        </p>
+                    <div className="mb-6 sm:mb-8">
+           <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base">
+  {/* <FaMedal className="shrink-0 text-base sm:text-lg" /> */}
+                        <Link
+                            href="/selected-teams"
+                            className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
+                        >
+                        View Selected Teams
+                        </Link>
+  
+  {/* <p className="m-0 leading-tight">
+    Announcement:
+    <strong className="ml-1">Teams Selected for Kanpur Onsite Round</strong>
+  </p> */}
+</div>
+
+
+
                         <div className="flex flex-wrap gap-2">
-                            <Link
+                            {/* <Link
                                 href="https://drive.google.com/drive/folders/17EeWUv5dLfnYgL2f37Uc_hd3ysMFeYjs?usp=sharing"
                                 target="_blank"
                                 className="text-blue-600 hover:text-blue-700 border border-blue-600 hover:border-blue-700 text-xs sm:text-sm font-semibold py-1.5 px-3 sm:py-2 sm:px-4 rounded-md transition duration-200 hover:bg-blue-50"
@@ -120,9 +132,13 @@ export default function AltHero() {
                                 className="text-blue-600 hover:text-blue-700 border border-blue-600 hover:border-blue-700 text-xs sm:text-sm font-semibold py-1.5 px-3 sm:py-2 sm:px-4 rounded-md transition duration-200 hover:bg-blue-50"
                             >
                                 Link 3
-                            </Link>
+                            </Link> */}
+                       {/* <p className="text-gray-700 text-sm sm:text-base mb-3 font-medium">
+                        The list of teams qualified for the ICPC Kanpur Onsite Regional Contest, 
+                        to be held at CSJM University, Kanpur on 22–23 December 2025, is now available.
+                        </p> */}
                         </div>
-                    </div> */}
+                    </div>
 
                    {/* Countdown and Quick Links Section */}
 <div className="mb-6 sm:mb-8 border-t border-gray-200 pt-6">
