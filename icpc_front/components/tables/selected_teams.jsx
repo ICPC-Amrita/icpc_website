@@ -46,7 +46,7 @@ export default function SelectedTeams() {
 
     useEffect(() => {
         const fetchCSVData = async () => {
-            const response = await fetch('/data/Shortlisted Team -V1.csv');
+            const response = await fetch('/data/Shortlisted Team -V2.csv');
             const csvText = await response.text();
             const parsedData = Papa.parse(csvText, {
                 header: true,
