@@ -76,5 +76,31 @@
             "Metro Park Inn":["Rating : 3.9", "14.8km away", "Contact No : 04224203555"],
             "Neermala Residency":["Rating : 4.3", "8.4km away", "Contact No : 09677413666"]
         }
+    },
+
+   "Mysuru": {
+    "Description": "Amrita Mysuru Campus is located in Bogadi, a calm and residential area of Mysuru, known for its heritage, culture, and educational environment.",
+    "directions": {
+        "By Air and Taxi": "The nearest airport is Mysuru Airport (17 km away). Kempegowda International Airport, Bengaluru, is around 180 km away. Taxi and cab services are available from both airports.",
+        "By Train": "Mysuru Junction Railway Station is about 10 km from the campus. Autos, taxis, and cab services are readily available.",
+        "By Bus": "The campus is located about 9 km from KSRTC Mysuru Suburban Bus Stand. Local buses towards Bogadi, as well as autos and taxis, are available for direct access."
+    },
+    "Trains": {
+        "From Bengaluru": ["Shatabdi Express", "Wodeyar Express", "Chamundi Express", "Malgudi Express"],
+        "From Chennai": ["Kaveri Express"],
+        "From Mangalore": ["Mangaluru–Mysuru Express"]
+    },
+    "Hotels": {
+        "Hotel Southern Star": ["Rating : 4.3", "6.0km away", "Contact No : 0821 242 6426"],
+        "Royal Inn Mysuru": ["Rating : 4.1", "9.0km away", "Contact No : 0821 233 3555"],
+        "Green Hotel": ["Rating : 4.2", "4.8km away", "Contact No : 0821 251 5150"]
+    },
+    "Restaurants": {
+        "Original Vinayaka Mylari (Nazarbad)": ["Rating : 4.5", "7.5km away", "Walk-in Only"],
+        "Hotel RRR": ["Rating : 4.0", "7.0km away", "Contact No : 0821 242 2083"],
+        "Nalpak Restaurant (Kuvempunagar)": ["Rating : 4.2", "4.2km away", "Contact No : 0821 246 7890"]
     }
+
+}
+
 }
