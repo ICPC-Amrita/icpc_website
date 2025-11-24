@@ -16,7 +16,7 @@ export default function Layout({ children }) {
 
         const updateScrollDir = () => {
             const scrollY = window.scrollY;
-            if (scrollY>window.innerHeight || (window.innerWidth<680 && scrollY>window.innerWidth) || pathname=='/reach-us/amritapuri' || pathname=='/reach-us/coimbatore' || pathname=='/reach-us/bengaluru'){
+            if (scrollY>window.innerHeight || (window.innerWidth<680 && scrollY>window.innerWidth) || pathname=='/reach-us/amritapuri' || pathname=='/reach-us/coimbatore' || pathname=='/reach-us/bengaluru'||pathname=='/reach-us/coimbatore' || pathname=='/reach-us/mysuru'){
                 setHero(false);
             }else{
                 setHero(true);

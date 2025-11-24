@@ -300,7 +300,8 @@ export default function Navbar({ open, hero, darkSection }) {
     const locations = [
         { name: "Amritapuri", href: "/reach-us/amritapuri" },
         { name: "Bengaluru", href: "/reach-us/bengaluru" },
-        { name: "Coimbatore", href: "/reach-us/coimbatore" }
+        { name: "Coimbatore", href: "/reach-us/coimbatore" },
+        { name: "Mysuru", href: "/reach-us/mysuru" }
     ];
     
     const locations24 = [
