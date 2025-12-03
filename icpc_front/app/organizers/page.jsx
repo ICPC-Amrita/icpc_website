@@ -89,7 +89,7 @@ const TEAM_DATA = [
             name: "Aravind B L",
             role: "Head, Marketing and Operations",
             bio: "",
-            image: "/organisers/aravindbl3.png",
+            image: "/organisers/Aravindbl4.png",
             campus: "amritapuri",
             socialLinks: {
               linkedin: "",
