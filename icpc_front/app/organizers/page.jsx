@@ -145,7 +145,7 @@ const TEAM_DATA = [
         name: "Aswin J",
         role: "Technical Support Lead | Amritapuri",
         bio: "",
-        image: "/organisers/aswinj.jpg",
+        image: "/organisers/aswin.png",
         campus: "amritapuri",
         socialLinks: {
           linkedin: "",
@@ -171,7 +171,7 @@ const TEAM_DATA = [
         name: "Athul R",
         role: "Media & Documentation Lead | Amritapuri",
         bio: "",
-        image: "/organisers/athul.png",
+        image: "/organisers/athul2.jpg",
         campus: "amritapuri",
         socialLinks: {
           linkedin: "",
