@@ -53,7 +53,9 @@ module.exports = {
   		},
   		animation: {
   			'infinite-scroll-y': 'infinite-scroll-y 25s linear infinite',
-  			'infinite-scroll-x': 'infinite-scroll-x 25s linear infinite'
+  			'infinite-scroll-x': 'infinite-scroll-x 25s linear infinite',
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
   		},
   		keyframes: {
   			'infinite-scroll-y': {
@@ -70,6 +72,22 @@ module.exports = {
   				},
   				to: {
   					transform: 'translateX(-50%)'
+  				}
+  			},
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
   				}
   			}
   		},

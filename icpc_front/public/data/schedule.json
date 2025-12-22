@@ -1,0 +1,215 @@
+{
+  "program": [
+    {
+      "date": "2025-12-22",
+      "label": "22 December 2025 — Full Program Details",
+      "events": [
+        {
+          "time": "12:30 PM – 04:30 PM",
+          "title": "Registration",
+          "venue": "Swarn Jayanti Boys Hostel, CSJM University, Kanpur"
+        },
+        {
+          "time": "02:30 PM",
+          "title": "Arrival at Contest Site",
+          "venue": "CSE-AI New Building"
+        },
+        {
+          "time": "03:00 PM – 04:30 PM",
+          "title": "Practice Session",
+          "venue": null
+        },
+        {
+          "time": "05:00 PM – 05:05 PM",
+          "title": "Ceremonial Inauguration",
+          "venue": "L-1, Lecture Hall Complex, UIET"
+        },
+        {
+          "time": "05:05 PM – 05:10 PM",
+          "title": "Welcome Address",
+          "speaker": "Prof. Sudhanshu Pandiya, Member, Steering Committee"
+        },
+        {
+          "time": "05:10 PM – 05:15 PM",
+          "title": "Address by Host Institute",
+          "speaker": "Dr. Alok Kumar, Director, UIET"
+        },
+        {
+          "time": "05:15 PM – 05:20 PM",
+          "title": "Address by Dean Academics",
+          "speaker": "Prof. Brishti Mitra"
+        },
+        {
+          "time": "05:20 PM – 05:25 PM",
+          "title": "RCD Address",
+          "speaker": "Dr. Sandesh Gupta, RCD, CSJM University, Kanpur"
+        },
+        {
+          "time": "05:25 PM – 05:30 PM",
+          "title": "Address by Patron",
+          "speaker": "Prof. Vinay Kumar Pathak, Vice-Chancellor"
+        },
+        {
+          "time": "05:30 PM – 05:40 PM",
+          "title": "Inaugural Address",
+          "speaker": "Prof. Sudhir Kumar Awasthi, Pro-Vice-Chancellor"
+        },
+        {
+          "time": "05:40 PM – 05:45 PM",
+          "title": "Vote of Thanks",
+          "speaker": "Shri Rakesh Kumar Mishra, Registrar"
+        },
+        {
+          "time": "05:45 PM – 06:15 PM",
+          "title": "Hi-Tea",
+          "venue": null
+        },
+        {
+          "time": "06:15 PM – 06:45 PM",
+          "title": "About Contest Environment",
+          "by": "System Group & Judges"
+        },
+        {
+          "time": "07:30 PM – 09:00 PM",
+          "title": "Contest Dinner & Cultural Program",
+          "venue": "UIET Lawn"
+        }
+      ]
+    },
+    {
+      "date": "2025-12-23",
+      "label": "23 December 2025 — Contest Day",
+      "events": [
+        {
+          "time": "07:30 AM – 08:00 AM",
+          "title": "Registration",
+          "venue": "Swarn Jayanti Boys Hostel"
+        },
+        {
+          "time": "09:15 AM (Sharp)",
+          "title": "Arrival at Contest Site",
+          "venue": "CSE-AI New Building"
+        },
+        {
+          "time": "10:00 AM – 03:00 PM",
+          "title": "Main Contest",
+          "venue": "CSE-AI New Building"
+        },
+        {
+          "time": "05:00 PM",
+          "title": "Declaration of Result",
+          "mode": "Online",
+          "website": "https://kanpur.indiaicpc.in"
+        }
+      ]
+    }
+  ],
+
+  "hospitality": [
+    {
+      "date": "2025-12-22",
+      "meals": [
+        {
+          "time": "01:00 PM – 02:30 PM",
+          "type": "Lunch",
+          "venue": "Swarn Jayanti Boys Hostel"
+        },
+        {
+          "time": "05:40 PM – 06:10 PM",
+          "type": "Hi-Tea",
+          "venue": "Lecture Hall Complex, UIET"
+        },
+        {
+          "time": "07:30 PM – 09:00 PM",
+          "type": "Dinner",
+          "venue": "UIET Lawn"
+        }
+      ]
+    },
+    {
+      "date": "2025-12-23",
+      "meals": [
+        {
+          "time": "07:15 AM – 08:30 AM",
+          "type": "Breakfast",
+          "venue": "Swarn Jayanti Boys Hostel"
+        },
+        {
+          "time": "11:00 AM – 03:00 PM",
+          "type": "Tea",
+          "venue": "CSE-AI New Building"
+        },
+        {
+          "time": "03:00 PM – 03:30 PM",
+          "type": "Packet Lunch",
+          "venue": "Contest Site"
+        },
+        {
+          "time": "07:00 PM – 09:00 PM",
+          "type": "Dinner",
+          "venue": "Swarn Jayanti Boys Hostel"
+        }
+      ]
+    },
+    {
+      "date": "2025-12-24",
+      "meals": [
+        {
+          "time": "08:00 AM – 09:30 AM",
+          "type": "Breakfast",
+          "venue": "Swarn Jayanti Boys Hostel"
+        }
+      ],
+      "note": "Accommodation provided from 12:30 PM on 22 December till 11:00 AM on 24 December 2025"
+    }
+  ],
+
+  "transport": [
+    {
+      "date": "2025-12-22",
+      "routes": [
+        {
+          "time": "02:15 PM – 03:00 PM",
+          "from": "Swarn Jayanti Boys Hostel",
+          "to": "CSE-AI New Building"
+        }
+      ]
+    },
+    {
+      "date": "2025-12-23",
+      "routes": [
+        {
+          "time": "08:20 AM – 09:10 AM",
+          "from": "Swarn Jayanti Boys Hostel",
+          "to": "CSE-AI New Building"
+        },
+        {
+          "time": "03:15 PM – 04:00 PM",
+          "from": "CSE-AI New Building",
+          "to": "Swarn Jayanti Boys Hostel"
+        }
+      ]
+    }
+  ],
+
+  "timeline": [
+    {
+      "date": "2025-12-22",
+      "summary": [
+        "Registration",
+        "Arrival at Contest Site",
+        "Practice Session",
+        "Inauguration & Hi-Tea",
+        "Dinner & Cultural Program"
+      ]
+    },
+    {
+      "date": "2025-12-23",
+      "summary": [
+        "Registration",
+        "Main Contest",
+        "Result Declaration"
+      ]
+    }
+  ]
+}
