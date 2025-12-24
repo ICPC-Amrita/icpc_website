@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { Calendar, AlertCircle } from "lucide-react"
+import { Calendar, AlertCircle, File, HandHeart, Bus, Clock2 } from "lucide-react"
 
 export default function EventSchedulePage() {
   const [activeTab, setActiveTab] = useState("program")
@@ -151,7 +151,7 @@ export default function EventSchedulePage() {
               }`}
               type="button"
             >
-              📋 Program
+              <File className=""/> Program
             </button>
             <button
               onClick={() => handleTabChange("hospitality")}
@@ -162,7 +162,7 @@ export default function EventSchedulePage() {
               }`}
               type="button"
             >
-              🏨 Hospitality
+              <HandHeart className=""/> Hospitality
             </button>
             <button
               onClick={() => handleTabChange("transport")}
@@ -173,7 +173,7 @@ export default function EventSchedulePage() {
               }`}
               type="button"
             >
-              🚌 Transport
+              <Bus className=""/> Transport
             </button>
             <button
               onClick={() => handleTabChange("timeline")}
@@ -184,7 +184,7 @@ export default function EventSchedulePage() {
               }`}
               type="button"
             >
-              🕐 Timeline
+              <Clock2/> Timeline
             </button>
           </div>
 
@@ -328,7 +328,7 @@ export default function EventSchedulePage() {
                       </div>
 
                       {/* Timeline dot */}
-                      <div className="absolute left-1/2 top-2 transform -translate-x-1/2 w-3 h-3 bg-blue-600 rounded-full border-2 border-white shadow"></div>
+                      <div className="absolute left-1/2 top-2 transform -translate-x-1/2 w-3 h-3 bg-blue-600  border-2 border-white shadow"></div>
                     </div>
                   ))}
                 </div>
