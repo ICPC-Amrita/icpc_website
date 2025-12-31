@@ -35,9 +35,9 @@ export default function EventSchedulePage() {
         activity: "Tech Talk - JetBrains",
         category: "TALK",
         speaker: "JetBrains Team",
-        avatar: "/organisers/aravindbl4.png",
-        name: "Aravind B L",
-        designation: "Representatives from JetBrains"
+        avatar: "/avatar.svg",
+        // name: "Aravind B L",
+        // designation: "Representatives from JetBrains"
       },
       {
         time: "05:00 - 07:00 PM",
@@ -77,6 +77,11 @@ export default function EventSchedulePage() {
         category: "CEREMONY"
       },
       {
+        time: "06:30 - 07:00 PM",
+        activity: "Goodies Distribution",
+        category: "GOODIES"
+      },
+      {
         time: "07:30 - 08:30 PM",
         activity: "Dinner",
         category: "FOOD"
@@ -85,37 +90,37 @@ export default function EventSchedulePage() {
   }), [])
 
   // Hospitality data
-  const hospitalityData = [
-    {
-      time: "Breakfast",
-      activity: "Main Dining Hall - Ground Floor",
-      category: "MESS"
-    },
-    {
-      time: "Lunch",
-      activity: "Main Dining Hall - Ground Floor",
-      category: "MESS"
-    },
-    {
-      time: "Dinner",
-      activity: "Main Dining Hall - Ground Floor",
-      category: "MESS"
-    }
-  ]
+  // const hospitalityData = [
+  //   {
+  //     time: "Breakfast",
+  //     activity: "Main Dining Hall - Ground Floor",
+  //     category: "MESS"
+  //   },
+  //   {
+  //     time: "Lunch",
+  //     activity: "Main Dining Hall - Ground Floor",
+  //     category: "MESS"
+  //   },
+  //   {
+  //     time: "Dinner",
+  //     activity: "Main Dining Hall - Ground Floor",
+  //     category: "MESS"
+  //   }
+  // ]
 
   // Transport data
-  const transportData = [
-    {
-      time: "Day 1 - Arrival",
-      activity: "Bus service from Railway Station to Venue",
-      category: "TRANSPORT"
-    },
-    {
-      time: "Day 2 - Departure",
-      activity: "Bus service from Venue to Railway Station",
-      category: "TRANSPORT"
-    }
-  ]
+  // const transportData = [
+  //   {
+  //     time: "Day 1 - Arrival",
+  //     activity: "Bus service from Railway Station to Venue",
+  //     category: "TRANSPORT"
+  //   },
+  //   {
+  //     time: "Day 2 - Departure",
+  //     activity: "Bus service from Venue to Railway Station",
+  //     category: "TRANSPORT"
+  //   }
+  // ]
 
   const handleDayChange = (day) => {
     setActiveDay(day)
@@ -153,7 +158,7 @@ export default function EventSchedulePage() {
             >
               <File className=""/> Program
             </button>
-            <button
+            {/* <button
               onClick={() => handleTabChange("hospitality")}
               className={`px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors focus:outline-none whitespace-nowrap ${
                 activeTab === "hospitality"
@@ -163,8 +168,8 @@ export default function EventSchedulePage() {
               type="button"
             >
               <HandHeart className=""/> Hospitality
-            </button>
-            <button
+            </button> */}
+            {/* <button
               onClick={() => handleTabChange("transport")}
               className={`px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors focus:outline-none whitespace-nowrap ${
                 activeTab === "transport"
@@ -174,7 +179,7 @@ export default function EventSchedulePage() {
               type="button"
             >
               <Bus className=""/> Transport
-            </button>
+            </button> */}
             <button
               onClick={() => handleTabChange("timeline")}
               className={`px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors focus:outline-none whitespace-nowrap ${
@@ -259,7 +264,7 @@ export default function EventSchedulePage() {
           )}
 
           {/* Hospitality Tab Content */}
-          {activeTab === "hospitality" && (
+          {/* {activeTab === "hospitality" && (
             <section aria-label="Hospitality Information">
               <div className="grid grid-cols-[100px_1fr] sm:grid-cols-[140px_1fr] md:grid-cols-[250px_1fr] gap-3 sm:gap-4 md:gap-6 p-3 sm:p-4 md:p-6 font-semibold text-sm sm:text-base md:text-lg bg-blue-900 text-white">
                 <div>Meal</div>
@@ -272,10 +277,10 @@ export default function EventSchedulePage() {
                 ))}
               </div>
             </section>
-          )}
+          )} */}
 
           {/* Transport Tab Content */}
-          {activeTab === "transport" && (
+          {/* {activeTab === "transport" && (
             <section aria-label="Transport Information">
               <div className="grid grid-cols-[100px_1fr] sm:grid-cols-[140px_1fr] md:grid-cols-[250px_1fr] gap-3 sm:gap-4 md:gap-6 p-3 sm:p-4 md:p-6 font-semibold text-sm sm:text-base md:text-lg bg-blue-900 text-white">
                 <div>Schedule</div>
@@ -288,7 +293,7 @@ export default function EventSchedulePage() {
                 ))}
               </div>
             </section>
-          )}
+          )} */}
 
           {/* Timeline Tab Content - Using Schedule Data */}
           {activeTab === "timeline" && (

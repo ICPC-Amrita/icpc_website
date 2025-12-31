@@ -46,7 +46,7 @@ export default function CalendarPage() {
             <Navbar open={open} hero={hero} darkSection={darkSection} />
             
             {/* Coming Soon Content */}
-            <div className="flex-1 flex items-center justify-center bg-gradient-to-b from-white to-blue-50 px-4 py-16 md:py-24">
+            <div className="flex-1 flex items-center justify-center bg-gradient-to-b from-white to-blue-50 px-4 py-16 md:py-24 mt-16">
                 <div className="text-center max-w-3xl">
                     {/* Icon/Illustration */}
                     <div className="mb-8">
@@ -73,48 +73,51 @@ export default function CalendarPage() {
                     </h1>
                     
                     {/* Coming Soon Badge */}
-                    <div className="inline-block bg-[#b02a1c] text-white px-6 py-2 rounded-full text-lg font-semibold mb-6">
-                        Coming Soon
+                   <a
+  href="/data/ICPC Amritapuri Problem Solvers Calendar 2026.pdf" // change this to your download file path
+  download
+  className="inline-block bg-[#b02a1c] text-white px-6 py-2 rounded-full text-lg font-semibold mb-6"
+>
+  Download Calendar
+</a>
+
+                    
+                    {/* Description - Justified Text */}
+                    <div className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed text-justify space-y-4">
+                        <p className="font-semibold">
+                            ICPC PROBLEM SOLVER CALENDAR
+                        </p>
+                        <p>
+                            Discover the people who changed the world by solving problems.
+                        </p>
+                        
+                        <p>
+                            This special ICPC Amritapuri calendar celebrates twelve remarkable problem solvers — one featured each month. Their journeys reflect what ICPC stands for: clear thinking, disciplined effort, teamwork, and the courage to keep going when the problem feels impossible.
+                        </p>
+                        
+                        <p>
+                            Whether you're an undergraduate student beginning your problem-solving journey, a researcher pushing the frontiers of knowledge, or an industry professional building real-world systems — these stories remind us that progress happens when someone chooses to understand a challenge deeply and solve it with integrity.
+                        </p>
+                        
+                        <p>
+                            You can download the full calendar using the link below. We hope it inspires you to become a lifelong problem solver — in the classroom, in your career, and in society.
+                        </p>
+                        
+                        <p>
+                            Over time, this page will also feature detailed profiles of each problem solver, including: the problem they set out to solve, how they approached it, and the impact their work created.
+                        </p>
+                        
+                        <p>
+                            Please check back soon for updates and new stories.
+                        </p>
+                        
+                        <p className="font-semibold">
+                            Enjoy the ICPC Problem Solver Calendar — and keep solving.
+                        </p>
                     </div>
                     
-                    {/* Description */}
-                    <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                        We&apos;re preparing an interactive calendar with all important dates, 
-                        deadlines, and events for ICPC 2026 Amritapuri Regionals. 
-                        Stay tuned for updates!
-                    </p>
-                    
                     {/* Features List */}
-                    <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8 text-left">
-                        <h2 className="text-2xl font-semibold text-blue-900 mb-4 text-center">
-                            What to Expect
-                        </h2>
-                        <ul className="space-y-3 text-gray-700">
-                            <li className="flex items-start">
-                                <svg className="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                </svg>
-                                <span>Registration deadlines and important dates</span>
-                            </li>
-                            <li className="flex items-start">
-                                <svg className="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                </svg>
-                                <span>Contest schedules and timelines</span>
-                            </li>
-                            <li className="flex items-start">
-                                <svg className="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                </svg>
-                                <span>Preparation workshops and webinars</span>
-                            </li>
-                            <li className="flex items-start">
-                                <svg className="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                </svg>
-                                <span>Downloadable calendar with QR code access</span>
-                            </li>
-                        </ul>
+                    <div className="p-6 md:p-8 mb-8 text-left">
                     </div>
                     
                     {/* Call to Action Buttons */}
