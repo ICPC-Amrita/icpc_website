@@ -71,7 +71,7 @@ export default function CalendarPage() {
                     
                     {/* Main Heading */}
                     <h1 className="text-3xl md:text-5xl font-bold text-blue-900 mb-4">
-                        ICPC Calendar
+                        ICPC Amritapuri Calendar 2026
                     </h1>
                     
                     {/* Download Button */}
@@ -86,7 +86,7 @@ export default function CalendarPage() {
                     {/* Description - Left Aligned */}
                     <div className="text-base md:text-lg text-gray-700 mb-6 leading-relaxed space-y-3">
                         <p className="font-semibold">
-                            ICPC PROBLEM SOLVER CALENDAR
+                            ICPC AMRITAPURI PROBLEM SOLVER CALENDAR 2026
                         </p>
                         <p>
                             Discover the people who changed the world by solving problems.
@@ -97,7 +97,7 @@ export default function CalendarPage() {
                         </p>
                         
                         <p>
-                            Whether you're an undergraduate student beginning your problem-solving journey, a researcher pushing the frontiers of knowledge, or an industry professional building real-world systems — these stories remind us that progress happens when someone chooses to understand a challenge deeply and solve it with integrity.
+                            {`Whether you're an undergraduate student beginning your problem-solving journey, a researcher pushing the frontiers of knowledge, or an industry professional building real-world systems — these stories remind us that progress happens when someone chooses to understand a challenge deeply and solve it with integrity.`}
                         </p>
                         
                         <p>
