@@ -7,17 +7,24 @@ import { FaMedal } from "react-icons/fa";
 
 export default function AltHero() {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+    const [timeLeftEnd, setTimeLeftEnd] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 }); // Added for contest end countdown
     const [showTimer, setShowTimer] = useState(true);
-    
+    const [showEndTimer, setShowEndTimer] = useState(false); // added for contest end countdown
     useEffect(() => {
-        const prelimsDate = new Date('2025-11-08T13:30:00').getTime();
+        const prelimsDate = new Date('2025-12-24T11:47:00').getTime();
+        const contestEndDate = new Date('2025-12-24T13:30:00').getTime(); // ADD THIS LINE
+
         
         const updateCountdown = () => {
             const now = new Date().getTime();
             const distance = prelimsDate - now;
+            const distanceEnd = contestEndDate - now; // ADD THIS LINE
+
 
             // Hide timer when contest starts (at 1:30 PM)
             setShowTimer(distance > 0);
+            setShowEndTimer(distance <= 0 && distanceEnd > 0); // ADD THIS LINE
+
 
             if (distance > 0) {
                 setTimeLeft({
@@ -29,6 +36,18 @@ export default function AltHero() {
             } else {
                 setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
             }
+
+            if (distanceEnd > 0) {
+            setTimeLeftEnd({
+                days: Math.floor(distanceEnd / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((distanceEnd % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                minutes: Math.floor((distanceEnd % (1000 * 60 * 60)) / (1000 * 60)),
+                seconds: Math.floor((distanceEnd % (1000 * 60)) / 1000)
+            });
+        } else {
+            setTimeLeftEnd({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        }
+
         };
 
         updateCountdown();
@@ -145,12 +164,16 @@ export default function AltHero() {
   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-10">
 
     {/* Countdown Timer - Left Side - Only show before contest start/s */}
-    {/* {showTimer && (
+    {showTimer && (
       <div>
         <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
           Prelims starts in:
         </p>
         <div className="flex gap-1 sm:gap-2 items-center">
+          <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+            <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.days}</span>
+            <span className="text-[10px] text-gray-600 font-medium mt-1">Days</span>
+          </div>
           <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
             <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeft.hours}</span>
             <span className="text-[10px] text-gray-600 font-medium mt-1">Hr</span>
@@ -165,7 +188,34 @@ export default function AltHero() {
           </div>
         </div>
       </div>
-    )} */}
+    )}{/* ADD THIS ENTIRE BLOCK - Contest End Timer */}
+{showEndTimer && (
+  <div>
+    <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
+      Contest ends in:
+    </p>
+    <div className="flex gap-1 sm:gap-2 items-center">
+      <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+        <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeftEnd.days}</span>
+        <span className="text-[10px] text-gray-600 font-medium mt-1">Days</span>
+      </div>
+      <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+        <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeftEnd.hours}</span>
+        <span className="text-[10px] text-gray-600 font-medium mt-1">Hr</span>
+      </div>
+      <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+        <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeftEnd.minutes}</span>
+        <span className="text-[10px] text-gray-600 font-medium mt-1">Min</span>
+      </div>
+      <div className="flex flex-col items-center bg-blue-100/50 rounded-lg px-3 py-2 min-w-[55px] shadow-sm">
+        <span className="text-2xl font-bold text-blue-600 leading-none">{timeLeftEnd.seconds}</span>
+        <span className="text-[10px] text-gray-600 font-medium mt-1">Sec</span>
+      </div>
+    </div>
+  </div>
+)}
+{/* {(showTimer || showEndTimer) && <div className="hidden sm:block w-px bg-gray-200 h-16"></div>} */}
+
 
     {/* Optional Divider for Desktop - Only show when timer is visible */}
     {showTimer && <div className="hidden sm:block w-px bg-gray-200 h-16"></div>}
