@@ -46,13 +46,15 @@ export default function CalendarPage() {
             <Navbar open={open} hero={hero} darkSection={darkSection} />
             
             {/* Coming Soon Content */}
-            <div className="flex-1 flex items-center justify-center bg-gradient-to-b from-white to-blue-50 px-4 py-16 md:py-24 mt-16">
-                <div className="text-center max-w-3xl">
-                    {/* Icon/Illustration */}
-                    <div className="mb-8">
-                        <div className="inline-flex items-center justify-center w-32 h-32 md:w-40 md:h-40 bg-blue-100 rounded-full">
+            <div className="flex-1 flex items-center justify-center  px-4 py-16 md:py-24 ">
+                   <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                {/* Left Side - Text Content */}
+                <div className="text-left">
+                    {/* Icon/Illustration - Smaller for left alignment */}
+                    {/* <div className="mb-6">
+                        <div className="inline-flex items-center justify-center w-20 h-20 ">
                             <svg 
-                                className="w-16 h-16 md:w-20 md:h-20 text-blue-900" 
+                                className="w-10 h-10 text-blue-900" 
                                 fill="none" 
                                 stroke="currentColor" 
                                 viewBox="0 0 24 24"
@@ -65,25 +67,24 @@ export default function CalendarPage() {
                                 />
                             </svg>
                         </div>
-                    </div>
+                    </div> */}
                     
                     {/* Main Heading */}
-                    <h1 className="text-4xl md:text-6xl font-bold text-blue-900 mb-4">
+                    <h1 className="text-3xl md:text-5xl font-bold text-blue-900 mb-4">
                         ICPC Calendar
                     </h1>
                     
-                    {/* Coming Soon Badge */}
-                   <a
-  href="/data/ICPC Amritapuri Problem Solvers Calendar 2026.pdf" // change this to your download file path
-  download
-  className="inline-block bg-[#b02a1c] text-white px-6 py-2 rounded-full text-lg font-semibold mb-6"
->
-  Download Calendar
-</a>
-
+                    {/* Download Button */}
+                    <a
+                        href="/data/ICPC Amritapuri Problem Solvers Calendar 2026.pdf"
+                        download
+                        className="inline-block bg-[#b02a1c] hover:bg-[#8a2116] text-white px-6 py-2 rounded-md text-lg font-semibold mb-6 transition duration-200"
+                    >
+                        Download Calendar
+                    </a>
                     
-                    {/* Description - Justified Text */}
-                    <div className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed text-justify space-y-4">
+                    {/* Description - Left Aligned */}
+                    <div className="text-base md:text-lg text-gray-700 mb-6 leading-relaxed space-y-3">
                         <p className="font-semibold">
                             ICPC PROBLEM SOLVER CALENDAR
                         </p>
@@ -100,15 +101,7 @@ export default function CalendarPage() {
                         </p>
                         
                         <p>
-                            You can download the full calendar using the link below. We hope it inspires you to become a lifelong problem solver — in the classroom, in your career, and in society.
-                        </p>
-                        
-                        <p>
-                            Over time, this page will also feature detailed profiles of each problem solver, including: the problem they set out to solve, how they approached it, and the impact their work created.
-                        </p>
-                        
-                        <p>
-                            Please check back soon for updates and new stories.
+                            You can download the full calendar using the link above. We hope it inspires you to become a lifelong problem solver — in the classroom, in your career, and in society.
                         </p>
                         
                         <p className="font-semibold">
@@ -116,26 +109,50 @@ export default function CalendarPage() {
                         </p>
                     </div>
                     
-                    {/* Features List */}
-                    <div className="p-6 md:p-8 mb-8 text-left">
-                    </div>
-                    
                     {/* Call to Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <div className="flex flex-col sm:flex-row gap-4">
                         <Link 
                             href="/"
-                            className="bg-[#b02a1c] hover:bg-[#6d2121] text-white px-8 py-3 rounded-lg text-lg font-semibold transition duration-200 ease-in-out"
+                            className="bg-[#b02a1c] hover:bg-[#6d2121] text-white px-8 py-3 rounded-lg text-lg font-semibold transition duration-200 ease-in-out text-center"
                         >
                             Back to Home
                         </Link>
                         <Link 
                             href="/#important_dates"
-                            className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-3 rounded-lg text-lg font-semibold transition duration-200 ease-in-out"
+                            className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-3 rounded-lg text-lg font-semibold transition duration-200 ease-in-out text-center"
                         >
                             View Important Dates
                         </Link>
                     </div>
                 </div>
+
+                {/* Right Side - Calendar Image */}
+                <div className="flex items-center justify-center">
+                    <img 
+                        src="/schedule_images/time.png" 
+                        alt="ICPC Problem Solver Calendar 2026"
+                        className="w-full max-w-md "
+                     
+                    />
+                    <div className="hidden w-full max-w-md h-96 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg shadow-2xl items-center justify-center flex-col p-8">
+                        <svg 
+                            className="w-24 h-24 text-blue-900 mb-4" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                        >
+                            <path 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                strokeWidth={2} 
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" 
+                            />
+                        </svg>
+                        <p className="text-blue-900 text-xl font-semibold text-center">ICPC Calendar 2026</p>
+                        <p className="text-blue-700 text-sm mt-2 text-center">Problem Solvers Collection</p>
+                    </div>
+                </div>
+            </div>
             </div>
 
             {/* Footer */}
