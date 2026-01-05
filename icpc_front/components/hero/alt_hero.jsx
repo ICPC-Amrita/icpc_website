@@ -99,14 +99,16 @@ export default function AltHero() {
   {/* Inline Heading */}
   <p className="text-base sm:text-lg font-semibold leading-snug flex flex-wrap items-center gap-1">
     <span className="whitespace-nowrap">Announcement:</span>
-    <strong className="font-semibold">Teams Selected for Amritapuri Onsite Round</strong>
+    <strong className="font-semibold">Ranklist Asia Amritapuri Regionals 2025(Tentative) released!</strong>
   </p>
 
   {/* Description */}
   <p className="text-gray-700 text-sm sm:text-base font-medium leading-relaxed">
-    The list of teams qualified for the ICPC Amritapuri Onsite Regional Contest,
+    {/* The list of teams qualified for the ICPC Amritapuri Onsite Regional Contest,
     to be held at the Amritapuri, Coimbatore, Bengaluru, and Mysuru Amrita campuses 
-    on 2–3 January 2026, is now available.
+    on 2–3 January 2026, is now available. */}
+    Note: This ranklist is tentative and subject to verification.
+
   </p>
 
 </div>
@@ -115,17 +117,19 @@ export default function AltHero() {
                     <div className="mb-6 sm:mb-8">
            <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base">
   {/* <FaMedal className="shrink-0 text-base sm:text-lg" /> */}
-                        <Link
-                            href="/selected-teams"
-                            className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
-                        >
-                        View Selected Teams
-                        </Link>
+                    <a
+  href="/data/Ranklist Asia Amritapuri Regionals 2025(Tentative).pdf"
+  download
+  className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
+>
+  Download Ranklist (PDF)
+</a>
+
   
   {/* <p className="m-0 leading-tight">
     Announcement:
     <strong className="ml-1">Teams Selected for Kanpur Onsite Round</strong>
-  </p> */}
+  </p>  */}
 </div>
 
 
