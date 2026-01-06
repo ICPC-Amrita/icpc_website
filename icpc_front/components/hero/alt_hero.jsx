@@ -118,7 +118,7 @@ export default function AltHero() {
            <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base">
   {/* <FaMedal className="shrink-0 text-base sm:text-lg" /> */}
                     <a
-  href="/data/Ranklist Asia Amritapuri Regionals 2025(Tentative).pdf"
+  href="/data/Ranklist Asia Amritapuri Regionals 2025(Tentative)-1.pdf"
   download
   className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
 >
