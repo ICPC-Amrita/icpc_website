@@ -118,12 +118,11 @@ export default function AltHero() {
            <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base">
   {/* <FaMedal className="shrink-0 text-base sm:text-lg" /> */}
                     <a
-  href="/data/Ranklist Asia Amritapuri Regionals 2025(Tentative)-1.pdf"
-  download
+  href="/onsite-ranklist"
+
   className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
 >
-  Download Ranklist (PDF)
-</a>
+Final Ranklist – Amritapuri 2025</a>
 
   
   {/* <p className="m-0 leading-tight">
@@ -230,7 +229,21 @@ export default function AltHero() {
         Download important documents:
       </p>
       <div className="flex flex-wrap justify-start gap-x-4 gap-y-2 text-[#0066FF] text-sm font-semibold">
-        <a
+                    <a
+  href="/data/Ranklist Asia Amritapuri Regionals 2025(Tentative)-1.pdf"
+  download
+  className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
+>
+  Download Ranklist
+</a>
+            <a
+  href="/data/ICPC_Amritapuri_2025___26.pdf"
+  download
+  className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
+>
+  Download Problem Set
+</a>
+        {/* <a
           href="/data/FAQ ICPC_V2.0.pdf"
           download="FAQ ICPC_V2.0.pdf"
           className="hover:underline hover:text-blue-700 transition-colors flex items-center gap-1"
@@ -273,7 +286,8 @@ export default function AltHero() {
             />
           </svg>
           Selection Process
-        </a>
+        </a> */}
+        
           {/* <a
           href="/data/OBS Setup Guide for ICPC Proctoring - V2.pdf"
           download="OBS Setup Guide for ICPC Proctoring - V2.pdf"
