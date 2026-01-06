@@ -132,6 +132,18 @@ const TEAM_DATA = [
               linkedin: "",
               email: ""
             }
+          },
+          {
+            id: "ht-1",
+            name: "Aman Kumar Singh",
+            role: "Head, Training",
+            bio: "",
+            image: "/organisers/aman.jpg",
+            campus: "amritapuri",
+            socialLinks: {
+              linkedin: "https://www.linkedin.com/in/iamamanksingh/",
+              email: ""
+            }
           }
         ]
       }
