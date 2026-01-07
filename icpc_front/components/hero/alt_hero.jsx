@@ -67,8 +67,8 @@ export default function AltHero() {
                     
                     {/* Highlight Badge */}
                     <div className="mb-3 sm:mb-4 md:mb-6">
-    <span className="inline-block text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-50 rounded-full border border-blue-200">
-        Highlights: 310+ Onsite Slots !
+    <span className="inline-block text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 sm:px-4 sm:py-2 ">
+        {/* Highlights: 310+ Onsite Slots ! Thankyou Everyone for making ICPC Amritapuri Regionals 2025 a Huge Success! */}
     </span>
 </div>
 
@@ -99,7 +99,7 @@ export default function AltHero() {
   {/* Inline Heading */}
   <p className="text-base sm:text-lg font-semibold leading-snug flex flex-wrap items-center gap-1">
     <span className="whitespace-nowrap">Announcement:</span>
-    <strong className="font-semibold">Ranklist Asia Amritapuri Regionals 2025(Tentative) released!</strong>
+    <strong className="font-semibold">Ranklist Asia Amritapuri Regionals 2025 released!</strong>
   </p>
 
   {/* Description */}
@@ -107,7 +107,7 @@ export default function AltHero() {
     {/* The list of teams qualified for the ICPC Amritapuri Onsite Regional Contest,
     to be held at the Amritapuri, Coimbatore, Bengaluru, and Mysuru Amrita campuses 
     on 2–3 January 2026, is now available. */}
-    Note: This ranklist is tentative and subject to verification.
+    Winner: Div4Maxxer [Indian Institute of Technology - Kharagpur].
 
   </p>
 

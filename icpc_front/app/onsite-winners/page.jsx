@@ -4,27 +4,27 @@ import { useState } from "react"
 
 const teamsData = {
   winner: {
-    teamName: "Rank: #1  | Code Crushers",
-    college: "International Institute of Information Technology, Hyderabad",
+    teamName: "Rank: #1  | Div4Maxxer",
+    college: "Indian Institute of Technology - Kharagpur",
     rank: "Winner ",
-    teamPhoto: "/coursel_images/2.jpg",
+    teamPhoto: "/winners/winners-25/winner3.webp",
     members: [
       {
         name: "Alex Johnson",
         year: "3rd Year",
-        college: "International Institute of Information Technology, Hyderabad",
+        college: "Indian Institute of Technology - Kharagpur",
         image: "https://www.untitledui.com/images/avatars/amelie-laurent?fm=webp&q=80"
       },
       {
         name: "Sarah Chen",
         year: "4th Year",
-        college: "International Institute of Information Technology, Hyderabad",
+        college: "Indian Institute of Technology - Kharagpur",
         image: "https://www.untitledui.com/images/avatars/sienna-hewitt?fm=webp&q=80"
       },
       {
         name: "Mike Davis",
         year: "3rd Year",
-        college: "International Institute of Information Technology, Hyderabad",
+        college: "Indian Institute of Technology - Kharagpur",
         image: "https://www.untitledui.com/images/avatars/nikolas-gibbons?fm=webp&q=80"
       }
     ],
@@ -37,10 +37,10 @@ const teamsData = {
     }
   },
   firstRunnerUp: {
-    teamName: "Rank: #2  | Debug Demons",
+    teamName: "Rank: #2  | hehe i do cp",
     college: "International Institute of Information Technology, Hyderabad",
     rank: "1st Runner Up",
-    teamPhoto: "/coursel_images/2.jpg",
+    teamPhoto: "/winners/winners-25/winner1.webp",
     members: [
       {
         name: "Emily Brown",
@@ -70,10 +70,10 @@ const teamsData = {
     }
   },
   secondRunnerUp: {
-    teamName: "Rank: #3  | Binary Beasts",
+    teamName: "Rank: #3  | TOURISTS",
     college: "International Institute of Information Technology, Hyderabad",
     rank: "2nd Runner Up",
-    teamPhoto: "/coursel_images/2.jpg",
+    teamPhoto: "/winners/winners-25/winner2.webp",
     members: [
       {
         name: "Chris Martinez",
