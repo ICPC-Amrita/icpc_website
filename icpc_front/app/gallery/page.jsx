@@ -33,7 +33,7 @@ export default function GalleryPage() {
     return (
         <div className="bg-white text-black mt-[5vw] min-h-screen">
             <p className="font-semibold text-[3vw] max-md:text-[6vw] justify-center flex mb-[2vw] max-md:mb-[4vw] max-md:mt-[8vw]">Event Gallery</p>
-            <div className="flex flex-col gap-10 mx-[7vw]">
+            <div className="flex flex-col gap-10 mx-[7vw] ">
                 <Gallery {...{ widths, ratios, images: [...images.Day_1, ...images.Day_2, ...images.Latest] }} lastRowBehavior="match-previous" />
             </div>
         </div>

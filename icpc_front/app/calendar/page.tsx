@@ -78,7 +78,7 @@ export default function CalendarPage() {
                     <a
                         href="/data/ICPC Amritapuri Problem Solvers Calendar 2026.pdf"
                         download
-                        className="inline-block bg-[#b02a1c] hover:bg-[#8a2116] text-white px-6 py-2 rounded-md text-lg font-semibold mb-6 transition duration-200"
+                        className="inline-block bg-[#b02a1c] hover:bg-[#8a2116] text-white px-6 py-2  text-lg font-semibold mb-6 transition duration-200"
                     >
                         Download Calendar
                     </a>
@@ -113,13 +113,13 @@ export default function CalendarPage() {
                     <div className="flex flex-col sm:flex-row gap-4">
                         <Link 
                             href="/"
-                            className="bg-[#b02a1c] hover:bg-[#6d2121] text-white px-8 py-3 rounded-lg text-lg font-semibold transition duration-200 ease-in-out text-center"
+                            className="bg-[#b02a1c] hover:bg-[#6d2121] text-white px-8 py-3  text-lg font-semibold transition duration-200 ease-in-out text-center"
                         >
                             Back to Home
                         </Link>
                         <Link 
                             href="/#important_dates"
-                            className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-3 rounded-lg text-lg font-semibold transition duration-200 ease-in-out text-center"
+                            className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-3  text-lg font-semibold transition duration-200 ease-in-out text-center"
                         >
                             View Important Dates
                         </Link>

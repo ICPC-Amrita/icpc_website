@@ -35,9 +35,9 @@ export default function EventSchedulePage() {
         activity: "Tech Talk - JetBrains",
         category: "TALK",
         speaker: "JetBrains Team",
-        avatar: "/avatar.svg",
-        // name: "Aravind B L",
-        // designation: "Representatives from JetBrains"
+        avatar: "/jaidityakhemani.avif",
+        name: "Jaiditya Khemani",
+        designation: "Developer Advocate @Jetbrains"
       },
       {
         time: "05:00 - 07:00 PM",
