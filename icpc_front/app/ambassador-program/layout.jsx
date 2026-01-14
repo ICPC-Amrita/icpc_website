@@ -4,6 +4,7 @@ import Terminal from "@/components/ui_elems/terminal/terminalnew";
 import Navbar from "@/components/navbar/navbar";
 import Script from "next/script";
 import { usePathname } from "next/navigation"; // Add this import
+import Link from "next/link";
 
 export default function Layout({ children }) {
     const [open, setOpen] = useState(true);

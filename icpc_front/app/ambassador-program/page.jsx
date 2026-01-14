@@ -1,5 +1,4 @@
 'use client'
-
 import { Trophy, Users, Target, Star, Award, Gift, CheckCircle, MessageCircle, Crown, CrossIcon, CheckSquare, SkipBack, X, CrownIcon, Medal, StarIcon, StarOff } from "lucide-react"
 import { Check, User, Rocket } from "lucide-react";
 import Image from "next/image"; // Add this import
