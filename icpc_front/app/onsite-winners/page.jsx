@@ -195,7 +195,7 @@ export default function CompetitionResults() {
           <p className="text-3xl font-semibold text-gray-900 mt-2"> {team.details.totalTime} </p>
           </div> 
           <div className="border-b border-gray-200 pb-6">
-          <h4 className="text-sm font-medium text-gray-600 uppercase tracking-wide">Penalty </h4>
+          <h4 className="text-sm font-medium text-gray-600 uppercase tracking-wide">Penalty</h4>
           <p className="text-3xl font-semibold text-gray-900 mt-2"> {team.details.penalty} </p>
           </div>
           <div className="pb-6"> 
