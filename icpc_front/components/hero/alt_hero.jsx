@@ -1,8 +1,10 @@
 'use client';
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react"; 
+import React, { useEffect, useState,useRef } from "react"; 
+
 import { FaMedal } from "react-icons/fa";
+import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 // import AnnouncementModal from "../tables/announcement-modal";
 
 export default function AltHero() {
@@ -55,6 +57,23 @@ export default function AltHero() {
 
         return () => clearInterval(interval);
     }, []);
+     const videoRef = useRef(null)
+  const [isMuted, setIsMuted] = useState(true)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = true; // Required for autoplay
+      videoRef.current.playbackRate = 1.0;
+      videoRef.current.play().catch(() => {})
+    }
+  }, [])
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  }
 
     return (
         <div className="relative w-full min-h-screen bg-white overflow-hidden">
@@ -67,8 +86,8 @@ export default function AltHero() {
                     
                     {/* Highlight Badge */}
                     <div className="mb-3 sm:mb-4 md:mb-6">
-    <span className="inline-block text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-50 rounded-full border border-blue-200">
-        Highlights: 310+ Onsite Slots !
+    <span className="inline-block text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 sm:px-4 sm:py-2 ">
+        {/* Highlights: 310+ Onsite Slots ! Thankyou Everyone for making ICPC Amritapuri Regionals 2025 a Huge Success! */}
     </span>
 </div>
 
@@ -99,15 +118,16 @@ export default function AltHero() {
   {/* Inline Heading */}
   <p className="text-base sm:text-lg font-semibold leading-snug flex flex-wrap items-center gap-1">
     <span className="whitespace-nowrap">Announcement:</span>
-    <strong className="font-semibold">Ranklist Asia Amritapuri Regionals 2025(Tentative) released!</strong>
+    <strong className="font-semibold">Ranklist Asia Amritapuri Regionals 2025 released!</strong>
   </p>
 
   {/* Description */}
+   
   <p className="text-gray-700 text-sm sm:text-base font-medium leading-relaxed">
     {/* The list of teams qualified for the ICPC Amritapuri Onsite Regional Contest,
     to be held at the Amritapuri, Coimbatore, Bengaluru, and Mysuru Amrita campuses 
     on 2–3 January 2026, is now available. */}
-    Note: This ranklist is tentative and subject to verification.
+    Winner: Div4Maxxer [Indian Institute of Technology - Kharagpur]
 
   </p>
 
@@ -120,7 +140,7 @@ export default function AltHero() {
                     <a
   href="/onsite-ranklist"
 
-  className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
+  className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
 >
 Final Ranklist – Amritapuri 2025</a>
 
@@ -167,7 +187,7 @@ Final Ranklist – Amritapuri 2025</a>
   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-10">
 
     {/* Countdown Timer - Left Side - Only show before contest start/s */}
-    {showTimer && (
+    {/* {showTimer && (
       <div>
         <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
           Prelims starts in:
@@ -191,8 +211,8 @@ Final Ranklist – Amritapuri 2025</a>
           </div>
         </div>
       </div>
-    )}{/* ADD THIS ENTIRE BLOCK - Contest End Timer */}
-{showEndTimer && (
+    )}ADD THIS ENTIRE BLOCK - Contest End Timer */}
+{/* {showEndTimer && (
   <div>
     <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
       Contest ends in:
@@ -216,12 +236,12 @@ Final Ranklist – Amritapuri 2025</a>
       </div>
     </div>
   </div>
-)}
+)} */}
 {/* {(showTimer || showEndTimer) && <div className="hidden sm:block w-px bg-gray-200 h-16"></div>} */}
 
 
     {/* Optional Divider for Desktop - Only show when timer is visible */}
-    {showTimer && <div className="hidden sm:block w-px bg-gray-200 h-16"></div>}
+    {/* {showTimer && <div className="hidden sm:block w-px bg-gray-200 h-16"></div>} */}
 
     {/* Quick Links - Right Side */}
     <div className={showTimer ? "" : "w-full"}>
@@ -232,17 +252,24 @@ Final Ranklist – Amritapuri 2025</a>
                     <a
   href="/data/Ranklist Asia Amritapuri Regionals 2025(Tentative)-1.pdf"
   download
-  className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
+  className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8  transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
 >
   Download Ranklist
 </a>
             <a
   href="/data/ICPC_Amritapuri_2025___26.pdf"
   download
-  className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
+  className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
 >
   Download Problem Set
 </a>
+      {/* <a
+  href="/data/ICPC_Amritapuri_2025___26.pdf"
+  download
+  className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
+>
+  Download Directors Report
+</a> */}
         {/* <a
           href="/data/FAQ ICPC_V2.0.pdf"
           download="FAQ ICPC_V2.0.pdf"
@@ -348,9 +375,9 @@ Final Ranklist – Amritapuri 2025</a>
                 </div>
 
                 {/* Right Image Section */}
-                <div className="flex-1 relative min-h-[280px] sm:min-h-[350px] md:min-h-[450px] lg:min-h-screen mt-4 sm:mt-6 lg:mt-0 flex items-center justify-center px-4 lg:px-8">
+                <div className="flex-1 relative min-h-[280px] sm:min-h-[350px] md:min-h-[450px] lg:min-h-screen mt-4 sm:mt-6 lg:mt-0 flex items-start justify-center px-4 lg:px-8 pt-16 sm:pt-20 md:pt-24 lg:pt-32 xl:pt-36">
                     <div className="relative w-full max-w-lg lg:max-w-xl">
-                        <svg className="absolute -top-[999px] -left-[999px] w-0 h-0">
+                        {/* <svg className="absolute -top-[999px] -left-[999px] w-0 h-0">
                             <defs>
                                 <clipPath id="clip-main-image" clipPathUnits={'objectBoundingBox'}>
                                     <path
@@ -359,23 +386,45 @@ Final Ranklist – Amritapuri 2025</a>
                                     />
                                 </clipPath>
                             </defs>
-                        </svg>
-
-                        <figure 
-                            style={{ clipPath: 'url(#clip-main-image)' }} 
-                            className="w-full aspect-[3/4] relative"
-                        >
-                            <Image
-                                src="/coursel_images/2.jpg"
-                                alt="ICPC 2025 Regionals"
-                                fill
-                                className="object-cover transition-all duration-300 hover:scale-105"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                quality={100}
-                                priority
-                                unoptimized
-                            />
-                        </figure>
+                        </svg> */}
+ <figure
+    
+      className="w-full aspect-[4/3] relative overflow-hidden rounded-md "
+    >
+      {/* Thumbnail fallback - shows until video plays */}
+      <img
+        src="/icpc_thumbnail.jpg"
+        alt="ICPC Amritapuri"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <video
+        ref={videoRef}
+        loop
+        autoPlay
+        playsInline
+        preload="auto"
+        poster="/icpc_thumbnail.jpg"
+        className="absolute inset-0 w-full h-full object-cover
+                   transition-all duration-300 hover:scale-105"
+        onLoadedData={(e) => {
+          // Hide the fallback image once video is ready
+          e.target.previousSibling.style.display = 'none';
+        }}
+      >
+        <source
+          src="https://cun3z2lpwvdcmhvy.public.blob.vercel-storage.com/final.mp4"
+          type="video/mp4"
+        />
+      </video>
+      {/* Mute/Unmute Toggle Button */}
+      <button
+        onClick={toggleMute}
+        className="absolute bottom-4 right-4 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all duration-200 z-10"
+        aria-label={isMuted ? "Unmute video" : "Mute video"}
+      >
+        {isMuted ? <FaVolumeMute size={20} /> : <FaVolumeUp size={20} />}
+      </button>
+    </figure>
                     </div>
                 </div>
             </div>

@@ -385,7 +385,7 @@ export default function Navbar({ open, hero, darkSection }) {
 
         { label: "Organizers", href: "/organizers", type: "link" },
         { label: "Schedule", href: "/onsite-schedule", type: "link" },
-        // { label: "Winners", href: "/onsite-winners", type: "link" },
+        { label: "Winners", href: "/onsite-winners", type: "link" },
         { label: "Archive", type: "dropdown", items: archiveweblinks },
         { label: "Calendar", href: "/calendar", type: "link" },
       ];

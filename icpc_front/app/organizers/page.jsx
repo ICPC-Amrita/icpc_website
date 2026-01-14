@@ -277,7 +277,7 @@ const MobileFilterDropdown = ({ selectedCampus, onCampusChange, isOpen, onToggle
                 }}
                 className={`w-full text-left px-4 py-3 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg ${
                   selectedCampus === campus.value
-                    ? 'bg-black text-white'
+                    ? 'bg-blue-900 text-white'
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
                 role="option"
@@ -309,7 +309,7 @@ const DesktopCampusFilter = ({ selectedCampus, onCampusChange }) => (
               onClick={() => onCampusChange(campus.value)}
               className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 ${
                 selectedCampus === campus.value
-                  ? 'bg-black text-white'
+                  ? 'bg-blue-900 text-white'
                   : 'text-gray-600 hover:bg-gray-50 hover:text-black'
               }`}
             >

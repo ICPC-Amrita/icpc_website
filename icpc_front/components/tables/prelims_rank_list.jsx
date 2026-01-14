@@ -81,7 +81,7 @@ export default function PrelimsRankList() {
             {/* Search and Filter Buttons */}
             <div className="flex flex-col md:flex-row justify-center items-center gap-3 mb-6">
                 {/* Search Input */}
-                <div className="flex rounded-full min-h-[3rem] w-full md:w-96 px-4 gap-2 bg-white items-center border border-gray-300 shadow-sm">
+                <div className="flex  min-h-[3rem] w-full md:w-96 px-4 gap-2 bg-white items-center border border-gray-300 shadow-sm">
                     <Search className="w-5 h-5 text-gray-400" />
                     <input
                         type="text"
@@ -94,7 +94,7 @@ export default function PrelimsRankList() {
 
                 {/* Women Only Teams Button */}
                 <button
-                    className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                    className={`px-6 py-2  rounded-md text-sm font-medium transition-colors ${
                         showWomenOnly
                             ? 'bg-blue-600 text-white'
                             : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
@@ -106,7 +106,7 @@ export default function PrelimsRankList() {
 
                 {/* Show Stats Button (Mobile) */}
                 <button
-                    className={`md:hidden px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                    className={`md:hidden px-6 py-2  text-sm font-medium transition-colors ${
                         showStats
                             ? 'bg-blue-600 text-white'
                             : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
@@ -119,14 +119,14 @@ export default function PrelimsRankList() {
 
             {/* No Results Message */}
             {filteredTeams.length === 0 && (
-                <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
+                <div className="text-center py-12 bg-white  border border-gray-200">
                     <p className="text-gray-600">No teams found matching your search.</p>
                 </div>
             )}
 
             {/* Desktop Table */}
             {filteredTeams.length > 0 && (
-                <div className="hidden md:block bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+                <div className="hidden md:block bg-white  border border-gray-200 overflow-hidden shadow-sm">
                     <div className="overflow-x-auto">
                         <table className="w-full">
                             <thead className="bg-gray-50 border-b border-gray-200">
@@ -259,7 +259,7 @@ export default function PrelimsRankList() {
                             onClick={handlePrevPage}
                             disabled={currentPage === 1}
                             className={`
-                                flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
+                                flex items-center gap-1 px-3 py-2 text-sm font-medium  border transition-colors
                                 ${currentPage === 1
                                     ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
                                     : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
@@ -287,7 +287,7 @@ export default function PrelimsRankList() {
                                         key={page}
                                         onClick={() => setCurrentPage(page)}
                                         className={`
-                                            px-3 py-2 text-sm font-medium rounded-md transition-colors
+                                            px-3 py-2 text-sm font-medium transition-colors
                                             ${page === currentPage
                                                 ? 'bg-blue-600 text-white'
                                                 : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
@@ -304,7 +304,7 @@ export default function PrelimsRankList() {
                             onClick={handleNextPage}
                             disabled={currentPage === totalPages}
                             className={`
-                                flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
+                                flex items-center gap-1 px-3 py-2 text-sm font-medium  border transition-colors
                                 ${currentPage === totalPages
                                     ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
                                     : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'

@@ -4,6 +4,7 @@ export default function page2(){
         <div id="hall_of_fame">
         <HallOfFame/>
         {/* <Terminal/> */}
+        
         </div>
     )
 }

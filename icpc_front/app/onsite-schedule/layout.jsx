@@ -4,7 +4,7 @@ import Terminal from "@/components/ui_elems/terminal/terminalnew";
 import Navbar from "@/components/navbar/navbar";
 import Script from "next/script";
 import { usePathname } from "next/navigation";
-
+import Link from "next/link";
 export default function Layout({ children }) {
     const [open, setOpen] = useState(true);
     const scrollDir = useRef("scrolling down");
@@ -69,10 +69,82 @@ export default function Layout({ children }) {
                 />
             </noscript>
             <Navbar open={open} hero={hero} darkSection={false} />
-            <div className="max-w-screen md:-mt-[6vw] max-md:-pt-[-9vw] bg-stone-30 bg-white">
+             <div className="max-w-screen md:-mt-[6vw] max-md:-pt-[-9vw] bg-stone-30 bg-white">
                 {children}
                 {/* <Terminal/> */}
             </div>
+            
+                        {/* Footer */}
+                        <footer className="bg-blue-950 text-white" aria-labelledby="site-footer-heading">
+                            <h2 id="site-footer-heading" className="sr-only">
+                                Footer
+                            </h2>
+            
+                            <div className="mx-auto max-w-6xl px-4 py-12">
+                                <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                                    {/* Contact Info */}
+                                    <section aria-labelledby="contact-heading">
+                                        <h3 id="contact-heading" className="text-lg font-semibold">
+                                            Contact Us
+                                        </h3>
+                                        <address className="mt-4 not-italic text-gray-300 leading-relaxed">
+                                            <p>Amrita School of Engineering</p>
+                                            <p>Amritapuri, Kollam</p>
+                                            <p>Kerala, India - 690525</p>
+                                        </address>
+                                    </section>
+            
+                                    {/* Quick Links */}
+                                    <nav aria-labelledby="quick-links-heading">
+                                        <h3 id="quick-links-heading" className="text-lg font-semibold">
+                                            Quick Links
+                                        </h3>
+                                        <ul className="mt-4 space-y-3 text-gray-300">
+                                            <li>
+                                                <Link
+                                                    href="https://icpc.global/"
+                                                    className="transition-colors hover:text-sky-400"
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                >
+                                                    ICPC Global
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link href="/" className="transition-colors hover:text-sky-400">
+                                                    Registration
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link href="/#important_dates" className="transition-colors hover:text-sky-400">
+                                                    Important Dates
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </nav>
+            
+                                    {/* Get in Touch */}
+                                    <section aria-labelledby="get-in-touch-heading">
+                                        <h3 id="get-in-touch-heading" className="text-lg font-semibold">
+                                            Get in Touch
+                                        </h3>
+                                        <ul className="mt-4 space-y-3 text-gray-300">
+                                            <li>
+                                                <a href="mailto:icpc@am.amrita.edu" className="transition-colors hover:text-sky-400">
+                                                    icpc@am.amrita.edu
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </section>
+                                </div>
+                            </div>
+            
+                            <div className="border-t border-white/10">
+                                <div className="mx-auto max-w-6xl px-4 py-6 text-center text-sm text-gray-300">
+                                    &copy; 2025 ICPC Asia Amritapuri Regional Contest. All rights reserved.
+                                </div>
+                            </div>
+                        </footer>
         </div>
     );
 }
