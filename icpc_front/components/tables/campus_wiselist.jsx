@@ -1,5 +1,5 @@
 'use client';
-
+import Link from "next/link";
 import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse';
 import MagnifyingGlass from '../svg/magnifying-glass';
