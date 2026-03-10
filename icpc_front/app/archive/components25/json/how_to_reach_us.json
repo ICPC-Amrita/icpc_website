@@ -1,0 +1,106 @@
+{
+    "Kayamkulam":{
+        "directions":{
+            "North":{
+                "By Air and Taxi":"Cochin (Kochi) International Airport at Nedumbassery is situated 140 kilometres north of the campus. One can ask for a pre-paid taxi to Amrita Vishwa Vidyapeetham, Amritapuri. The taxi-ride takes about three hours.",
+                "By Train":"Kayamkulam is the closest train station situated 12 kilometres north of the campus. After disembarking, one can hire an autorickshaw to come to the campus. The ride takes about 20 minutes. Buses are also available from Kayamkulam Bus-Stand to Vallickavu Junction, which is about a five-minute walk from the campus.",
+                "By Bus":"From the Ernakulam Transport Bus-Stand, one may board a bus going towards Trivandrum via Alappuzha, and alight at Ochira. From Ochira, an autorickshaw can be taken to bring one directly to Amritapuri, which is 6 km away from Ochira. Or one may board a bus going to Vallickavu J"
+            },
+            "South":{
+                "By Air and Taxi":"The closest airport is Trivandrum (Thiruvananthapuram), located 110 kilometers south of Amritapuri. One can ask for a pre-paid taxi to Amrita Vishwa Vidyapeetham, Amritapuri. The taxi-ride takes about three hours.",
+                "By Train":"Karunagapally is the closest train station situated 10 kilometres south of the campus. After disembarking, one can hire an autorickshaw to come to the campus. The ridetakes about 20 minutes. Bus service is also available from Karunagapally.",
+                "By Bus":"From the Trivandrum Transport Bus-Stand, one may board a bus going towards Ernakulam via Kollam and alight at Karunagappally. From Karunagappally, a bus going to Vallickavu Junction can be taken, which is about a five-minute walk from the campus."
+            }
+        },
+        "Trains":{
+            "From Kozhikkode/Kannur":"Netravati Express, Malabar Express, Trivandrum Express",
+            "From Palakkad":"Amrita Express, Kerala Express, Kanyakumari Express, Trivandrum Mail, Trivandrum Express, Sabari Express",
+            "From Trivandrum":"Cape Mumbai Express, Chennai Mail, Kerala Express, Guruvayoor Express, Amrita Express, Bangalore Express, Mangalore Express, Netravati Express, Sabari Express",
+            "From Chennai":"Trivandrum Mail, Trivandrum Express",
+            "From Hyderabad":"Sabari Express",
+            "From Bangalore":"Kanyakumari Express"
+        },
+        "Hotels":{
+            "Hotel Diamond Fort":["Rating : 4.4", "6.6km away", "Contact No : 0476 262 1111"],
+            "Amrit Regency":["Rating : 4.2", "8.8km away", "Contact No : 80069 59999"],
+            "Sreelakshmi Residency":["Rating : 4.1", "8.4km away", "Contact No : 0479 233 7300"]
+        },
+        "Restaurants":{
+            "Nalla Bhumi":["Rating : 4.2", "8.5km away", "Contact No : 079471 15666"],
+            "Memories Inn":["Rating : 3.8", "5.8km away", "Contact No"],
+            "LalQuila Restaurant":["Rating : 3.8", "6.2km away", "Contact No : 090371 46650"]
+        }
+    },
+    "Bengaluru":{
+        "Description":"Amrita’s Bengaluru Campus is located in the village Kasavanahalli on the outskirts of Bengaluru. This area falls within the limits of Varthur Hobli in Bengaluru South Taluk. ",
+        "directions":{
+            "By Air and Taxi":"Bengaluru’s new airport at Devanahalli is located at some distance away from the main city. It is well connected, however, with special buses plying to major centers such as Majestic and City Market.",
+            "By Train":"The campus is located about 17 kilometers from the City Railway Station, Majestic Bus Terminus.",
+            "By Bus":"The Campus is located in south Bengaluru on a road connecting Sarjapur Road and Hosur Road and is about 2 kilometers from Kaikondranahalli busstop on Sarjapur Road. BMTC buses ply right upto the campus gate from city center places like Majestic & City Market. The campus can also be accessed from Hosur Road, about 5 kms before the Electronic City. Any bus towards Sarjapura will take one to Kaikondanahalli, one stop before Wipro’s Corporate Office."
+        },
+        "Trains":{
+            "From Kochi":"KSR Bengaluru InterCity SF Express",
+            "From Trivandrum":"KSR Bengaluru Express",
+            "From Chennai":"SMVT Bengaluru SF Express",
+            "From Hyderabad":"Yesvantpur Vande Bharat Express"
+        },
+        "Hotels":{
+            "Hotel Parthan":["Rating : 3.8", "8.5km away", "Contact No : 090354 53637"],
+            "A2B Veg Restaurant":["Rating : 4.6", "5.8km away", ""],
+            "Amruth Vegetarian":["Rating : 3.8", "6.2km away", "Contact No : 08095656689"]
+        },
+        "Restaurants":{
+            "Crystal Inn Hotel":["Rating : 4.5", "8.2km away", "Contact No : 080738 59256"],
+            "JVH Hotels":["Rating : 4.6", "1.2km away", "Contact No : 80069 59999"],
+            "Octave Hotel":["Rating : 3.8", "2.9km away", "Contact No : 096206 41286"]
+        }
+    },
+    "Coimbatore":{
+        "Description":"Located near the border of Tamil Nadu and Kerala, about 2.5 km north of the Coimbatore-Palakkad highway (NH 47), the campus is ensconced by the Western Ghats on its three sides. It is 16 kms from Coimbatore City and 32 kms from Palakkad.",
+        "directions":{
+            "By Air and Taxi":"The closest airport is Coimbatore, located about 27 kilometers from the campus. Most airlines operate flights to Coimbatore from all major cities in India.",
+            "By Train":"Ettimadai Railway Station, just 500m from campus, is easily accessible by trains from Coimbatore Junction and Palghat Junction. Coimbatore also connects to major cities like Chennai, Bengaluru, Mumbai, and Delhi.",
+            "By Bus":"The nearest major bus terminals are at Gandhipuram (about 22 kms) and Ukkadam (about 18 kms.). There are regular bus services from Gandhipuram (Bus Nos. 96, A3 and 3G) and Ukkadam (Bus Nos. 96, 48, S2, 3G and A3). Alight at Ettimadai Piruvu Bus Stop (Amrita College) and hire an auto rickshaw to the campus (3 kms). A3 bus will come upto the college Gate. The travel time from Ukkadam to Ettimadai Piruvu is around 45 minutes."
+        },
+        "Trains":{
+            "From Coimbatore Junction to Ettimadai":["CBE MAQ EXPRESS", "ED-PGTN MEMU EXP SPL", "CBE-SRR MEMU EXP SPL"],
+            "From Ettimadai to Coimbatore Jn.":["PGTN TPJ EXP", "SRR-CBE EXP SPL", "PGTN-CBE MEMU EXP SPL"]
+        },
+        "Hotels":{
+            "Haryana Dhaba":["Rating : 3.9", "4.5km away", "Contact No : 097866 63335"],
+            "COASTA GRILLS":["Rating : 3.8", "19.4km away", ""],
+            "HMR RESTAURANT":["Rating : 3.9", "6.2km away", "Contact No : 09003888668"]
+        },
+        "Restaurants":{
+            "Hotel Abis Grand":["Rating : 4.4", "6.6km away", "Contact No: 09842260030"],
+            "Metro Park Inn":["Rating : 3.9", "14.8km away", "Contact No : 04224203555"],
+            "Neermala Residency":["Rating : 4.3", "8.4km away", "Contact No : 09677413666"]
+        }
+    },
+
+   "Mysuru": {
+    "Description": "Amrita Mysuru Campus is located in Bogadi, a calm and residential area of Mysuru, known for its heritage, culture, and educational environment.",
+    "directions": {
+        "By Air and Taxi": "The nearest airport is Mysuru Airport (17 km away). Kempegowda International Airport, Bengaluru, is around 180 km away. Taxi and cab services are available from both airports.",
+        "By Train": "Mysuru Junction Railway Station is about 10 km from the campus. Autos, taxis, and cab services are readily available.",
+        "By Bus": "The campus is located about 9 km from KSRTC Mysuru Suburban Bus Stand. Local buses towards Bogadi, as well as autos and taxis, are available for direct access."
+    },
+    "Trains": {
+        "From Bengaluru": ["Shatabdi Express", "Wodeyar Express", "Chamundi Express", "Malgudi Express"],
+        "From Chennai": ["Kaveri Express"],
+        "From Mangalore": ["Mangaluru–Mysuru Express"]
+    },
+    "Hotels": {
+        "Hotel Southern Star": ["Rating : 4.3", "6.0km away", "Contact No : 0821 242 6426"],
+        "Royal Inn Mysuru": ["Rating : 4.1", "9.0km away", "Contact No : 0821 233 3555"],
+        "Green Hotel": ["Rating : 4.2", "4.8km away", "Contact No : 0821 251 5150"]
+    },
+    "Restaurants": {
+        "Original Vinayaka Mylari (Nazarbad)": ["Rating : 4.5", "7.5km away", "Walk-in Only"],
+        "Hotel RRR": ["Rating : 4.0", "7.0km away", "Contact No : 0821 242 2083"],
+        "Nalpak Restaurant (Kuvempunagar)": ["Rating : 4.2", "4.2km away", "Contact No : 0821 246 7890"]
+    }
+
+}
+
+}

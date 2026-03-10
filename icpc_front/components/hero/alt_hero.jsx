@@ -93,7 +93,7 @@ export default function AltHero() {
 
                     {/* Main Title */}
                     <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 leading-tight">
-                        ICPC 2025
+                        ICPC 2026
                         <br />
                         <span className="text-blue-600">AMRITAPURI REGIONALS</span>
                     </h1>
@@ -110,26 +110,33 @@ export default function AltHero() {
                             Mysuru
                         </span>
                     </p>
+                       <a
+  href=""
+
+  className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
+>
+  Coming Soon...
+</a>
             
 {/* Announcement Section */}
 {/* Announcement Section */}
 <div className="mb-6 sm:mb-8 md:mb-12 space-y-3">
 
   {/* Inline Heading */}
-  <p className="text-base sm:text-lg font-semibold leading-snug flex flex-wrap items-center gap-1">
+  {/* <p className="text-base sm:text-lg font-semibold leading-snug flex flex-wrap items-center gap-1">
     <span className="whitespace-nowrap">Announcement:</span>
     <strong className="font-semibold">Ranklist Asia Amritapuri Regionals 2025 released!</strong>
-  </p>
+  </p> */}
 
   {/* Description */}
    
-  <p className="text-gray-700 text-sm sm:text-base font-medium leading-relaxed">
-    {/* The list of teams qualified for the ICPC Amritapuri Onsite Regional Contest,
+  {/* <p className="text-gray-700 text-sm sm:text-base font-medium leading-relaxed">
+    The list of teams qualified for the ICPC Amritapuri Onsite Regional Contest,
     to be held at the Amritapuri, Coimbatore, Bengaluru, and Mysuru Amrita campuses 
-    on 2–3 January 2026, is now available. */}
+    on 2–3 January 2026, is now available.
     Winner: Div4Maxxer [Indian Institute of Technology - Kharagpur]
 
-  </p>
+  </p> */}
 
 </div>
 
@@ -137,12 +144,12 @@ export default function AltHero() {
                     <div className="mb-6 sm:mb-8">
            <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base">
   {/* <FaMedal className="shrink-0 text-base sm:text-lg" /> */}
-                    <a
+                    {/* <a
   href="/onsite-ranklist"
 
   className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
 >
-Final Ranklist – Amritapuri 2025</a>
+Final Ranklist – Amritapuri 2025</a> */}
 
   
   {/* <p className="m-0 leading-tight">
@@ -244,7 +251,7 @@ Final Ranklist – Amritapuri 2025</a>
     {/* {showTimer && <div className="hidden sm:block w-px bg-gray-200 h-16"></div>} */}
 
     {/* Quick Links - Right Side */}
-    <div className={showTimer ? "" : "w-full"}>
+    {/* <div className={showTimer ? "" : "w-full"}>
       <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
         Download important documents:
       </p>
@@ -262,7 +269,7 @@ Final Ranklist – Amritapuri 2025</a>
   className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-8 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block"
 >
   Download Problem Set
-</a>
+</a> */}
       {/* <a
   href="/data/ICPC_Amritapuri_2025___26.pdf"
   download
@@ -329,8 +336,8 @@ Final Ranklist – Amritapuri 2025</a>
           </svg>
           OBS Setup Guide
         </a> */}
-      </div>
-    </div>
+      {/* </div> */}
+    {/* </div> */}
   </div>
 </div>
 
@@ -397,33 +404,22 @@ Final Ranklist – Amritapuri 2025</a>
         alt="ICPC Amritapuri"
         className="absolute inset-0 w-full h-full object-cover"
       />
-      <video
-        ref={videoRef}
-        loop
-        autoPlay
-        playsInline
-        preload="auto"
-        poster="/icpc_thumbnail.jpg"
-        className="absolute inset-0 w-full h-full object-cover
-                   transition-all duration-300 hover:scale-105"
-        onLoadedData={(e) => {
-          // Hide the fallback image once video is ready
-          e.target.previousSibling.style.display = 'none';
-        }}
-      >
-        <source
-          src="https://cun3z2lpwvdcmhvy.public.blob.vercel-storage.com/final.mp4"
-          type="video/mp4"
-        />
-      </video>
+     <iframe
+  className="absolute inset-0 w-full h-full"
+  src="https://www.youtube.com/embed/b9nyNA30hAM?autoplay=1&loop=1&playlist=b9nyNA30hAM&rel=0&modestbranding=1&controls=0&showinfo=0"
+  title="ICPC Amritapuri"
+  frameBorder="0"
+  allow="autoplay; encrypted-media"
+  allowFullScreen
+/>
       {/* Mute/Unmute Toggle Button */}
-      <button
+      {/* <button
         onClick={toggleMute}
         className="absolute bottom-4 right-4 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all duration-200 z-10"
         aria-label={isMuted ? "Unmute video" : "Mute video"}
       >
         {isMuted ? <FaVolumeMute size={20} /> : <FaVolumeUp size={20} />}
-      </button>
+      </button> */}
     </figure>
                     </div>
                 </div>
@@ -435,17 +431,17 @@ Final Ranklist – Amritapuri 2025</a>
                     <div className="flex justify-center items-center gap-4 sm:gap-8 md:gap-12 lg:gap-16">
                         
                         <div className="text-center">
-                            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">31 OCT</div>
+                            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">TBD</div>
                             <div className="text-[10px] sm:text-xs md:text-sm text-gray-600 font-medium">Registration Ends</div>
                         </div>
                         
                         <div className="text-center">
-                            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">8 NOV</div>
+                            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">TBD</div>
                             <div className="text-[10px] sm:text-xs md:text-sm text-gray-600 font-medium">Online Prelims</div>
                         </div>
                         
                         <div className="text-center">
-                            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">2-3 JAN</div>
+                            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">TBD</div>
                             <div className="text-[10px] sm:text-xs md:text-sm text-gray-600 font-medium">Onsite Regionals</div>
                         </div>
                         

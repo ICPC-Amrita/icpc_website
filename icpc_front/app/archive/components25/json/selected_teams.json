@@ -1,0 +1,142 @@
+[
+  {
+    "teamId": "T001",
+    "teamName": "Code Warriors",
+    "institute": "Amrita University",
+    "members": ["Alice", "Bob", "Charlie"],
+    "score": 95.6
+  },
+  {
+    "teamId": "T002",
+    "teamName": "Bug Smashers",
+    "institute": "IIT Madras",
+    "members": ["David", "Eva", "Frank"],
+    "score": 92.4
+  },
+  {
+    "teamId": "T003",
+    "teamName": "Dev Dynamos",
+    "institute": "NIT Trichy",
+    "members": ["Grace", "Hank", "Ivy"],
+    "score": 89.7
+  },
+  {
+    "teamId": "T004",
+    "teamName": "Tech Titans",
+    "institute": "BITS Pilani",
+    "members": ["Jack", "Kara", "Liam"],
+    "score": 88.1
+  },
+  {
+    "teamId": "T005",
+    "teamName": "Logic Lords",
+    "institute": "VIT Vellore",
+    "members": ["Mona", "Nate", "Olivia"],
+    "score": 87.3
+  },
+  {
+    "teamId": "T006",
+    "teamName": "Syntax Squad",
+    "institute": "IIIT Hyderabad",
+    "members": ["Paul", "Quinn", "Rachel"],
+    "score": 85.9
+  },
+  {
+    "teamId": "T007",
+    "teamName": "Code Ninjas",
+    "institute": "NIT Calicut",
+    "members": ["Sam", "Tina", "Uma"],
+    "score": 84.7
+  },
+  {
+    "teamId": "T008",
+    "teamName": "Algo Masters",
+    "institute": "IIT Kanpur",
+    "members": ["Victor", "Wendy", "Xander"],
+    "score": 83.5
+  },
+  {
+    "teamId": "T009",
+    "teamName": "Data Wizards",
+    "institute": "IISc Bangalore",
+    "members": ["Yara", "Zane", "Amy"],
+    "score": 82.8
+  },
+  {
+    "teamId": "T010",
+    "teamName": "Byte Bandits",
+    "institute": "IIT Delhi",
+    "members": ["Ben", "Cathy", "Dan"],
+    "score": 81.2
+  },
+  {
+    "teamId": "T011",
+    "teamName": "Binary Breakers",
+    "institute": "Anna University",
+    "members": ["Eve", "Frank", "George"],
+    "score": 80.5
+  },
+  {
+    "teamId": "T012",
+    "teamName": "Logic Hackers",
+    "institute": "IIT Bombay",
+    "members": ["Holly", "Ian", "Jack"],
+    "score": 79.4
+  },
+  {
+    "teamId": "T013",
+    "teamName": "Quantum Coders",
+    "institute": "IIT Kharagpur",
+    "members": ["Karen", "Leo", "Mia"],
+    "score": 78.9
+  },
+  {
+    "teamId": "T014",
+    "teamName": "Pixel Pioneers",
+    "institute": "NIT Surat",
+    "members": ["Nick", "Olga", "Peter"],
+    "score": 77.8
+  },
+  {
+    "teamId": "T015",
+    "teamName": "Data Dominators",
+    "institute": "Jadavpur University",
+    "members": ["Quinn", "Rachel", "Sam"],
+    "score": 76.5
+  },
+  {
+    "teamId": "T016",
+    "teamName": "Cyber Seekers",
+    "institute": "IIT Guwahati",
+    "members": ["Tina", "Uma", "Victor"],
+    "score": 75.9
+  },
+  {
+    "teamId": "T017",
+    "teamName": "AI Avengers",
+    "institute": "IIT Roorkee",
+    "members": ["Wendy", "Xander", "Yara"],
+    "score": 74.2
+  },
+  {
+    "teamId": "T018",
+    "teamName": "Neural Navigators",
+    "institute": "SRM University",
+    "members": ["Zane", "Amy", "Ben"],
+    "score": 73.8
+  },
+  {
+    "teamId": "T019",
+    "teamName": "Innovative Minds",
+    "institute": "Manipal University",
+    "members": ["Cathy", "Dan", "Eve"],
+    "score": 72.4
+  },
+  {
+    "teamId": "T020",
+    "teamName": "Dynamic Developers",
+    "institute": "VIT Chennai",
+    "members": ["Frank", "George", "Holly"],
+    "score": 71.9
+  }
+]

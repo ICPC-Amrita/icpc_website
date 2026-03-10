@@ -1,0 +1,73 @@
+[
+  {
+    "rank": 1,
+    "teamId": "T001",
+    "teamName": "Code Warriors",
+    "institute": "Amrita University",
+    "score": 95.6
+  },
+  {
+    "rank": 2,
+    "teamId": "T002",
+    "teamName": "Bug Smashers",
+    "institute": "IIT Madras",
+    "score": 92.4
+  },
+  {
+    "rank": 3,
+    "teamId": "T003",
+    "teamName": "Dev Dynamos",
+    "institute": "NIT Trichy",
+    "score": 89.7
+  },
+  {
+    "rank": 4,
+    "teamId": "T004",
+    "teamName": "Tech Titans",
+    "institute": "BITS Pilani",
+    "score": 88.1
+  },
+  {
+    "rank": 5,
+    "teamId": "T005",
+    "teamName": "Logic Lords",
+    "institute": "VIT Vellore",
+    "score": 87.3
+  },
+  {
+    "rank": 6,
+    "teamId": "T006",
+    "teamName": "Syntax Squad",
+    "institute": "IIIT Hyderabad",
+    "score": 85.9
+  },
+  {
+    "rank": 7,
+    "teamId": "T007",
+    "teamName": "Code Ninjas",
+    "institute": "NIT Calicut",
+    "score": 84.7
+  },
+  {
+    "rank": 8,
+    "teamId": "T008",
+    "teamName": "Algo Masters",
+    "institute": "IIT Kanpur",
+    "score": 83.5
+  },
+  {
+    "rank": 9,
+    "teamId": "T009",
+    "teamName": "Data Wizards",
+    "institute": "IISc Bangalore",
+    "score": 82.8
+  },
+  {
+    "rank": 10,
+    "teamId": "T010",
+    "teamName": "Byte Bandits",
+    "institute": "IIT Delhi",
+    "score": 81.2
+  }
+]
+ 
