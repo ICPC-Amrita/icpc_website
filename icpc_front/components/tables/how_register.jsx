@@ -55,14 +55,14 @@ export default function HowToRegister() {
                   4. Pay Registration Fee
                 </p>
                 <p className="text-[1vw] max-md:text-[3vw] text-wrap max-w-[40vw] max-md:max-w-[90vw] text-gray-300">
-                  Complete the&nbsp;
+                  {/* Complete the&nbsp; */}
                   <span
                     // href={
                     //   "https://aoap.amrita.edu/gateway/index/index?ekey=ICPC24"
                     // }
                     className="underline hover:text-blue-300"
                   >
-                    payment process
+                    {/* payment process */}
                   </span>
                 </p>
               </div>
