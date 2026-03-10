@@ -18,7 +18,7 @@ const teamsData = {
   },
   firstRunnerUp: {
     teamName: "Rank: #2  | hehe i do cp",
-    college: "IIT, Hyderabad",
+    college: "IIT, Roorkee",
     rank: "1st Runner Up",
     teamPhoto: "/winners/winners-25/winner1.webp",
     details: {

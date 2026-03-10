@@ -20,8 +20,8 @@ export default function ContactUs2(){
                             <h2 className="text-[1.5vw] max-md:text-[4vw] font-semibold mb-[1vw]">Quick Links</h2>
                             <div className="text-[1vw] max-md:text-[3vw] text-gray-300 space-y-[0.5vw]">
                                 <p className="hover:text-blue-300 cursor-pointer">ICPC Global</p>
-                                <p className="hover:text-blue-300 cursor-pointer">Registration</p>
-                                <p className="hover:text-blue-300 cursor-pointer">Important Dates</p>
+                                {/* <p className="hover:text-blue-300 cursor-pointer">Registration</p>
+                                <p className="hover:text-blue-300 cursor-pointer">Important Dates</p> */}
                             </div>
                         </div>
 
@@ -30,7 +30,7 @@ export default function ContactUs2(){
                             <h2 className="text-[1.5vw] max-md:text-[4vw] font-semibold mb-[1vw]">Get in Touch</h2>
                             <div className="text-[1vw] max-md:text-[3vw] text-gray-300">
                                 <p>Email: icpc@am.amrita.edu</p>
-                                <p>Phone: +91 476 280 1111</p>
+                                {/* <p>Phone: +91 476 280 1111</p> */}
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@ export default function ContactUs2(){
             </div>
             {/* Copyright */}
             <div className="text-center py-[1vw] text-[0.9vw] max-md:text-[2.5vw] text-gray-300">
-                &copy; 2024 ICPC Asia Amritapuri Regional Contest. All rights reserved.
+                &copy; 2026 ICPC Asia Amritapuri Regional Contest. All rights reserved.
             </div>
         </>
     )

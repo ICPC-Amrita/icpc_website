@@ -89,16 +89,16 @@ export default function AboutAmrita() {
                     ICPC Global
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="" className="transition-colors hover:text-sky-400">
                     Registration
                   </Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <Link href="/#important_dates" className="transition-colors hover:text-sky-400">
                     Important Dates
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </nav>
 
@@ -125,7 +125,7 @@ export default function AboutAmrita() {
 
         <div className="border-t border-white/10">
           <div className="mx-auto max-w-6xl px-4 py-6 text-center text-sm text-gray-300">
-            &copy; 2025 ICPC Asia Amritapuri Regional Contest. All rights reserved.
+            &copy; 2026 ICPC Asia Amritapuri Regional Contest. All rights reserved.
           </div>
         </div>
       </footer>

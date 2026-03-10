@@ -87,11 +87,11 @@ export default function HowToRegister() {
       <div className="bg-blue-500 rounded-full h-[8vw] w-[8vw] max-md:h-[18vw] max-md:w-[18vw] flex justify-center items-center mb-[1vw] max-md:mb-[1.5vw]">
         <div className="text-white text-center">
           <div className="text-[3vw] max-md:text-[7vw] font-bold leading-none">
-            11
+            TBD
           </div>
-          <div className="text-[1vw] max-md:text-[2.5vw] mt-[0.2vw]">
+          {/* <div className="text-[1vw] max-md:text-[2.5vw] mt-[0.2vw]">
             August 2025
-          </div>
+          </div> */}
         </div>
       </div>
       <p className="text-[1.2vw] max-md:text-[3.5vw] text-white text-center">
@@ -104,11 +104,11 @@ export default function HowToRegister() {
       <div className="bg-yellow-500 rounded-full h-[8vw] w-[8vw] max-md:h-[18vw] max-md:w-[18vw] flex justify-center items-center mb-[1vw] max-md:mb-[1.5vw]">
         <div className="text-white text-center">
           <div className="text-[3vw] max-md:text-[7vw] font-bold leading-none">
-            31
+            TBD
           </div>
-          <div className="text-[1vw] max-md:text-[2.5vw] mt-[0.2vw]">
+          {/* <div className="text-[1vw] max-md:text-[2.5vw] mt-[0.2vw]">
             OCT 2025
-          </div>
+          </div> */}
           
         </div>
       </div>
@@ -124,18 +124,18 @@ export default function HowToRegister() {
       <div className="bg-red-700 rounded-full h-[8vw] w-[8vw] max-md:h-[18vw] max-md:w-[18vw] flex justify-center items-center mb-[1vw] max-md:mb-[1.5vw]">
         <div className="text-white text-center">
           <div className="text-[3vw] max-md:text-[7vw] font-bold leading-none">
-            8
+            TBD
           </div>
-          <div className="text-[1vw] max-md:text-[2.5vw] mt-[0.2vw]">
+          {/* <div className="text-[1vw] max-md:text-[2.5vw] mt-[0.2vw]">
             NOV 2025
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="text-center">
         <p className="text-[1.2vw] max-md:text-[3.5vw] text-white block">
           Online Prelims
         </p>
-        <p className="text-white text-[1.2vw] max-md:text-[3.5vw]"> Time: 1:30 PM to 4:30 PM</p>
+        {/* <p className="text-white text-[1.2vw] max-md:text-[3.5vw]"> Time: 1:30 PM to 4:30 PM</p> */}
 
       </div>
     </div>
@@ -145,11 +145,11 @@ export default function HowToRegister() {
       <div className="bg-yellow-500 rounded-full h-[8vw] w-[8vw] max-md:h-[18vw] max-md:w-[18vw] flex justify-center items-center mb-[1vw] max-md:mb-[1.5vw]">
         <div className="text-white text-center">
           <div className="text-[2.5vw] max-md:text-[6vw] font-bold leading-none">
-            2-3
+            TBD
           </div>
-          <div className="text-[1vw] max-md:text-[2.5vw] mt-[0.2vw]">
+          {/* <div className="text-[1vw] max-md:text-[2.5vw] mt-[0.2vw]">
             JAN 2026
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="text-center">
