@@ -6,22 +6,47 @@ export default function WhatsICPC(){
         <div className="min-h-screen bg-white flex justify-center items-center py-[5vw]">
             <div className="w-[85vw] flex flex-col max-md:w-[95vw]">
                 {/* Title and Main Description */}
-                <div className="mb-[4vw] max-md:px-[2vw]">
-                    <h1 className="text-[2.5vw] mb-[1vw] max-md:text-[6vw] font-semibold text-blue-950">
-                        What&apos;s ICPC?
-                    </h1>
-                    <div className="space-y-[1vw]">
-                        <p className="text-[1.1vw] max-md:text-[3.2vw] text-gray-600 leading-snug max-md:text-left">
-                            The International Collegiate Programming Contest (ICPC) is the world&apos;s oldest and most esteemed programming competition and is the ultimate stage for students passionate about coding and problem-solving. 
-                            ICPC sharpens <span className="font-semibold">creativity</span>, <span className="font-semibold">teamwork</span>, and <span className="font-semibold">resilience</span>—qualities that make a real difference in your day to day and professional life.
-                        </p>
-                        <p className="text-[1.1vw] max-md:text-[3.2vw] text-gray-600 leading-snug max-md:text-left">
-                            Have no worry if you&apos;re just a <span className="font-semibold">beginner</span>—ICPC welcomes all skill levels and backgrounds, from computer science to biology, chemistry, and more. 
-                            In today&apos;s AI-driven world, ICPC helps you develop critical problem-solving and logical skills that machines can&apos;t replicate. 
-                            It&apos;s a space to build resilience, and prepare yourself with skills that keep you relevant, no matter how fast technology evolves.
-                        </p>
-                    </div>
-                </div>
+               <div className="flex items-center gap-[3vw] max-md:flex-col mb-[5vw]">
+
+  {/* LEFT SIDE - TEXT */}
+  <div className="w-[55%] max-md:w-full mb-[4vw] max-md:px-[2vw] ">
+    <h1 className="text-[2.5vw] mb-[1vw] max-md:text-[6vw] font-semibold text-blue-950">
+      What&apos;s ICPC?
+    </h1>
+
+    <div className="space-y-[1vw]">
+      <p className="text-[1.1vw] max-md:text-[3.2vw] text-gray-600 leading-snug max-md:text-left">
+        The International Collegiate Programming Contest (ICPC) is the world&apos;s oldest and most esteemed programming competition and is the ultimate stage for students passionate about coding and problem-solving. 
+        ICPC sharpens <span className="font-semibold">creativity</span>, <span className="font-semibold">teamwork</span>, and <span className="font-semibold">resilience</span>—qualities that make a real difference in your day to day and professional life.
+      </p>
+
+      <p className="text-[1.1vw] max-md:text-[3.2vw] text-gray-600 leading-snug max-md:text-left">
+        Have no worry if you&apos;re just a <span className="font-semibold">beginner</span>—ICPC welcomes all skill levels and backgrounds, from computer science to biology, chemistry, and more. 
+        In today&apos;s AI-driven world, ICPC helps you develop critical problem-solving and logical skills that machines can&apos;t replicate. 
+        It&apos;s a space to build resilience, and prepare yourself with skills that keep you relevant, no matter how fast technology evolves.
+      </p>
+    </div>
+  </div>
+
+
+  {/* RIGHT SIDE - VIDEO */}
+  <figure className="w-[40%] max-md:w-full aspect-[4/3] relative overflow-hidden rounded-lg shadow-lg">
+   <img
+        src="/icpc_thumbnail.jpg"
+        alt="ICPC Amritapuri"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+    <iframe
+      className="absolute inset-0 w-full h-full"
+      src="https://www.youtube.com/embed/b9nyNA30hAM?rel=0&modestbranding=1&autoplay=1&loop=1&playlist=b9nyNA30hAM&controls=0&showinfo=0"
+      title="ICPC Amritapuri"
+      frameBorder="0"
+      allow="autoplay; encrypted-media"
+      allowFullScreen
+    />
+  </figure>
+
+</div>
 
                 {/* Grid of Benefits */}
                 <div className="grid grid-cols-2 gap-[2vw] max-md:grid-cols-1 max-md:px-[2vw]">
