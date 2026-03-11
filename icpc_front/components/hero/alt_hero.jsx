@@ -61,17 +61,10 @@ export default function AltHero() {
         '/ICPC_Photos/ICPC_25/Day-1/third.jpg',
         '/ICPC_Photos/ICPC_25/Day-1/IMG_2543.JPG',
         '/ICPC_Photos/ICPC_25/Day-1/IMG_2545.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/IMG_2547.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/IMG_2549.JPG',
         '/ICPC_Photos/ICPC_25/Day-1/IMG_2550.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/IMG_2552.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/IMG_2555.JPG',
         '/ICPC_Photos/ICPC_25/Day-1/IMG_2557.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/IMG_2562.JPG',
         '/ICPC_Photos/ICPC_25/Day-1/IMG_2603.JPG',
         '/ICPC_Photos/ICPC_25/Day-1/IMG_2783.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/Team photo .jpg',
-        '/ICPC_Photos/ICPC_25/Day-1/Women only team .jpg',
     ];
     const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -160,16 +153,7 @@ export default function AltHero() {
 {/* YouTube Video - Centered & Fully Responsive */}
 {/* YouTube Video - Centered & Fully Responsive */}
 {/* YouTube Video */}
-<div className="max-w-4xl mx-auto px-4 py-12">
-  <div className="aspect-[4/3] w-full overflow-hidden rounded-lg shadow-2xl">
-    <iframe
-      className="w-full h-full"
-      src="https://www.youtube.com/embed/b9nyNA30hAM?autoplay=1&loop=1&playlist=b9nyNA30hAM&rel=0&modestbranding=1&controls=0&showinfo=0"
-      title="ICPC Amritapuri"
-      allowFullScreen
-    />
-  </div>
-</div>
+
 {/* TBD Timeline - normal flow */}
                 <div className="border-t border-gray-200">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8">
