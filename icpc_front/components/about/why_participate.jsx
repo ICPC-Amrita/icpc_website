@@ -37,7 +37,7 @@ We warmly invite you to be part of the <strong>Amritapuri Online Regionals</stro
                     <div className="flex flex-col items-center gap-[2vw]">
                         <div className="w-[15vw] h-[15vw] max-md:w-[30vw] max-md:h-[30vw] rounded-[1vw] overflow-hidden bg-white/10 p-[2vw]">
                             <Image 
-                                src="/bagpack.png" 
+                                src="/org.png" 
                                 width={500} 
                                 height={500} 
                                 alt="Expert Organization"
@@ -58,7 +58,7 @@ We warmly invite you to be part of the <strong>Amritapuri Online Regionals</stro
                     <div className="flex flex-col items-center gap-[2vw]">
                         <div className="w-[15vw] h-[15vw] max-md:w-[30vw] max-md:h-[30vw] rounded-[1vw] overflow-hidden bg-white/10 p-[2vw]">
                             <Image 
-                                src="/guy_learning.webp" 
+                                src="/guylearn.png" 
                                 width={500} 
                                 height={500} 
                                 alt="State-of-the-Art Facilities"
@@ -79,7 +79,7 @@ We warmly invite you to be part of the <strong>Amritapuri Online Regionals</stro
                     <div className="flex flex-col items-center gap-[2vw]">
                         <div className="w-[15vw] h-[15vw] max-md:w-[30vw] max-md:h-[30vw] rounded-[1vw] overflow-hidden bg-white/10 p-[2vw]">
                             <Image 
-                                src="/guy_fix_server.webp" 
+                                src="/problemsolving.png" 
                                 width={500} 
                                 height={500} 
                                 alt="Inspiring Atmosphere"
