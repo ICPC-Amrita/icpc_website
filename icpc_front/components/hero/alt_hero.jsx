@@ -56,9 +56,9 @@ export default function AltHero() {
     }, []);
 
     const carouselImages = [
-        '/ICPC_Photos/ICPC_25/Day-1/first.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/second.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/third.JPG',
+        '/ICPC_Photos/ICPC_25/Day-1/first.jpg',
+        '/ICPC_Photos/ICPC_25/Day-1/second.jpg',
+        '/ICPC_Photos/ICPC_25/Day-1/third.jpg',
         '/ICPC_Photos/ICPC_25/Day-1/IMG_2543.JPG',
         '/ICPC_Photos/ICPC_25/Day-1/IMG_2545.JPG',
         '/ICPC_Photos/ICPC_25/Day-1/IMG_2547.JPG',
