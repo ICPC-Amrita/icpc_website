@@ -107,9 +107,9 @@ const shuffle = (array) => {
 }
 
 const squareData = [
-  { id: 1, src: "/coursel_images/2025/firstplace.JPG" },
-  { id: 2, src: "/coursel_images/2025/secondplace.JPG" },
-  { id: 3, src: "/coursel_images/2025/thirdplace.JPG" },
+  { id: 1, src: "/coursel_images/2025/firstplace.jpg" },
+  { id: 2, src: "/coursel_images/2025/secondplace.jpg" },
+  { id: 3, src: "/coursel_images/2025/thirdplace.jpg" },
   { id: 4, src: "/coursel_images/2025/frame.JPG" },
   { id: 5, src: "/coursel_images/2025/teamphoto.JPG" },
   { id: 6, src: "/coursel_images/2025/veronica.JPG" },
@@ -118,7 +118,7 @@ const squareData = [
   { id: 9, src: "/coursel_images/2025/banquet.JPG" },
   { id: 10, src: "/coursel_images/2025/banquet.JPG" },
   { id: 11, src: "/coursel_images/2025/womenonlyteam.JPG" },
-  { id: 12, src: "/coursel_images/2025/topteams.JPG" },
+  { id: 12, src: "/coursel_images/2025/topteams.jpg" },
 ]
 
 const generateSquares = () => {
