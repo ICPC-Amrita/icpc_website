@@ -54,7 +54,7 @@ export default function WhatsICPC(){
                     <div className="flex gap-[2vw] items-start max-md:flex-col max-md:items-center">
                         <div className="w-[15vw] h-[15vw] max-md:w-[40vw] max-md:h-[40vw] rounded-[1vw] overflow-hidden flex-shrink-0">
                             <Image 
-                                src="/guy_fix_server.webp" 
+                                src="/hoodie.png" 
                                 width={500} 
                                 height={500} 
                                 alt="Problem Solving"
@@ -75,7 +75,7 @@ export default function WhatsICPC(){
                     <div className="flex gap-[2vw] items-start max-md:flex-col max-md:items-center">
                         <div className="w-[15vw] h-[15vw] max-md:w-[40vw] max-md:h-[40vw] rounded-[1vw] overflow-hidden flex-shrink-0">
                             <Image 
-                                src="/guy_learning.webp" 
+                                src="/working.png" 
                                 width={500} 
                                 height={500} 
                                 alt="Networking"
@@ -96,7 +96,7 @@ export default function WhatsICPC(){
                     <div className="flex gap-[2vw] items-start max-md:flex-col max-md:items-center">
                         <div className="w-[15vw] h-[15vw] max-md:w-[40vw] max-md:h-[40vw] rounded-[1vw] overflow-hidden flex-shrink-0">
                             <Image 
-                                src="/bagpack.png" 
+                                src="/focus.avif" 
                                 width={500} 
                                 height={500} 
                                 alt="Career Growth"
@@ -117,7 +117,7 @@ export default function WhatsICPC(){
                     <div className="flex gap-[2vw] items-start max-md:flex-col max-md:items-center">
                         <div className="w-[15vw] h-[15vw] max-md:w-[40vw] max-md:h-[40vw] rounded-[1vw] overflow-hidden flex-shrink-0">
                             <Image 
-                                src="/trophy.webp" 
+                                src="/girlcoding.avif" 
                                 width={500} 
                                 height={500} 
                                 alt="Competition"

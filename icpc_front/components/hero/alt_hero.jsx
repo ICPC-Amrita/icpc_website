@@ -1,184 +1,159 @@
-'use client';
-import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-// import AnnouncementModal from "../tables/announcement-modal";
+'use client'
 
-export default function AltHero() {
-    const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-    const [timeLeftEnd, setTimeLeftEnd] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 }); // Added for contest end countdown
-    const [showTimer, setShowTimer] = useState(true);
-    const [showEndTimer, setShowEndTimer] = useState(false); // added for contest end countdown
-    useEffect(() => {
-        const prelimsDate = new Date('2025-12-24T11:47:00').getTime();
-        const contestEndDate = new Date('2025-12-24T13:30:00').getTime(); // ADD THIS LINE
+import { motion } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
 
-        
-        const updateCountdown = () => {
-            const now = new Date().getTime();
-            const distance = prelimsDate - now;
-            const distanceEnd = contestEndDate - now; // ADD THIS LINE
+export default function ShuffleHero() {
+  return (
+    <section className="flex flex-col lg:flex-row min-h-screen pt-20 sm:pt-24 md:pt-28 lg:pt-24 xl:pt-20 max-w-7xl mx-auto gap-x-8 px-4 sm:px-6 md:px-12 lg:px-16 xl:px-8">
 
+      <div className="flex-1 flex flex-col justify-center py-6 lg:py-20">
+        {/* <span className="block mb-4 text-sm text-blue-600 font-medium">
+          Programming Competition
+        </span> */}
 
-            // Hide timer when contest starts (at 1:30 PM)
-            setShowTimer(distance > 0);
-            setShowEndTimer(distance <= 0 && distanceEnd > 0); // ADD THIS LINE
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 leading-tight mb-4">
+          ICPC 2026
+          <br />
+          <span className="text-blue-600">AMRITAPURI REGIONALS</span>
+        </h1>
 
+        <p className="text-gray-700 text-sm sm:text-base md:text-lg mb-6">
+          <Link href="/reach-us/bengaluru" className="hover:text-blue-600">
+            Bengaluru
+          </Link>{" "}
+          ,{" "}
+          <Link href="/reach-us/coimbatore" className="hover:text-blue-600">
+            Coimbatore
+          </Link>{" "}
+          ,{" "}
+          <Link href="/reach-us/amritapuri" className="hover:text-blue-600">
+            Kollam
+          </Link>{" "}
+          <Link href="/reach-us/mysuru" className="hover:text-blue-600">
+          , Mysuru
+          </Link>
 
-            if (distance > 0) {
-                setTimeLeft({
-                    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-                    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-                    seconds: Math.floor((distance % (1000 * 60)) / 1000)
-                });
-            } else {
-                setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-            }
+        </p>
 
-            if (distanceEnd > 0) {
-            setTimeLeftEnd({
-                days: Math.floor(distanceEnd / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((distanceEnd % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                minutes: Math.floor((distanceEnd % (1000 * 60 * 60)) / (1000 * 60)),
-                seconds: Math.floor((distanceEnd % (1000 * 60)) / 1000)
-            });
-        } else {
-            setTimeLeftEnd({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        }
+<button className="group self-start inline-flex items-center gap-3 border-2 border-black bg-white px-6 py-3 text-base font-semibold">
 
-        };
+  <span className="relative overflow-hidden">
+    <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
+      Coming Soon
+    </span>
 
-        updateCountdown();
-        const interval = setInterval(updateCountdown, 1000);
+    <span className="absolute left-0 top-0 block translate-y-full transition-transform duration-300 group-hover:translate-y-0">
+      Coming Soon
+    </span>
+  </span>
 
-        return () => clearInterval(interval);
-    }, []);
+  <div className="pointer-events-none flex h-5 w-5 overflow-hidden">
+    <svg
+      stroke="currentColor"
+      fill="none"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="shrink-0 -translate-x-full transition-transform duration-300 group-hover:translate-x-0 text-red-700"
+    >
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+      <polyline points="12 5 19 12 12 19"></polyline>
+    </svg>
 
-    const carouselImages = [
-        '/ICPC_Photos/ICPC_25/Day-1/first.jpg',
-        '/ICPC_Photos/ICPC_25/Day-1/second.jpg',
-        '/ICPC_Photos/ICPC_25/Day-1/third.jpg',
-        '/ICPC_Photos/ICPC_25/Day-1/IMG_2543.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/IMG_2545.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/IMG_2550.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/IMG_2557.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/IMG_2603.JPG',
-        '/ICPC_Photos/ICPC_25/Day-1/IMG_2783.JPG',
-    ];
-    const [currentSlide, setCurrentSlide] = useState(0);
+    <svg
+      stroke="currentColor"
+      fill="none"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="shrink-0 -translate-x-full transition-transform duration-300 group-hover:translate-x-0 text-blue-700"
+    >
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+      <polyline points="12 5 19 12 12 19"></polyline>
+    </svg>
+  </div>
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
-        }, 4000);
-        return () => clearInterval(timer);
-    }, []);
+</button>    </div>
 
-    return (
-        <div className="w-full">
-            
-            {/* ===== TOP SECTION: Carousel Background with Text ===== */}
-            <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[75vh] lg:h-screen overflow-hidden">
-                
-                {/* Background Carousel */}
-                <div className="absolute inset-0 z-0">
-                    {carouselImages.map((src, index) => (
-                        <Image
-                            key={src}
-                            src={src}
-                            alt={`ICPC Amritapuri 2025 Day 1 - ${index + 1}`}
-                            fill
-                            quality={80}
-                            className={`object-cover object-top transition-opacity duration-1000 ease-in-out ${
-                                index === currentSlide ? 'opacity-100' : 'opacity-0'
-                            }`}
-                            sizes="100vw"
-                            priority={index === 0}
-                        />
-                    ))}
-                    <div className="absolute inset-0 bg-black/40" />
-                </div>
+      <div className="flex-1 flex items-center justify-center mt-8 lg:mt-0">
+        <ShuffleGrid />
+      </div>
 
-                {/* Slide indicators */}
-                <div className="absolute top-1/2 -translate-y-1/2 right-2 sm:right-4 md:right-8 flex flex-col gap-1 sm:gap-1.5 z-20">
-                    {carouselImages.map((_, i) => (
-                        <button
-                            key={i}
-                            onClick={() => setCurrentSlide(i)}
-                            className={`w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full transition-all duration-300 ${
-                                i === currentSlide ? 'bg-white !h-4 sm:!h-5' : 'bg-white/40'
-                            }`}
-                            aria-label={`Go to slide ${i + 1}`}
-                        />
-                    ))}
-                </div>
+    </section>
+  )
+}
 
-                {/* Centered-Left Text Content */}
-                <div className="relative z-10 flex items-center h-full max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-20">
-                    <div className="max-w-3xl">
-                        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white mb-3 sm:mb-4 md:mb-6 leading-[1.1] drop-shadow-lg tracking-tight text-left">
-                            ICPC 2026
-                            <br />
-                            <span className="text-blue-400">AMRITAPURI REGIONALS</span>
-                        </h1>
-                        
-                        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 font-medium mb-4 sm:mb-6 md:mb-8 leading-relaxed text-left">
-                            <Link href={'/reach-us/bengaluru'} className="hover:text-blue-400 transition-colors duration-300">
-                                Bengaluru
-                            </Link> , <Link href={'/reach-us/coimbatore'} className="hover:text-blue-400 transition-colors duration-300">
-                                Coimbatore
-                            </Link> , <Link href={'/reach-us/amritapuri'} className="hover:text-blue-400 transition-colors duration-300">
-                                Kollam
-                            </Link> , <span className="hover:text-blue-400 transition-colors duration-300">
-                                Mysuru
-                            </span>
-                        </p>
+const shuffle = (array) => {
+  const newArray = [...array]
+  let currentIndex = newArray.length
+  let randomIndex
 
-                        <p className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base md:text-lg font-semibold py-3 sm:py-4 px-6 sm:px-8 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl inline-block">
-                            Coming Soon...
-                        </p>
-                    </div>
-                </div>
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex--
 
-                {/* Blue line at bottom of carousel */}
-                <div className="absolute bottom-0 left-0 right-0 h-1  z-20" />
-            </div>
+    ;[newArray[currentIndex], newArray[randomIndex]] = [
+      newArray[randomIndex],
+      newArray[currentIndex],
+    ]
+  }
 
-            {/* ===== BOTTOM SECTION: White BG — Video + TBD (normal flow, NOT inside carousel) ===== */}
-            <div className="bg-white">
-                
-          {/* YouTube Video - Centered */}
-{/* YouTube Video - Centered */}
-{/* YouTube Video - Centered & Fully Responsive */}
-{/* YouTube Video - Centered & Fully Responsive */}
-{/* YouTube Video */}
+  return newArray
+}
 
-{/* TBD Timeline - normal flow */}
-                <div className="border-t border-gray-200">
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8">
-                        <div className="flex justify-center items-center gap-6 sm:gap-10 md:gap-16 lg:gap-20">
-                            
-                            <div className="text-center">
-                                <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">TBD</div>
-                                <div className="text-[10px] sm:text-xs md:text-sm text-gray-600 font-medium">Registration Ends</div>
-                            </div>
-                            
-                            <div className="text-center">
-                                <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">TBD</div>
-                                <div className="text-[10px] sm:text-xs md:text-sm text-gray-600 font-medium">Online Prelims</div>
-                            </div>
-                            
-                            <div className="text-center">
-                                <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-0.5 sm:mb-1">TBD</div>
-                                <div className="text-[10px] sm:text-xs md:text-sm text-gray-600 font-medium">Onsite Regionals</div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
+const squareData = [
+  { id: 1, src: "/coursel_images/2025/firstplace.jpg" },
+  { id: 2, src: "/coursel_images/2025/secondplace.jpg" },
+  { id: 3, src: "/coursel_images/2025/thirdplace.jpg" },
+  { id: 4, src: "/coursel_images/2025/frame.jpg" },
+  { id: 5, src: "/coursel_images/2025/teamphoto.jpg" },
+  { id: 6, src: "/coursel_images/2025/veronica.jpg" },
+  { id: 7, src: "/coursel_images/2025/veronica-2.jpg" },
+  { id: 8, src: "/coursel_images/2025/singer.jpg" },
+  { id: 9, src: "/coursel_images/2025/banquet.jpg" },
+  { id: 10, src: "/coursel_images/2025/banquet.jpg" },
+  { id: 11, src: "/coursel_images/2025/womenonlyteam.jpg" },
+  { id: 12, src: "/coursel_images/2025/topteams.jpg" },
+]
 
-        </div>
-    )
+const generateSquares = () => {
+  return shuffle(squareData).map((sq) => (
+    <motion.div
+      key={sq.id}
+      layout
+      transition={{ duration: 1.5, type: "spring" }}
+      className="w-full h-full bg-center bg-cover bg-no-repeat rounded-md"
+      style={{
+        backgroundImage: `url(${sq.src})`,
+      }}
+    />
+  ))
+}
+
+function ShuffleGrid() {
+  const timeoutRef = useRef(null)
+  const [squares, setSquares] = useState([])
+
+  useEffect(() => {
+    setSquares(generateSquares())
+
+    const shuffleSquares = () => {
+      setSquares(generateSquares())
+      timeoutRef.current = setTimeout(shuffleSquares, 3000)
+    }
+
+    timeoutRef.current = setTimeout(shuffleSquares, 3000)
+
+    return () => clearTimeout(timeoutRef.current)
+  }, [])
+
+  return (
+    <div className="w-full max-w-[600px] aspect-square grid grid-cols-4 grid-rows-4 gap-[3px] overflow-hidden">
+      {squares}
+    </div>
+  )
 }
