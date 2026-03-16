@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function ShuffleHero() {
   return (
@@ -126,11 +127,16 @@ const generateSquares = () => {
       key={sq.id}
       layout
       transition={{ duration: 1.5, type: "spring" }}
-      className="w-full h-full bg-center bg-cover bg-no-repeat rounded-md"
-      style={{
-        backgroundImage: `url(${sq.src})`,
-      }}
-    />
+      className="relative w-full h-full rounded-md overflow-hidden"
+    >
+      <Image
+        src={sq.src}
+        alt="ICPC event"
+        fill
+        sizes="(max-width: 768px) 100vw, 600px"
+        className="object-cover"
+      />
+    </motion.div>
   ))
 }
 
