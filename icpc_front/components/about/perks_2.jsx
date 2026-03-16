@@ -41,10 +41,10 @@ export default function ExclusivePerks2() {
           </div>
 
           {/* Perk 2 */}
-          {/* <div className="flex gap-[2vw] items-center">
+          <div className="flex gap-[2vw] items-center">
             <div className="w-[13vw] h-[15vw] max-md:w-[30vw] max-md:h-[30vw] rounded-[1vw] overflow-hidden flex-shrink-0">
               <Image
-                src="/jaskaransingh.png"
+                src="/ICPC_Photos/ICPC_25/Day-1/IMG_2603.jpg"
                 width={500}
                 height={500}
                 alt="Exclusive Webinar"
@@ -53,20 +53,20 @@ export default function ExclusivePerks2() {
             </div>
             <div>
               <h2 className="text-[1.5vw] max-md:text-[4vw] font-semibold mb-[0.5vw] text-blue-950">
-                Exclusive Webinar
+              Webinar / Training Session
               </h2>
               <p className="text-[1vw] max-md:text-[3vw] text-gray-600">
-                Access an exclusive webinar led by an ICPC World Finalist,
-                offering invaluable tips and strategies.
+                Participate in a webinar and training session focused on improving problem-solving skills
+                and competitive programming techniques.
               </p>
             </div>
-          </div> */}
+          </div>
 
           {/* Perk 3 */}
           <div className="flex gap-[2vw] items-center">
             <div className="w-[15vw] h-[15vw] max-md:w-[30vw] max-md:h-[30vw] rounded-[1vw] overflow-hidden flex-shrink-0">
               <Image
-                src="/ICPC_Photos/ICPC_25/Day-1/first.jpg"
+                src="/firstteam.png"
                 width={500}
                 height={500}
                 alt="Certificates"
