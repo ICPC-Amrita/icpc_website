@@ -1,5 +1,14 @@
 import Link from "next/link"
 import Image from "next/image"
+import { FaXTwitter, FaLinkedinIn, FaFacebookF, FaInstagram,FaEnvelope } from "react-icons/fa6"
+
+const socialLinks = [
+  {href:"mailto:icpc@am.amrita.edu", icon: FaEnvelope, label: "Email", color: "hover:text-sky-400"},
+  { href: "https://x.com/Icpc_Amrita", icon: FaXTwitter, label: "X (Twitter)", color: "hover:text-sky-400" },
+  { href: "https://www.linkedin.com/company/icpc-asiawest-amritapuri/", icon: FaLinkedinIn, label: "LinkedIn", color: "hover:text-blue-400" },
+  { href: "https://www.facebook.com/icpcamrita/", icon: FaFacebookF, label: "Facebook", color: "hover:text-blue-500" },
+  { href: "https://www.instagram.com/icpc_amrita_/", icon: FaInstagram, label: "Instagram", color: "hover:text-pink-400" },
+]
 
 export default function AboutAmrita() {
   return (
@@ -18,7 +27,6 @@ export default function AboutAmrita() {
               <h2 className="text-balance text-3xl font-semibold text-blue-900 md:text-5xl">
                 About Amrita Vishwa Vidyapeetham
               </h2>
-
               <p className="text-pretty text-base leading-relaxed text-gray-700 md:text-lg">
                 Amrita Vishwa Vidyapeetham is a multi-disciplinary, research-intensive, private
                 university, educating a vibrant student population of over 24,000 by 1700+ strong
@@ -27,7 +35,6 @@ export default function AboutAmrita() {
                 Sciences including Ayurveda, Life Sciences, Physical Sciences, Agriculture Sciences,
                 Arts &amp; Humanities, and Social &amp; Behavioral Sciences.
               </p>
-
               <p className="text-pretty text-base leading-relaxed text-gray-700 md:text-lg">
                 With its extensive network of nine campuses spread across Amaravati, Amritapuri,
                 Bengaluru, Chennai, Coimbatore, Kochi, Mysuru, Nagercoil(*) and NCR Delhi
@@ -53,19 +60,16 @@ export default function AboutAmrita() {
         </div>
       </section>
 
-      {/* Contact Us Section */}
-     <footer className="mt-auto bg-blue-950 text-white" aria-labelledby="site-footer-heading">
-        <h2 id="site-footer-heading" className="sr-only">
-          Footer
-        </h2>
+      {/* Footer */}
+      <footer className="mt-auto bg-blue-950 text-white" aria-labelledby="site-footer-heading">
+        <h2 id="site-footer-heading" className="sr-only">Footer</h2>
 
         <div className="mx-auto max-w-6xl px-4 py-12">
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+
             {/* Contact Info */}
             <section aria-labelledby="contact-heading">
-              <h3 id="contact-heading" className="text-lg font-semibold">
-                Contact Us
-              </h3>
+              <h3 id="contact-heading" className="text-lg font-semibold">Contact Us</h3>
               <address className="mt-4 not-italic text-gray-300 leading-relaxed">
                 <p>Amrita School of Engineering</p>
                 <p>Amritapuri, Kollam</p>
@@ -75,9 +79,7 @@ export default function AboutAmrita() {
 
             {/* Quick Links */}
             <nav aria-labelledby="quick-links-heading">
-              <h3 id="quick-links-heading" className="text-lg font-semibold">
-                Quick Links
-              </h3>
+              <h3 id="quick-links-heading" className="text-lg font-semibold">Quick Links</h3>
               <ul className="mt-4 space-y-3 text-gray-300">
                 <li>
                   <Link
@@ -89,37 +91,38 @@ export default function AboutAmrita() {
                     ICPC Global
                   </Link>
                 </li>
-                {/* <li>
-                  <Link href="" className="transition-colors hover:text-sky-400">
-                    Registration
-                  </Link>
-                </li> */}
-                {/* <li>
-                  <Link href="/#important_dates" className="transition-colors hover:text-sky-400">
-                    Important Dates
-                  </Link>
-                </li> */}
               </ul>
             </nav>
 
             {/* Get in Touch */}
             <section aria-labelledby="get-in-touch-heading">
-              <h3 id="get-in-touch-heading" className="text-lg font-semibold">
-                Get in Touch
-              </h3>
-              <ul className="mt-4 space-y-3 text-gray-300">
+              <h3 id="get-in-touch-heading" className="text-lg font-semibold">Get in Touch</h3>
+              {/* <ul className="mt-4 space-y-3 text-gray-300">
                 <li>
                   <a href="mailto:icpc@am.amrita.edu" className="transition-colors hover:text-sky-400">
                     icpc@am.amrita.edu
                   </a>
                 </li>
-                {/* <li>
-                  <a href="tel:+914762801111" className="transition-colors hover:text-sky-400">
-                    +91 476 280 1111
+              </ul> */}
+
+              {/* Social Icons */}
+              <div className="mt-6 flex items-center gap-3">
+                {socialLinks.map(({ href, icon: Icon, label, color }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    title={label}
+                    className={`text-gray-400 text-xl transition-colors duration-200 ${color}`}
+                  >
+                    <Icon />
                   </a>
-                </li> */}
-              </ul>
+                ))}
+              </div>
             </section>
+
           </div>
         </div>
 
@@ -129,7 +132,6 @@ export default function AboutAmrita() {
           </div>
         </div>
       </footer>
-
     </div>
   )
 }
