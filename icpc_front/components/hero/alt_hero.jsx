@@ -92,7 +92,7 @@ export default function ShuffleHero() {
 
           <div className="text-center flex flex-col gap-2">
             <div className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 leading-none whitespace-nowrap">
-              <Shuffle text="JAN 1,2" shuffleDirection="right" duration={0.35} animationMode="evenodd" shuffleTimes={1} ease="power3.out" stagger={0.03} threshold={0.1} triggerOnce={true} triggerOnHover={true} respectReducedMotion={true} loop={false} loopDelay={0} />
+              <Shuffle text="JAN 1-2" shuffleDirection="right" duration={0.35} animationMode="evenodd" shuffleTimes={1} ease="power3.out" stagger={0.03} threshold={0.1} triggerOnce={true} triggerOnHover={true} respectReducedMotion={true} loop={false} loopDelay={0} />
             </div>
             <div className="text-base sm:text-md text-blue-700 font-semibold tracking-wider uppercase whitespace-nowrap">Onsite Finals</div>
           </div>
