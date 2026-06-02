@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-
+import Shuffle from '../Shuffle';
 export default function ShuffleHero() {
   return (
     <section className="flex flex-col lg:flex-row min-h-screen pt-20 sm:pt-24 md:pt-28 lg:pt-24 xl:pt-20 max-w-7xl mx-auto gap-x-8 px-4 sm:px-6 md:px-12 lg:px-16 xl:px-8">
@@ -78,7 +78,27 @@ export default function ShuffleHero() {
     </svg>
   </div>
 
-</button>    </div>
+</button>
+
+        <div className="mt-12 self-start flex justify-center items-center gap-6 sm:gap-10 md:gap-16">
+          <div className="text-center flex flex-col gap-2">
+            <div className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 leading-none whitespace-nowrap">
+              <Shuffle text="OCT 3" shuffleDirection="right" duration={0.35} animationMode="evenodd" shuffleTimes={1} ease="power3.out" stagger={0.03} threshold={0.1} triggerOnce={true} triggerOnHover={true} respectReducedMotion={true} loop={false} loopDelay={0} />
+            </div>
+            <div className="text-base sm:text-md text-blue-700 font-semibold tracking-wider uppercase whitespace-nowrap">Online Prelims</div>
+          </div>
+
+          <div className="hidden sm:block w-px bg-gray-300 h-16"></div>
+
+          <div className="text-center flex flex-col gap-2">
+            <div className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 leading-none whitespace-nowrap">
+              <Shuffle text="JAN 1,2" shuffleDirection="right" duration={0.35} animationMode="evenodd" shuffleTimes={1} ease="power3.out" stagger={0.03} threshold={0.1} triggerOnce={true} triggerOnHover={true} respectReducedMotion={true} loop={false} loopDelay={0} />
+            </div>
+            <div className="text-base sm:text-md text-blue-700 font-semibold tracking-wider uppercase whitespace-nowrap">Onsite Finals</div>
+          </div>
+        </div>
+
+      </div>
 
       <div className="flex-1 flex items-center justify-center mt-8 lg:mt-0">
         <ShuffleGrid />
