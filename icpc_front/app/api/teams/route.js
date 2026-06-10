@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createTeam, getTeams, deleteAllTeams } from '@/lib/services/teamService'
+import { createTeam, getTeams, deleteAllTeams, getTeamByName } from '@/lib/services/teamService'
 
 export async function POST(request) {
   try {
@@ -8,6 +8,12 @@ export async function POST(request) {
 
     if (!teamName) {
       return NextResponse.json({ error: 'Team name is required' }, { status: 400 })
+    }
+
+    // Check for duplicate team name
+    const existingTeam = await getTeamByName(teamName)
+    if (existingTeam) {
+      return NextResponse.json({ error: 'This team name is already taken. Please choose another.' }, { status: 409 })
     }
 
     const newTeam = await createTeam({

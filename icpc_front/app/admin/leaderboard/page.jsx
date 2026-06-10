@@ -64,7 +64,7 @@ export default function LeaderboardPage() {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    if (emailInput === 'admin@amritaicpc.com' && passwordInput === 'admin123') {
+    if (emailInput === 'icpc@am.amrita.edu' && passwordInput === 'Rp32!$@_qEQW') {
       setIsAuthenticated(true)
       setLoginError('')
     } else {
@@ -142,7 +142,7 @@ export default function LeaderboardPage() {
                     required 
                     value={emailInput} 
                     onChange={e => setEmailInput(e.target.value)} 
-                    placeholder="admin@amritaicpc.com"
+                    placeholder="example@gmail.com"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" 
                   />
                 </div>
