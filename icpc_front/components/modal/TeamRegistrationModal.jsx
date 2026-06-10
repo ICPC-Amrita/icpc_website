@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha'
 
-export default function TeamRegistrationModal() {
+function TeamRegistrationModalInner() {
   const [isOpen, setIsOpen] = useState(false)
   const [teamName, setTeamName] = useState('')
   const [captchaValue, setCaptchaValue] = useState('')
@@ -159,5 +159,13 @@ export default function TeamRegistrationModal() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function TeamRegistrationModal() {
+  return (
+    <Suspense fallback={null}>
+      <TeamRegistrationModalInner />
+    </Suspense>
   )
 }
