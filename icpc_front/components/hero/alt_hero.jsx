@@ -5,9 +5,12 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import Shuffle from '../Shuffle';
+import TeamRegistrationModal from '../modal/TeamRegistrationModal';
 export default function ShuffleHero() {
   return (
-    <section className="flex flex-col lg:flex-row min-h-screen pt-20 sm:pt-24 md:pt-28 lg:pt-24 xl:pt-20 max-w-7xl mx-auto gap-x-8 px-4 sm:px-6 md:px-12 lg:px-16 xl:px-8">
+    <>
+      <TeamRegistrationModal />
+      <section className="flex flex-col lg:flex-row min-h-screen pt-20 sm:pt-24 md:pt-28 lg:pt-24 xl:pt-20 max-w-7xl mx-auto gap-x-8 px-4 sm:px-6 md:px-12 lg:px-16 xl:px-8">
 
       <div className="flex-1 flex flex-col justify-center py-6 lg:py-20">
         {/* <span className="block mb-4 text-sm text-blue-600 font-medium">
@@ -105,6 +108,7 @@ export default function ShuffleHero() {
       </div>
 
     </section>
+    </>
   )
 }
 
