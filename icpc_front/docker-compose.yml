@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: icpc_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: icpc
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: icpc_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/icpc?schema=public
+      - ALTCHA_HMAC_KEY=k3y_s3cr3t_123456789_c4ptch4
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
