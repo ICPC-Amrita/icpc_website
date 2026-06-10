@@ -63,3 +63,18 @@ export async function getTeams(campus = null) {
 export async function deleteAllTeams() {
   return await prisma.team.deleteMany({})
 }
+
+/**
+ * Get a team by its exact name (case-insensitive)
+ * @param {string} teamName 
+ */
+export async function getTeamByName(teamName) {
+  return await prisma.team.findFirst({
+    where: {
+      teamName: {
+        equals: teamName,
+        mode: 'insensitive'
+      }
+    }
+  })
+}

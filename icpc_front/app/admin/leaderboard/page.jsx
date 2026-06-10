@@ -62,13 +62,31 @@ export default function LeaderboardPage() {
     }
   }, [campusFilter, isAuthenticated])
 
-  const handleLogin = (e) => {
+  const [isAuthenticating, setIsAuthenticating] = useState(false)
+
+  const handleLogin = async (e) => {
     e.preventDefault()
-    if (emailInput === 'admin@amritaicpc.com' && passwordInput === 'admin123') {
-      setIsAuthenticated(true)
-      setLoginError('')
-    } else {
-      setLoginError('Invalid email or password')
+    setIsAuthenticating(true)
+    setLoginError('')
+
+    try {
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: emailInput, password: passwordInput })
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setIsAuthenticated(true)
+      } else {
+        setLoginError(data.error || 'Invalid credentials')
+      }
+    } catch (err) {
+      setLoginError('Network error. Please try again.')
+    } finally {
+      setIsAuthenticating(false)
     }
   }
 
@@ -142,7 +160,7 @@ export default function LeaderboardPage() {
                     required 
                     value={emailInput} 
                     onChange={e => setEmailInput(e.target.value)} 
-                    placeholder="admin@amritaicpc.com"
+                    placeholder="example@gmail.com"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" 
                   />
                 </div>
@@ -160,9 +178,10 @@ export default function LeaderboardPage() {
                 {loginError && <p className="text-red-500 text-sm text-center">{loginError}</p>}
                 <button 
                   type="submit" 
-                  className="w-full bg-blue-900 hover:bg-blue-800 text-white font-semibold py-2.5 rounded-lg transition"
+                  disabled={isAuthenticating}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition disabled:bg-blue-400"
                 >
-                  Access Leaderboard
+                  {isAuthenticating ? 'Authenticating...' : 'Login'}
                 </button>
               </form>
             </div>
