@@ -44,7 +44,7 @@ export default function ParticipantTestimonials() {
           <h3 className="text-base font-bold text-gray-900 mb-3">
             Hear from our participants
           </h3>
-          <span className="text-4xl text-orange-400 leading-none font-serif">"</span>
+          <span className="text-4xl text-orange-400 leading-none font-serif">&ldquo;</span>
           <p className="text-sm text-gray-600 mt-1 leading-relaxed">{t.quote}</p>
           <p className="text-sm font-bold text-gray-900 mt-3">— {t.author}</p>
           <p className="text-xs text-gray-500">{t.college}</p>
