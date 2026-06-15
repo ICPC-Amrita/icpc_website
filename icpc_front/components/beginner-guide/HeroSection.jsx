@@ -51,7 +51,7 @@ export default function HeroSection() {
             {/* CTA buttons */}
             <div className="flex flex-row flex-wrap items-center gap-4 mb-10">
               <Link
-                href="/reach-us"
+                href="https://icpc.global/private/teamRegistration/site/40197"
                 className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-3 sm:px-6 rounded-md transition-colors text-sm sm:text-base whitespace-nowrap"
               >
                 Register Your Team

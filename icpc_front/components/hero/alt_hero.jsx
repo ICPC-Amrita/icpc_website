@@ -7,6 +7,57 @@ import Image from "next/image"
 import Shuffle from '../Shuffle';
 import TeamRegistrationModal from '../modal/TeamRegistrationModal';
 export default function ShuffleHero() {
+
+      const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      const [timeLeftEnd, setTimeLeftEnd] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 }); // Added for contest end countdown
+      const [showTimer, setShowTimer] = useState(true);
+      const [showEndTimer, setShowEndTimer] = useState(false); // added for contest end countdown
+      useEffect(() => {
+          const prelimsDate = new Date('2026-06-11T10:00:00').getTime();
+          const contestEndDate = new Date('2026-06-15T09:00:00').getTime(); // ADD THIS LINE
+  
+          
+          const updateCountdown = () => {
+              const now = new Date().getTime();
+              const distance = prelimsDate - now;
+              const distanceEnd = contestEndDate - now; // ADD THIS LINE
+  
+  
+              // Hide timer when contest starts (at 1:30 PM)
+              setShowTimer(distance > 0);
+              setShowEndTimer(distance <= 0 && distanceEnd > 0); // ADD THIS LINE
+  
+  
+              if (distance > 0) {
+                  setTimeLeft({
+                      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                      seconds: Math.floor((distance % (1000 * 60)) / 1000)
+                  });
+              } else {
+                  setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+              }
+  
+              if (distanceEnd > 0) {
+              setTimeLeftEnd({
+                  days: Math.floor(distanceEnd / (1000 * 60 * 60 * 24)),
+                  hours: Math.floor((distanceEnd % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                  minutes: Math.floor((distanceEnd % (1000 * 60 * 60)) / (1000 * 60)),
+                  seconds: Math.floor((distanceEnd % (1000 * 60)) / 1000)
+              });
+          } else {
+              setTimeLeftEnd({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+          }
+  
+          };
+  
+          updateCountdown();
+          const interval = setInterval(updateCountdown, 1000);
+  
+          return () => clearInterval(interval);
+      }, []);
+
   return (
     <>
       <TeamRegistrationModal />
@@ -83,7 +134,76 @@ export default function ShuffleHero() {
 
 </button>
 
-        <div className="mt-12 self-start flex justify-center items-center gap-6 sm:gap-10 md:gap-16">
+      
+          {/* Countdown Timer - Left Side - Only show before contest start/s */}
+    {/* {showTimer && (
+      <div className="mt-8">
+        <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2">
+          Prelims starts in:
+        </p>
+        <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
+          <div className="flex flex-col p-2 bg-blue-700 rounded-box text-white min-w-[75px]">
+            <span className="countdown font-mono text-5xl flex justify-center">
+              <span style={{"--value":timeLeft.days}} aria-live="polite" aria-label="days">{timeLeft.days}</span>
+            </span>
+            <span className="text-[10px] uppercase font-medium mt-1">Days</span>
+          </div>
+          <div className="flex flex-col p-2 bg-blue-700 rounded-box text-white min-w-[75px]">
+            <span className="countdown font-mono text-5xl flex justify-center">
+              <span style={{"--value":timeLeft.hours}} aria-live="polite" aria-label="hours">{timeLeft.hours}</span>
+            </span>
+            <span className="text-[10px] uppercase font-medium mt-1">Hours</span>
+          </div>
+          <div className="flex flex-col p-2 bg-blue-700 rounded-box text-white min-w-[75px]">
+            <span className="countdown font-mono text-5xl flex justify-center">
+              <span style={{"--value":timeLeft.minutes}} aria-live="polite" aria-label="minutes">{timeLeft.minutes}</span>
+            </span>
+            <span className="text-[10px] uppercase font-medium mt-1">Min</span>
+          </div>
+          <div className="flex flex-col p-2 bg-blue-700 rounded-box text-white min-w-[75px]">
+            <span className="countdown font-mono text-5xl flex justify-center">
+              <span style={{"--value":timeLeft.seconds}} aria-live="polite" aria-label="seconds">{timeLeft.seconds}</span>
+            </span>
+            <span className="text-[10px] uppercase font-medium mt-1">Sec</span>
+          </div>
+        </div>
+      </div>
+    )} */}
+
+    {showEndTimer && (
+      <div className="mt-8">
+        <p className="text-gray-600 text-xs sm:text-sm font-medium mb-2 ">
+          Registration starts in:
+        </p>
+        <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
+          <div className="flex flex-col p-1 bg-blue-700 rounded-box text-white min-w-[75px]">
+            <span className="countdown font-mono text-5xl flex justify-center">
+              <span style={{"--value":timeLeftEnd.days}} aria-live="polite" aria-label="days">{timeLeftEnd.days}</span>
+            </span>
+            <span className="text-[10px] uppercase font-medium mt-1">Days</span>
+          </div>
+          <div className="flex flex-col p-1 bg-blue-700 rounded-box text-white min-w-[75px]">
+            <span className="countdown font-mono text-5xl flex justify-center">
+              <span style={{"--value":timeLeftEnd.hours}} aria-live="polite" aria-label="hours">{timeLeftEnd.hours}</span>
+            </span>
+            <span className="text-[10px] uppercase font-medium mt-1">Hours</span>
+          </div>
+          <div className="flex flex-col p-1 bg-blue-700 rounded-box text-white min-w-[75px]">
+            <span className="countdown font-mono text-5xl flex justify-center">
+              <span style={{"--value":timeLeftEnd.minutes}} aria-live="polite" aria-label="minutes">{timeLeftEnd.minutes}</span>
+            </span>
+            <span className="text-[10px] uppercase font-medium mt-1">Min</span>
+          </div>
+          <div className="flex flex-col p-1 bg-blue-700 rounded-box text-white min-w-[75px]">
+            <span className="countdown font-mono text-5xl flex justify-center">
+              <span style={{"--value":timeLeftEnd.seconds}} aria-live="polite" aria-label="seconds">{timeLeftEnd.seconds}</span>
+            </span>
+            <span className="text-[10px] uppercase font-medium mt-1">Sec</span>
+          </div>
+        </div>
+      </div>
+    )}
+      <div className="mt-12 self-start flex justify-center items-center gap-6 sm:gap-10 md:gap-16">
           <div className="text-center flex flex-col gap-2">
             <div className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 leading-none whitespace-nowrap">
               <Shuffle text="OCT 3" shuffleDirection="right" duration={0.35} animationMode="evenodd" shuffleTimes={1} ease="power3.out" stagger={0.03} threshold={0.1} triggerOnce={true} triggerOnHover={true} respectReducedMotion={true} loop={false} loopDelay={0} />

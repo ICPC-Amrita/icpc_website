@@ -90,7 +90,7 @@ export default function Section2BeforeAfter() {
             ICPC doesn&apos;t just improve your coding. It transforms the way you think, learn and grow.
           </p>
           <Link
-            href="/stories"
+            href="#stories"
             className="inline-flex items-center gap-2 border border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold text-sm px-4 py-2 rounded-md transition-colors"
           >
             See Real Stories
