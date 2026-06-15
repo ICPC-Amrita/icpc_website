@@ -30,7 +30,8 @@ export default function CTABanner() {
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
             <Link
-              href="https://icpc.global/private/teamRegistration/site/40197"
+              id="register-button"
+              href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
               className="inline-flex items-center bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors"
             >
               Register Your Team &rarr;

@@ -74,6 +74,7 @@ export default function HeroSection() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <Link
+                id="register-button"
                 href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
                 className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-base font-semibold px-6 py-3 rounded-md transition-colors shadow-sm shadow-blue-200 whitespace-nowrap"
               >

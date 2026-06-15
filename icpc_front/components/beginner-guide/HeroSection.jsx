@@ -44,14 +44,15 @@ export default function HeroSection() {
             {/* Body copy */}
             <p className="text-gray-600 text-base sm:text-[1.05rem] leading-relaxed mb-8 max-w-md">
               Every year, thousands of students like you take part in ICPC. You
-              don&apos;t need to be the best. You just need to start with the
+              don&apo s;t need to be the best. You just need to start with the
               courage to try.
             </p>
 
             {/* CTA buttons */}
             <div className="flex flex-row flex-wrap items-center gap-4 mb-10">
               <Link
-                href="https://icpc.global/private/teamRegistration/site/40197"
+                id="register-button"
+                href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
                 className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-3 sm:px-6 rounded-md transition-colors text-sm sm:text-base whitespace-nowrap"
               >
                 Register Your Team

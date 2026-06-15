@@ -59,6 +59,7 @@ export default function HeroSection() {
           </p>
           <div className="flex flex-wrap items-center gap-4">
             <a
+              id="register-button"
               href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
               className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-7 py-3.5 rounded-lg transition-colors"
             >
