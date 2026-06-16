@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import TeamRegistrationModal from '../modal/TeamRegistrationModal';
 
 const stats = [
   {
@@ -43,6 +44,7 @@ const stats = [
 export default function HeroSection() {
   return (
     <section className="w-full bg-white">
+      <TeamRegistrationModal />
       {/* Main hero */}
       <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 pt-10 sm:pt-12">
         <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
