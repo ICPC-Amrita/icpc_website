@@ -348,8 +348,9 @@ export default function Navbar({ open, hero, darkSection }) {
         { label: "Home", href: "/archive/icpc_Amritapuri_2024", type: "link" },
         {
           label: "Why Amrita",
-          href: "/why-choose-amrita",
-          type: "link",
+          href: "#perks",
+          type: "scroll",
+          basePath: "/archive/icpc_Amritapuri_2024",
         },
         {
           label: "FAQ",
@@ -374,14 +375,13 @@ export default function Navbar({ open, hero, darkSection }) {
     } else {
       return [
         { label: "Home", href: "/", type: "link" },
-        { label: "Beginner Guide", href: "/beginner-guide", type: "link" },
-        { label: "Why Amrita", href: "/why-choose-amrita", type: "link" },
+        { label: "Why Amrita", href: "#perks", type: "scroll" },
         { label: "FAQ", href: "#faq", type: "scroll" },
         { label: "Hall of Fame", href: "/halloffame", type: "link" },
         // { label: "Prelims Ranklist", href: "/prelims-ranklist", type: "link" },
         { label: "Reach Us", type: "dropdown", items: locations },
         // { label: "Promote", href: "/promote", type: "link" },
-        { label: "Join as Ambassador", href: "/ambassador-program", type: "link" },
+        // { label: "Ambassador Program", href: "/ambassador-program", type: "link" },
         // { label: "Onsite Ranklist", href: "/onsite-ranklist", type: "link" },
 
         // { label: "Organizers", href: "/organizers", type: "link" },
@@ -398,7 +398,7 @@ export default function Navbar({ open, hero, darkSection }) {
   return (
     <>
       <nav
-        className={`min-h-[5vw] z-50 sticky top-0 max-md:min-h-[15vw] ${getNavbarBg()} flex items-center text-[1vw] max-md:text-[4vw] w-full transition-all ease-in-out duration-300 mb-12 ${
+        className={`min-h-[5vw] z-50 sticky top-0 max-md:min-h-[15vw] ${getNavbarBg()} flex items-center text-[1vw] max-md:text-[4vw] w-full transition-all ease-in-out duration-300 ${
           open ? "md:transform translate-y-0" : "md:transform -translate-y-full"
         }`}
       >

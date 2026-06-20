@@ -20,16 +20,7 @@ function TeamRegistrationModalInner() {
     const medium = searchParams.get('utm_medium') || ''
     const campaign = searchParams.get('utm_campaign') || ''
 
-    const combinedUtm = `${source} ${medium} ${campaign}`.toLowerCase()
-
-    const hasCampusPattern = 
-      combinedUtm.includes('kollam') || combinedUtm.includes('amritapuri') ||
-      combinedUtm.includes('kochin') || combinedUtm.includes('kochi') ||
-      combinedUtm.includes('mysuru') || combinedUtm.includes('mysore') ||
-      combinedUtm.includes('bengaluru') || combinedUtm.includes('bangalore') ||
-      combinedUtm.includes('coimbatore')
-
-    if (hasCampusPattern) {
+    if (source || medium || campaign) {
       setIsOpen(true)
     }
   }, [searchParams])
