@@ -59,6 +59,7 @@ export async function getTeams(campus = null) {
 
 /**
  * Delete all teams
+
  */
 export async function deleteAllTeams() {
   return await prisma.team.deleteMany({})
@@ -77,4 +78,17 @@ export async function getTeamByName(teamName) {
       }
     }
   })
+}
+
+/**
+ * Get all distinct campuses from the teams
+ */
+export async function getAllCampuses() {
+  const result = await prisma.team.findMany({
+    distinct: ['campus'],
+    select: {
+      campus: true
+    }
+  })
+  return result.map(c => c.campus).filter(Boolean)
 }

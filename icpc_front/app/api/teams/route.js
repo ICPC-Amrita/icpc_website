@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createTeam, getTeams, deleteAllTeams, getTeamByName } from '@/lib/services/teamService'
+import { createTeam, getTeams, deleteAllTeams, getTeamByName, getAllCampuses } from '@/lib/services/teamService'
 
 export async function POST(request) {
   try {
@@ -36,8 +36,9 @@ export async function GET(request) {
     const campus = searchParams.get('campus')
 
     const teams = await getTeams(campus)
+    const availableCampuses = await getAllCampuses()
 
-    return NextResponse.json({ teams }, { status: 200 })
+    return NextResponse.json({ teams, availableCampuses }, { status: 200 })
   } catch (error) {
     console.error('Error fetching teams:', error)
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
