@@ -26,7 +26,7 @@ export default function LeaderboardPage() {
   const [hero, setHero] = useState(false)
   const scrollDir = useRef("scrolling down")
 
-  const campuses = ['All', 'Bengaluru', 'Coimbatore', 'Kollam', 'Mysuru']
+  const [campuses, setCampuses] = useState(['All'])
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -135,6 +135,10 @@ export default function LeaderboardPage() {
       const data = await res.json()
       if (res.ok) {
         setTeams(data.teams)
+        if (data.availableCampuses) {
+          const uniqueCampuses = new Set(['All', ...data.availableCampuses])
+          setCampuses(Array.from(uniqueCampuses))
+        }
       }
     } catch (error) {
       console.error('Error fetching teams:', error)
@@ -268,6 +272,9 @@ export default function LeaderboardPage() {
                         Source
                       </th>
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                        UTM Details (Medium / Campaign)
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                         Registration Date
                       </th>
                     </tr>
@@ -282,6 +289,15 @@ export default function LeaderboardPage() {
                           <span className="inline-flex items-center px-2.5 py-0.5 text-md  text-blue-800">
                             {team.campus}
                           </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                          <div><span className="font-medium text-gray-800">Source:</span> {team.utmSource || 'N/A'}</div>
+                          {(team.utmMedium || team.utmCampaign) && (
+                            <div className="text-xs mt-1">
+                              {team.utmMedium && <span><span className="font-medium text-gray-800">Medium:</span> {team.utmMedium} </span>}
+                              {team.utmCampaign && <span><span className="font-medium text-gray-800">Campaign:</span> {team.utmCampaign}</span>}
+                            </div>
+                          )}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                           {new Date(team.createdAt).toLocaleDateString('en-US', {
