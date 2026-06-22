@@ -1,5 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import { Users, MapPin, CalendarDays, Trophy, Heart, Play, ArrowRight } from "lucide-react";
+import { Users, MapPin, CalendarDays, Trophy, Heart, Play, ArrowRight, X } from "lucide-react";
 
 const stats = [
   {
@@ -37,6 +40,8 @@ const stats = [
 ];
 
 export default function HeroSection() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   return (
     <section className="bg-white overflow-hidden">
       {/* Hero */}
@@ -63,17 +68,18 @@ export default function HeroSection() {
               href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
               className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-7 py-3.5 rounded-lg transition-colors"
             >
-              Register Your Team <ArrowRight className="w-4 h-4" />
+              Register Your Team 
+              {/* <ArrowRight className="w-4 h-4" /> */}
             </a>
-            <a
-              href="#highlights"
+            <button
+              onClick={() => setIsVideoOpen(true)}
               className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:underline"
             >
               <span className="w-9 h-9 rounded-full border-2 border-blue-500 flex items-center justify-center">
                 <Play className="w-3.5 h-3.5 fill-blue-600 text-blue-600 ml-0.5" />
               </span>
               See last year&apos;s highlights
-            </a>
+            </button>
           </div>
         </div>
 
@@ -116,6 +122,31 @@ export default function HeroSection() {
           ))}
         </div>
       </div>
+
+      {/* Video Modal */}
+      {isVideoOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-6">
+          <div className="relative w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+            {/* Close button */}
+            <button
+              onClick={() => setIsVideoOpen(false)}
+              className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/80 text-white rounded-full flex items-center justify-center transition-colors backdrop-blur-md"
+              aria-label="Close video"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            {/* YouTube Embed */}
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/b9nyNA30hAM?autoplay=1&loop=1&playlist=b9nyNA30hAM&rel=0&modestbranding=1&controls=0&showinfo=0"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

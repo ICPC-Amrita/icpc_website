@@ -52,10 +52,10 @@ export default function HeroSection() {
           {/* Left: text */}
           <div className="w-full lg:flex-1 flex flex-col items-start gap-3">
             {/* Badge */}
-            <span className="inline-flex items-center gap-1.5 bg-green-50 text-green-600 text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full border border-green-200">
+            {/* <span className="inline-flex items-center gap-1.5 bg-green-50 text-green-600 text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full border border-green-200">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
               Registration Open
-            </span>
+            </span> */}
 
             {/* Headline */}
             <h1 className="text-5xl sm:text-6xl lg:text-[3.8rem] xl:text-[4.2rem] leading-[1.1] font-extrabold text-gray-900 tracking-tight">
@@ -81,9 +81,9 @@ export default function HeroSection() {
                 className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-base font-semibold px-6 py-3 rounded-md transition-colors shadow-sm shadow-blue-200 whitespace-nowrap"
               >
                 Register Your Team
-                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
+                {/* <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                </svg> */}
               </Link>
               <Link
                 href="/beginner-guide"

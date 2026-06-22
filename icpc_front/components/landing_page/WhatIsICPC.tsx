@@ -186,7 +186,7 @@ export default function WhatIsICPC() {
             </div>
 
             {/* CTA */}
-            <div className="mt-2">
+            {/* <div className="mt-2">
               <Link
                 href="/beginner-guide"
                 className="inline-flex items-center gap-2 border border-gray-300 hover:border-blue-500 hover:text-blue-600 text-gray-700 text-sm font-medium px-5 py-2.5 rounded-md transition-colors"
@@ -196,7 +196,7 @@ export default function WhatIsICPC() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
 

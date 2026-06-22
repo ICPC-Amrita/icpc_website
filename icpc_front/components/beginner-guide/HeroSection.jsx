@@ -56,16 +56,16 @@ export default function HeroSection() {
                 className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-3 sm:px-6 rounded-md transition-colors text-sm sm:text-base whitespace-nowrap"
               >
                 Register Your Team
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                {/* <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                </svg> */}
               </Link>
-              <a
+              {/* <a
                 href="#how-to-start"
                 className="inline-flex items-center gap-2 border border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold px-4 py-3 sm:px-6 rounded-md transition-colors text-sm sm:text-base whitespace-nowrap"
               >
                 How to Get Started
-              </a>
+              </a> */}
             </div>
 
             {/* Three mini stats */}

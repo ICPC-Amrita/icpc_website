@@ -61,11 +61,11 @@ export default function ReachUs() {
                 <div className="max-w-[80vw] min-w-[80vw] max-md:max-w-[90vw] max-md:min-w-[90vw]">
                     <div className="w-full text-[1.5vw] max-md:text-[4vw] font-semibold pb-[1.5vw] flex justify-center">Restaurants Near Us</div>
                     <div className="flex w-full">
-                        {Object.keys(Data.Coimbatore.Hotels).map((key, index)=>(
+                        {Object.keys(Data.Mysuru.Restaurants).map((key, index)=>(
                             <div key={index} className="text-[1.4vw] flex-1 max-md:text-[3vw] my-[1vw]">
                                 <p className="font-semibold text-blue-950">{key}</p>
                                 <ul>
-                                    {Data.Coimbatore.Hotels[key].map((key, index)=>(
+                                    {Data.Mysuru.Restaurants[key].map((key, index)=>(
                                         <li key={index} className="font-light">{key}</li>
                                     ))}
                                 </ul>
@@ -79,11 +79,11 @@ export default function ReachUs() {
                 <div className="max-w-[80vw] min-w-[80vw] max-md:max-w-[90vw] max-md:min-w-[90vw]">
                     <div className="w-full text-[1.5vw] max-md:text-[4vw] font-semibold pb-[1.5vw] flex justify-center">Hotels Near Us</div>
                     <div className="flex w-full">
-                        {Object.keys(Data.Coimbatore.Restaurants).map((key, index)=>(
+                        {Object.keys(Data.Mysuru.Hotels).map((key, index)=>(
                             <div key={index} className="text-[1.4vw] flex-1 max-md:text-[3vw] my-[1vw]">
                                 <p className="font-semibold text-yellow-500">{key}</p>
                                 <ul>
-                                    {Data.Coimbatore.Restaurants[key].map((key, index)=>(
+                                    {Data.Mysuru.Hotels[key].map((key, index)=>(
                                         <li key={index} className="font-light">{key}</li>
                                     ))}
                                 </ul>

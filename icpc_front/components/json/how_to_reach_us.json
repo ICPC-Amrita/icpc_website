@@ -91,14 +91,14 @@
         "From Mangalore": ["Mangaluru–Mysuru Express"]
     },
     "Hotels": {
-        "Hotel Southern Star": ["Rating : 4.3", "6.0km away", "Contact No : 0821 242 6426"],
-        "Royal Inn Mysuru": ["Rating : 4.1", "9.0km away", "Contact No : 0821 233 3555"],
-        "Green Hotel": ["Rating : 4.2", "4.8km away", "Contact No : 0821 251 5150"]
+        "GLN Residency": ["Rating : 4.4", "0.8km away", ""],
+        "LikeMyApartment (Service Apartments)": ["Rating : 4.3", "0.7km away", ""],
+        "Treebo Samanvaya Retreat": ["Rating : 4.5", "2.5km away", ""]
     },
     "Restaurants": {
-        "Original Vinayaka Mylari (Nazarbad)": ["Rating : 4.5", "7.5km away", "Walk-in Only"],
-        "Hotel RRR": ["Rating : 4.0", "7.0km away", "Contact No : 0821 242 2083"],
-        "Nalpak Restaurant (Kuvempunagar)": ["Rating : 4.2", "4.2km away", "Contact No : 0821 246 7890"]
+        "The Cabana Garden": ["Rating : 4.4", "1km away", ""],
+        "Baamboo Multicuisine Restaurant": ["Rating : 4.3", "1.6km away", ""],
+        "Hotel Uncle Lobo's - Suggi Mane": ["Rating : 4.2", "1.8km away", ""]
     }
 
 }

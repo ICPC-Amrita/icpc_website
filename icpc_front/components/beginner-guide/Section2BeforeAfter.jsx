@@ -89,7 +89,7 @@ export default function Section2BeforeAfter() {
           <p className="text-gray-500 text-sm leading-relaxed mb-6">
             ICPC doesn&apos;t just improve your coding. It transforms the way you think, learn and grow.
           </p>
-          <Link
+          {/* <Link
             href="#stories"
             className="inline-flex items-center gap-2 border border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold text-sm px-4 py-2 rounded-md transition-colors"
           >
@@ -97,7 +97,7 @@ export default function Section2BeforeAfter() {
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </Link>
+          </Link> */}
         </div>
 
         {/* Right: comparison table */}

@@ -81,14 +81,14 @@ export default function ChooseYourCity() {
                 </p>
 
                 <div className="mt-auto pt-3 flex justify-end">
-                  <button
+                  {/* <button
                     className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors"
                     aria-label={`Go to ${city.name}`}
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
