@@ -46,7 +46,8 @@ export default function CTASection() {
                 href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
                 className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-white text-[#1a2faa] text-sm font-semibold hover:bg-gray-100 transition-colors"
               >
-                Register Your Team <span aria-hidden="true">→</span>
+                Register Your Team
+                 {/* <span aria-hidden="true">→</span> */}
               </Link>
               <Link
                 href="/beginner-guide#prepare"
@@ -73,7 +74,8 @@ export default function CTASection() {
                 href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
                 className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-white text-[#1a2faa] text-sm font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap"
               >
-                Register Your Team <span aria-hidden="true">→</span>
+                Register Your Team
+                 {/* <span aria-hidden="true">→</span> */}
               </Link>
               <Link
                 href="/beginner-guide#prepare"

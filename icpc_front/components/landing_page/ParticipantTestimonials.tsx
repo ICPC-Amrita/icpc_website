@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 const testimonials = [
   {
@@ -27,6 +27,12 @@ const testimonials = [
 export default function ParticipantTestimonials() {
   const [current, setCurrent] = useState(0);
   const t = testimonials[current];
+  useEffect(()=>{
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  },[])
 
   return (
     <div className="border border-gray-200 rounded-2xl overflow-hidden flex h-full min-h-[220px]">

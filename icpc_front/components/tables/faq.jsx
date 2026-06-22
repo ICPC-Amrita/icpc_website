@@ -23,11 +23,11 @@ const Faq = () => {
     },
     {
       question: "How can we know whether our payment is received?",
-      answer: "You will receive an email intimation from our end and also, your team will be accepted in the ICPC Registration portal."
+      answer: "Your team will be accepted in the ICPC Registration portal."
     },
     {
       question: "Last date for payment?",
-      answer: "October 31, 2025."
+      answer: "TBD"
     },
     {
       question: "How to cancel a team in ICPC Registration Site?",
@@ -35,7 +35,7 @@ const Faq = () => {
     },
     {
       question: "Last date of cancellation?",
-      answer: "Teams interested in participating in the contest hosted by other sites in India shall cancel their team registration in the ICPC Registration portal on or before October 8, 2025."
+      answer: "Teams interested in particeipating in the contest hosted by other sites in India shall cancel their team registration in the ICPC Registration portal on or before October 8, 2025."
     },
     {
       question: "Should they register again for regional as they only registered for online?",
@@ -44,7 +44,7 @@ const Faq = () => {
     {
       question: "Do all team members need to pay the registration fee individually, or should it be paid only once per team?",
       answer: [
-        "The registration fee is ₹1100 per team (not per individual).",
+        "The registration fee is ₹1500 per team (not per individual).",
         "It needs to be paid only once per team, regardless of the number of team members.",
         "If multiple members from the same team have mistakenly paid the fee, they may contact the organizers with the payment details.",
         "The extra amount will be verified, and if eligible, the excess payment can be refunded as per the refund policy."

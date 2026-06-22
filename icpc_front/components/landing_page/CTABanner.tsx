@@ -34,13 +34,13 @@ export default function CTABanner() {
               href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
               className="inline-flex items-center bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors"
             >
-              Register Your Team &rarr;
+              Register Your Team 
             </Link>
             <Link
               href="/beginner-guide"
               className="inline-flex items-center border border-white text-white font-semibold px-5 py-2.5 rounded-lg text-sm hover:bg-white/10 transition-colors"
             >
-              Read the Guide First &rarr;
+              Read the Guide First
             </Link>
           </div>
         </div>
