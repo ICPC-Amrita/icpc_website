@@ -62,7 +62,7 @@ export default function AmbassadorPage() {
                     The ICPC Amritapuri Ambassador Program is your opportunity to become the face of competitive programming in your institution and region.
                   </p>
                   <p>
-                    As an official ambassador, you'll help students discover ICPC, guide aspiring programmers, build thriving coding communities, and compete for rewards worth up to ₹10,00,000.
+                    As an official ambassador, you&apos;ll help students discover ICPC, guide aspiring programmers, build thriving coding communities, and compete for rewards worth up to ₹10,00,000.
                   </p>
                 </div>
                 
@@ -86,7 +86,7 @@ export default function AmbassadorPage() {
             <div className="lg:w-1/2 flex flex-col order-2 lg:order-1">
               <div className="text-base sm:text-lg lg:pr-8 leading-relaxed space-y-4 text-gray-700 text-justify">
                 <p>
-                  Whether you're a competitive programmer, community builder, student leader, or simply passionate about technology, this is your chance to create a lasting impact while earning exclusive recognition and rewards.
+                  Whether you&apos;re a competitive programmer, community builder, student leader, or simply passionate about technology, this is your chance to create a lasting impact while earning exclusive recognition and rewards.
                 </p>
                 
                 <div className="mt-6 bg-blue-50 p-5 rounded-lg text-sm sm:text-base text-blue-900 border border-blue-100">
@@ -155,7 +155,7 @@ export default function AmbassadorPage() {
               To ensure quality leadership and meaningful impact, each institution can have a maximum of three official ICPC Amritapuri Ambassadors. Once all ambassador positions from a college are filled, applications from the same institution may be placed on a waiting list.
             </p>
             <p className="text-orange-900 text-base md:text-lg font-semibold mt-3">
-              If you're interested, don't wait. Apply early before your college mates secure the available ambassador positions.
+              If you&apos;re interested, don&apos;t wait. Apply early before your college mates secure the available ambassador positions.
             </p>
           </div>
         </section>
@@ -208,7 +208,7 @@ export default function AmbassadorPage() {
               <div>
                 <h3 className="font-semibold mb-2">Inspire Future Champions:</h3>
                 <p className="text-sm sm:text-base text-gray-700">
-                  Encourage students to challenge themselves, develop new skills, and participate in one of the world's most prestigious programming competitions.
+                  Encourage students to challenge themselves, develop new skills, and participate in one of the world&apos;s most prestigious programming competitions.
                 </p>
               </div>
             </div>
@@ -222,10 +222,10 @@ export default function AmbassadorPage() {
             <h2 className="text-2xl sm:text-3xl font-bold">This is More Than a Title. It&apos;s Your Launchpad.</h2>
           </div>
           <p className="text-base sm:text-lg mb-6 text-justify">
-            The most successful ambassadors don't just earn rewards—they develop skills that stay with them for life.
+            The most successful ambassadors don&apos;t just earn rewards—they develop skills that stay with them for life.
           </p>
           <div className="mb-6">
-            <h3 className="text-xl sm:text-2xl font-bold mb-4">Through this program, you'll gain experience in:</h3>
+            <h3 className="text-xl sm:text-2xl font-bold mb-4">Through this program, you&apos;ll gain experience in:</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div className="flex items-center gap-2 p-3 bg-gray-50 border rounded-lg">
                 <Crown className="h-5 w-5 text-blue-600" />
@@ -254,7 +254,7 @@ export default function AmbassadorPage() {
             </div>
           </div>
           <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4 text-justify">
-            You'll have the opportunity to work closely with the ICPC community, connect with students from across the country, and build a profile that stands out on your resume, LinkedIn, and future applications.
+            You&apos;ll have the opportunity to work closely with the ICPC community, connect with students from across the country, and build a profile that stands out on your resume, LinkedIn, and future applications.
           </p>
           <p className="text-base sm:text-lg font-semibold text-blue-800">
             The impact you create today can open doors tomorrow.
