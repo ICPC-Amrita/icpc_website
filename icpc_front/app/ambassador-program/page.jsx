@@ -7,22 +7,19 @@ const steps = [
   {
     title: "Step 1",
     subtitle: "Submit Your Application",
-    description:
-      "Click the button below and fill out the form. Tell us why you're passionate about building a coding community.",
+    description: "Click the button below and complete the application form. Tell us about yourself, your campus, and why you're passionate about growing the competitive programming community.",
     icon: <User className="w-5 h-5" />,
   },
   {
     title: "Step 2",
     subtitle: "Get Your Ambassador Kit",
-    description:
-      "Once selected, you'll receive a confirmation email with your unique referral code and a digital starter kit to help you succeed.",
+    description: "Once selected, you'll receive a confirmation email containing: Your Ambassador Welcome Kit, Official Ambassador Resources, Promotional Materials, and Support Resources to Help You Succeed.",
     icon: <Gift className="w-5 h-5" />,
   },
   {
     title: "Step 3",
     subtitle: "Lead and Inspire",
-    description:
-      "Start your mission! Engage your community, guide new teams, and watch your impact (and rewards) grow.",
+    description: "Start your mission. Promote ICPC within your institution, guide students, build awareness, and help more teams discover the world of competitive programming. The more impact you create, the more rewards and recognition you'll unlock.",
     icon: <Rocket className="w-5 h-5" />,
   },
 ];
@@ -31,16 +28,15 @@ export default function AmbassadorPage() {
   return (
     <div className="min-h-screen bg-white text-black">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 md:pt-40 pb-8 sm:pb-12">
-        {/* Hero Section - Image left, Content right layout */}
-        <div className="mb-12 sm:mb-16 ">
-            
-          <div className="flex flex-col lg:flex-row lg:items-top gap-8">
+        {/* Hero Section Part 1 - Image left, Content right layout */}
+        <div className="mb-12 sm:mb-16">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-8">
             {/* Image column - Left side on desktop */}
             <div className="lg:w-1/2 order-2 lg:order-1">
               <Image
-                src="/coursel_images/2.jpg"
+                src="/expert.png"
                 alt="ICPC Championship Event"
-                className="rounded-lg shadow-lg w-full h-auto object-cover"
+                className="  w-full h-auto object-cover"
                 width={600}
                 height={400}
               />
@@ -49,33 +45,74 @@ export default function AmbassadorPage() {
             {/* Content column - Right side on desktop */}
             <div className="lg:w-1/2 flex flex-col order-1 lg:order-2">
               <div className="text-center lg:text-left">
-              
-                
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
-                  ARE YOU THE NEXT CHAMPION AMBASSADOR?
+                  Become an ICPC Amritapuri Ambassador
                 </h1>
                 
                 <div className="mb-6">
                   <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
                     <Trophy className="h-6 w-6 text-yellow-500" />
-                    <p className="text-base sm:text-lg">Win a Grand Cash Prize of</p>
+                    <p className="text-base sm:text-lg font-medium text-gray-700">Lead Your Campus. Inspire a Generation.</p>
                   </div>
-                  <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-600">₹1,00,000</p>
+                  <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600">Earn Rewards Worth ₹10,00,000.</p>
                 </div>
                 
-                <p className="text-base sm:text-lg mb-6 lg:pr-8 leading-relaxed">
-                  The title of Champion Ambassador and our grand prize await the single top performer who inspires over 2,000
-                  teams to register for the ICPC Asia West Amritapuri regionals.
-                </p>
+                <div className="text-base sm:text-lg mb-6 lg:pr-8 leading-relaxed space-y-4 text-gray-700 text-justify">
+                  <p>
+                    The ICPC Amritapuri Ambassador Program is your opportunity to become the face of competitive programming in your institution and region.
+                  </p>
+                  <p>
+                    As an official ambassador, you'll help students discover ICPC, guide aspiring programmers, build thriving coding communities, and compete for rewards worth up to ₹10,00,000.
+                  </p>
+                </div>
+                
                 <a 
-  href="https://docs.google.com/forms/d/e/1FAIpQLSdv6guD9QPe64vxsrSmtG6UHLes5RW9LHdZaD5HL3rp3_lWhA/viewform" 
-  target="_blank" 
-  rel="noopener noreferrer" 
-  className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 text-base sm:text-lg rounded-md transition-colors"
->
-  Apply Now
-</a>
+                  href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSey2XIxzRWhb1Z4x2DihPOs3GZycbvVUT1S5m22JQQNhsSXyA/viewform?usp=send_form" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 text-base sm:text-lg rounded-md transition-colors"
+                >
+                  Apply Now
+                </a>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Section Part 2 - Content left, Image right layout */}
+        <div className="mb-12 sm:mb-16">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-8">
+            {/* Content column - Left side on desktop */}
+            <div className="lg:w-1/2 flex flex-col order-2 lg:order-1">
+              <div className="text-base sm:text-lg lg:pr-8 leading-relaxed space-y-4 text-gray-700 text-justify">
+                <p>
+                  Whether you're a competitive programmer, community builder, student leader, or simply passionate about technology, this is your chance to create a lasting impact while earning exclusive recognition and rewards.
+                </p>
+                
+                <div className="mt-6 bg-blue-50 p-5 rounded-lg text-sm sm:text-base text-blue-900 border border-blue-100">
+                  <p className="font-semibold mb-3 text-blue-800 text-left text-lg">Why Become an Ambassador?</p>
+                  <ul className="list-none space-y-2 text-left">
+                    <li className="flex items-start gap-2"><CheckCircle className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" /> Official ICPC Amritapuri Ambassador Certificate</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" /> Exclusive ICPC Merchandise & Rewards</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" /> Featured on the ICPC Website</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" /> National Ambassador Leaderboard</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" /> Leadership & Networking Opportunities</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" /> Rewards Worth Up to ₹10,00,000</li>
+                    <li className="flex items-start gap-2"><CheckCircle className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" /> Recognition Among India’s Top Student Leaders</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            {/* Image column - Right side on desktop */}
+            <div className="lg:w-1/2 order-1 lg:order-2">
+              <Image
+                src="/ambassadorimage.jpeg"
+                alt="Students at ICPC Event"
+                className="  w-full h-auto object-cover"
+                width={600}
+                height={400}
+              />
             </div>
           </div>
         </div>
@@ -87,27 +124,39 @@ export default function AmbassadorPage() {
             <h2 className="text-2xl sm:text-3xl font-bold">What is the Amritapuri Ambassador Program?</h2>
           </div>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="space-y-4 text-base sm:text-lg leading-relaxed">
-              <p>
-                The ICPC Asia West Championship, hosted at the prestigious Amritapuri campus, is the gateway to the ICPC
-                World Finals. This program is a movement to find passionate leaders like you to spread the spirit of
-                competitive programming across the region.
-              </p>
-              <p>
-                As an ICPC Amritapuri Ambassador, you will be the critical link connecting your peers to a future in
-                technology. You will be at the forefront of building a vibrant, region-wide coding culture, with the
-                Amritapuri finals as its celebrated hub.
-              </p>
-            </div>
-            <div className="order-first lg:order-last">
+                <div className="order-first lg:order-first">
               <Image
-                src="/title_image.svg"
+                src="/abcd.png"
                 alt="Ambassador Program"
-                className="rounded-lg shadow-md w-full h-auto"
+                className=" w-full h-auto"
                 width={600}
                 height={400}
               />
             </div>
+            <div className="space-y-4 text-base sm:text-lg leading-relaxed text-justify">
+              <p>
+                The ICPC Amritapuri Ambassador Program is a student leadership initiative designed to empower passionate students to promote competitive programming and help more teams discover ICPC.
+              </p>
+              <p>
+                Ambassadors serve as the bridge between ICPC and their campus communities. They spread awareness, connect students with opportunities, guide participants, and build a stronger competitive programming culture within their institutions.
+              </p>
+              <p>
+                More than just a title, becoming an ambassador means becoming a community builder, a mentor, and a leader who inspires others to challenge themselves and grow.
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-10 bg-orange-50 border-t-4 border-orange-500 p-6 md:p-8 rounded-b-lg rounded-t-sm shadow-sm text-center max-w-4xl mx-auto">
+            <h3 className="font-bold text-orange-800 text-xl md:text-2xl flex flex-col md:flex-row items-center justify-center gap-2 mb-3">
+              <StarIcon className="h-6 w-6 md:h-8 md:w-8" />
+              Exclusive Opportunity: Only 3 Ambassadors Per College
+            </h3>
+            <p className="text-orange-900 text-base md:text-lg max-w-3xl mx-auto">
+              To ensure quality leadership and meaningful impact, each institution can have a maximum of three official ICPC Amritapuri Ambassadors. Once all ambassador positions from a college are filled, applications from the same institution may be placed on a waiting list.
+            </p>
+            <p className="text-orange-900 text-base md:text-lg font-semibold mt-3">
+              If you're interested, don't wait. Apply early before your college mates secure the available ambassador positions.
+            </p>
           </div>
         </section>
 
@@ -118,41 +167,48 @@ export default function AmbassadorPage() {
             <h2 className="text-2xl sm:text-3xl font-bold">Your Mission as an Ambassador:</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-            <div className="flex items-start gap-3 p-4 rounded-lg bg-gray-50">
+            <div className="flex items-start gap-3 p-4 rounded-lg bg-gray-50 border border-gray-100 hover:shadow-md transition-shadow">
               <Star className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
               <div>
                 <h3 className="font-semibold mb-2">Promote the Legacy:</h3>
-                <p className="text-sm sm:text-base">
-                  Spread awareness and generate excitement for the ICPC Amritapuri regionals on your campus and in your
-                  network.
+                <p className="text-sm sm:text-base text-gray-700">
+                  Introduce students to ICPC and help them understand the value of competitive programming.
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-4 rounded-lg bg-gray-50">
+            <div className="flex items-start gap-3 p-4 rounded-lg bg-gray-50 border border-gray-100 hover:shadow-md transition-shadow">
               <Award className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
               <div>
-                <h3 className="font-semibold mb-2">Mentor Future Champions:</h3>
-                <p className="text-sm sm:text-base">
-                  Guide your peers and juniors through the registration process, making it easy for them to take their
-                  first step.
+                <h3 className="font-semibold mb-2">Build Awareness:</h3>
+                <p className="text-sm sm:text-base text-gray-700">
+                  Spread information about ICPC events, opportunities, and resources across your campus and networks.
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-4 rounded-lg bg-gray-50">
+            <div className="flex items-start gap-3 p-4 rounded-lg bg-gray-50 border border-gray-100 hover:shadow-md transition-shadow">
               <Users className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
               <div>
-                <h3 className="font-semibold mb-2">Build a Thriving Community:</h3>
-                <p className="text-sm sm:text-base">
-                  Organize engaging info sessions, coding meetups, and online events that bring coders together.
+                <h3 className="font-semibold mb-2">Help Students Get Started:</h3>
+                <p className="text-sm sm:text-base text-gray-700">
+                  Guide students in forming teams, registering for contests, and beginning their competitive programming journey.
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-4 rounded-lg bg-gray-50">
+            <div className="flex items-start gap-3 p-4 rounded-lg bg-gray-50 border border-gray-100 hover:shadow-md transition-shadow">
               <Target className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
               <div>
-                <h3 className="font-semibold mb-2">Champion Collaboration:</h3>
-                <p className="text-sm sm:text-base">
-                  Inspire students to form teams and experience the power of collaborative problem-solving.
+                <h3 className="font-semibold mb-2">Strengthen Your Community:</h3>
+                <p className="text-sm sm:text-base text-gray-700">
+                  Collaborate with clubs, faculty, and student groups to foster a culture of problem-solving and innovation.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-4 rounded-lg bg-gray-50 border border-gray-100 hover:shadow-md transition-shadow sm:col-span-2 lg:col-span-1">
+              <Rocket className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="font-semibold mb-2">Inspire Future Champions:</h3>
+                <p className="text-sm sm:text-base text-gray-700">
+                  Encourage students to challenge themselves, develop new skills, and participate in one of the world's most prestigious programming competitions.
                 </p>
               </div>
             </div>
@@ -165,52 +221,44 @@ export default function AmbassadorPage() {
             <Gift className="h-8 w-8 text-blue-600" />
             <h2 className="text-2xl sm:text-3xl font-bold">This is More Than a Title. It&apos;s Your Launchpad.</h2>
           </div>
-          <p className="text-base sm:text-lg mb-6">
-            While the grand prize is the ultimate goal, the journey of an ambassador is filled with invaluable rewards
-            that will shape your career.
+          <p className="text-base sm:text-lg mb-6 text-justify">
+            The most successful ambassadors don't just earn rewards—they develop skills that stay with them for life.
           </p>
-          <h3 className="text-xl sm:text-2xl font-bold mb-6">Grow as a Leader, Not Just a Coder:</h3>
-          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-            <div className="flex items-start gap-3 p-4 border rounded-lg">
-              <Trophy className="h-6 w-6 text-yellow-500 mt-1 flex-shrink-0" />
-              <div>
-                <h4 className="font-semibold mb-2">Earn Elite Recognition:</h4>
-                <p className="text-sm sm:text-base">
-                  Be officially recognized by ICPC at Amritapuri as a leader. This is a powerful credential that makes
-                  top recruiters take notice.
-                </p>
+          <div className="mb-6">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4">Through this program, you'll gain experience in:</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="flex items-center gap-2 p-3 bg-gray-50 border rounded-lg">
+                <Crown className="h-5 w-5 text-blue-600" />
+                <span className="font-medium">Leadership</span>
               </div>
-            </div>
-            <div className="flex items-start gap-3 p-4 border rounded-lg">
-              <Target className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-              <div>
-                <h4 className="font-semibold mb-2">Build In-Demand Skills:</h4>
-                <p className="text-sm sm:text-base">
-                  Master leadership, community management, and organizational skills that are critical for success in
-                  any field.
-                </p>
+              <div className="flex items-center gap-2 p-3 bg-gray-50 border rounded-lg">
+                <Users className="h-5 w-5 text-green-600" />
+                <span className="font-medium">Community Building</span>
               </div>
-            </div>
-            <div className="flex items-start gap-3 p-4 border rounded-lg">
-              <Users className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
-              <div>
-                <h4 className="font-semibold mb-2">Network with the Region&apos;s Best:</h4>
-                <p className="text-sm sm:text-base">
-                  Gain access to the ICPC Asia West core community, connecting with top minds, mentors, and future tech
-                  leaders.
-                </p>
+              <div className="flex items-center gap-2 p-3 bg-gray-50 border rounded-lg">
+                <Target className="h-5 w-5 text-red-600" />
+                <span className="font-medium">Event Promotion</span>
               </div>
-            </div>
-            <div className="flex items-start gap-3 p-4 border rounded-lg">
-              <Star className="h-6 w-6 text-orange-500 mt-1 flex-shrink-0" />
-              <div>
-                <h4 className="font-semibold mb-2">Leave a Lasting Legacy:</h4>
-                <p className="text-sm sm:text-base">
-                  Be the person who inspired hundreds of students on your campus to compete and excel.
-                </p>
+              <div className="flex items-center gap-2 p-3 bg-gray-50 border rounded-lg">
+                <MessageCircle className="h-5 w-5 text-purple-600" />
+                <span className="font-medium">Communication</span>
+              </div>
+              <div className="flex items-center gap-2 p-3 bg-gray-50 border rounded-lg">
+                <CheckSquare className="h-5 w-5 text-yellow-600" />
+                <span className="font-medium">Team Management</span>
+              </div>
+              <div className="flex items-center gap-2 p-3 bg-gray-50 border rounded-lg">
+                <Star className="h-5 w-5 text-orange-600" />
+                <span className="font-medium">Professional Networking</span>
               </div>
             </div>
           </div>
+          <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4 text-justify">
+            You'll have the opportunity to work closely with the ICPC community, connect with students from across the country, and build a profile that stands out on your resume, LinkedIn, and future applications.
+          </p>
+          <p className="text-base sm:text-lg font-semibold text-blue-800">
+            The impact you create today can open doors tomorrow.
+          </p>
         </section>
 
         {/* Rewards Levels */}
@@ -219,230 +267,172 @@ export default function AmbassadorPage() {
             <Award className="h-8 w-8 text-purple-600" />
             <h2 className="text-2xl sm:text-3xl font-bold">Your Journey of Rewards</h2>
           </div>
-          <p className="text-base sm:text-lg mb-8 leading-relaxed">
+          <p className="text-base sm:text-lg mb-8 leading-relaxed text-justify">
             We believe in celebrating every milestone. As you inspire more teams, you&apos;ll unlock an incredible ladder of
             rewards, with each level including all perks from the previous ones.
           </p>
 
           {/* Simplified card grid with reduced animations */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {/* Level 1-3 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+            
             <div className="bg-white border border-gray-200 rounded-lg p-5 sm:p-6 hover:border-blue-300 transition-colors duration-200">
-              <h3 className="text-lg font-bold mb-2">Kickstart</h3>
-              <div className="text-3xl font-bold mb-1">10</div>
+              <h3 className="text-lg font-bold mb-2">Starter Ambassador</h3>
+              <div className="text-3xl font-bold mb-1">5</div>
               <div className="text-gray-600 mb-4">Teams</div>
               <div className="mb-4">
-                <p className="text-sm text-gray-600 mb-3">Everything necessary to get started.</p>
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0 mt-1" />
                     <span className="text-sm">Official ICPC Ambassador Certificate</span>
                   </div>
-                   <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                    <span className="text-sm">Official ICPC T-Shirt</span>
+                   <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm">ICPC T-Shirt & Merchandise Kit</span>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="bg-white border border-gray-200 rounded-lg p-5 sm:p-6 hover:border-blue-300 transition-colors duration-200">
-              <h3 className="text-lg font-bold mb-2">Growing</h3>
-              <div className="text-3xl font-bold mb-1">25</div>
+              <h3 className="text-lg font-bold mb-2 text-yellow-700">Bronze Ambassador</h3>
+              <div className="text-3xl font-bold mb-1 text-yellow-600">10</div>
               <div className="text-gray-600 mb-4">Teams</div>
               <div className="mb-4">
-                <p className="text-sm text-gray-600 mb-3">Everything in Kickstart, plus essential tools.</p>
                 <div className="space-y-2">
-                   <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                    <span className="text-sm">All the Above </span>
+                   <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm">Everything in Starter</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                    <span className="text-sm">ICPC Bag</span>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm">Website Recognition</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm">Ambassador Leaderboard Listing</span>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="bg-white border border-gray-200 rounded-lg p-5 sm:p-6 hover:border-blue-300 transition-colors duration-200">
-              <h3 className="text-lg font-bold mb-2">Active Ambassador</h3>
-              <div className="text-3xl font-bold mb-1">50</div>
+              <h3 className="text-lg font-bold mb-2 text-gray-500">Silver Ambassador</h3>
+              <div className="text-3xl font-bold mb-1 text-gray-600">15</div>
               <div className="text-gray-600 mb-4">Teams</div>
               <div className="mb-4">
-                <p className="text-sm text-gray-600 mb-3">Everything in Growing, plus collaboration tools.</p>
                 <div className="space-y-2">
-                   <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                    <span className="text-sm">All the Above </span>
+                   <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm">Everything in Bronze</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                    <span className="text-sm">ICPC Bottle</span>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm font-semibold text-green-700">Cash Prize: ₹2,000</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Level 4-6 */}
-            <div className="bg-white border border-gray-200 rounded-lg p-5 sm:p-6 hover:border-blue-300 transition-colors duration-200">
-              <h3 className="text-lg font-bold mb-2">Rising Star</h3>
-              <div className="text-3xl font-bold mb-1">75</div>
+            <div className="bg-white border border-gray-200 rounded-lg p-5 sm:p-6 hover:border-yellow-400 transition-colors duration-200">
+              <h3 className="text-lg font-bold mb-2 text-yellow-600">Gold Ambassador</h3>
+              <div className="text-3xl font-bold mb-1 text-yellow-500">25</div>
               <div className="text-gray-600 mb-4">Teams</div>
               <div className="mb-4">
-                <p className="text-sm text-gray-600 mb-3">Building momentum with exclusive items.</p>
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                    <span className="text-sm">All the Above </span>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm">Everything in Silver</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                    <span className="text-sm">Special invitation to ICPC Amritapuri Onsite Finals</span>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm font-semibold text-green-700">Cash Prize: ₹3,000</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-lg p-5 sm:p-6 hover:border-blue-300 transition-colors duration-200">
-              <h3 className="text-lg font-bold mb-2">Regional Pass</h3>
-              <div className="text-3xl font-bold mb-1">100</div>
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-300 rounded-lg p-5 sm:p-6 hover:border-gray-400 transition-colors duration-200">
+              <h3 className="text-lg font-bold mb-2 text-gray-800">Platinum Ambassador</h3>
+              <div className="text-3xl font-bold mb-1 text-gray-700">50</div>
               <div className="text-gray-600 mb-4">Teams</div>
               <div className="mb-4">
-                <p className="text-sm text-gray-600 mb-3">Unlock exclusive access to finals.</p>
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                    <span className="text-sm">All the Above </span>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-gray-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm">Everything in Gold</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                    <span className="text-sm">Tech Gadget worth ₹2,000</span>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm font-semibold text-green-700">Cash Prize: ₹5,000</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-lg p-5 sm:p-6 hover:border-blue-300 transition-colors duration-200">
-              <h3 className="text-lg font-bold mb-2">Tech Enthusiast</h3>
-              <div className="text-3xl font-bold mb-1">150</div>
-              <div className="text-gray-600 mb-4">Teams</div>
-              <div className="mb-4">
-                <p className="text-sm text-gray-600 mb-3">Premium rewards and tech gadgets.</p>
-                <div className="space-y-2">
-                 <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                    <span className="text-sm">All the Above *</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                    <span className="text-sm">Tech Gadget worth ₹3,000</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    {/* <X className="h-4 w-4 text-blue-600 flex-shrink-0" /> */}
-                    <span className="text-sm text-gray-400">* Note: Previous Gadget is not included</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Level 7-9 - Maintain special styling but reduce animations */}
-            <div className="bg-gradient-to-br from-red-50 to-orange-50 border border-red-200 rounded-lg p-5 sm:p-6 hover:border-red-400 transition-colors duration-200">
-              <h3 className="text-lg font-bold mb-2 text-red-700">Power Ambassador</h3>
-              <div className="text-3xl font-bold mb-1 text-red-600">250</div>
-              <div className="text-gray-600 mb-4">Teams</div>
-              <div className="mb-4">
-                <p className="text-sm text-gray-600 mb-3">Advanced rewards for power users.</p>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-red-600 flex-shrink-0" />
-                    <span className="text-sm">All the Above *</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-red-600 flex-shrink-0" />
-                    <span className="text-sm">Premium Gadget worth ₹5,000</span>
-                  </div>
-                   <div className="flex items-center gap-2">
-                    {/* <X className="h-4 w-4 text-red-600 flex-shrink-0" /> */}
-                    <span className="text-sm text-gray-400">* Note: Previous Gadget is not included</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-5 sm:p-6 hover:border-orange-300 transition-colors duration-200">
-              <h3 className="text-lg font-bold mb-2 text-orange-700">Super Ambassador</h3>
-              <div className="text-3xl font-bold mb-1 text-orange-600">500</div>
-              <div className="text-gray-600 mb-4">Teams</div>
-              <div className="mb-4">
-                <p className="text-sm text-gray-600 mb-3">Elite level with premium gadgets.</p>
-                <div className="space-y-2">
-                   <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-orange-600 flex-shrink-0" />
-                    <span className="text-sm">All the Above *</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-orange-600 flex-shrink-0" />
-                    <span className="text-sm font-semibold ">Premium Gadget worth ₹10,000</span>
-                  </div>
-                   <div className="flex items-center gap-2">
-                    {/* <X className="h-4 w-4 text-orange-600 flex-shrink-0" /> */}
-                    <span className="text-sm text-gray-400">* Note: Previous Gadget is not included</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-yellow-100 to-yellow-50 border-2 border-yellow-300 rounded-lg p-5 sm:p-6 hover:border-yellow-400 transition-colors duration-200 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-indigo-200 rounded-lg p-5 sm:p-6 hover:border-indigo-400 transition-colors duration-200 relative overflow-hidden">
               <div className="absolute top-2 right-2">
-                <Crown className="h-6 w-6 text-yellow-600" />
+                <Star className="h-6 w-6 text-indigo-600" />
               </div>
-              <h3 className="text-lg font-bold mb-2 text-yellow-800">Mega Ambassador</h3>
-              <div className="text-3xl font-bold mb-1 text-yellow-700">1,000</div>
+              <h3 className="text-lg font-bold mb-2 text-indigo-800">Elite Ambassador</h3>
+              <div className="text-3xl font-bold mb-1 text-indigo-700">100</div>
               <div className="text-gray-600 mb-4">Teams</div>
               <div className="mb-4">
-                <p className="text-sm text-gray-600 mb-3">Ultimate achievement with maximum rewards.</p>
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-yellow-600 flex-shrink-0" />
-                    <span className="text-sm">All the Above *</span>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-indigo-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm">Everything in Platinum</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-yellow-600 flex-shrink-0" />
-                    <span className="text-sm font-semibold">Premium Gadget worth ₹20,000</span>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-indigo-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm">Special Recognition at ICPC Amritapuri</span>
                   </div>
-                   <div className="flex items-center gap-2">
-                    {/* <StarOff className="h-4 w-4 text-yellow-600 flex-shrink-0" /> */}
-                    <span className="text-sm text-gray-400">* Note: Previous Gadget is not included</span>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-indigo-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm">Premium Reward</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-1" />
+                    <span className="text-sm font-semibold text-green-700">Cash Prize: ₹15,000</span>
                   </div>
                 </div>
               </div>
             </div>
-             <div className="bg-gradient-to-br from-purple-100 to-purple-50 border-2 border-purple-300 rounded-lg p-5 sm:p-6 hover:border-purple-400 transition-colors duration-200 relative overflow-hidden">
+
+            <div className="bg-gradient-to-br from-purple-100 to-fuchsia-50 border-2 border-purple-300 rounded-lg p-5 sm:p-6 hover:border-purple-400 transition-colors duration-200 relative overflow-hidden sm:col-span-2 lg:col-span-1 xl:col-span-2">
               <div className="absolute top-2 right-2">
-                <Medal className="h-6 w-6 text-legend" />
+                <Crown className="h-8 w-8 text-purple-700" />
               </div>
-              <h3 className="text-lg font-bold mb-2 text-legend">Champion Ambassador</h3>
-              <div className="text-3xl font-bold mb-1 text-legend">2,000</div>
+              <h3 className="text-xl font-bold mb-2 text-purple-900">Legend Ambassador</h3>
+              <div className="text-4xl font-bold mb-1 text-purple-800">200</div>
               <div className="text-gray-600 mb-4">Teams</div>
               <div className="mb-4">
-                <p className="text-sm text-gray-600 mb-3">Ultimate achievement with maximum rewards.</p>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-legend flex-shrink-0" />
-                    <span className="text-sm">All the Above *</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm">Everything in Elite</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-legend flex-shrink-0" />
-                    <span className="text-sm font-semibold">Grand Cash Prize of ₹1,00,000</span>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm">Special Award Ceremony Recognition</span>
                   </div>
-                   <div className="flex items-center gap-2">
-                    {/* <X className="h-4 w-4 text-legend flex-shrink-0" /> */}
-                    <span className="text-sm text-gray-400">* Note: Previous Gadget is not included</span>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm">Exclusive Premium Reward</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm font-bold text-green-700">Cash Prize: ₹25,000</span>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          
+          <div className="mt-6 bg-gray-50 border border-gray-200 p-4 rounded-lg text-sm text-gray-600 flex items-start gap-3">
+            <MessageCircle className="h-5 w-5 text-gray-400 flex-shrink-0 mt-0.5" />
+            <p>
+              <strong>Note:</strong> Cash prizes are milestone-specific and do not accumulate. However, all non-cash rewards, recognition, merchandise, and benefits from previous tiers carry forward as you progress through the program.
+            </p>
           </div>
         </section>
         
@@ -452,7 +442,7 @@ export default function AmbassadorPage() {
             <CheckCircle className="h-8 w-8 text-blue-600" />
             <h2 className="text-2xl sm:text-3xl font-bold">Ready to Begin? Apply in 3 Simple Steps.</h2>
           </div>
-          <p className="text-base sm:text-lg mb-8">
+          <p className="text-base sm:text-lg mb-8 text-justify">
             Your journey to becoming a Champion Ambassador starts now. We&apos;ve made the application process quick and
             easy.
           </p>
@@ -508,7 +498,7 @@ export default function AmbassadorPage() {
 
           <div className="text-center mt-8">
             <a 
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdv6guD9QPe64vxsrSmtG6UHLes5RW9LHdZaD5HL3rp3_lWhA/viewform" 
+              href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSey2XIxzRWhb1Z4x2DihPOs3GZycbvVUT1S5m22JQQNhsSXyA/viewform?usp=send_form" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 text-base sm:text-lg w-full sm:w-auto rounded-md transition-colors inline-block"
@@ -525,33 +515,62 @@ export default function AmbassadorPage() {
             <h2 className="text-2xl sm:text-3xl font-bold">Frequently Asked Questions</h2>
           </div>
           <div className="space-y-4 sm:space-y-6">
-            <div className="p-4 sm:p-6 border rounded-lg">
-              <h3 className="font-bold mb-2 text-base sm:text-lg">Who is eligible to apply?</h3>
-              <p className="text-sm sm:text-base">
-                Any current student enrolled in a college or university within the ICPC Asia West region is welcome to
-                apply. We are looking for passion and leadership potential.
+            <div className="p-4 sm:p-6 border rounded-lg hover:shadow-sm transition-shadow bg-white">
+              <h3 className="font-bold mb-2 text-base sm:text-lg">Who can apply to become an ambassador?</h3>
+              <p className="text-sm sm:text-base text-gray-700">
+                Any student currently enrolled in a recognized institution can apply.
               </p>
             </div>
-            <div className="p-4 sm:p-6 border rounded-lg">
-              <h3 className="font-bold mb-2 text-base sm:text-lg">How are my referred teams tracked?</h3>
-              <p className="text-sm sm:text-base">
-                You will be given a unique referral code. A successful referral is counted when a team successfully
-                completes their registration for the ICPC Amritapuri regionals using your code.
+            <div className="p-4 sm:p-6 border rounded-lg hover:shadow-sm transition-shadow bg-white">
+              <h3 className="font-bold mb-2 text-base sm:text-lg">Do I need prior ICPC experience?</h3>
+              <p className="text-sm sm:text-base text-gray-700">
+                No. Passion, leadership, and willingness to help your community are more important than prior experience.
               </p>
             </div>
-            <div className="p-4 sm:p-6 border rounded-lg">
-              <h3 className="font-bold mb-2 text-base sm:text-lg">Is there a deadline to apply?</h3>
-              <p className="text-sm sm:text-base">
-                Yes, applications for the Ambassador Program close on October 15, 2025. We encourage you to apply early!
+            <div className="p-4 sm:p-6 border rounded-lg hover:shadow-sm transition-shadow bg-white">
+              <h3 className="font-bold mb-2 text-base sm:text-lg">Is there any application fee?</h3>
+              <p className="text-sm sm:text-base text-gray-700">
+                No. Applying to become an ambassador is completely free.
               </p>
             </div>
-            <div className="p-4 sm:p-6 border rounded-lg">
+            <div className="p-4 sm:p-6 border rounded-lg hover:shadow-sm transition-shadow bg-white">
               <h3 className="font-bold mb-2 text-base sm:text-lg">
-                Can there be more than one ambassador from my college?
+                How many ambassadors can a college have?
               </h3>
-              <p className="text-sm sm:text-base">
-                We encourage collaboration and believe that multiple ambassadors can work together to create an even
-                bigger impact on campus.
+              <p className="text-sm sm:text-base text-gray-700">
+                Each institution can have a maximum of three official ambassadors.
+              </p>
+            </div>
+            <div className="p-4 sm:p-6 border rounded-lg hover:shadow-sm transition-shadow bg-white">
+              <h3 className="font-bold mb-2 text-base sm:text-lg">
+                How are ambassadors selected?
+              </h3>
+              <p className="text-sm sm:text-base text-gray-700">
+                Applications are reviewed based on leadership potential, community involvement, outreach capability, and enthusiasm for promoting competitive programming.
+              </p>
+            </div>
+            <div className="p-4 sm:p-6 border rounded-lg hover:shadow-sm transition-shadow bg-white">
+              <h3 className="font-bold mb-2 text-base sm:text-lg">
+                What rewards can I earn?
+              </h3>
+              <p className="text-sm sm:text-base text-gray-700">
+                Ambassadors can unlock certificates, merchandise, exclusive recognition, premium rewards, and benefits from the ambassador rewards ladder with a total reward pool worth up to ₹10,00,000.
+              </p>
+            </div>
+            <div className="p-4 sm:p-6 border rounded-lg hover:shadow-sm transition-shadow bg-white">
+              <h3 className="font-bold mb-2 text-base sm:text-lg">
+                Can first-year students apply?
+              </h3>
+              <p className="text-sm sm:text-base text-gray-700">
+                Absolutely. Students from all years are encouraged to apply.
+              </p>
+            </div>
+            <div className="p-4 sm:p-6 border rounded-lg hover:shadow-sm transition-shadow bg-white">
+              <h3 className="font-bold mb-2 text-base sm:text-lg">
+                What happens after I apply?
+              </h3>
+              <p className="text-sm sm:text-base text-gray-700">
+                Our team will review your application and contact shortlisted candidates with the next steps.
               </p>
             </div>
           </div>

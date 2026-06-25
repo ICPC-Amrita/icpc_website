@@ -11,7 +11,7 @@ export default function ShuffleHero() {
       const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       const [timeLeftEnd, setTimeLeftEnd] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 }); // Added for contest end countdown
       const [showTimer, setShowTimer] = useState(true);
-      const [showEndTimer, setShowEndTimer] = useState(false); // added for contest end countdown
+      const [showEndTimer, setShowEndTimer] = useState(false); // added for Econtest end countdown
       useEffect(() => {
           const prelimsDate = new Date('2026-06-11T10:00:00').getTime();
           const contestEndDate = new Date('2026-06-15T09:00:00').getTime(); // ADD THIS LINE

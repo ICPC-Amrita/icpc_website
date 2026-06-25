@@ -12,10 +12,14 @@ const ITEMS_PER_PAGE = 15;
 export default function LeaderboardPage() {
   const [teams, setTeams] = useState([])
   const [loading, setLoading] = useState(false)
-  const [campusFilter, setCampusFilter] = useState('All')
+  const [sourceFilter, setSourceFilter] = useState('All')
+  const [campaignFilter, setCampaignFilter] = useState('All')
   
   const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
+
+  const [uploadedIcpcTeams, setUploadedIcpcTeams] = useState(null)
+  const [stats, setStats] = useState(null)
 
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [emailInput, setEmailInput] = useState('')
@@ -26,7 +30,8 @@ export default function LeaderboardPage() {
   const [hero, setHero] = useState(false)
   const scrollDir = useRef("scrolling down")
 
-  const [campuses, setCampuses] = useState(['All'])
+  const [sources, setSources] = useState(['All'])
+  const [campaigns, setCampaigns] = useState(['All'])
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -60,7 +65,18 @@ export default function LeaderboardPage() {
     if (isAuthenticated) {
       fetchTeams()
     }
-  }, [campusFilter, isAuthenticated])
+  }, [isAuthenticated])
+
+  useEffect(() => {
+    if (uploadedIcpcTeams && teams.length > 0) {
+      const verified = teams.filter(t => uploadedIcpcTeams.has(t.teamName.toLowerCase().trim()))
+      const withUtm = verified.filter(t => t.utmSource || t.utmMedium || t.utmCampaign)
+      setStats({
+        verifiedCount: verified.length,
+        withUtmCount: withUtm.length
+      })
+    }
+  }, [uploadedIcpcTeams, teams])
 
   const [isAuthenticating, setIsAuthenticating] = useState(false)
 
@@ -92,7 +108,7 @@ export default function LeaderboardPage() {
 
   useEffect(() => {
     setCurrentPage(1)
-  }, [searchQuery, campusFilter])
+  }, [searchQuery, sourceFilter, campaignFilter])
 
   const handleDeleteAll = async () => {
     if (window.confirm("Are you sure you want to delete ALL data? This action cannot be undone.")) {
@@ -120,9 +136,39 @@ export default function LeaderboardPage() {
     XLSX.writeFile(workbook, "Registered_Teams.xlsx")
   }
 
-  const filteredTeams = teams.filter(team => 
-    team.teamName.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = (evt) => {
+      try {
+        const bstr = evt.target.result
+        const workbook = XLSX.read(bstr, { type: 'binary' })
+        const wsname = workbook.SheetNames[0]
+        const ws = workbook.Sheets[wsname]
+        const data = XLSX.utils.sheet_to_json(ws)
+        
+        if (data.length > 0) {
+          let teamNameKey = Object.keys(data[0]).find(k => k.toLowerCase().replace(/\s/g, '') === 'teamname')
+          if (!teamNameKey) teamNameKey = Object.keys(data[0])[0]
+          
+          const teamNames = new Set(data.map(row => (row[teamNameKey] || '').toString().toLowerCase().trim()))
+          setUploadedIcpcTeams(teamNames)
+        }
+      } catch (err) {
+        console.error('Error parsing excel', err)
+        alert('Failed to parse the Excel file.')
+      }
+    }
+    reader.readAsBinaryString(file)
+  }
+
+  const filteredTeams = teams.filter(team => {
+    const matchSearch = team.teamName.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchSource = sourceFilter === 'All' || team.utmSource === sourceFilter
+    const matchCampaign = campaignFilter === 'All' || team.utmCampaign === campaignFilter
+    return matchSearch && matchSource && matchCampaign
+  })
   
   const totalPages = Math.ceil(filteredTeams.length / ITEMS_PER_PAGE) || 1
   const currentTeams = filteredTeams.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
@@ -130,15 +176,18 @@ export default function LeaderboardPage() {
   const fetchTeams = async () => {
     setLoading(true)
     try {
-      const url = campusFilter === 'All' ? '/api/teams' : `/api/teams?campus=${encodeURIComponent(campusFilter)}`
-      const res = await fetch(url)
+      const res = await fetch('/api/teams')
       const data = await res.json()
       if (res.ok) {
         setTeams(data.teams)
-        if (data.availableCampuses) {
-          const uniqueCampuses = new Set(['All', ...data.availableCampuses])
-          setCampuses(Array.from(uniqueCampuses))
-        }
+        const uniqueSources = new Set(['All'])
+        const uniqueCampaigns = new Set(['All'])
+        data.teams.forEach(t => {
+          if (t.utmSource) uniqueSources.add(t.utmSource)
+          if (t.utmCampaign) uniqueCampaigns.add(t.utmCampaign)
+        })
+        setSources(Array.from(uniqueSources))
+        setCampaigns(Array.from(uniqueCampaigns))
       }
     } catch (error) {
       console.error('Error fetching teams:', error)
@@ -193,32 +242,51 @@ export default function LeaderboardPage() {
             <>
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
                 <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Registered Teams</h1>
-              <p className="text-gray-600">View the teams registered for the ICPC Amritapuri Regionals 2026.</p>
-            </div>
-            <div className="mt-4 md:mt-0">
-              <Link href="/" className="text-blue-600  hover:text-blue-800">
-                Back to Home
-              </Link>
-            </div>
-          </div>
+                  <h1 className="text-3xl font-bold text-gray-900 mb-2">Registered Teams</h1>
+                  <p className="text-gray-600">View the teams registered for the ICPC Amritapuri Regionals 2026.</p>
+                  {stats && (
+                    <div className="mt-4 bg-green-50 text-green-800 p-4 rounded-lg border border-green-200 shadow-sm animate-in fade-in zoom-in duration-300">
+                      <p className="font-semibold text-lg flex items-center gap-2">ICPC Verification Stats</p>
+                      <p className="mt-1">Total Verified Teams: <span className="font-bold">{stats.verifiedCount}</span></p>
+                      <p>Verified Teams with UTM tracking: <span className="font-bold">{stats.withUtmCount}</span></p>
+                    </div>
+                  )}
+                </div>
+                <div className="mt-4 md:mt-0 self-start md:self-auto">
+                  <Link href="/" className="text-blue-600  hover:text-blue-800">
+                    Back to Home
+                  </Link>
+                </div>
+              </div>
 
           <div className="bg-blue-900 rounded-none border overflow-hidden">
-            <div className="p-6 border-b flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-                <div className="flex items-center space-x-2 w-full sm:w-auto">
-                  <span className="text-md text-white whitespace-nowrap">Filter:</span>
+            <div className="p-6 border-b flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4">
+              <div className="flex flex-col lg:flex-row items-center gap-4 w-full xl:w-auto">
+                <div className="flex items-center space-x-2 w-full lg:w-auto">
+                  <span className="text-md text-white whitespace-nowrap">Source:</span>
                   <select
-                    value={campusFilter}
-                    onChange={(e) => setCampusFilter(e.target.value)}
+                    value={sourceFilter}
+                    onChange={(e) => setSourceFilter(e.target.value)}
                     className="block w-full sm:w-40 pl-3 pr-8 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md text-black"
                   >
-                    {campuses.map(campus => (
-                      <option key={campus} value={campus}>{campus}</option>
+                    {sources.map(src => (
+                      <option key={src} value={src}>{src}</option>
                     ))}
                   </select>
                 </div>
-                <div className="w-full sm:w-auto">
+                <div className="flex items-center space-x-2 w-full lg:w-auto">
+                  <span className="text-md text-white whitespace-nowrap">Campaign:</span>
+                  <select
+                    value={campaignFilter}
+                    onChange={(e) => setCampaignFilter(e.target.value)}
+                    className="block w-full sm:w-40 pl-3 pr-8 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md text-black"
+                  >
+                    {campaigns.map(camp => (
+                      <option key={camp} value={camp}>{camp}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="w-full lg:w-auto">
                   <input
                     type="text"
                     placeholder="Search teams..."
@@ -229,10 +297,14 @@ export default function LeaderboardPage() {
                 </div>
               </div>
               
-              <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+              <div className="flex flex-wrap items-center gap-3 w-full xl:w-auto justify-end">
                 <div className="text-md text-white mr-2">
                   {filteredTeams.length} teams
                 </div>
+                <label className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm transition shadow-sm cursor-pointer mb-0">
+                  <FaFileExcel /> Verify via Excel
+                  <input type="file" accept=".xlsx, .xls" onChange={handleFileUpload} className="hidden" />
+                </label>
                 <button 
                   onClick={handleExport}
                   className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm transition shadow-sm"
@@ -283,7 +355,12 @@ export default function LeaderboardPage() {
                     {currentTeams.map((team) => (
                       <tr key={team.id} className="hover:bg-gray-50 transition-colors">
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {team.teamName}
+                          <div className="flex items-center gap-2">
+                            {team.teamName}
+                            {uploadedIcpcTeams && uploadedIcpcTeams.has(team.teamName.toLowerCase().trim()) && (
+                              <span title="Verified in ICPC Portal" className="text-green-600 text-lg">✓</span>
+                            )}
+                          </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                           <span className="inline-flex items-center px-2.5 py-0.5 text-md  text-blue-800">
