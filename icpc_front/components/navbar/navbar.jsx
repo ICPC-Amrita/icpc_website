@@ -377,7 +377,7 @@ export default function Navbar({ open, hero, darkSection }) {
         { label: "Home", href: "/", type: "link" },
         { label: "Why Amrita", href: "/why-choose-amrita", type: "link" },
         { label: "FAQ", href: "#faq", type: "scroll" },
-        { label: "Hall of Fame", href: "/halloffame", type: "link" },
+        // { label: "Hall of Fame", href: "/halloffame", type: "link" },
         // { label: "Prelims Ranklist", href: "/prelims-ranklist", type: "link" },
         { label: "Reach Us", type: "dropdown", items: locations },
         // { label: "Promote", href: "/promote", type: "link" },
