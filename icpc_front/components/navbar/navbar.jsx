@@ -381,7 +381,7 @@ export default function Navbar({ open, hero, darkSection }) {
         // { label: "Prelims Ranklist", href: "/prelims-ranklist", type: "link" },
         { label: "Reach Us", type: "dropdown", items: locations },
         // { label: "Promote", href: "/promote", type: "link" },
-        // { label: "Join as Ambassador", href: "/ambassador-program", type: "link" },
+        { label: "Join as Ambassador", href: "/ambassador-program", type: "link" },
         // { label: "Onsite Ranklist", href: "/onsite-ranklist", type: "link" },
 
         // { label: "Organizers", href: "/organizers", type: "link" },
