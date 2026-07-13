@@ -9,7 +9,9 @@ datasource db {
 
 model Team {
   id          String   @id @default(uuid())
-  teamName    String
+  personName  String
+  userEmail   String?
+  isVerified  Boolean  @default(false)
   campus      String
   utmSource   String?
   utmMedium   String?

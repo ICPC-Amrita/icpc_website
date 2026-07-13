@@ -6,7 +6,8 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 
 function TeamRegistrationModalInner() {
   const [isOpen, setIsOpen] = useState(false)
-  const [teamName, setTeamName] = useState('')
+  const [personName, setPersonName] = useState('')
+  const [userEmail, setUserEmail] = useState('')
   const [captchaValue, setCaptchaValue] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -19,6 +20,7 @@ function TeamRegistrationModalInner() {
     const source = searchParams.get('utm_source') || ''
     const medium = searchParams.get('utm_medium') || ''
     const campaign = searchParams.get('utm_campaign') || ''
+
 
     if (source || medium || campaign) {
       setIsOpen(true)
@@ -45,7 +47,8 @@ function TeamRegistrationModalInner() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          teamName,
+          personName,
+          userEmail,
           utmSource,
           utmMedium,
           utmCampaign
@@ -59,7 +62,8 @@ function TeamRegistrationModalInner() {
         setCaptchaValue('')
       } else {
         setSuccess(true)
-        setTeamName('')
+        setPersonName('')
+        setUserEmail('')
         setCaptchaValue('')
         setTimeout(() => {
           window.location.href = 'https://icpc.global/'
@@ -92,13 +96,24 @@ function TeamRegistrationModalInner() {
         {!success ? (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Team Name</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
               <input 
                 type="text" 
                 required
-                value={teamName}
-                onChange={(e) => setTeamName(e.target.value)}
-                placeholder="e.g. Team name "
+                value={personName}
+                onChange={(e) => setPersonName(e.target.value)}
+                placeholder="e.g. John Doe"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">User Email</label>
+              <input 
+                type="email" 
+                required
+                value={userEmail}
+                onChange={(e) => setUserEmail(e.target.value)}
+                placeholder="e.g. example@gmail.com"  
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
               />
             </div>
@@ -117,6 +132,8 @@ function TeamRegistrationModalInner() {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
               />
             </div> */}
+
+            <p className="text-red-500 text-sm">Note: You need to enter your Name and Email which you will use to register in ICPC.</p>
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
 

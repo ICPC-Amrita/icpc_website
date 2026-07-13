@@ -1,23 +1,24 @@
 import { NextResponse } from 'next/server'
-import { createTeam, getTeams, deleteAllTeams, getTeamByName, getAllCampuses } from '@/lib/services/teamService'
+import { createTeam, getTeams, deleteAllTeams, getTeam, getAllCampuses } from '@/lib/services/teamService'
 
 export async function POST(request) {
   try {
     const body = await request.json()
-    const { teamName, utmSource, utmMedium, utmCampaign } = body
+    const { personName, userEmail, utmSource, utmMedium, utmCampaign } = body
 
-    if (!teamName) {
-      return NextResponse.json({ error: 'Team name is required' }, { status: 400 })
+    if (!(personName) && !(userEmail)) {
+      return NextResponse.json({ error: 'Name and user email are required' }, { status: 400 })
     }
 
-    // Check for duplicate team name
-    const existingTeam = await getTeamByName(teamName)
+    // Check for duplicate user
+    const existingTeam = await getTeam(personName, userEmail)
     if (existingTeam) {
-      return NextResponse.json({ error: 'This team name is already taken. Please choose another.' }, { status: 409 })
+      return NextResponse.json({ error: 'This name or email is already present in the database. Please verify your details.' }, { status: 409 })
     }
 
     const newTeam = await createTeam({
-      teamName,
+      personName,
+      userEmail,
       utmSource,
       utmMedium,
       utmCampaign
