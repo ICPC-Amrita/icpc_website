@@ -7,7 +7,8 @@ import prisma from '../db'
 export async function createTeam(data) {
   return await prisma.team.create({
     data: {
-      teamName: data.teamName,
+      personName: data.personName,
+      userEmail: data.userEmail,
       campus: data.utmSource || 'Unknown',
       utmSource: data.utmSource,
       utmMedium: data.utmMedium,
@@ -51,13 +52,29 @@ export async function deleteAllTeams() {
  * Get a team by its exact name (case-insensitive)
  * @param {string} teamName 
  */
-export async function getTeamByName(teamName) {
+export async function getTeamByName(personName) {
   return await prisma.team.findFirst({
     where: {
-      teamName: {
-        equals: teamName,
+      personName: {
+        equals: personName,
         mode: 'insensitive'
       }
+    }
+  })
+}
+
+/**
+ * Get a team by its name or email (to prevent duplicates)
+ * @param {string} personName 
+ * @param {string} userEmail 
+ */
+export async function getTeam(personName, userEmail) {
+  return await prisma.team.findFirst({
+    where: {
+      OR: [
+        { personName: { equals: personName, mode: 'insensitive' } },
+        { userEmail: { equals: userEmail, mode: 'insensitive' } }
+      ]
     }
   })
 }

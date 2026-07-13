@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Search, RefreshCw } from 'lucide-react';
 import ContactUs2 from "@/components/footer/contact_us_2";
 
-// Mock data
-const ambassadors = [
+// Mock data as fallback
+const initialAmbassadors = [
   { id: 1, name: "Sarah Chen", institution: "Amrita Vishwa Vidyapeetham", description: "Community Builder & Tech Evangelist", teamsRegistered: 47 },
   { id: 2, name: "Marcus Johnson", institution: "IIT Madras", description: "Developer Relations Lead", teamsRegistered: 43 },
   { id: 3, name: "Elena Rodriguez", institution: "NIT Trichy", description: "Open Source Advocate", teamsRegistered: 38 },
@@ -28,12 +28,55 @@ const ITEMS_PER_PAGE = 10;
 export default function Leaderboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [ambassadorsList, setAmbassadorsList] = useState(initialAmbassadors);
+  const [isUpdating, setIsUpdating] = useState(false);
   
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm]);
 
-  const filteredAmbassadors = ambassadors.filter(a => 
+  const updateLeaderboard = async () => {
+    setIsUpdating(true);
+    try {
+      const res = await fetch('/api/teams');
+      const data = await res.json();
+      if (res.ok && data.teams) {
+        const counts = {};
+        data.teams.filter(t => t.isVerified).forEach(t => {
+          // Use utmCampaign as the ambassador identifier (e.g. ICPCAM2026)
+          const source = t.utmCampaign;
+          if (source && source !== 'Unknown') {
+            counts[source] = (counts[source] || 0) + 1;
+          }
+        });
+        
+        if (Object.keys(counts).length > 0) {
+          const newAmbassadors = Object.entries(counts).map(([source, count], index) => {
+            // Try to find if this source matches our initial mock data
+            const existing = initialAmbassadors.find(a => a.name.toLowerCase() === source.toLowerCase());
+            return {
+              id: index + 1,
+              name: existing ? existing.name : source,
+              institution: existing ? existing.institution : 'Registered Source',
+              description: existing ? existing.description : 'Ambassador',
+              teamsRegistered: count
+            };
+          }).sort((a, b) => b.teamsRegistered - a.teamsRegistered);
+          
+          setAmbassadorsList(newAmbassadors);
+        } else {
+          alert('No ambassadors with registered teams found yet.');
+        }
+      }
+    } catch (error) {
+      console.error('Failed to update leaderboard:', error);
+      alert('Failed to update leaderboard data.');
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  const filteredAmbassadors = ambassadorsList.filter(a => 
     a.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
     (a.institution && a.institution.toLowerCase().includes(searchTerm.toLowerCase()))
   );
@@ -73,18 +116,28 @@ export default function Leaderboard() {
           <p className="text-sm text-gray-500 mt-2">Note: Ranklist based on teams registered by each ambassador</p>
         </div>
 
-        {/* Search Bar */}
-        <div className="mb-8 max-w-md mx-auto relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-gray-400" />
+        {/* Search Bar & Update Button */}
+        <div className="mb-8 max-w-2xl mx-auto flex flex-col sm:flex-row gap-4 items-center justify-center">
+          <div className="relative w-full max-w-md">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-gray-400" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search by name or institution..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="block w-full pl-10 pr-3 py-2 border border-border rounded-md leading-5 bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm"
+            />
           </div>
-          <input
-            type="text"
-            placeholder="Search by name or institution..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="block w-full pl-10 pr-3 py-2 border border-border rounded-md leading-5 bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm"
-          />
+          <button 
+            onClick={updateLeaderboard}
+            disabled={isUpdating}
+            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition shadow-sm disabled:opacity-70 whitespace-nowrap"
+          >
+            <RefreshCw className={`h-4 w-4 ${isUpdating ? 'animate-spin' : ''}`} />
+            {isUpdating ? 'Updating...' : 'Update Leaderboard'}
+          </button>
         </div>
 
         {/* Desktop table (md+) */}
