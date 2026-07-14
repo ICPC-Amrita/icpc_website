@@ -11,17 +11,17 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: icpc_frontend
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_URL=postgresql://postgres:password@postgres:5432/icpc?schema=public
-    depends_on:
-      - postgres
+  # frontend:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: icpc_frontend
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - DATABASE_URL=postgresql://postgres:password@postgres:5432/icpc?schema=public
+  #   depends_on:
+  #     - postgres
 
 volumes:
   pgdata:

@@ -20,7 +20,39 @@ model Team {
 }
 
 model Admin {
-  id       String @id @default(uuid())
-  email    String @unique
+  id       String         @id @default(uuid())
+  email    String         @unique
   password String
+  sessions AdminSession[]
+}
+
+model AdminSession {
+  id        String   @id @default(uuid())
+  adminId   String
+  admin     Admin    @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Snapshot {
+  id         String          @id @default(uuid())
+  filename   String
+  uploadedAt DateTime        @default(now())
+  entries    SnapshotEntry[]
+}
+
+model SnapshotEntry {
+  id           String   @id @default(uuid())
+  snapshotId   String
+  snapshot     Snapshot @relation(fields: [snapshotId], references: [id], onDelete: Cascade)
+  username     String
+  firstName    String?
+  lastName     String?
+  role         String?
+  teamId       String?
+  teamName     String?
+  teamStatus   String?
+  teamInstName String?
+  ambassador   String?
 }

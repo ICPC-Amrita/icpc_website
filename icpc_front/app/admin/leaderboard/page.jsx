@@ -2,8 +2,6 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
-import Navbar from "@/components/navbar/navbar"
-import ContactUs2 from "@/components/footer/contact_us_2"
 import { FaFileExcel, FaTrash } from "react-icons/fa"
 import * as XLSX from 'xlsx'
 
@@ -21,52 +19,13 @@ export default function LeaderboardPage() {
 
   const [uploadedIcpcTeams, setUploadedIcpcTeams] = useState(null)
   const [stats, setStats] = useState(null)
-
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [emailInput, setEmailInput] = useState('')
-  const [passwordInput, setPasswordInput] = useState('')
-  const [loginError, setLoginError] = useState('')
-
-  const [open, setOpen] = useState(true)
-  const [hero, setHero] = useState(false)
-  const scrollDir = useRef("scrolling down")
-
   const [sources, setSources] = useState(['All'])
   const [campaigns, setCampaigns] = useState(['All'])
 
+  // Fetch teams on mount
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
-    const updateScrollDir = () => {
-        const scrollY = window.scrollY;
-        setHero(false);
-        if (scrollY < lastScrollY) {
-            setOpen(true);
-        } else if (scrollY > lastScrollY && scrollY > 50) {
-            setOpen(false);
-        }
-        scrollDir.current = scrollY > lastScrollY ? "scrolling down" : "scrolling up";
-        lastScrollY = scrollY > 0 ? scrollY : 0;
-        ticking = false;
-    };
-
-    const onScroll = () => {
-        if (!ticking) {
-            window.requestAnimationFrame(updateScrollDir);
-            ticking = true;
-        }
-    };
-
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    fetchTeams()
   }, [])
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      fetchTeams()
-    }
-  }, [isAuthenticated])
 
   useEffect(() => {
     if (uploadedIcpcTeams && teams.length > 0) {
@@ -83,33 +42,7 @@ export default function LeaderboardPage() {
     }
   }, [uploadedIcpcTeams, teams])
 
-  const [isAuthenticating, setIsAuthenticating] = useState(false)
 
-  const handleLogin = async (e) => {
-    e.preventDefault()
-    setIsAuthenticating(true)
-    setLoginError('')
-
-    try {
-      const response = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: emailInput, password: passwordInput })
-      })
-
-      const data = await response.json()
-
-      if (response.ok) {
-        setIsAuthenticated(true)
-      } else {
-        setLoginError(data.error || 'Invalid credentials')
-      }
-    } catch (err) {
-      setLoginError('Network error. Please try again.')
-    } finally {
-      setIsAuthenticating(false)
-    }
-  }
 
   useEffect(() => {
     setCurrentPage(1)
@@ -242,52 +175,11 @@ export default function LeaderboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-      <Navbar open={open} hero={hero} darkSection={false} />
-      
-      <div className="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {!isAuthenticated ? (
-            <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8 mt-12 border border-gray-100 animate-in fade-in zoom-in duration-300">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Admin Login</h2>
-              <form onSubmit={handleLogin} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                  <input 
-                    type="email" 
-                    required 
-                    value={emailInput} 
-                    onChange={e => setEmailInput(e.target.value)} 
-                    placeholder="example@gmail.com"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" 
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                  <input 
-                    type="password" 
-                    required 
-                    value={passwordInput} 
-                    onChange={e => setPasswordInput(e.target.value)} 
-                    placeholder="Enter password"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" 
-                  />
-                </div>
-                {loginError && <p className="text-red-500 text-sm text-center">{loginError}</p>}
-                <button 
-                  type="submit" 
-                  disabled={isAuthenticating}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition disabled:bg-blue-400"
-                >
-                  {isAuthenticating ? 'Authenticating...' : 'Login'}
-                </button>
-              </form>
-            </div>
-          ) : (
-            <>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-                <div>
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">Registered Teams</h1>
+    <div className="p-6 font-sans">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Registered Teams</h1>
                   <p className="text-gray-600">View the teams registered for the ICPC Amritapuri Regionals 2026.</p>
                   {stats && (
                     <div className="mt-4 bg-green-50 text-green-800 p-4 rounded-lg border border-green-200 shadow-sm animate-in fade-in zoom-in duration-300">
@@ -473,13 +365,6 @@ export default function LeaderboardPage() {
               </div>
             )}
           </div>
-            </>
-          )}
-        </div>
-      </div>
-
-      <div className="bg-blue-950 mt-auto">
-        <ContactUs2 />
       </div>
     </div>
   )

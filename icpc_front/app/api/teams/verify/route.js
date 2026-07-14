@@ -1,29 +1,57 @@
-import { NextResponse } from 'next/server'
-import prisma from '@/lib/db'
+import { NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 export async function POST(request) {
   try {
-    const { verifiedIds } = await request.json()
+    const body = await request.json();
+    const { verifiedEmails, unverifiedEmails } = body;
 
-    if (!verifiedIds || !Array.isArray(verifiedIds)) {
-      return NextResponse.json({ error: 'Invalid data format' }, { status: 400 })
+    if (!verifiedEmails || !Array.isArray(verifiedEmails)) {
+      return NextResponse.json({ error: 'verifiedEmails array is required' }, { status: 400 });
     }
 
-    // Update the isVerified field for all matching IDs
-    await prisma.team.updateMany({
-      where: {
-        id: {
-          in: verifiedIds
-        }
-      },
-      data: {
-        isVerified: true
-      }
-    })
+    // Process all updates in a transaction
+    const operations = [];
 
-    return NextResponse.json({ success: true, message: 'Teams verified successfully' }, { status: 200 })
+    // 1. Mark teams as verified
+    if (verifiedEmails.length > 0) {
+      operations.push(
+        prisma.team.updateMany({
+          where: {
+            userEmail: {
+              in: verifiedEmails
+            }
+          },
+          data: {
+            isVerified: true
+          }
+        })
+      );
+    }
+
+    // 2. Mark teams as unverified if requested
+    if (unverifiedEmails && unverifiedEmails.length > 0) {
+      operations.push(
+        prisma.team.updateMany({
+          where: {
+            userEmail: {
+              in: unverifiedEmails
+            }
+          },
+          data: {
+            isVerified: false
+          }
+        })
+      );
+    }
+
+    await prisma.$transaction(operations);
+
+    return NextResponse.json({ success: true, message: 'Database updated successfully' }, { status: 200 });
   } catch (error) {
-    console.error('Error verifying teams:', error)
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    console.error('Error updating team verification:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
