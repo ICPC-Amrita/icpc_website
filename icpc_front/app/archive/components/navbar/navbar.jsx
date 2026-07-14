@@ -100,12 +100,12 @@ export default function Navbar({ open, hero, darkSection }) {
                 >
                     Promote
                 </Link>
-                <Link 
+                {/* <Link 
                     href="/archive/icpc_Amritapuri_2024/gallery" 
                     className={`mx-[1vw] ${textColor} transition ease-in duration-300`}
                 >
                     Gallery
-                </Link>
+                </Link> */}
                  {/* <div className="group">
                     <button
                         className={`mx-[1vw] ${textColor} transition ease-in duration-300 group`}

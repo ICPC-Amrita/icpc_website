@@ -41,11 +41,11 @@ export default function ExclusivePerks2() {
           <div className="flex gap-[2vw] items-center">
             <div className="w-[15vw] h-[15vw] max-md:w-[30vw] max-md:h-[30vw] rounded-[1vw] overflow-hidden flex-shrink-0">
               <Image
-                src="/webinar.jpg"
+                src="/jaskaransingh.png"
                 width={500}
                 height={500}
                 alt="Exclusive Webinar"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-center"
               />
             </div>
             <div>
