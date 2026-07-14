@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import bcrypt from 'bcryptjs'
+import crypto from 'crypto'
 
 export async function POST(request) {
   try {
@@ -10,7 +11,6 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Email and password are required' }, { status: 400 })
     }
 
-    // Find the admin user in the database
     const admin = await prisma.admin.findUnique({
       where: { email: email.toLowerCase() },
     })
@@ -19,15 +19,35 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 })
     }
 
-    // Verify the password using bcryptjs
     const isPasswordValid = await bcrypt.compare(password, admin.password)
 
     if (!isPasswordValid) {
       return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 })
     }
 
-    // Return success (in a real app, you might return a JWT token here)
-    return NextResponse.json({ success: true, message: 'Authenticated successfully' }, { status: 200 })
+    // Create a session token and store in DB
+    const token = crypto.randomUUID()
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000) // 24 hours
+
+    await prisma.adminSession.create({
+      data: {
+        adminId: admin.id,
+        token,
+        expiresAt,
+      }
+    })
+
+    // Set HTTP-only cookie
+    const response = NextResponse.json({ success: true, message: 'Authenticated successfully' }, { status: 200 })
+    response.cookies.set('admin_session', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 24 * 60 * 60, // 24 hours in seconds
+    })
+
+    return response
   } catch (error) {
     console.error('Login error:', error)
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
