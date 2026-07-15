@@ -15,7 +15,7 @@ export async function GET() {
 
     // 2. Get DB Teams
     const dbTeams = await prisma.team.findMany({
-      select: { userEmail: true, personName: true, utmSource: true, isVerified: true }
+      select: { userEmail: true, personName: true, utmSource: true, utmCampaign: true, isVerified: true }
     })
 
     // 3. Do the mapping logic
