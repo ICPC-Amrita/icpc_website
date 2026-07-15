@@ -2,10 +2,9 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
-import { FaFileExcel, FaTrash } from "react-icons/fa"
+import { FaFileExcel, FaTrash, FaChartBar } from "react-icons/fa"
 import * as XLSX from 'xlsx'
-
-const ITEMS_PER_PAGE = 15;
+import ReactECharts from 'echarts-for-react'
 
 export default function LeaderboardPage() {
   const [teams, setTeams] = useState([])
@@ -21,6 +20,9 @@ export default function LeaderboardPage() {
   const [stats, setStats] = useState(null)
   const [sources, setSources] = useState(['All'])
   const [campaigns, setCampaigns] = useState(['All'])
+  const [showAnalytics, setShowAnalytics] = useState(false)
+  const [itemsPerPage, setItemsPerPage] = useState(15)
+  const [selectedTeams, setSelectedTeams] = useState(new Set())
 
   // Fetch teams on mount
   useEffect(() => {
@@ -148,8 +150,44 @@ export default function LeaderboardPage() {
     return matchSearch && matchEmail && matchSource && matchCampaign
   })
   
-  const totalPages = Math.ceil(filteredTeams.length / ITEMS_PER_PAGE) || 1
-  const currentTeams = filteredTeams.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+  const totalPages = Math.ceil(filteredTeams.length / itemsPerPage) || 1
+  const currentTeams = filteredTeams.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+
+  const handleDeleteSelected = async () => {
+    if (selectedTeams.size === 0) return;
+    if (window.confirm(`Are you sure you want to delete ${selectedTeams.size} selected teams?`)) {
+      try {
+        const res = await fetch('/api/teams', { 
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ids: Array.from(selectedTeams) })
+        })
+        if (res.ok) {
+          setTeams(teams.filter(t => !selectedTeams.has(t.id)))
+          setSelectedTeams(new Set())
+        } else {
+          alert('Failed to delete selected teams.')
+        }
+      } catch (err) {
+        console.error(err)
+      }
+    }
+  }
+
+  const toggleSelectAll = () => {
+    if (selectedTeams.size === currentTeams.length && currentTeams.length > 0) {
+      setSelectedTeams(new Set())
+    } else {
+      setSelectedTeams(new Set(currentTeams.map(t => t.id)))
+    }
+  }
+
+  const toggleSelect = (id) => {
+    const newSelected = new Set(selectedTeams)
+    if (newSelected.has(id)) newSelected.delete(id)
+    else newSelected.add(id)
+    setSelectedTeams(newSelected)
+  }
 
   const fetchTeams = async () => {
     setLoading(true)
@@ -171,6 +209,88 @@ export default function LeaderboardPage() {
       console.error('Error fetching teams:', error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const getSourceAnalytics = () => {
+    if (!teams.length) return null
+    const counts = {}
+    teams.forEach(t => {
+      const src = t.utmSource || 'Organic / None'
+      counts[src] = (counts[src] || 0) + 1
+    })
+    return {
+      title: { text: 'Registrations by UTM Source', left: 'center', textStyle: { fontSize: 14 } },
+      tooltip: { trigger: 'item' },
+      series: [{ type: 'pie', radius: '60%', data: Object.entries(counts).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value).slice(0, 10) }]
+    }
+  }
+
+  const getCampaignAnalytics = () => {
+    if (!teams.length) return null
+    const counts = {}
+    teams.forEach(t => {
+      const camp = t.utmCampaign || 'Organic / None'
+      counts[camp] = (counts[camp] || 0) + 1
+    })
+    return {
+      title: { text: 'UTM Campaign Breakdown', left: 'center', textStyle: { fontSize: 14 } },
+      tooltip: { trigger: 'item' },
+      series: [{ 
+        type: 'pie', 
+        radius: ['40%', '70%'], 
+        data: Object.entries(counts).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value).slice(0, 10),
+        itemStyle: { borderRadius: 5, borderColor: '#fff', borderWidth: 2 }
+      }]
+    }
+  }
+
+  const getMediumAnalytics = () => {
+    if (!teams.length) return null
+    const counts = {}
+    teams.forEach(t => {
+      const med = t.utmMedium || 'Organic / None'
+      counts[med] = (counts[med] || 0) + 1
+    })
+    
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10)
+
+    return {
+      title: { text: 'Top 10 UTM Mediums', left: 'center', textStyle: { fontSize: 14 } },
+      tooltip: { trigger: 'axis' },
+      xAxis: { type: 'category', data: sorted.map(i => i[0]), axisLabel: { interval: 0, rotate: 25, fontSize: 10 } },
+      yAxis: { type: 'value' },
+      series: [{
+        type: 'bar',
+        data: sorted.map(i => i[1]),
+        itemStyle: { color: '#10b981', borderRadius: [4, 4, 0, 0] }
+      }]
+    }
+  }
+
+  const getRegistrationTrendAnalytics = () => {
+    if (!teams.length) return null
+    const counts = {}
+    teams.forEach(t => {
+      const date = new Date(t.createdAt).toLocaleDateString('en-CA')
+      counts[date] = (counts[date] || 0) + 1
+    })
+    
+    const sortedDates = Object.keys(counts).sort()
+    const data = sortedDates.map(date => counts[date])
+
+    return {
+      title: { text: 'Registrations Over Time', left: 'center', textStyle: { fontSize: 14 } },
+      tooltip: { trigger: 'axis' },
+      xAxis: { type: 'category', boundaryGap: false, data: sortedDates },
+      yAxis: { type: 'value' },
+      series: [{
+        data: data,
+        type: 'line',
+        areaStyle: { opacity: 0.3, color: '#3b82f6' },
+        itemStyle: { color: '#2563eb' },
+        smooth: true
+      }]
     }
   }
 
@@ -223,46 +343,92 @@ export default function LeaderboardPage() {
                     ))}
                   </select>
                 </div>
-                <div className="w-full lg:w-auto flex flex-col sm:flex-row gap-2">
-                  <input
-                    type="text"
-                    placeholder="Search name..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="block w-full sm:w-64 pl-3 pr-3 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md text-black"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Search email..."
-                    value={searchEmail}
-                    onChange={(e) => setSearchEmail(e.target.value)}
-                    className="block w-full sm:w-64 pl-3 pr-3 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md text-black"
-                  />
+                <div className="flex flex-col sm:flex-row items-center gap-2 w-full lg:w-auto mt-2 lg:mt-0">
+                  <div className="flex w-full sm:w-auto gap-2">
+                    <input
+                      type="text"
+                      placeholder="Search name..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="block w-full sm:w-48 pl-3 pr-3 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md text-black"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Search email..."
+                      value={searchEmail}
+                      onChange={(e) => setSearchEmail(e.target.value)}
+                      className="block w-full sm:w-48 pl-3 pr-3 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md text-black"
+                    />
+                  </div>
+                  <div className="flex items-center space-x-2 w-full sm:w-auto mt-2 sm:mt-0">
+                    <span className="text-md text-white whitespace-nowrap">Show:</span>
+                    <select
+                      value={itemsPerPage}
+                      onChange={(e) => { setItemsPerPage(Number(e.target.value)); setCurrentPage(1); }}
+                      className="block w-full sm:w-20 pl-3 pr-8 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md text-black"
+                    >
+                      <option value={15}>15</option>
+                      <option value={30}>30</option>
+                      <option value={50}>50</option>
+                      <option value={filteredTeams.length > 0 ? filteredTeams.length : 1000}>All</option>
+                    </select>
+                  </div>
                 </div>
               </div>
               
               <div className="flex flex-wrap items-center gap-3 w-full xl:w-auto justify-end">
-                <div className="text-md text-white mr-2">
+                <div className="text-md text-white mr-2 font-medium">
                   {filteredTeams.length} teams
                 </div>
+                <button
+                  onClick={() => setShowAnalytics(!showAnalytics)}
+                  className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm transition shadow-sm"
+                >
+                  <FaChartBar /> {showAnalytics ? 'Hide Analytics' : 'Show Analytics'}
+                </button>
                 <label className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm transition shadow-sm cursor-pointer mb-0">
                   <FaFileExcel /> Verify via Excel
                   <input type="file" accept=".xlsx, .xls" onChange={handleFileUpload} className="hidden" />
                 </label>
                 <button 
                   onClick={handleExport}
-                  className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm transition shadow-sm"
+                  className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm transition shadow-sm"
                 >
                   <FaFileExcel /> Export
                 </button>
+                {selectedTeams.size > 0 && (
+                  <button 
+                    onClick={handleDeleteSelected}
+                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm transition shadow-sm"
+                  >
+                    <FaTrash /> Delete Selected ({selectedTeams.size})
+                  </button>
+                )}
                 <button 
                   onClick={handleDeleteAll}
-                  className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm transition shadow-sm"
+                  className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm transition shadow-sm"
                 >
                   <FaTrash /> Delete All
                 </button>
               </div>
             </div>
+
+            {showAnalytics && teams.length > 0 && (
+              <div className="bg-gray-50 border-b border-gray-200 p-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                  <ReactECharts option={getRegistrationTrendAnalytics()} style={{ height: '350px' }} />
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                  <ReactECharts option={getMediumAnalytics()} style={{ height: '350px' }} />
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                  <ReactECharts option={getSourceAnalytics()} style={{ height: '350px' }} />
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                  <ReactECharts option={getCampaignAnalytics()} style={{ height: '350px' }} />
+                </div>
+              </div>
+            )}
 
             {loading ? (
               <div className="p-12 text-center text-black">
@@ -282,6 +448,14 @@ export default function LeaderboardPage() {
                   <thead className="bg-gray-50">
                     <tr>
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                        <input 
+                          type="checkbox" 
+                          className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
+                          checked={currentTeams.length > 0 && selectedTeams.size === currentTeams.length}
+                          onChange={toggleSelectAll}
+                        />
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                         Name
                       </th>
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
@@ -300,7 +474,15 @@ export default function LeaderboardPage() {
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {currentTeams.map((team) => (
-                      <tr key={team.id} className="hover:bg-gray-50 transition-colors">
+                      <tr key={team.id} className={`hover:bg-gray-50 transition-colors ${selectedTeams.has(team.id) ? 'bg-blue-50' : ''}`}>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <input 
+                            type="checkbox" 
+                            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
+                            checked={selectedTeams.has(team.id)}
+                            onChange={() => toggleSelect(team.id)}
+                          />
+                        </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           <div className="flex items-center gap-2">
                             {team.personName}
@@ -330,10 +512,12 @@ export default function LeaderboardPage() {
                           )}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
-                          {new Date(team.createdAt).toLocaleDateString('en-US', {
+                          {new Date(team.createdAt).toLocaleString('en-US', {
                             year: 'numeric',
                             month: 'long',
-                            day: 'numeric'
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
                           })}
                         </td>
                       </tr>

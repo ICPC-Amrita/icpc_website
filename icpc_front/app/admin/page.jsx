@@ -17,12 +17,30 @@ export default function AdminPage() {
   const [ambassadorData, setAmbassadorData] = useState([])
   const [selectedAmbassador, setSelectedAmbassador] = useState(null)
   const [activeTab, setActiveTab] = useState('accepted')
+  const [dbTeams, setDbTeams] = useState([])
 
   // Load snapshots list and trends on mount
   useEffect(() => {
     fetchSnapshots()
     fetchTrends()
+    fetchDbTeams()
   }, [])
+
+  const fetchDbTeams = async () => {
+    try {
+      const res = await fetch('/api/teams')
+      const data = await res.json()
+      if (data.teams) setDbTeams(data.teams)
+    } catch (err) {
+      console.error('Failed to fetch DB teams', err)
+    }
+  }
+
+  useEffect(() => {
+    if (snapshotEntries) {
+      processAmbassadorData(snapshotEntries)
+    }
+  }, [snapshotEntries, dbTeams])
 
   const fetchSnapshots = async () => {
     try {
@@ -53,7 +71,6 @@ export default function AdminPage() {
       const data = await res.json()
       if (data.snapshot) {
         setSnapshotEntries(data.snapshot.entries)
-        processAmbassadorData(data.snapshot.entries)
       }
     } catch (err) {
       console.error('Failed to load snapshot', err)
@@ -121,10 +138,37 @@ export default function AdminPage() {
 
   // Process entries into ambassador-grouped analytics
   const processAmbassadorData = (entries) => {
+    if (!entries || entries.length === 0) {
+      setAmbassadorData([])
+      return
+    }
+
     const ambassadorMap = {}
+    const teamToSourceMap = {}
+
+    // First pass: Match Excel rows to DB teams to find the utmSource for each team
+    entries.forEach(row => {
+      const email = (row.username || '').toLowerCase().trim()
+      const name = ((row.firstName || '') + ' ' + (row.lastName || '')).toLowerCase().trim()
+      
+      const dbMatch = dbTeams.find(t => 
+        (email && t.userEmail && t.userEmail.toLowerCase().trim() === email) ||
+        (name && t.personName && t.personName.toLowerCase().trim() === name)
+      )
+
+      if (dbMatch && dbMatch.utmSource && row.teamId) {
+        // We found a match! All members of this teamId will be attributed to this utmSource
+        teamToSourceMap[row.teamId] = dbMatch.utmSource
+      }
+    })
 
     entries.forEach(row => {
-      const key = row.ambassador
+      const role = (row.role || '').toLowerCase();
+      // We are not tracking coaches
+      if (role.includes('coach')) return;
+
+      // Use the matched utmSource for this team. Fallback to row.ambassador if no DB match.
+      const key = (row.teamId && teamToSourceMap[row.teamId]) || row.ambassador
       if (!key) return
 
       if (!ambassadorMap[key]) {
@@ -174,63 +218,8 @@ export default function AdminPage() {
   const matchedCount = ambassadorData.reduce((sum, a) => sum + a.totalPersons, 0)
 
   // ─── CHARTS ───
-  const barChartOption = ambassadorData.length > 0 ? {
-    title: { text: 'Accepted Registrations per Ambassador', left: 'center', textStyle: { fontSize: 14 } },
-    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    grid: { left: '3%', right: '6%', bottom: '3%', top: '40px', containLabel: true },
-    xAxis: { type: 'value' },
-    yAxis: {
-      type: 'category',
-      data: [...ambassadorData].reverse().map(a => a.name),
-      axisLabel: { width: 120, overflow: 'truncate', fontSize: 11 }
-    },
-    series: [{
-      name: 'Accepted',
-      type: 'bar',
-      data: [...ambassadorData].reverse().map(a => a.accepted.length),
-      itemStyle: { color: '#3b82f6', borderRadius: [0, 4, 4, 0] },
-      label: { show: true, position: 'right', fontSize: 11 }
-    }]
-  } : null
-
-  const pieChartOption = totalEntries > 0 ? {
-    title: { text: 'Status Distribution', left: 'center', textStyle: { fontSize: 14 } },
-    tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
-    legend: { bottom: '0%' },
-    series: [{
-      type: 'pie',
-      radius: ['40%', '65%'],
-      center: ['50%', '45%'],
-      itemStyle: { borderRadius: 6, borderColor: '#fff', borderWidth: 2 },
-      label: { show: true, formatter: '{b}\n{c}' },
-      data: [
-        { value: totalAccepted, name: 'Accepted', itemStyle: { color: '#22c55e' } },
-        { value: totalPending, name: 'Pending', itemStyle: { color: '#f59e0b' } },
-        { value: totalCanceled, name: 'Canceled', itemStyle: { color: '#ef4444' } },
-      ]
-    }]
-  } : null
-
-  const stackedBarOption = ambassadorData.length > 0 ? {
-    title: { text: 'Status Breakdown by Ambassador', left: 'center', textStyle: { fontSize: 14 } },
-    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { bottom: '0%' },
-    grid: { left: '3%', right: '6%', bottom: '40px', top: '40px', containLabel: true },
-    xAxis: { type: 'value' },
-    yAxis: {
-      type: 'category',
-      data: [...ambassadorData].reverse().map(a => a.name),
-      axisLabel: { width: 120, overflow: 'truncate', fontSize: 11 }
-    },
-    series: [
-      { name: 'Accepted', type: 'bar', stack: 'total', data: [...ambassadorData].reverse().map(a => a.accepted.length), itemStyle: { color: '#22c55e' } },
-      { name: 'Pending', type: 'bar', stack: 'total', data: [...ambassadorData].reverse().map(a => a.pending.length), itemStyle: { color: '#f59e0b' } },
-      { name: 'Canceled', type: 'bar', stack: 'total', data: [...ambassadorData].reverse().map(a => a.canceled.length), itemStyle: { color: '#ef4444' } },
-    ]
-  } : null
-
   const teamsBarOption = ambassadorData.length > 0 ? {
-    title: { text: 'Unique Teams per Ambassador', left: 'center', textStyle: { fontSize: 14 } },
+    title: { text: 'Teams per Ambassador (Excluding Coaches)', left: 'center', textStyle: { fontSize: 14, color: '#374151' } },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
     grid: { left: '3%', right: '6%', bottom: '3%', top: '40px', containLabel: true },
     xAxis: { type: 'value' },
@@ -248,23 +237,23 @@ export default function AdminPage() {
     }]
   } : null
 
-  // Trend line chart
-  const trendChartOption = trends.length > 0 ? {
-    title: { text: 'Registration Trends Over Time', left: 'center', textStyle: { fontSize: 14 } },
-    tooltip: { trigger: 'axis' },
-    legend: { bottom: '0%' },
-    grid: { left: '3%', right: '4%', bottom: '40px', top: '40px', containLabel: true },
-    xAxis: {
+  const studentsBarOption = ambassadorData.length > 0 ? {
+    title: { text: 'Total Students per Ambassador (Excluding Coaches)', left: 'center', textStyle: { fontSize: 14, color: '#374151' } },
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    grid: { left: '3%', right: '6%', bottom: '3%', top: '40px', containLabel: true },
+    xAxis: { type: 'value' },
+    yAxis: {
       type: 'category',
-      data: trends.map(t => new Date(t.date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })),
+      data: [...ambassadorData].reverse().map(a => a.name),
+      axisLabel: { width: 120, overflow: 'truncate', fontSize: 11 }
     },
-    yAxis: { type: 'value' },
-    series: [
-      { name: 'Accepted', type: 'line', data: trends.map(t => t.accepted), smooth: true, itemStyle: { color: '#22c55e' } },
-      { name: 'Pending', type: 'line', data: trends.map(t => t.pending), smooth: true, itemStyle: { color: '#f59e0b' } },
-      { name: 'Canceled', type: 'line', data: trends.map(t => t.canceled), smooth: true, itemStyle: { color: '#ef4444' } },
-      { name: 'Total', type: 'line', data: trends.map(t => t.total), smooth: true, lineStyle: { type: 'dashed' }, itemStyle: { color: '#6366f1' } },
-    ]
+    series: [{
+      name: 'Students',
+      type: 'bar',
+      data: [...ambassadorData].reverse().map(a => a.totalPersons),
+      itemStyle: { color: '#3b82f6', borderRadius: [0, 4, 4, 0] },
+      label: { show: true, position: 'right', fontSize: 11 }
+    }]
   } : null
 
   // Selected ambassador detail
@@ -307,7 +296,7 @@ export default function AdminPage() {
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <div className="p-4 border-b border-gray-100">
             <h2 className="text-base font-bold">Past Uploads</h2>
-            <p className="text-xs text-gray-400">Select a snapshot to view its analytics. Each upload is stored for trend tracking.</p>
+            <p className="text-xs text-gray-400">Select a snapshot to view its leaderboard.</p>
           </div>
           <div className="divide-y divide-gray-100 max-h-48 overflow-auto">
             {snapshots.map(s => (
@@ -334,13 +323,6 @@ export default function AdminPage() {
               </div>
             ))}
           </div>
-        </div>
-      )}
-
-      {/* Trend Chart (always visible if trends exist) */}
-      {trendChartOption && (
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <ReactECharts option={trendChartOption} style={{ height: '350px' }} />
         </div>
       )}
 
@@ -374,27 +356,20 @@ export default function AdminPage() {
 
           {/* Charts */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {barChartOption && (
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <ReactECharts option={barChartOption} style={{ height: Math.max(300, ambassadorData.length * 30) + 'px' }} />
-              </div>
-            )}
-            {pieChartOption && (
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <ReactECharts option={pieChartOption} style={{ height: '350px' }} />
-              </div>
-            )}
-            {stackedBarOption && (
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <ReactECharts option={stackedBarOption} style={{ height: Math.max(300, ambassadorData.length * 30) + 'px' }} />
-              </div>
-            )}
             {teamsBarOption && (
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow">
                 <ReactECharts option={teamsBarOption} style={{ height: Math.max(300, ambassadorData.length * 30) + 'px' }} />
               </div>
             )}
+            {studentsBarOption && (
+              <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow">
+                <ReactECharts option={studentsBarOption} style={{ height: Math.max(300, ambassadorData.length * 30) + 'px' }} />
+              </div>
+            )}
           </div>
+
+          {/* Spacer */}
+          <div className="pt-2"></div>
 
           {/* Ambassador Summary Table */}
           <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
@@ -407,7 +382,7 @@ export default function AdminPage() {
                 <thead className="bg-gray-50">
                   <tr>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rank</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ambassador (Campaign)</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ambassador ID / Source</th>
                     <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Accepted</th>
                     <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Pending</th>
                     <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Canceled</th>
