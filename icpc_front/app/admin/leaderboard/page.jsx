@@ -36,7 +36,7 @@ export default function LeaderboardPage() {
         const matchEmail = t.userEmail && uploadedIcpcTeams.emails && uploadedIcpcTeams.emails.has(t.userEmail.toLowerCase().trim());
         return matchName || matchEmail;
       })
-      const withUtm = verified.filter(t => t.utmSource || t.utmMedium || t.utmCampaign || t.userEmail)
+      const withUtm = verified.filter(t => t.utmSource || t.utmMedium || t.utmCampaign)
       setStats({
         verifiedCount: verified.length,
         withUtmCount: withUtm.length
