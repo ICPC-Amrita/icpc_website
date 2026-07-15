@@ -12,7 +12,7 @@ export async function POST(request) {
 
     // Fetch all DB teams to match emails/names -> ambassador (utmSource = ambassador ID)
     const dbTeams = await prisma.team.findMany({
-      select: { userEmail: true, personName: true, utmSource: true }
+      select: { userEmail: true, personName: true, utmSource: true, utmCampaign: true }
     })
 
     // Build a lookup: for each Excel row, find the matching DB team's utmSource
