@@ -33,8 +33,18 @@ function TeamRegistrationModalInner() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
     setError('')
+
+    if (!personName.trim()) {
+      setError('Name is required.')
+      return
+    }
+    if (!userEmail.trim()) {
+      setError('Email is required.')
+      return
+    }
+
+    setLoading(true)
 
     const utmSource = searchParams.get('utm_source') || ''
     const utmMedium = searchParams.get('utm_medium') || ''
@@ -66,7 +76,7 @@ function TeamRegistrationModalInner() {
         setUserEmail('')
         setCaptchaValue('')
         setTimeout(() => {
-          window.location.href = 'https://icpc.global/'
+          window.location.href = 'https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197'
         }, 10000)
       }
     } catch (err) {

@@ -116,7 +116,7 @@ export default function LeaderboardPage() {
           let personNameKey = Object.keys(data[0]).find(k => k.toLowerCase().replace(/\s/g, '') === 'name' || k.toLowerCase().replace(/\s/g, '') === 'personname' || k.toLowerCase().replace(/\s/g, '') === 'teamname')
           if (!personNameKey) personNameKey = Object.keys(data[0])[0]
           
-          let emailKey = Object.keys(data[0]).find(k => k.toLowerCase().includes('email'))
+          let emailKey = Object.keys(data[0]).find(k => k.toLowerCase().includes('email') || k.toLowerCase() === 'username')
 
           const personNames = new Set(data.map(row => (row[personNameKey] || '').toString().toLowerCase().trim()))
           const emails = new Set()
@@ -128,24 +128,25 @@ export default function LeaderboardPage() {
           setUploadedIcpcTeams({ personNames, emails })
           
           // Auto-verify teams in database (match by EMAIL only — names can be duplicated)
-          const verifiedIds = teams.filter(t => {
+          const verifiedEmails = teams.filter(t => {
             const matchEmail = t.userEmail && emails.has(t.userEmail.toLowerCase().trim());
             return matchEmail;
-          }).map(t => t.id);
+          }).map(t => t.userEmail.toLowerCase().trim());
 
-          if (verifiedIds.length > 0) {
+          if (verifiedEmails.length > 0) {
             try {
               const res = await fetch('/api/teams/verify', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ verifiedIds })
+                body: JSON.stringify({ verifiedEmails })
               });
               if (res.ok) {
+                const verifiedSet = new Set(verifiedEmails);
                 const updatedTeams = teams.map(t => 
-                   verifiedIds.includes(t.id) ? { ...t, isVerified: true } : t
+                   (t.userEmail && verifiedSet.has(t.userEmail.toLowerCase().trim())) ? { ...t, isVerified: true } : t
                 );
                 setTeams(updatedTeams);
-                alert(`Successfully verified ${verifiedIds.length} teams in the database!`);
+                alert(`Successfully verified ${verifiedEmails.length} teams in the database!`);
               }
             } catch (e) {
               console.error('Failed to save verifications to DB', e);
