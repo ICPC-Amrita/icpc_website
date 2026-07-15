@@ -10,19 +10,35 @@ export async function POST(request) {
       return NextResponse.json({ error: 'entries array is required' }, { status: 400 })
     }
 
-    // Fetch all DB teams to match emails -> ambassador (utmCampaign)
+    // Fetch all DB teams to match emails/names -> ambassador (utmSource = ambassador ID)
     const dbTeams = await prisma.team.findMany({
-      select: { userEmail: true, utmCampaign: true }
+      select: { userEmail: true, personName: true, utmSource: true }
     })
 
-    const emailToAmbassador = {}
-    dbTeams.forEach(t => {
-      if (t.userEmail && t.utmCampaign) {
-        emailToAmbassador[t.userEmail.toLowerCase().trim()] = t.utmCampaign
+    // Build a lookup: for each Excel row, find the matching DB team's utmSource
+    const findAmbassador = (username, firstName, lastName) => {
+      const email = (username || '').toLowerCase().trim()
+      const name = ((firstName || '') + ' ' + (lastName || '')).toLowerCase().trim()
+      
+      const match = dbTeams.find(t => {
+        if (email && t.userEmail && t.userEmail.toLowerCase().trim() === email) return true
+        if (name && t.personName && t.personName.toLowerCase().trim() === name) return true
+        return false
+      })
+      
+      return match && match.utmSource ? match.utmSource : null
+    }
+
+    // First pass: find ambassador for each teamId via any member match
+    const teamToAmbassador = {}
+    entries.forEach(row => {
+      const amb = findAmbassador(row.username, row.firstName, row.lastName)
+      if (amb && row.teamId) {
+        teamToAmbassador[String(row.teamId)] = amb
       }
     })
 
-    // Create snapshot with entries
+    // Create snapshot with entries — assign ambassador based on team-level match
     const snapshot = await prisma.snapshot.create({
       data: {
         filename: filename || 'upload.xlsx',
@@ -36,7 +52,7 @@ export async function POST(request) {
             teamName: row.teamName || null,
             teamStatus: row.teamStatus || null,
             teamInstName: row.teamInstName || null,
-            ambassador: emailToAmbassador[(row.username || '').toLowerCase().trim()] || null,
+            ambassador: (row.teamId ? teamToAmbassador[String(row.teamId)] : null) || findAmbassador(row.username, row.firstName, row.lastName) || null,
           }))
         }
       },

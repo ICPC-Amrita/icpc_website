@@ -4,36 +4,41 @@ import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Search, RefreshCw } from 'lucide-react';
 import ContactUs2 from "@/components/footer/contact_us_2";
 
-// Mock data as fallback
-const initialAmbassadors = [
-  { id: 1, name: "Sarah Chen", institution: "Amrita Vishwa Vidyapeetham", description: "Community Builder & Tech Evangelist", teamsRegistered: 47 },
-  { id: 2, name: "Marcus Johnson", institution: "IIT Madras", description: "Developer Relations Lead", teamsRegistered: 43 },
-  { id: 3, name: "Elena Rodriguez", institution: "NIT Trichy", description: "Open Source Advocate", teamsRegistered: 38 },
-  { id: 4, name: "David Kim", institution: "IIIT Hyderabad", description: "Startup Mentor & Angel Investor", teamsRegistered: 35 },
-  { id: 5, name: "Priya Patel", institution: "BITS Pilani", description: "AI/ML Research Specialist", teamsRegistered: 32 },
-  { id: 6, name: "Alex Turner", institution: "VIT Vellore", description: "Product Growth Expert", teamsRegistered: 29 },
-  { id: 7, name: "Lila Zhang", institution: "SRM Institute", description: "Design Systems Lead", teamsRegistered: 27 },
-  { id: 8, name: "Jordan Brooks", institution: "Manipal Institute", description: "DevOps & Infrastructure", teamsRegistered: 24 },
-  { id: 9, name: "Maya Singh", institution: "PES University", description: "Frontend Architecture", teamsRegistered: 22 },
-  { id: 10, name: "Ryan Clark", institution: "RV College", description: "Backend Systems Engineer", teamsRegistered: 20 },
-  { id: 11, name: "Zara Ahmed", institution: "Amrita Vishwa Vidyapeetham", description: "Mobile Development Lead", teamsRegistered: 18 },
-  { id: 12, name: "Lucas Martinez", institution: "IIT Bombay", description: "Cloud Solutions Architect", teamsRegistered: 16 },
-  { id: 13, name: "Nina Kowalski", institution: "Delhi Technological University", description: "Data Science & Analytics", teamsRegistered: 14 },
-  { id: 14, name: "Ethan Lee", institution: "NIT Surathkal", description: "Security & Compliance", teamsRegistered: 12 },
-  { id: 15, name: "Sophia Wilson", institution: "Anna University", description: "User Experience Designer", teamsRegistered: 10 },
-];
-
 const ITEMS_PER_PAGE = 10;
 
 export default function Leaderboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [ambassadorsList, setAmbassadorsList] = useState(initialAmbassadors);
+  const [ambassadorsList, setAmbassadorsList] = useState([]);
   const [isUpdating, setIsUpdating] = useState(false);
-  
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Auto-fetch leaderboard on mount
+  useEffect(() => {
+    fetchLeaderboard();
+  }, []);
+
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm]);
+
+  const fetchLeaderboard = async () => {
+    setIsLoading(true);
+    try {
+      const res = await fetch('/api/leaderboard');
+      const data = await res.json();
+      if (res.ok && data.leaderboard && data.leaderboard.length > 0) {
+        setAmbassadorsList(data.leaderboard);
+      } else {
+        setAmbassadorsList([]);
+      }
+    } catch (error) {
+      console.error('Failed to fetch leaderboard:', error);
+      setAmbassadorsList([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const updateLeaderboard = async () => {
     setIsUpdating(true);
@@ -41,20 +46,7 @@ export default function Leaderboard() {
       const res = await fetch('/api/leaderboard');
       const data = await res.json();
       if (res.ok && data.leaderboard && data.leaderboard.length > 0) {
-        // Map the API data to the component's format
-        const newAmbassadors = data.leaderboard.map((item) => {
-          // Try to find if this source matches our initial mock data
-          const existing = initialAmbassadors.find(a => a.name.toLowerCase() === item.name.toLowerCase());
-          return {
-            id: item.id,
-            name: existing ? existing.name : item.name,
-            institution: existing ? existing.institution : 'Registered Source',
-            description: existing ? existing.description : 'Ambassador',
-            teamsRegistered: item.teamsRegistered
-          };
-        });
-        
-        setAmbassadorsList(newAmbassadors);
+        setAmbassadorsList(data.leaderboard);
       } else {
         alert('No ambassadors with registered teams found yet. Please upload an Excel snapshot in the Admin panel.');
       }
@@ -67,8 +59,7 @@ export default function Leaderboard() {
   };
 
   const filteredAmbassadors = ambassadorsList.filter(a => 
-    a.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    (a.institution && a.institution.toLowerCase().includes(searchTerm.toLowerCase()))
+    a.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
   
   const totalPages = Math.ceil(filteredAmbassadors.length / ITEMS_PER_PAGE) || 1;
@@ -103,7 +94,7 @@ export default function Leaderboard() {
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-foreground mb-2">Ambassador Leaderboard</h1>
           <p className="text-muted-foreground">Top performers based on teams registered</p>
-          <p className="text-sm text-gray-500 mt-2">Note: Ranklist based on teams registered by each ambassador</p>
+          <p className="text-sm text-gray-500 mt-2">Note: Ranklist based on teams registered by each ambassador reference ID</p>
         </div>
 
         {/* Search Bar & Update Button */}
@@ -114,7 +105,7 @@ export default function Leaderboard() {
             </div>
             <input
               type="text"
-              placeholder="Search by name or institution..."
+              placeholder="Search by reference ID..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="block w-full pl-10 pr-3 py-2 border border-border rounded-md leading-5 bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm"
@@ -130,150 +121,154 @@ export default function Leaderboard() {
           </button>
         </div>
 
-        {/* Desktop table (md+) */}
-        <div className="hidden md:block bg-card rounded-lg border border-border overflow-hidden shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-table-header border-b border-border">
-                <tr>
-                  <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide w-24">Rank</th>
-                  <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Ambassador</th>
-                  <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Institution</th>
-                  <th className="text-right py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Teams Registered</th>
-                </tr>
-              </thead>
-            <tbody>
-              {currentAmbassadors.map((ambassador, index) => (
-                <tr
-                  key={ambassador.id}
-                  className={`
-                    border-b border-border last:border-b-0 transition-colors duration-150
-                    ${index % 2 === 0 ? 'bg-table-row-even' : 'bg-table-row-odd'}
-                    hover:bg-table-hover
-                  `}
-                >
-                  <td className="py-4 px-6">
-                    <div className="flex items-center">
-                      <span className="text-lg font-semibold text-foreground min-w-[2rem]">{getRankDisplay(index)}</span>
-                    </div>
-                  </td>
-                  <td className="py-4 px-6">
-                    <div>
-                      <div className="font-semibold text-foreground text-base">{ambassador.name}</div>
-                      <div className="text-muted-foreground text-sm mt-1">{ambassador.description}</div>
-                    </div>
-                  </td>
-                  <td className="py-4 px-6">
-                    <div className="text-foreground font-medium text-sm">
-                      {ambassador.institution}
-                    </div>
-                  </td>
-                  <td className="py-4 px-6 text-right">
-                    <div className="font-semibold text-lg text-primary">{ambassador.teamsRegistered}</div>
-                  </td>
-                </tr>
-              ))}
-              {currentAmbassadors.length === 0 && (
-                <tr>
-                  <td colSpan="4" className="py-8 text-center text-muted-foreground">
-                    No ambassadors found matching your search.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+        {/* Loading state */}
+        {isLoading ? (
+          <div className="text-center py-12">
+            <RefreshCw className="h-8 w-8 text-blue-600 animate-spin mx-auto mb-4" />
+            <p className="text-muted-foreground">Loading leaderboard...</p>
+          </div>
+        ) : ambassadorsList.length === 0 ? (
+          <div className="text-center py-12 bg-card border border-border rounded-lg shadow-sm">
+            <p className="text-muted-foreground text-lg">No leaderboard data available yet.</p>
+            <p className="text-sm text-gray-500 mt-2">Please upload an Excel snapshot in the Admin panel first.</p>
+          </div>
+        ) : (
+          <>
+            {/* Desktop table (md+) */}
+            <div className="hidden md:block bg-card rounded-lg border border-border overflow-hidden shadow-sm">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-table-header border-b border-border">
+                    <tr>
+                      <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide w-24">Rank</th>
+                      <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Reference ID</th>
+                      <th className="text-right py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Teams Registered</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                  {currentAmbassadors.map((ambassador, index) => (
+                    <tr
+                      key={ambassador.id}
+                      className={`
+                        border-b border-border last:border-b-0 transition-colors duration-150
+                        ${index % 2 === 0 ? 'bg-table-row-even' : 'bg-table-row-odd'}
+                        hover:bg-table-hover
+                      `}
+                    >
+                      <td className="py-4 px-6">
+                        <div className="flex items-center">
+                          <span className="text-lg font-semibold text-foreground min-w-[2rem]">{getRankDisplay(index)}</span>
+                        </div>
+                      </td>
+                      <td className="py-4 px-6">
+                        <span className="font-semibold text-foreground text-base">{ambassador.name}</span>
+                      </td>
+                      <td className="py-4 px-6 text-right">
+                        <div className="font-semibold text-lg text-primary">{ambassador.teamsRegistered}</div>
+                      </td>
+                    </tr>
+                  ))}
+                  {currentAmbassadors.length === 0 && (
+                    <tr>
+                      <td colSpan="3" className="py-8 text-center text-muted-foreground">
+                        No ambassadors found matching your search.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-      {/* Mobile list (sm) */}
-      <div className="md:hidden space-y-3">
-        {currentAmbassadors.map((ambassador, index) => (
-          <div
-            key={ambassador.id}
-            className="bg-card border border-border rounded-lg p-4 shadow-sm flex items-center justify-between"
-          >
-            <div className="flex items-center gap-3">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-lg font-bold">
-                  {getRankDisplay(index)}
+          {/* Mobile list (sm) */}
+          <div className="md:hidden space-y-3">
+            {currentAmbassadors.map((ambassador, index) => (
+              <div
+                key={ambassador.id}
+                className="bg-card border border-border rounded-lg p-4 shadow-sm flex items-center justify-between"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-lg font-bold">
+                      {getRankDisplay(index)}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-foreground">Ref: {ambassador.name}</div>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="font-semibold text-lg text-primary">{ambassador.teamsRegistered}</div>
+                  <div className="text-xs text-muted-foreground">teams</div>
                 </div>
               </div>
-              <div>
-                <div className="font-semibold text-foreground">{ambassador.name}</div>
-                <div className="text-muted-foreground text-sm">{ambassador.description}</div>
-                <div className="text-blue-600 text-xs mt-1 font-medium">{ambassador.institution}</div>
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="font-semibold text-lg text-primary">{ambassador.teamsRegistered}</div>
-              <div className="text-xs text-muted-foreground">teams</div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-        {currentAmbassadors.length === 0 && (
-          <div className="text-center py-8 text-muted-foreground bg-card border border-border rounded-lg shadow-sm">
-            No ambassadors found matching your search.
-          </div>
-        )}
-
-      {/* Pagination */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mt-6 px-0">
-        <div className="text-sm text-muted-foreground text-center md:text-left">
-          Showing {filteredAmbassadors.length > 0 ? startIndex + 1 : 0} to {Math.min(endIndex, filteredAmbassadors.length)} of {filteredAmbassadors.length} ambassadors
-        </div>
-
-        <div className="flex items-center gap-2 justify-center md:justify-end">
-          <button
-            onClick={handlePreviousPage}
-            disabled={currentPage === 1}
-            className={`
-              flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
-              ${currentPage === 1
-                ? 'bg-muted text-muted-foreground border-border cursor-not-allowed'
-                : 'bg-card text-foreground border-border hover:bg-secondary hover:text-secondary-foreground'
-              }
-            `}
-          >
-            <ChevronLeft className="w-4 h-4" />
-            Previous
-          </button>
-
-          <div className="flex items-center gap-1 flex-wrap">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                onClick={() => setCurrentPage(page)}
-                className={`
-                  px-3 py-2 text-sm font-medium rounded-md transition-colors
-                  ${page === currentPage
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-card text-foreground hover:bg-secondary hover:text-secondary-foreground border border-border'
-                  }
-                `}
-              >
-                {page}
-              </button>
             ))}
           </div>
 
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            className={`
-              flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
-              ${currentPage === totalPages
-                ? 'bg-muted text-muted-foreground border-border cursor-not-allowed'
-                : 'bg-card text-foreground border-border hover:bg-secondary hover:text-secondary-foreground'
-              }
-            `}
-          >
-            Next
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
+            {currentAmbassadors.length === 0 && (
+              <div className="text-center py-8 text-muted-foreground bg-card border border-border rounded-lg shadow-sm">
+                No ambassadors found matching your search.
+              </div>
+            )}
+
+          {/* Pagination */}
+          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mt-6 px-0">
+            <div className="text-sm text-muted-foreground text-center md:text-left">
+              Showing {filteredAmbassadors.length > 0 ? startIndex + 1 : 0} to {Math.min(endIndex, filteredAmbassadors.length)} of {filteredAmbassadors.length} ambassadors
+            </div>
+
+            <div className="flex items-center gap-2 justify-center md:justify-end">
+              <button
+                onClick={handlePreviousPage}
+                disabled={currentPage === 1}
+                className={`
+                  flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
+                  ${currentPage === 1
+                    ? 'bg-muted text-muted-foreground border-border cursor-not-allowed'
+                    : 'bg-card text-foreground border-border hover:bg-secondary hover:text-secondary-foreground'
+                  }
+                `}
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Previous
+              </button>
+
+              <div className="flex items-center gap-1 flex-wrap">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`
+                      px-3 py-2 text-sm font-medium rounded-md transition-colors
+                      ${page === currentPage
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-card text-foreground hover:bg-secondary hover:text-secondary-foreground border border-border'
+                      }
+                    `}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+                className={`
+                  flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
+                  ${currentPage === totalPages
+                    ? 'bg-muted text-muted-foreground border-border cursor-not-allowed'
+                    : 'bg-card text-foreground border-border hover:bg-secondary hover:text-secondary-foreground'
+                  }
+                `}
+              >
+                Next
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+          </>
+        )}
       </div>
       
       {/* Footer */}
