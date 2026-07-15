@@ -165,17 +165,17 @@ export default function AdminPage() {
     const ambassadorMap = {}
     const teamToSourceMap = {}
 
-    // First pass: Match Excel rows to DB teams to find the utmSource for each team
+    // First pass: Match Excel rows to DB teams by EMAIL only (names can be duplicate)
+    // Also verify they came from the campaign (utmCampaign must exist)
     entries.forEach(row => {
       const email = (row.username || '').toLowerCase().trim()
-      const name = ((row.firstName || '') + ' ' + (row.lastName || '')).toLowerCase().trim()
+      if (!email) return
       
       const dbMatch = dbTeams.find(t => 
-        (email && t.userEmail && t.userEmail.toLowerCase().trim() === email) ||
-        (name && t.personName && t.personName.toLowerCase().trim() === name)
+        t.userEmail && t.userEmail.toLowerCase().trim() === email
       )
 
-      if (dbMatch && dbMatch.utmSource && row.teamId) {
+      if (dbMatch && dbMatch.utmSource && dbMatch.utmCampaign && row.teamId) {
         // We found a match! All members of this teamId will be attributed to this utmSource
         teamToSourceMap[row.teamId] = dbMatch.utmSource
       }
