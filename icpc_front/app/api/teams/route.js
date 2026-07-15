@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createTeam, getTeams, deleteAllTeams, getTeam, getAllCampuses } from '@/lib/services/teamService'
+import { createTeam, getTeams, deleteAllTeams, deleteTeams, getTeam, getAllCampuses } from '@/lib/services/teamService'
 
 export async function POST(request) {
   try {
@@ -48,6 +48,15 @@ export async function GET(request) {
 
 export async function DELETE(request) {
   try {
+    const text = await request.text()
+    if (text) {
+      const body = JSON.parse(text)
+      if (body.ids && Array.isArray(body.ids)) {
+        await deleteTeams(body.ids)
+        return NextResponse.json({ success: true, message: 'Selected teams deleted successfully' }, { status: 200 })
+      }
+    }
+    
     await deleteAllTeams()
     return NextResponse.json({ success: true, message: 'All teams deleted successfully' }, { status: 200 })
   } catch (error) {

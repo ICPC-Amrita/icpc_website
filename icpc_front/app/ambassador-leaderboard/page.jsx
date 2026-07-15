@@ -38,35 +38,25 @@ export default function Leaderboard() {
   const updateLeaderboard = async () => {
     setIsUpdating(true);
     try {
-      const res = await fetch('/api/teams');
+      const res = await fetch('/api/leaderboard');
       const data = await res.json();
-      if (res.ok && data.teams) {
-        const counts = {};
-        data.teams.filter(t => t.isVerified).forEach(t => {
-          // Use utmCampaign as the ambassador identifier (e.g. ICPCAM2026)
-          const source = t.utmCampaign;
-          if (source && source !== 'Unknown') {
-            counts[source] = (counts[source] || 0) + 1;
-          }
+      if (res.ok && data.leaderboard && data.leaderboard.length > 0) {
+        // Map the API data to the component's format
+        const newAmbassadors = data.leaderboard.map((item) => {
+          // Try to find if this source matches our initial mock data
+          const existing = initialAmbassadors.find(a => a.name.toLowerCase() === item.name.toLowerCase());
+          return {
+            id: item.id,
+            name: existing ? existing.name : item.name,
+            institution: existing ? existing.institution : 'Registered Source',
+            description: existing ? existing.description : 'Ambassador',
+            teamsRegistered: item.teamsRegistered
+          };
         });
         
-        if (Object.keys(counts).length > 0) {
-          const newAmbassadors = Object.entries(counts).map(([source, count], index) => {
-            // Try to find if this source matches our initial mock data
-            const existing = initialAmbassadors.find(a => a.name.toLowerCase() === source.toLowerCase());
-            return {
-              id: index + 1,
-              name: existing ? existing.name : source,
-              institution: existing ? existing.institution : 'Registered Source',
-              description: existing ? existing.description : 'Ambassador',
-              teamsRegistered: count
-            };
-          }).sort((a, b) => b.teamsRegistered - a.teamsRegistered);
-          
-          setAmbassadorsList(newAmbassadors);
-        } else {
-          alert('No ambassadors with registered teams found yet.');
-        }
+        setAmbassadorsList(newAmbassadors);
+      } else {
+        alert('No ambassadors with registered teams found yet. Please upload an Excel snapshot in the Admin panel.');
       }
     } catch (error) {
       console.error('Failed to update leaderboard:', error);

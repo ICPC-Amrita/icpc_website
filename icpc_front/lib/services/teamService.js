@@ -49,6 +49,17 @@ export async function deleteAllTeams() {
 }
 
 /**
+ * Delete specific teams by IDs
+ */
+export async function deleteTeams(ids) {
+  return await prisma.team.deleteMany({
+    where: {
+      id: { in: ids }
+    }
+  })
+}
+
+/**
  * Get a team by its exact name (case-insensitive)
  * @param {string} teamName 
  */
