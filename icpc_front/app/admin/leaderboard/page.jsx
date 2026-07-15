@@ -50,12 +50,14 @@ export default function LeaderboardPage() {
 
   useEffect(() => {
     if (uploadedIcpcTeams && teams.length > 0) {
+      // Match by EMAIL only (names can be duplicated across people)
       const verified = teams.filter(t => {
-        const matchName = t.personName && uploadedIcpcTeams.personNames && uploadedIcpcTeams.personNames.has(t.personName.toLowerCase().trim());
         const matchEmail = t.userEmail && uploadedIcpcTeams.emails && uploadedIcpcTeams.emails.has(t.userEmail.toLowerCase().trim());
-        return matchName || matchEmail;
+        return matchEmail;
       })
-      const withUtm = verified.filter(t => t.utmSource || t.utmMedium || t.utmCampaign)
+      // Only count as "with UTM tracking" if they have BOTH utmSource AND utmCampaign
+      // This confirms they actually came through an ambassador's campaign link
+      const withUtm = verified.filter(t => t.utmSource && t.utmCampaign)
       setStats({
         verifiedCount: verified.length,
         withUtmCount: withUtm.length
@@ -125,11 +127,10 @@ export default function LeaderboardPage() {
           }
           setUploadedIcpcTeams({ personNames, emails })
           
-          // Auto-verify teams in database
+          // Auto-verify teams in database (match by EMAIL only — names can be duplicated)
           const verifiedIds = teams.filter(t => {
-            const matchName = t.personName && personNames.has(t.personName.toLowerCase().trim());
             const matchEmail = t.userEmail && emails.has(t.userEmail.toLowerCase().trim());
-            return matchName || matchEmail;
+            return matchEmail;
           }).map(t => t.id);
 
           if (verifiedIds.length > 0) {
