@@ -97,7 +97,7 @@ export default function Leaderboard() {
           <p className="text-sm text-gray-500 mt-2">Note: Ranklist based on teams registered by each ambassador reference ID</p>
         </div>
 
-        {/* Search Bar & Update Button */}
+        {/* Search Bar */}
         <div className="mb-8 max-w-2xl mx-auto flex flex-col sm:flex-row gap-4 items-center justify-center">
           <div className="relative w-full max-w-md">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -111,14 +111,6 @@ export default function Leaderboard() {
               className="block w-full pl-10 pr-3 py-2 border border-border rounded-md leading-5 bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm"
             />
           </div>
-          <button 
-            onClick={updateLeaderboard}
-            disabled={isUpdating}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition shadow-sm disabled:opacity-70 whitespace-nowrap"
-          >
-            <RefreshCw className={`h-4 w-4 ${isUpdating ? 'animate-spin' : ''}`} />
-            {isUpdating ? 'Updating...' : 'Update Leaderboard'}
-          </button>
         </div>
 
         {/* Loading state */}
@@ -129,8 +121,8 @@ export default function Leaderboard() {
           </div>
         ) : ambassadorsList.length === 0 ? (
           <div className="text-center py-12 bg-card border border-border rounded-lg shadow-sm">
-            <p className="text-muted-foreground text-lg">No leaderboard data available yet.</p>
-            <p className="text-sm text-gray-500 mt-2">Please upload an Excel snapshot in the Admin panel first.</p>
+            <p className="text-muted-foreground text-lg">Leaderboard will be updated soon.</p>
+            <p className="text-sm text-gray-500 mt-2">Stay tuned for the latest ambassador rankings!</p>
           </div>
         ) : (
           <>
