@@ -298,7 +298,7 @@ export default function AdminPage() {
           <p className="text-gray-600">Upload ICPC registration Excel to store a snapshot and see analytics.</p>
           {uploadMsg && <p className="text-sm mt-1 font-medium text-blue-600">{uploadMsg}</p>}
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
           <input
             type="file"
             accept=".xlsx,.xls"
@@ -307,6 +307,13 @@ export default function AdminPage() {
             className="block text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer disabled:opacity-50"
           />
           {isUploading && <span className="text-sm text-blue-600">Uploading...</span>}
+          <button 
+            onClick={handleUpdatePublicLeaderboard}
+            disabled={isUpdating}
+            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition shadow-sm disabled:opacity-50"
+          >
+            {isUpdating ? 'Publishing...' : '🚀 Publish to Public Leaderboard'}
+          </button>
         </div>
       </div>
 

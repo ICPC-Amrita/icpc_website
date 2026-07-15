@@ -23,6 +23,25 @@ export default function LeaderboardPage() {
   const [showAnalytics, setShowAnalytics] = useState(false)
   const [itemsPerPage, setItemsPerPage] = useState(15)
   const [selectedTeams, setSelectedTeams] = useState(new Set())
+  const [isPublishing, setIsPublishing] = useState(false)
+
+  const handlePublishLeaderboard = async () => {
+    setIsPublishing(true)
+    try {
+      const res = await fetch('/api/leaderboard')
+      const data = await res.json()
+      if (res.ok && data.leaderboard) {
+        alert(`Published! ${data.leaderboard.length} ambassadors updated on the public leaderboard.`)
+      } else {
+        alert('No data to publish. Upload an Excel snapshot first in the Analytics page.')
+      }
+    } catch (err) {
+      console.error(err)
+      alert('Error publishing leaderboard.')
+    } finally {
+      setIsPublishing(false)
+    }
+  }
 
   // Fetch teams on mount
   useEffect(() => {
@@ -409,6 +428,13 @@ export default function LeaderboardPage() {
                   className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm transition shadow-sm"
                 >
                   <FaTrash /> Delete All
+                </button>
+                <button 
+                  onClick={handlePublishLeaderboard}
+                  disabled={isPublishing}
+                  className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm transition shadow-sm disabled:opacity-50"
+                >
+                  {isPublishing ? 'Publishing...' : '🚀 Publish Leaderboard'}
                 </button>
               </div>
             </div>
