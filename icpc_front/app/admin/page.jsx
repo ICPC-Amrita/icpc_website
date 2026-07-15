@@ -18,6 +18,7 @@ export default function AdminPage() {
   const [selectedAmbassador, setSelectedAmbassador] = useState(null)
   const [activeTab, setActiveTab] = useState('accepted')
   const [dbTeams, setDbTeams] = useState([])
+  const [isUpdating, setIsUpdating] = useState(false)
 
   // Load snapshots list and trends on mount
   useEffect(() => {
@@ -63,6 +64,24 @@ export default function AdminPage() {
   }
 
   // Load a specific snapshot's entries
+  const handleUpdatePublicLeaderboard = async () => {
+    setIsUpdating(true)
+    try {
+      const res = await fetch('/api/leaderboard')
+      const data = await res.json()
+      if (res.ok) {
+        alert('Successfully updated the Public Ambassador Leaderboard with the latest snapshot data!')
+      } else {
+        alert('Failed to update public leaderboard.')
+      }
+    } catch (err) {
+      console.error(err)
+      alert('Error updating public leaderboard.')
+    } finally {
+      setIsUpdating(false)
+    }
+  }
+
   const loadSnapshot = async (id) => {
     setSelectedSnapshotId(id)
     setSelectedAmbassador(null)
@@ -275,8 +294,8 @@ export default function AdminPage() {
       {/* Upload Section */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-5 rounded-lg border border-gray-200">
         <div>
-          <h1 className="text-2xl font-bold">Ambassador Analytics</h1>
-          <p className="text-sm text-gray-500 mt-1">Upload ICPC registration Excel to store a snapshot and see analytics.</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Leaderboard Manager</h1>
+          <p className="text-gray-600">Upload ICPC registration Excel to store a snapshot and see analytics.</p>
           {uploadMsg && <p className="text-sm mt-1 font-medium text-blue-600">{uploadMsg}</p>}
         </div>
         <div className="flex items-center gap-3">
