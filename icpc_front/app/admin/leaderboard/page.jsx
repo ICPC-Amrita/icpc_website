@@ -93,7 +93,7 @@ export default function LeaderboardPage() {
       'UTM Medium': t.utmMedium || 'N/A',
       'UTM Campaign': t.utmCampaign || 'N/A',
       'Source': t.campus,
-      'Registration Date': new Date(t.createdAt).toLocaleDateString()
+      'Registration Date': new Date(t.createdAt).toLocaleString()
     })))
     const workbook = XLSX.utils.book_new()
     XLSX.utils.book_append_sheet(workbook, worksheet, "Teams")

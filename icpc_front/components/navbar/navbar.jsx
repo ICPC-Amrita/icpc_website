@@ -382,6 +382,7 @@ export default function Navbar({ open, hero, darkSection }) {
         { label: "Reach Us", type: "dropdown", items: locations },
         // { label: "Promote", href: "/promote", type: "link" },
         { label: "Join as Ambassador", href: "/ambassador-program", type: "link" },
+        { label: "Workshop", href: "/workshop_1", type: "link" },
         // { label: "Onsite Ranklist", href: "/onsite-ranklist", type: "link" },
 
         // { label: "Organizers", href: "/organizers", type: "link" },
