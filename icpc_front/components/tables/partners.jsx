@@ -11,10 +11,10 @@ export default function OutreachPartners(){
                 <div className="flex w-full justify-center max-w-[100vw] overflow-hidden items-center py-[1vw] max-md:w-[90vw] max-md:px-[1.5vw]">
                     <div className="flex-1 flex max-md:flex-col max-w-[65vw] md:gap-x-[8vw] max-md:gap-y-[2vh] max-md:min-w-full min-h-[15vw]">
                         <Link href="https://www.codechef.com/" className="flex-1 rounded-[1vw] max-md:min-h-[15vh] border-blue-950 border-[.25vw] border-solid hover:scale-105 hover:bg-yellow-100 shadow-[5px_5px_0px_0px_rgba(23,_37,_84,_1)] transition flex justify-center items-center">
-                            <Image src="https://cdn.codechef.com/images/cc-logo.svg" className="h-[6vw] max-md:h-[18vw] w-auto" width={1} height={1} unoptimized />
+                            <Image src="https://cdn.codechef.com/images/cc-logo.svg" alt="CodeChef" className="h-[6vw] max-md:h-[18vw] w-auto" width={1} height={1} unoptimized />
                         </Link>
                         <Link href="https://www.geeksforgeeks.org/" className="flex-1 rounded-[1vw] max-md:min-h-[15vh] border-blue-950 border-[.25vw] border-solid hover:scale-105 hover:bg-yellow-100 shadow-[5px_5px_0px_0px_rgba(23,_37,_84,_1)] transition flex justify-center items-center">
-                            <Image src="/geeks-for-geeks.png" className="h-[3vw] max-md:h-[9vw] w-auto" width={1} height={1} unoptimized />
+                            <Image src="/geeks-for-geeks.png" alt="GeeksForGeeks" className="h-[3vw] max-md:h-[9vw] w-auto" width={1} height={1} unoptimized />
                         </Link>
                     </div>
                     {/* Transparent Gradient Overlay */}

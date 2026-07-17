@@ -42,7 +42,7 @@ export default function Layout({ children }) {
 
         window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+    }, [pathname]);
 
     return (
         <div className="w-full bg-white">
