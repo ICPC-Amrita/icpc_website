@@ -31,10 +31,12 @@ export default function WhatsICPC(){
 
   {/* RIGHT SIDE - VIDEO */}
   <figure className="w-[40%] max-md:w-full aspect-[4/3] relative overflow-hidden rounded-lg shadow-lg">
-   <img
+   <Image
         src="/icpc_thumbnail.jpg"
         alt="ICPC Amritapuri"
         className="absolute inset-0 w-full h-full object-cover"
+        fill
+        sizes="(max-width: 768px) 100vw, 40vw"
       />
     <iframe
       className="absolute inset-0 w-full h-full"

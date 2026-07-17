@@ -69,7 +69,7 @@ export default function WorkshopPage() {
                     <UserIcon className="w-4 h-4"/> Regional Contest Director ICPC Amritapuri
                   </p> */}
                   <p className="text-base text-gray-700 leading-relaxed max-w-2xl">
-                    Founder, Chief Mentor - Team bios (India's No 1 CTF Team). Founder, AmFOSS. Passionate about mentoring the next generation of problem solvers.
+                    Founder, Chief Mentor - Team bios (India&apos;s No 1 CTF Team). Founder, AmFOSS. Passionate about mentoring the next generation of problem solvers.
                   </p>
                 </div>
               </div>
@@ -81,7 +81,7 @@ export default function WorkshopPage() {
             <div>
               <h2 className="text-2xl sm:text-3xl  mb-4">Why This Matters</h2>
               <p className="text-lg text-gray-700 leading-relaxed text-justify">
-                 Problem solving is not just a skill, it's a mindset. Let's build it together. 
+                 Problem solving is not just a skill, it&apos;s a mindset. Let&apos;s build it together. 
                  The boundaries of what AI can do in data analysis and development are shifting fast.
                  What remains critical is the intellectual curiosity and structural logic required to solve complex, real-world problems.
               </p>
