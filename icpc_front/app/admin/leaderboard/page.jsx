@@ -234,9 +234,9 @@ export default function LeaderboardPage() {
   }
 
   const getSourceAnalytics = () => {
-    if (!teams.length) return null
+    if (!filteredTeams.length) return null
     const counts = {}
-    teams.forEach(t => {
+    filteredTeams.forEach(t => {
       const src = t.utmSource || 'Organic / None'
       counts[src] = (counts[src] || 0) + 1
     })
@@ -248,9 +248,9 @@ export default function LeaderboardPage() {
   }
 
   const getCampaignAnalytics = () => {
-    if (!teams.length) return null
+    if (!filteredTeams.length) return null
     const counts = {}
-    teams.forEach(t => {
+    filteredTeams.forEach(t => {
       const camp = t.utmCampaign || 'Organic / None'
       counts[camp] = (counts[camp] || 0) + 1
     })
@@ -267,9 +267,9 @@ export default function LeaderboardPage() {
   }
 
   const getMediumAnalytics = () => {
-    if (!teams.length) return null
+    if (!filteredTeams.length) return null
     const counts = {}
-    teams.forEach(t => {
+    filteredTeams.forEach(t => {
       const med = t.utmMedium || 'Organic / None'
       counts[med] = (counts[med] || 0) + 1
     })
@@ -290,9 +290,9 @@ export default function LeaderboardPage() {
   }
 
   const getRegistrationTrendAnalytics = () => {
-    if (!teams.length) return null
+    if (!filteredTeams.length) return null
     const counts = {}
-    teams.forEach(t => {
+    filteredTeams.forEach(t => {
       const date = new Date(t.createdAt).toLocaleDateString('en-CA')
       counts[date] = (counts[date] || 0) + 1
     })
@@ -441,7 +441,7 @@ export default function LeaderboardPage() {
               </div>
             </div>
 
-            {showAnalytics && teams.length > 0 && (
+            {showAnalytics && filteredTeams.length > 0 && (
               <div className="bg-gray-50 border-b border-gray-200 p-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                   <ReactECharts option={getRegistrationTrendAnalytics()} style={{ height: '350px' }} />

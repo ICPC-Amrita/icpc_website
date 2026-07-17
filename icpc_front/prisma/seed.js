@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 
 async function main() {
+  // --- Seed Admin ---
   const email = 'admin@amrita.edu';
   const password = 'password123'; // Default password
   
@@ -18,11 +19,11 @@ async function main() {
     },
   });
 
-  console.log('✅ Seed successful!');
+  console.log('✅ Admin seed successful!');
   console.log('---------------------');
   console.log(`Admin email:    ${email}`);
   console.log(`Admin password: ${password}`);
-  console.log('---------------------');
+  console.log('---------------------\n');
 }
 
 main()
@@ -34,3 +35,4 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
+
