@@ -51,9 +51,19 @@ export async function GET(request, { params }) {
     const dbTeams = await prisma.team.findMany({
       where: {
         utmSource: refId,
-        utmCampaign: { not: null },
       },
-      select: { userEmail: true, utmSource: true, utmCampaign: true },
+      select: {
+        id: true,
+        personName: true,
+        userEmail: true,
+        campus: true,
+        utmSource: true,
+        utmMedium: true,
+        utmCampaign: true,
+        createdAt: true,
+        isVerified: true,
+      },
+      orderBy: { createdAt: 'desc' },
     })
 
     // Build a set of emails that registered through this ambassador's UTM
@@ -61,11 +71,12 @@ export async function GET(request, { params }) {
       dbTeams.map(t => t.userEmail?.toLowerCase().trim()).filter(Boolean)
     )
 
-    if (utmEmails.size === 0) {
+    if (!latestSnapshot) {
       return NextResponse.json({
         ambassador: ambassador || { refId, name: 'Unknown', email: 'Unknown' },
         summary: { totalTeams: 0, totalStudents: 0, accepted: 0, pending: 0, canceled: 0, utmRegistered: dbTeams.length },
         entries: [],
+        utmRegistrations: dbTeams,
       })
     }
 
@@ -114,6 +125,7 @@ export async function GET(request, { params }) {
         utmRegistered: dbTeams.length,
       },
       entries: ambassadorEntries,
+      utmRegistrations: dbTeams,
     })
   } catch (error) {
     console.error('Admin ambassador detail error:', error)

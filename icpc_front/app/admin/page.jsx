@@ -19,13 +19,25 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState('accepted')
   const [dbTeams, setDbTeams] = useState([])
   const [isUpdating, setIsUpdating] = useState(false)
+  const [ambassadorList, setAmbassadorList] = useState([])
 
-  // Load snapshots list and trends on mount
+  // Load snapshots list, trends, dbTeams, and ambassadors on mount
   useEffect(() => {
     fetchSnapshots()
     fetchTrends()
     fetchDbTeams()
+    fetchAmbassadors()
   }, [])
+
+  const fetchAmbassadors = async () => {
+    try {
+      const res = await fetch('/api/admin/ambassadors')
+      const data = await res.json()
+      if (data.ambassadors) setAmbassadorList(data.ambassadors)
+    } catch (err) {
+      console.error('Failed to fetch ambassadors list', err)
+    }
+  }
 
   const fetchDbTeams = async () => {
     try {
@@ -41,7 +53,7 @@ export default function AdminPage() {
     if (snapshotEntries) {
       processAmbassadorData(snapshotEntries)
     }
-  }, [snapshotEntries, dbTeams])
+  }, [snapshotEntries, dbTeams, ambassadorList])
 
   const fetchSnapshots = async () => {
     try {
@@ -165,6 +177,16 @@ export default function AdminPage() {
     const ambassadorMap = {}
     const teamToSourceMap = {}
 
+    // Map registered ambassador refIds to full ambassador details
+    const validAmbassadorMap = {}
+    if (Array.isArray(ambassadorList) && ambassadorList.length > 0) {
+      ambassadorList.forEach(a => {
+        if (a.refId) {
+          validAmbassadorMap[String(a.refId)] = a
+        }
+      })
+    }
+
     // First pass: Match Excel rows to DB teams by EMAIL only (names can be duplicate)
     // Also verify they came from the campaign (utmCampaign must exist)
     entries.forEach(row => {
@@ -190,9 +212,20 @@ export default function AdminPage() {
       const key = (row.teamId && teamToSourceMap[row.teamId]) || row.ambassador
       if (!key) return
 
+      // ONLY show ambassador utm sources (filter out previous_year_participant or non-ambassador sources)
+      const isRegisteredAmbassador = validAmbassadorMap[String(key)]
+      if (Object.keys(validAmbassadorMap).length > 0 && !isRegisteredAmbassador) {
+        return
+      }
+
+      const ambName = isRegisteredAmbassador
+        ? `${isRegisteredAmbassador.name} (${key})`
+        : key
+
       if (!ambassadorMap[key]) {
         ambassadorMap[key] = {
-          name: key,
+          name: ambName,
+          refId: key,
           accepted: [],
           pending: [],
           canceled: [],
