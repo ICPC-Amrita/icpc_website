@@ -40,26 +40,9 @@ export default function Leaderboard() {
     }
   };
 
-  const updateLeaderboard = async () => {
-    setIsUpdating(true);
-    try {
-      const res = await fetch('/api/leaderboard');
-      const data = await res.json();
-      if (res.ok && data.leaderboard && data.leaderboard.length > 0) {
-        setAmbassadorsList(data.leaderboard);
-      } else {
-        alert('No ambassadors with registered teams found yet. Please upload an Excel snapshot in the Admin panel.');
-      }
-    } catch (error) {
-      console.error('Failed to update leaderboard:', error);
-      alert('Failed to update leaderboard data.');
-    } finally {
-      setIsUpdating(false);
-    }
-  };
-
   const filteredAmbassadors = ambassadorsList.filter(a => 
-    a.name.toLowerCase().includes(searchTerm.toLowerCase())
+    a.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (a.refId && String(a.refId).toLowerCase().includes(searchTerm.toLowerCase()))
   );
   
   const totalPages = Math.ceil(filteredAmbassadors.length / ITEMS_PER_PAGE) || 1;
@@ -93,8 +76,7 @@ export default function Leaderboard() {
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-foreground mb-2">Ambassador Leaderboard</h1>
-          <p className="text-muted-foreground">Top performers based on teams registered</p>
-          <p className="text-sm text-gray-500 mt-2">Note: Ranklist based on teams registered by each ambassador reference ID</p>
+          <p className="text-muted-foreground">Top performers based on teams registered & payment completed</p>
         </div>
 
         {/* Search Bar */}
@@ -105,7 +87,7 @@ export default function Leaderboard() {
             </div>
             <input
               type="text"
-              placeholder="Search by reference ID..."
+              placeholder="Search by ambassador name or reference ID..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="block w-full pl-10 pr-3 py-2 border border-border rounded-md leading-5 bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm"
@@ -132,70 +114,101 @@ export default function Leaderboard() {
                 <table className="w-full">
                   <thead className="bg-table-header border-b border-border">
                     <tr>
-                      <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide w-24">Rank</th>
-                      <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Reference ID</th>
-                      <th className="text-right py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Teams Registered</th>
+                      <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide w-20">Rank</th>
+                      <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Ambassador Name</th>
+                      <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">UTM Pop-up Registrations</th>
+                      <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">ICPC Official Registrations</th>
+                      <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Payment Completed Teams</th>
                     </tr>
                   </thead>
-                <tbody>
-                  {currentAmbassadors.map((ambassador, index) => (
-                    <tr
-                      key={ambassador.id}
-                      className={`
-                        border-b border-border last:border-b-0 transition-colors duration-150
-                        ${index % 2 === 0 ? 'bg-table-row-even' : 'bg-table-row-odd'}
-                        hover:bg-table-hover
-                      `}
-                    >
-                      <td className="py-4 px-6">
-                        <div className="flex items-center">
-                          <span className="text-lg font-semibold text-foreground min-w-[2rem]">{getRankDisplay(index)}</span>
-                        </div>
-                      </td>
-                      <td className="py-4 px-6">
-                        <span className="font-semibold text-foreground text-base">{ambassador.name}</span>
-                      </td>
-                      <td className="py-4 px-6 text-right">
-                        <div className="font-semibold text-lg text-primary">{ambassador.teamsRegistered}</div>
-                      </td>
-                    </tr>
-                  ))}
-                  {currentAmbassadors.length === 0 && (
-                    <tr>
-                      <td colSpan="3" className="py-8 text-center text-muted-foreground">
-                        No ambassadors found matching your search.
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+                  <tbody className="divide-y divide-border">
+                    {currentAmbassadors.map((ambassador, index) => (
+                      <tr
+                        key={ambassador.refId || index}
+                        className={`
+                          transition-colors duration-150
+                          ${index % 2 === 0 ? 'bg-table-row-even' : 'bg-table-row-odd'}
+                          hover:bg-table-hover
+                        `}
+                      >
+                        <td className="py-4 px-6">
+                          <div className="flex items-center">
+                            <span className="text-lg font-semibold text-foreground min-w-[2rem]">{getRankDisplay(index)}</span>
+                          </div>
+                        </td>
+                        <td className="py-4 px-6">
+                          <div className="font-semibold text-foreground text-base">{ambassador.name}</div>
+                          {ambassador.refId && (
+                            <div className="text-xs text-muted-foreground mt-0.5">Ref: {ambassador.refId}</div>
+                          )}
+                        </td>
+                        <td className="py-4 px-6 text-center">
+                          <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-semibold bg-blue-50 text-blue-700">
+                            {ambassador.utmRegistrations || 0}
+                          </span>
+                        </td>
+                        <td className="py-4 px-6 text-center">
+                          <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-semibold bg-purple-50 text-purple-700">
+                            {ambassador.icpcOfficialRegistrations || 0}
+                          </span>
+                        </td>
+                        <td className="py-4 px-6 text-center">
+                          <span className="inline-flex items-center justify-center px-3.5 py-1 rounded-full text-base font-bold bg-emerald-100 text-emerald-800">
+                            {ambassador.paymentCompletedTeams || 0}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                    {currentAmbassadors.length === 0 && (
+                      <tr>
+                        <td colSpan="5" className="py-8 text-center text-muted-foreground">
+                          No ambassadors found matching your search.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
 
-          {/* Mobile list (sm) */}
-          <div className="md:hidden space-y-3">
-            {currentAmbassadors.map((ambassador, index) => (
-              <div
-                key={ambassador.id}
-                className="bg-card border border-border rounded-lg p-4 shadow-sm flex items-center justify-between"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-lg font-bold">
-                      {getRankDisplay(index)}
+            {/* Mobile list (sm) */}
+            <div className="md:hidden space-y-3">
+              {currentAmbassadors.map((ambassador, index) => (
+                <div
+                  key={ambassador.refId || index}
+                  className="bg-card border border-border rounded-lg p-4 shadow-sm space-y-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-lg font-bold">
+                        {getRankDisplay(index)}
+                      </div>
+                      <div>
+                        <div className="font-semibold text-foreground text-base">{ambassador.name}</div>
+                        {ambassador.refId && (
+                          <div className="text-xs text-muted-foreground">Ref: {ambassador.refId}</div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                  <div>
-                    <div className="font-semibold text-foreground">Ref: {ambassador.name}</div>
+
+                  <div className="grid grid-cols-3 gap-2 pt-2 border-t border-border text-center">
+                    <div className="bg-blue-50/50 p-2 rounded">
+                      <div className="text-xs text-muted-foreground">UTM Pop-up</div>
+                      <div className="font-bold text-blue-700 text-sm mt-0.5">{ambassador.utmRegistrations || 0}</div>
+                    </div>
+                    <div className="bg-purple-50/50 p-2 rounded">
+                      <div className="text-xs text-muted-foreground">Official Reg</div>
+                      <div className="font-bold text-purple-700 text-sm mt-0.5">{ambassador.icpcOfficialRegistrations || 0}</div>
+                    </div>
+                    <div className="bg-emerald-50/50 p-2 rounded">
+                      <div className="text-xs text-muted-foreground">Paid Teams</div>
+                      <div className="font-bold text-emerald-800 text-sm mt-0.5">{ambassador.paymentCompletedTeams || 0}</div>
+                    </div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="font-semibold text-lg text-primary">{ambassador.teamsRegistered}</div>
-                  <div className="text-xs text-muted-foreground">teams</div>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
             {currentAmbassadors.length === 0 && (
               <div className="text-center py-8 text-muted-foreground bg-card border border-border rounded-lg shadow-sm">
@@ -203,62 +216,62 @@ export default function Leaderboard() {
               </div>
             )}
 
-          {/* Pagination */}
-          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mt-6 px-0">
-            <div className="text-sm text-muted-foreground text-center md:text-left">
-              Showing {filteredAmbassadors.length > 0 ? startIndex + 1 : 0} to {Math.min(endIndex, filteredAmbassadors.length)} of {filteredAmbassadors.length} ambassadors
-            </div>
-
-            <div className="flex items-center gap-2 justify-center md:justify-end">
-              <button
-                onClick={handlePreviousPage}
-                disabled={currentPage === 1}
-                className={`
-                  flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
-                  ${currentPage === 1
-                    ? 'bg-muted text-muted-foreground border-border cursor-not-allowed'
-                    : 'bg-card text-foreground border-border hover:bg-secondary hover:text-secondary-foreground'
-                  }
-                `}
-              >
-                <ChevronLeft className="w-4 h-4" />
-                Previous
-              </button>
-
-              <div className="flex items-center gap-1 flex-wrap">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`
-                      px-3 py-2 text-sm font-medium rounded-md transition-colors
-                      ${page === currentPage
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-card text-foreground hover:bg-secondary hover:text-secondary-foreground border border-border'
-                      }
-                    `}
-                  >
-                    {page}
-                  </button>
-                ))}
+            {/* Pagination */}
+            <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mt-6 px-0">
+              <div className="text-sm text-muted-foreground text-center md:text-left">
+                Showing {filteredAmbassadors.length > 0 ? startIndex + 1 : 0} to {Math.min(endIndex, filteredAmbassadors.length)} of {filteredAmbassadors.length} ambassadors
               </div>
 
-              <button
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-                className={`
-                  flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
-                  ${currentPage === totalPages
-                    ? 'bg-muted text-muted-foreground border-border cursor-not-allowed'
-                    : 'bg-card text-foreground border-border hover:bg-secondary hover:text-secondary-foreground'
-                  }
-                `}
-              >
-                Next
-                <ChevronRight className="w-4 h-4" />
-              </button>
+              <div className="flex items-center gap-2 justify-center md:justify-end">
+                <button
+                  onClick={handlePreviousPage}
+                  disabled={currentPage === 1}
+                  className={`
+                    flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
+                    ${currentPage === 1
+                      ? 'bg-muted text-muted-foreground border-border cursor-not-allowed'
+                      : 'bg-card text-foreground border-border hover:bg-secondary hover:text-secondary-foreground'
+                    }
+                  `}
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Previous
+                </button>
+
+                <div className="flex items-center gap-1 flex-wrap">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      className={`
+                        px-3 py-2 text-sm font-medium rounded-md transition-colors
+                        ${page === currentPage
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-card text-foreground hover:bg-secondary hover:text-secondary-foreground border border-border'
+                        }
+                      `}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                  className={`
+                    flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border transition-colors
+                    ${currentPage === totalPages
+                      ? 'bg-muted text-muted-foreground border-border cursor-not-allowed'
+                      : 'bg-card text-foreground border-border hover:bg-secondary hover:text-secondary-foreground'
+                    }
+                  `}
+                >
+                  Next
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
-          </div>
           </>
         )}
       </div>
