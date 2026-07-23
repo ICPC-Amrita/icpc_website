@@ -26,6 +26,30 @@ export async function GET() {
 
     const refId = ambassador.refId
 
+    // Get DB teams — ONLY those that came through this ambassador's UTM link
+    const dbTeams = await prisma.team.findMany({
+      where: {
+        utmSource: refId,
+      },
+      select: {
+        id: true,
+        personName: true,
+        userEmail: true,
+        campus: true,
+        utmSource: true,
+        utmMedium: true,
+        utmCampaign: true,
+        createdAt: true,
+        isVerified: true,
+      },
+      orderBy: { createdAt: 'desc' },
+    })
+
+    // Build a set of emails that registered through this ambassador's UTM
+    const utmEmails = new Set(
+      dbTeams.map(t => t.userEmail?.toLowerCase().trim()).filter(Boolean)
+    )
+
     // Get the latest snapshot
     const latestSnapshot = await prisma.snapshot.findFirst({
       orderBy: { uploadedAt: 'desc' },
@@ -34,30 +58,9 @@ export async function GET() {
 
     if (!latestSnapshot) {
       return NextResponse.json({
-        summary: { totalTeams: 0, totalStudents: 0, accepted: 0, pending: 0, canceled: 0, utmRegistered: 0 },
-        entries: [],
-      })
-    }
-
-    // Get DB teams — ONLY those that came through this ambassador's UTM link
-    const dbTeams = await prisma.team.findMany({
-      where: {
-        utmSource: refId,
-        utmCampaign: { not: null },
-      },
-      select: { userEmail: true, utmSource: true, utmCampaign: true },
-    })
-
-    // Build a set of emails that registered through this ambassador's UTM
-    const utmEmails = new Set(
-      dbTeams.map(t => t.userEmail?.toLowerCase().trim()).filter(Boolean)
-    )
-
-    if (utmEmails.size === 0) {
-      // No UTM registrations for this ambassador at all
-      return NextResponse.json({
         summary: { totalTeams: 0, totalStudents: 0, accepted: 0, pending: 0, canceled: 0, utmRegistered: dbTeams.length },
         entries: [],
+        utmRegistrations: dbTeams,
       })
     }
 
@@ -72,13 +75,12 @@ export async function GET() {
       }
     })
 
-    // Now collect ALL members of those matched teams (teammates included)
+    // Collect ALL members of those matched teams (teammates included)
     const ambassadorEntries = []
     entries.forEach(row => {
       const role = (row.role || '').toLowerCase()
       if (role.includes('coach')) return
 
-      // Only include entries whose teamId was matched via UTM
       if (!row.teamId || !ambassadorTeamIds.has(row.teamId)) return
 
       const email = (row.username || '').toLowerCase().trim()
@@ -110,6 +112,7 @@ export async function GET() {
         utmRegistered: dbTeams.length,
       },
       entries: ambassadorEntries,
+      utmRegistrations: dbTeams,
     })
   } catch (error) {
     console.error('Ambassador dashboard error:', error)

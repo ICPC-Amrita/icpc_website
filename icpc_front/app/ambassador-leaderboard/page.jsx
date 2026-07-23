@@ -10,10 +10,9 @@ export default function Leaderboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [ambassadorsList, setAmbassadorsList] = useState([]);
-  const [isUpdating, setIsUpdating] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Auto-fetch leaderboard on mount
+  // Auto-fetch leaderboard on mount (defaults to ICPCAM2026 campaign backend filtering)
   useEffect(() => {
     fetchLeaderboard();
   }, []);
@@ -64,9 +63,9 @@ export default function Leaderboard() {
 
   const getRankDisplay = (index) => {
     const rank = startIndex + index + 1;
-    if (rank === 1) return "🥇";
-    if (rank === 2) return "🥈";
-    if (rank === 3) return "🥉";
+    if (rank === 1) return "#1";
+    if (rank === 2) return "#2";
+    if (rank === 3) return "#3";
     return rank.toString();
   };
 
@@ -74,23 +73,23 @@ export default function Leaderboard() {
     <div className="min-h-screen bg-background flex flex-col">
       <div className="flex-grow w-full max-w-6xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 md:pt-32 pb-8">
         {/* Header */}
-        <div className="mb-8 text-center">
+        <div className="mb-6 text-center">
           <h1 className="text-3xl font-bold text-foreground mb-2">Ambassador Leaderboard</h1>
           <p className="text-muted-foreground">Top performers based on teams registered & payment completed</p>
         </div>
 
-        {/* Search Bar */}
-        <div className="mb-8 max-w-2xl mx-auto flex flex-col sm:flex-row gap-4 items-center justify-center">
-          <div className="relative w-full max-w-md">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-gray-400" />
+        {/* Compact Search Bar */}
+        <div className="mb-6 flex justify-center">
+          <div className="relative w-full max-w-xs">
+            <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
+              <Search className="h-4 w-4 text-gray-400" />
             </div>
             <input
               type="text"
-              placeholder="Search by ambassador name or reference ID..."
+              placeholder="Search ref ID or name..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="block w-full pl-10 pr-3 py-2 border border-border rounded-md leading-5 bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm"
+              className="block w-full pl-8 pr-3 py-1.5 border border-border rounded-md leading-5 bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-xs sm:text-sm"
             />
           </div>
         </div>
@@ -137,25 +136,19 @@ export default function Leaderboard() {
                           </div>
                         </td>
                         <td className="py-4 px-6">
-                          <div className="font-semibold text-foreground text-base">{ambassador.name}</div>
+                          <div className="text-foreground">{ambassador.name}</div>
                           {ambassador.refId && (
                             <div className="text-xs text-muted-foreground mt-0.5">Ref: {ambassador.refId}</div>
                           )}
                         </td>
                         <td className="py-4 px-6 text-center">
-                          <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-semibold bg-blue-50 text-blue-700">
-                            {ambassador.utmRegistrations || 0}
-                          </span>
+                          {ambassador.utmRegistrations || 0}
                         </td>
                         <td className="py-4 px-6 text-center">
-                          <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-semibold bg-purple-50 text-purple-700">
-                            {ambassador.icpcOfficialRegistrations || 0}
-                          </span>
+                          {ambassador.icpcOfficialRegistrations || 0}
                         </td>
                         <td className="py-4 px-6 text-center">
-                          <span className="inline-flex items-center justify-center px-3.5 py-1 rounded-full text-base font-bold bg-emerald-100 text-emerald-800">
-                            {ambassador.paymentCompletedTeams || 0}
-                          </span>
+                          {ambassador.paymentCompletedTeams || 0}
                         </td>
                       </tr>
                     ))}
@@ -184,7 +177,7 @@ export default function Leaderboard() {
                         {getRankDisplay(index)}
                       </div>
                       <div>
-                        <div className="font-semibold text-foreground text-base">{ambassador.name}</div>
+                        <div className="text-foreground text-base">{ambassador.name}</div>
                         {ambassador.refId && (
                           <div className="text-xs text-muted-foreground">Ref: {ambassador.refId}</div>
                         )}
@@ -195,15 +188,15 @@ export default function Leaderboard() {
                   <div className="grid grid-cols-3 gap-2 pt-2 border-t border-border text-center">
                     <div className="bg-blue-50/50 p-2 rounded">
                       <div className="text-xs text-muted-foreground">UTM Pop-up</div>
-                      <div className="font-bold text-blue-700 text-sm mt-0.5">{ambassador.utmRegistrations || 0}</div>
+                      <div className="text-blue-700 text-sm mt-0.5">{ambassador.utmRegistrations || 0}</div>
                     </div>
                     <div className="bg-purple-50/50 p-2 rounded">
                       <div className="text-xs text-muted-foreground">Official Reg</div>
-                      <div className="font-bold text-purple-700 text-sm mt-0.5">{ambassador.icpcOfficialRegistrations || 0}</div>
+                      <div className="text-purple-700 text-sm mt-0.5">{ambassador.icpcOfficialRegistrations || 0}</div>
                     </div>
                     <div className="bg-emerald-50/50 p-2 rounded">
                       <div className="text-xs text-muted-foreground">Paid Teams</div>
-                      <div className="font-bold text-emerald-800 text-sm mt-0.5">{ambassador.paymentCompletedTeams || 0}</div>
+                      <div className="text-emerald-800 text-sm mt-0.5">{ambassador.paymentCompletedTeams || 0}</div>
                     </div>
                   </div>
                 </div>
