@@ -2,8 +2,12 @@ import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { getAmbassadorSourceData } from '@/lib/ambassadorData'
 
-export async function GET() {
+export async function GET(request) {
   try {
+    const { searchParams } = new URL(request.url)
+    // Default to 'ICPCAM2026' campaign filter so only ICPCAM2026 registrations are counted on leaderboard
+    const campaignFilter = searchParams.get('campaign') || 'ICPCAM2026'
+
     // 1. Fetch Ambassadors from DB and source API
     const dbAmbassadors = await prisma.ambassador.findMany({
       select: { refId: true, name: true, email: true }
@@ -29,7 +33,13 @@ export async function GET() {
     }
 
     // 2. Fetch DB website teams (UTM pop-up registrations)
+    const dbTeamsWhere = { utmSource: { not: null } }
+    if (campaignFilter && campaignFilter !== 'All') {
+      dbTeamsWhere.utmCampaign = campaignFilter
+    }
+
     const dbTeams = await prisma.team.findMany({
+      where: dbTeamsWhere,
       select: { userEmail: true, personName: true, utmSource: true, utmCampaign: true, isVerified: true }
     })
 
@@ -60,7 +70,7 @@ export async function GET() {
         t.userEmail && t.userEmail.toLowerCase().trim() === email
       )
 
-      if (dbMatch && dbMatch.utmSource && dbMatch.utmCampaign && row.teamId) {
+      if (dbMatch && dbMatch.utmSource && row.teamId) {
         teamToSourceMap[row.teamId] = dbMatch.utmSource
       }
     })
@@ -84,26 +94,16 @@ export async function GET() {
       }
     })
 
-    // Combine all sources
-    const allSources = new Set([
-      ...Object.keys(ambassadorNameMap),
-      ...Object.keys(utmRegCounts),
-      ...Object.keys(snapshotTotalTeams)
-    ])
+    // ONLY show valid Ambassador accounts in the leaderboard
+    // Filter out non-ambassador sources like previous_year_mentors, previous_year_participant, organic, etc.
+    const validAmbassadorRefIds = Object.keys(ambassadorNameMap)
 
     const leaderboardData = []
 
-    allSources.forEach(refId => {
-      const isAmbassador = !!ambassadorNameMap[refId]
+    validAmbassadorRefIds.forEach(refId => {
       const utmRegs = utmRegCounts[refId] || 0
       const officialRegs = snapshotTotalTeams[refId] ? snapshotTotalTeams[refId].size : 0
       const paidTeams = snapshotAcceptedTeams[refId] ? snapshotAcceptedTeams[refId].size : 0
-
-      // Only include valid ambassador accounts or sources with active registrations
-      if (!isAmbassador && utmRegs === 0 && officialRegs === 0) return
-
-      // Strict filter: exclude marketing campaign sources like previous_year_participant
-      if (!isAmbassador && refId === 'previous_year_participant') return
 
       const name = ambassadorNameMap[refId] || `Ambassador ${refId}`
 
