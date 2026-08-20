@@ -64,6 +64,7 @@ export async function GET() {
 
     if (!latestSnapshot) {
       return NextResponse.json({
+        refId,
         summary: { totalTeams: 0, totalStudents: 0, accepted: 0, pending: 0, canceled: 0, utmRegistered: dbTeams.length },
         entries: [],
         utmRegistrations: dbTeams,
@@ -112,6 +113,7 @@ export async function GET() {
     const canceled = ambassadorEntries.filter(e => e.teamStatus === 'Canceled')
 
     return NextResponse.json({
+      refId,
       summary: {
         totalTeams: ambassadorTeamIds.size,
         totalStudents: ambassadorEntries.length,
