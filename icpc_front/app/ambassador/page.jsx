@@ -1,15 +1,17 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Users, Award, Clock, XCircle, Globe, Search } from 'lucide-react'
+import { Users, Award, Clock, XCircle, Globe, Search, Copy, Check } from 'lucide-react'
 
 export default function AmbassadorDashboard() {
   const [loading, setLoading] = useState(true)
   const [summary, setSummary] = useState(null)
+  const [refId, setRefId] = useState('')
   const [entries, setEntries] = useState([])
   const [utmRegistrations, setUtmRegistrations] = useState([])
   const [activeTab, setActiveTab] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
+  const [refIdCopied, setRefIdCopied] = useState(false)
 
   useEffect(() => {
     fetchDashboard()
@@ -21,6 +23,7 @@ export default function AmbassadorDashboard() {
       const res = await fetch('/api/ambassador/dashboard')
       const data = await res.json()
       if (res.ok) {
+        setRefId(data.refId || '')
         setSummary(data.summary)
         setEntries(data.entries || [])
         setUtmRegistrations(data.utmRegistrations || [])
@@ -30,6 +33,14 @@ export default function AmbassadorDashboard() {
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleCopyReferralLink = async () => {
+    if (!refId) return
+    const referralUrl = `${window.location.origin}/?utm_source=${encodeURIComponent(refId)}&utm_medium=Email_Description&utm_campaign=ICPCAM2026`
+    await navigator.clipboard.writeText(referralUrl)
+    setRefIdCopied(true)
+    setTimeout(() => setRefIdCopied(false), 2000)
   }
 
   const getDisplayData = () => {
@@ -102,7 +113,20 @@ export default function AmbassadorDashboard() {
     <div className="p-6 space-y-6 text-gray-900">
       {/* Page title */}
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+        <div className="flex flex-wrap items-center gap-2">
+          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+          {refId && (
+            <button
+              type="button"
+              onClick={handleCopyReferralLink}
+              title="Copy referral link"
+              className="inline-flex items-center gap-1.5 border border-gray-300 rounded px-2.5 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+            >
+              {refIdCopied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+              {refIdCopied ? 'Copied' : `Copy Referral Link (${refId})`}
+            </button>
+          )}
+        </div>
         <p className="text-sm text-gray-500 mt-1">Your referred team registrations and student details</p>
       </div>
 
