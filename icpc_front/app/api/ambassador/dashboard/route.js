@@ -25,11 +25,17 @@ export async function GET() {
     }
 
     const refId = ambassador.refId
+    const cleanRefId = String(refId).trim().split('-').pop().trim()
 
     // Get DB teams — ONLY those that came through this ambassador's UTM link
     const dbTeams = await prisma.team.findMany({
       where: {
-        utmSource: refId,
+        OR: [
+          { utmSource: cleanRefId },
+          { utmSource: String(refId).trim() },
+          { utmSource: { endsWith: `-${cleanRefId}` } },
+          { utmSource: { startsWith: `${cleanRefId}-` } },
+        ],
       },
       select: {
         id: true,
@@ -66,26 +72,29 @@ export async function GET() {
 
     const entries = latestSnapshot.entries
 
-    // Find teamIds that belong to this ambassador via UTM email match
+    // Only include students who personally registered through this ambassador's UTM link.
+    // Do not expand a UTM registration to every teammate in the matched team.
     const ambassadorTeamIds = new Set()
     entries.forEach(row => {
       const email = (row.username || '').toLowerCase().trim()
-      if (utmEmails.has(email) && row.teamId) {
+      const matchesUtm = utmEmails.has(email)
+
+      if (matchesUtm && row.teamId) {
         ambassadorTeamIds.add(row.teamId)
       }
     })
 
-    // Collect ALL members of those matched teams (teammates included)
+    // Keep only the UTM registrant in the datatable and summary counts.
     const ambassadorEntries = []
     entries.forEach(row => {
       const role = (row.role || '').toLowerCase()
       if (role.includes('coach')) return
 
-      if (!row.teamId || !ambassadorTeamIds.has(row.teamId)) return
-
       const email = (row.username || '').toLowerCase().trim()
+      if (!utmEmails.has(email)) return
 
       ambassadorEntries.push({
+        id: row.id,
         email: row.username || '',
         firstName: row.firstName || '',
         lastName: row.lastName || '',

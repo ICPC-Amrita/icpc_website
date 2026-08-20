@@ -42,11 +42,18 @@ export async function GET() {
       },
     })
 
-    const accountMap = {}
-    existingAccounts.forEach(a => { accountMap[a.refId] = a })
+    const accountByRefId = new Map()
+    const accountByEmail = new Map()
+    existingAccounts.forEach(a => {
+      if (a.refId) accountByRefId.set(String(a.refId).trim(), a)
+      if (a.email) accountByEmail.set(a.email.toLowerCase().trim(), a)
+    })
 
     const ambassadors = sourceData.map(src => {
-      const account = accountMap[src.refId]
+      const cleanRefId = String(src.refId).trim()
+      const cleanEmail = (src.email || '').toLowerCase().trim()
+      const account = accountByRefId.get(cleanRefId) || accountByEmail.get(cleanEmail)
+
       return {
         refId: src.refId,
         name: src.name,
@@ -60,7 +67,7 @@ export async function GET() {
     })
 
     const totalSource = sourceData.length
-    const totalCreated = existingAccounts.length
+    const totalCreated = ambassadors.filter(a => a.accountCreated).length
 
     return NextResponse.json({ ambassadors, totalSource, totalCreated })
   } catch (error) {
@@ -69,7 +76,7 @@ export async function GET() {
   }
 }
 
-// POST — create ambassador accounts
+// POST — create or sync ambassador accounts
 // Body: { refIds: ["1", "2"] } or { refIds: "all" }
 export async function POST(request) {
   try {
@@ -84,7 +91,8 @@ export async function POST(request) {
     if (refIds === 'all') {
       toCreate = sourceData
     } else if (Array.isArray(refIds)) {
-      toCreate = sourceData.filter(s => refIds.includes(s.refId))
+      const stringRefIds = new Set(refIds.map(r => String(r).trim()))
+      toCreate = sourceData.filter(s => stringRefIds.has(String(s.refId).trim()))
     } else {
       return NextResponse.json({ error: 'refIds must be an array or "all"' }, { status: 400 })
     }
@@ -93,40 +101,78 @@ export async function POST(request) {
     const skipped = []
 
     for (const amb of toCreate) {
-      // Check for existing account by refId OR email to prevent duplicates
+      const cleanRefId = String(amb.refId).trim()
+      const cleanEmail = (amb.email || '').toLowerCase().trim()
+
+      if (!cleanEmail) {
+        skipped.push({ refId: amb.refId, name: amb.name, reason: 'Email is missing' })
+        continue
+      }
+
+      // Check for existing account by refId OR email
       const existing = await prisma.ambassador.findFirst({
         where: {
           OR: [
-            { refId: amb.refId },
-            { email: amb.email.toLowerCase().trim() },
+            { refId: cleanRefId },
+            { email: cleanEmail },
           ],
         },
       })
 
       if (existing) {
-        skipped.push({ refId: amb.refId, name: amb.name, reason: 'Account already exists' })
+        // If account already exists by email or refId, sync/update refId & name if mismatched
+        try {
+          const rawPassword = existing.initialPassword || generatePassword()
+          const hashed = existing.password || (await bcrypt.hash(rawPassword, 10))
+
+          const updated = await prisma.ambassador.update({
+            where: { id: existing.id },
+            data: {
+              refId: cleanRefId,
+              name: amb.name || existing.name,
+              email: cleanEmail,
+              ...(existing.initialPassword ? {} : { initialPassword: rawPassword, password: hashed }),
+            },
+          })
+
+          created.push({
+            refId: updated.refId,
+            name: updated.name,
+            email: updated.email,
+            password: updated.initialPassword || 'Existing password',
+            isUpdated: true,
+          })
+        } catch (updateErr) {
+          console.error(`Error updating ambassador ${cleanRefId}:`, updateErr)
+          skipped.push({ refId: amb.refId, name: amb.name, reason: updateErr.message || 'Failed to update account' })
+        }
         continue
       }
 
       const rawPassword = generatePassword()
       const hashed = await bcrypt.hash(rawPassword, 10)
 
-      const newAmbassador = await prisma.ambassador.create({
-        data: {
-          refId: amb.refId,
-          name: amb.name,
-          email: amb.email.toLowerCase().trim(),
-          password: hashed,
-          initialPassword: rawPassword,
-        },
-      })
+      try {
+        const newAmbassador = await prisma.ambassador.create({
+          data: {
+            refId: cleanRefId,
+            name: amb.name || `Ambassador ${cleanRefId}`,
+            email: cleanEmail,
+            password: hashed,
+            initialPassword: rawPassword,
+          },
+        })
 
-      created.push({
-        refId: amb.refId,
-        name: amb.name,
-        email: amb.email,
-        password: rawPassword,
-      })
+        created.push({
+          refId: newAmbassador.refId,
+          name: newAmbassador.name,
+          email: newAmbassador.email,
+          password: rawPassword,
+        })
+      } catch (createErr) {
+        console.error(`Error creating ambassador ${cleanRefId}:`, createErr)
+        skipped.push({ refId: amb.refId, name: amb.name, reason: createErr.message || 'Error creating account' })
+      }
     }
 
     return NextResponse.json({ created, skipped })

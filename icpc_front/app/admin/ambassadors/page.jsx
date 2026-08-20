@@ -45,14 +45,17 @@ export default function AdminAmbassadorsPage() {
       const res = await fetch('/api/admin/ambassadors', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ refIds: [refId] }),
+        body: JSON.stringify({ refIds: [String(refId)] }),
       })
       const data = await res.json()
-      if (res.ok && data.created.length > 0) {
-        setMessage(`Account created for ${data.created[0].name} — Password: ${data.created[0].password}`)
+      if (res.ok && data.created?.length > 0) {
+        const item = data.created[0]
+        setMessage(`Account ${item.isUpdated ? 'linked/updated' : 'created'} for ${item.name} — Password: ${item.password}`)
         fetchAmbassadors()
       } else if (data.skipped?.length > 0) {
         setMessage(`Skipped: ${data.skipped[0].reason}`)
+      } else {
+        fetchAmbassadors()
       }
     } catch (err) {
       setMessage('Error creating account')
@@ -72,7 +75,7 @@ export default function AdminAmbassadorsPage() {
       })
       const data = await res.json()
       if (res.ok) {
-        const msg = `Created ${data.created.length} accounts. Skipped ${data.skipped.length}.`
+        const msg = `Processed: ${data.created?.length || 0} accounts created/linked. ${data.skipped?.length || 0} skipped.`
         setMessage(msg)
         fetchAmbassadors()
       }

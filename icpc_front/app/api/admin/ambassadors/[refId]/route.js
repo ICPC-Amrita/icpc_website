@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { cookies } from 'next/headers'
 
+import { getAmbassadorSourceData } from '@/lib/ambassadorData'
+
 async function verifyAdmin() {
   const cookieStore = cookies()
   const token = cookieStore.get('admin_session')?.value
@@ -18,10 +20,17 @@ export async function GET(request, { params }) {
     }
 
     const { refId } = params
+    const cleanRefId = String(refId).trim().split('-').pop().trim()
 
-    // Get ambassador account info
-    const ambassador = await prisma.ambassador.findUnique({
-      where: { refId },
+    // 1. Get ambassador account info from DB
+    let ambassador = await prisma.ambassador.findFirst({
+      where: {
+        OR: [
+          { refId: cleanRefId },
+          { refId: String(refId).trim() },
+          { refId: { endsWith: `-${cleanRefId}` } },
+        ],
+      },
       select: {
         id: true,
         refId: true,
@@ -33,24 +42,31 @@ export async function GET(request, { params }) {
       },
     })
 
-    // Get the latest snapshot
-    const latestSnapshot = await prisma.snapshot.findFirst({
-      orderBy: { uploadedAt: 'desc' },
-      include: { entries: true },
-    })
-
-    if (!latestSnapshot) {
-      return NextResponse.json({
-        ambassador: ambassador || { refId, name: 'Unknown', email: 'Unknown' },
-        summary: { totalTeams: 0, totalStudents: 0, accepted: 0, pending: 0, canceled: 0, utmRegistered: 0 },
-        entries: [],
-      })
+    // If no DB account yet, fallback to sourceData info
+    if (!ambassador) {
+      const sourceData = await getAmbassadorSourceData()
+      const srcAmb = sourceData.find(s => String(s.refId).trim() === cleanRefId)
+      if (srcAmb) {
+        ambassador = {
+          id: null,
+          refId: srcAmb.refId,
+          name: srcAmb.name,
+          email: srcAmb.email,
+          initialPassword: null,
+          createdAt: null,
+        }
+      }
     }
 
-    // Get DB teams — ONLY those that came through this ambassador's UTM link
+    // 2. Get DB teams — ONLY those that came through this ambassador's UTM link
     const dbTeams = await prisma.team.findMany({
       where: {
-        utmSource: refId,
+        OR: [
+          { utmSource: cleanRefId },
+          { utmSource: String(refId).trim() },
+          { utmSource: { endsWith: `-${cleanRefId}` } },
+          { utmSource: { startsWith: `${cleanRefId}-` } },
+        ],
       },
       select: {
         id: true,
@@ -71,9 +87,15 @@ export async function GET(request, { params }) {
       dbTeams.map(t => t.userEmail?.toLowerCase().trim()).filter(Boolean)
     )
 
+    // 3. Get the latest snapshot
+    const latestSnapshot = await prisma.snapshot.findFirst({
+      orderBy: { uploadedAt: 'desc' },
+      include: { entries: true },
+    })
+
     if (!latestSnapshot) {
       return NextResponse.json({
-        ambassador: ambassador || { refId, name: 'Unknown', email: 'Unknown' },
+        ambassador: ambassador || { refId, name: `Ambassador ${refId}`, email: 'N/A' },
         summary: { totalTeams: 0, totalStudents: 0, accepted: 0, pending: 0, canceled: 0, utmRegistered: dbTeams.length },
         entries: [],
         utmRegistrations: dbTeams,
@@ -82,26 +104,29 @@ export async function GET(request, { params }) {
 
     const entries = latestSnapshot.entries
 
-    // Find teamIds that belong to this ambassador via UTM email match
+    // Only include students who personally registered through this ambassador's UTM link.
+    // Do not expand a UTM registration to every teammate in the matched team.
     const ambassadorTeamIds = new Set()
     entries.forEach(row => {
       const email = (row.username || '').toLowerCase().trim()
-      if (utmEmails.has(email) && row.teamId) {
+      const matchesUtm = utmEmails.has(email)
+
+      if (matchesUtm && row.teamId) {
         ambassadorTeamIds.add(row.teamId)
       }
     })
 
-    // Collect ALL members of those matched teams
+    // Keep only the UTM registrant in the datatable and summary counts.
     const ambassadorEntries = []
     entries.forEach(row => {
       const role = (row.role || '').toLowerCase()
       if (role.includes('coach')) return
 
-      if (!row.teamId || !ambassadorTeamIds.has(row.teamId)) return
-
       const email = (row.username || '').toLowerCase().trim()
+      if (!utmEmails.has(email)) return
 
       ambassadorEntries.push({
+        id: row.id,
         email: row.username || '',
         firstName: row.firstName || '',
         lastName: row.lastName || '',
@@ -115,7 +140,7 @@ export async function GET(request, { params }) {
     })
 
     return NextResponse.json({
-      ambassador: ambassador || { refId, name: 'Unknown', email: 'Unknown' },
+      ambassador: ambassador || { refId, name: `Ambassador ${refId}`, email: 'N/A' },
       summary: {
         totalTeams: ambassadorTeamIds.size,
         totalStudents: ambassadorEntries.length,
