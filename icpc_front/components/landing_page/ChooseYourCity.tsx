@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import MobileCarousel from "./MobileCarousel";
 
 const cities = [
@@ -8,7 +9,7 @@ const cities = [
     image: "/assets/kollam.png",
     campus: "Amritapuri campus,",
     state: "Kerala",
-    tag: "Backwaters setting",
+    tag: "The home of the Amritapuri Regional.",
     tagColor: null,
   },
   {
@@ -17,7 +18,7 @@ const cities = [
     image: "/assets/bengaluru.png",
     campus: "Amrita campus,",
     state: "Karnataka",
-    tag: "Tech hub of India",
+    tag: "Compete in India's technology hub.",
     tagColor: null,
   },
   {
@@ -26,7 +27,7 @@ const cities = [
     image: "/assets/coimbatore.png",
     campus: "Amrita campus,",
     state: "Tamil Nadu",
-    tag: "Scenic hills",
+    tag: "A major education and technology destination.",
     tagColor: null,
   },
   {
@@ -35,7 +36,7 @@ const cities = [
     image: "/assets/mysore.png",
     campus: "Amrita campus,",
     state: "Karnataka",
-    tag: "New in 2025",
+    tag: "Another opportunity to experience the Amritapuri Regional onsite.",
     tagColor: "#10B981",
   },
 ];
@@ -46,10 +47,11 @@ export default function ChooseYourCity() {
       <div className="max-w-full mx-auto border border-gray-200 rounded-2xl p-8 sm:p-10">
 
         <div className="text-center mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">Choose your city</h2>
-          <p className="mt-2 text-sm text-gray-500">
-            Same contest. Same problems. Same qualifying standards — just a different city.
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">One Regional. Four Locations.</h2>
+          <p className="mt-2 text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            Choose the location that works best for your team. The contest experience and competitive standards remain the same. Your team gets to experience the ICPC Regional at one of the announced Amritapuri multisite locations.
           </p>
+          <div className="mx-auto mt-3 w-12 h-0.5 bg-blue-500 rounded-full" />
         </div>
 
         <MobileCarousel desktopGrid="grid-cols-2 lg:grid-cols-4 gap-4" cardWidth="w-[80%]">
@@ -79,21 +81,25 @@ export default function ChooseYourCity() {
                 >
                   {city.tag}
                 </p>
-
-                <div className="mt-auto pt-3 flex justify-end">
-                  {/* <button
-                    className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors"
-                    aria-label={`Go to ${city.name}`}
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button> */}
-                </div>
               </div>
             </div>
           ))}
         </MobileCarousel>
+
+        <div className="mt-8 text-center pt-2">
+          <p className="text-sm font-semibold text-gray-700">Four locations. One ICPC Regional experience.</p>
+          <div className="mt-3">
+            <Link
+              href="/reach-us"
+              className="inline-flex items-center gap-2 border border-gray-300 hover:border-blue-500 hover:text-blue-600 text-gray-700 text-sm font-medium px-5 py-2.5 rounded-md transition-colors"
+            >
+              EXPLORE THE CENTRES
+              <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
 
       </div>
     </section>

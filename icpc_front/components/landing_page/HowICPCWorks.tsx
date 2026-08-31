@@ -2,6 +2,7 @@ import MobileCarousel from "./MobileCarousel";
 
 const steps = [
   {
+    step: "01",
     color: "#3B82F6",
     bg: "bg-blue-500",
     icon: (
@@ -12,10 +13,23 @@ const steps = [
         <path d="M20.5 17.5a4.5 4.5 0 00-3.5-2" strokeLinecap="round" />
       </svg>
     ),
-    title: "Register Team",
-    desc: "Team of 3 students from any branch. Register online.",
+    title: "Form Your Team",
+    desc: "Build an eligible team of three student contestants from your institution and identify your coach according to the official ICPC eligibility rules.",
   },
   {
+    step: "02",
+    color: "#06B6D4",
+    bg: "bg-cyan-500",
+    icon: (
+      <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6}>
+        <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    title: "Register",
+    desc: "Complete your ICPC registration for the Amritapuri preliminary round.",
+  },
+  {
+    step: "03",
     color: "#10B981",
     bg: "bg-emerald-500",
     icon: (
@@ -26,10 +40,23 @@ const steps = [
         <path d="M15 10l1.5 1.5L19 8" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "Online Prelims",
-    desc: "Solve as many problems as you can from your college.",
+    title: "Compete Online",
+    desc: "Participate in the ICPC India Preliminary Online Round.",
   },
   {
+    step: "04",
+    color: "#F59E0B",
+    bg: "bg-amber-500",
+    icon: (
+      <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6}>
+        <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    title: "Earn Your Onsite Spot",
+    desc: "Teams are evaluated according to the applicable ICPC selection process. Eligible top-performing teams receive onsite invitations.",
+  },
+  {
+    step: "05",
     color: "#F97316",
     bg: "bg-orange-500",
     icon: (
@@ -38,10 +65,11 @@ const steps = [
         <circle cx="12" cy="8" r="2" />
       </svg>
     ),
-    title: "Regional Contest",
-    desc: "Top teams qualify for the onsite contest at one of our 4 cities.",
+    title: "Compete at the Regional",
+    desc: "Experience the full ICPC Regional onsite with your team.",
   },
   {
+    step: "06",
     color: "#8B5CF6",
     bg: "bg-purple-500",
     icon: (
@@ -52,50 +80,12 @@ const steps = [
         <path d="M5 3H3v5a3 3 0 003 3M19 3h2v5a3 3 0 01-3 3" strokeLinecap="round" />
       </svg>
     ),
-    title: "Continental Championship",
-    desc: "Top regional teams compete at the Asia West Continental Championship.",
-  },
-  {
-    color: "#3B82F6",
-    bg: "bg-blue-600",
-    icon: (
-      <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6}>
-        <circle cx="12" cy="12" r="10" />
-        <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" strokeLinecap="round" />
-      </svg>
-    ),
-    title: "World Finals",
-    desc: "The best teams in the world compete for the ICPC World Championship!",
+    title: "Aim Higher",
+    desc: "Strong performances can lead toward the next stages of the ICPC pathway, including the Asia West Championship and ultimately the World Finals, subject to official qualification rules.",
   },
 ];
 
 const perks = [
-  {
-    color: "#F59E0B",
-    bg: "bg-amber-50",
-    icon: (
-      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" strokeWidth={1.6}>
-        <path d="M8 21h8M12 17v4" strokeLinecap="round" />
-        <path d="M5 3h14l-2 8H7L5 3z" strokeLinejoin="round" />
-        <path d="M7 11c0 2.761 2.239 5 5 5s5-2.239 5-5" />
-        <path d="M5 3H3v5a3 3 0 003 3M19 3h2v5a3 3 0 01-3 3" strokeLinecap="round" />
-      </svg>
-    ),
-    title: "India's Largest Regional Site",
-    desc: "~310 onsite slots across 4 cities. Better odds of qualifying.",
-  },
-  {
-    color: "#10B981",
-    bg: "bg-emerald-50",
-    icon: (
-      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth={1.6}>
-        <path d="M12 2C8.686 2 6 4.686 6 8c0 4.5 6 12 6 12s6-7.5 6-12c0-3.314-2.686-6-6-6z" />
-        <circle cx="12" cy="8" r="2" />
-      </svg>
-    ),
-    title: "4 Cities",
-    desc: "Kochi, Coimbatore and Mysuru. Pick the city closest to you.",
-  },
   {
     color: "#3B82F6",
     bg: "bg-blue-50",
@@ -105,8 +95,8 @@ const perks = [
         <path d="M22 2L15 22l-4-9-9-4 20-7z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "Telegram Support",
-    desc: "Dedicated support channel at every stage of the contest.",
+    title: "Compete at Scale",
+    desc: "Join one of India's major ICPC regional opportunities.",
   },
   {
     color: "#8B5CF6",
@@ -119,8 +109,8 @@ const perks = [
         <circle cx="12" cy="16" r="2" />
       </svg>
     ),
-    title: "Free Preparation Webinars",
-    desc: "Sessions by Algo Zenith & ICPC Finalists to help you prepare.",
+    title: "Prepare Before You Compete",
+    desc: "Access preparation sessions designed to help teams approach the preliminary round with confidence.",
   },
   {
     color: "#6366F1",
@@ -132,35 +122,48 @@ const perks = [
         <path d="M14 15l1.5 1.5L18 13" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "Certificates for Every Team",
-    desc: "Submit at least one solution and get a participation certificate.",
+    title: "Get Support Throughout the Journey",
+    desc: "From registration questions to contest preparation, participants have access to dedicated support channels.",
   },
   {
-    color: "#3B82F6",
-    bg: "bg-blue-50",
+    color: "#10B981",
+    bg: "bg-emerald-50",
     icon: (
-      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth={1.6}>
+      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth={1.6}>
         <circle cx="9" cy="7" r="3" />
         <path d="M3 19a6 6 0 0112 0" strokeLinecap="round" />
         <circle cx="18" cy="8" r="2.5" />
         <path d="M20.5 17.5a4.5 4.5 0 00-3.5-2" strokeLinecap="round" />
       </svg>
     ),
-    title: "Coach Recognition",
-    desc: "Coaches registering 5 or more teams get a special certificate.",
+    title: "Aim Beyond the Regional",
+    desc: "A strong regional performance can open the door to the next stages of the ICPC journey.",
+  },
+  {
+    color: "#EC4899",
+    bg: "bg-pink-50",
+    icon: (
+      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#EC4899" strokeWidth={1.6}>
+        <circle cx="12" cy="12" r="10" />
+        <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" strokeLinecap="round" />
+      </svg>
+    ),
+    title: "Experience ICPC",
+    desc: "Meet strong programmers, compete under real contest conditions, work as a team and become part of the ICPC community.",
   },
 ];
 
 
 export default function HowICPCWorks() {
   return (
-    <section className="w-full bg-white px-6 sm:px-10 lg:px-16 xl:px-20 pb-14">
+    <section id="how-it-works" className="w-full bg-white px-6 sm:px-10 lg:px-16 xl:px-20 pb-14">
       <div className="max-w-full mx-auto border border-gray-200 rounded-2xl p-8 sm:p-10">
 
         {/* How ICPC Works */}
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">How ICPC works</h2>
           <div className="mx-auto mt-2 w-12 h-0.5 bg-blue-500 rounded-full" />
+          <p className="mt-3 text-sm text-gray-500 max-w-xl mx-auto">From your first registration to the Regional</p>
         </div>
 
         <div className="flex flex-col sm:flex-row items-start justify-between gap-6 sm:gap-2">
@@ -195,11 +198,13 @@ export default function HowICPCWorks() {
         {/* Why choose Amritapuri */}
         <div className="mt-14">
           <div className="text-center mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">Why choose Amritapuri?</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">Choosing your ICPC Regional?</h2>
             <div className="mx-auto mt-2 w-12 h-0.5 bg-blue-500 rounded-full" />
+            <p className="mt-3 text-base font-semibold text-blue-600">Don&apos;t just choose a contest. Choose the experience.</p>
+            <p className="mt-2 text-sm text-gray-500 max-w-2xl mx-auto">Amritapuri brings the ICPC Regional experience to four locations, giving teams more options for where they experience the onsite contest. But location is only one part of the decision.</p>
           </div>
 
-          <MobileCarousel desktopGrid="grid-cols-3 lg:grid-cols-6 gap-4">
+          <MobileCarousel desktopGrid="grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {perks.map((perk) => (
               <div
                 key={perk.title}

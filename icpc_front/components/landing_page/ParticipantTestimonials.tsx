@@ -6,7 +6,7 @@ import { useState,useEffect } from "react";
 const testimonials = [
   {
     quote:
-      "Our first ICPC experience started at Amritapuri. The webinars and support helped us qualify onsite. It was an unforgettable journey!",
+      "Our first ICPC experience started at Amritapuri. The preparation, the contest, the pressure and the people made the experience unforgettable.",
     author: "Team Syntax Squad",
     college: "NIT Calicut",
   },
@@ -48,7 +48,7 @@ export default function ParticipantTestimonials() {
       <div className="p-5 sm:p-6 flex flex-col justify-between flex-1">
         <div>
           <h3 className="text-base font-bold text-gray-900 mb-3">
-            Hear from our participants
+            They came to compete. They left with an ICPC story.
           </h3>
           <span className="text-4xl text-orange-400 leading-none font-serif">&ldquo;</span>
           <p className="text-sm text-gray-600 mt-1 leading-relaxed">{t.quote}</p>

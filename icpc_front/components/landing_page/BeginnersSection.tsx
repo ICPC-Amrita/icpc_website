@@ -13,8 +13,8 @@ export default function BeginnersSection() {
           <p className="text-base font-bold text-gray-900">Can beginners participate?</p>
           <p className="text-3xl font-extrabold text-blue-600 leading-none">Absolutely.</p>
           <div className="flex flex-col gap-0.5">
-            <p className="text-sm text-gray-500">You don&apos;t need to be a Codeforces expert.</p>
-            <p className="text-sm text-gray-500">If you&apos;ve learned:</p>
+            <p className="text-sm text-gray-600 font-medium">Think you&apos;re not ready for ICPC? Think again.</p>
+            <p className="text-sm text-gray-500">You don&apos;t have to be an expert to start. If you&apos;ve learned:</p>
           </div>
           <div className="flex flex-wrap gap-2">
             {topics.map((t) => (
@@ -27,7 +27,7 @@ export default function BeginnersSection() {
             ))}
           </div>
           <p className="text-sm font-bold text-gray-800 flex items-center gap-1.5">
-            <span>⭐</span> Most participants are first-timers.
+            <span>⭐</span> Your first ICPC can be the start of your CP journey.
           </p>
           <div>
             <Link
@@ -35,9 +35,6 @@ export default function BeginnersSection() {
               className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-md transition-colors shadow-sm shadow-blue-200"
             >
               Read Beginner Guide
-              {/* <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg> */}
             </Link>
           </div>
         </div>
@@ -71,8 +68,8 @@ export default function BeginnersSection() {
           <p className="text-base font-bold text-gray-900">Can beginners participate?</p>
           <p className="text-3xl font-extrabold text-blue-600 leading-none">Absolutely.</p>
           <div className="flex flex-col gap-0.5">
-            <p className="text-sm text-gray-500">You don&apos;t need to be a Codeforces expert.</p>
-            <p className="text-sm text-gray-500">If you&apos;ve learned:</p>
+            <p className="text-sm text-gray-600 font-medium">Think you&apos;re not ready for ICPC? Think again.</p>
+            <p className="text-sm text-gray-500">You don&apos;t have to be an expert to start. If you&apos;ve learned:</p>
           </div>
           <div className="flex flex-wrap gap-2">
             {topics.map((t) => (
@@ -85,10 +82,10 @@ export default function BeginnersSection() {
             ))}
           </div>
           <p className="text-sm font-bold text-gray-800 flex items-center gap-1.5">
-            <span>⭐</span> Most participants are first-timers.
+            <span>⭐</span> Your first ICPC can be the start of your CP journey.
           </p>
           <Link
-            href="#"
+            href="/beginner-guide"
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-md transition-colors shadow-sm shadow-blue-200 self-start"
           >
             Read Beginner Guide
