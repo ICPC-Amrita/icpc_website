@@ -164,7 +164,7 @@ export default function ImportantDates() {
         {/* ============================================================ */}
         {/* SECTION 13 — THE BIGGER JOURNEY                               */}
         {/* ============================================================ */}
-        <div className="border border-gray-200 rounded-2xl p-6 sm:p-10 bg-white shadow-sm">
+        {/* <div className="border border-gray-200 rounded-2xl p-6 sm:p-10 bg-white shadow-sm">
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight">
               Where can ICPC take you?
@@ -175,7 +175,6 @@ export default function ImportantDates() {
             <div className="mx-auto mt-3 w-12 h-0.5 bg-blue-500 rounded-full" />
           </div>
 
-          {/* 3 Stage Pathway Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             {journeyStages.map((stage, i) => (
               <div
@@ -187,9 +186,7 @@ export default function ImportantDates() {
                     <span className={`text-xs font-black tracking-wider ${stage.textColor}`}>
                       {stage.stage}
                     </span>
-                    {/* <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${stage.badgeStyle}`}>
-                      {stage.badge}
-                    </span> */}
+               
                   </div>
                   <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1.5">{stage.title}</h3>
                   <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
@@ -197,7 +194,6 @@ export default function ImportantDates() {
                   </p>
                 </div>
 
-                {/* Arrow to next stage (visible on desktop) */}
                 {i < journeyStages.length - 1 && (
                   <div className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white border border-gray-300 shadow-sm items-center justify-center text-gray-400">
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
@@ -209,7 +205,6 @@ export default function ImportantDates() {
             ))}
           </div>
 
-          {/* Narrative & Call to Action Box */}
           <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 via-blue-950 to-indigo-950 p-6 sm:p-10 text-center text-white shadow-md">
             <div className="max-w-2xl mx-auto space-y-2 text-sm sm:text-base text-gray-200">
               <p className="text-blue-200/90 font-medium">At every stage, the field gets stronger.</p>
@@ -235,7 +230,7 @@ export default function ImportantDates() {
               </Link>
             </div>
           </div>
-        </div>
+        </div> */}
 
 
         {/* ============================================================ */}

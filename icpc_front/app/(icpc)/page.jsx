@@ -19,9 +19,9 @@ export default function Trial(){
             <ChooseYourCity />
             <ImportantDates />
             <section className="w-full bg-white px-6 sm:px-10 lg:px-16 xl:px-20 pb-14">
-                <div className="max-w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="max-w-full mx-auto flex flex-col items-center justify-center">
                     <ParticipantTestimonials />
-                    <ICPCChampions />
+                    {/* <ICPCChampions /> */}
                 </div>
             </section>
             <Sponsors />

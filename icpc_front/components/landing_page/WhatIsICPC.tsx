@@ -157,7 +157,7 @@ export default function WhatIsICPC() {
           {/* Left: illustration */}
           <div className="w-full lg:flex-1 flex justify-center">
             <Image
-              src="/assets/image2.png"
+              src="/assets/hero/icpc.JPG"
               alt="Students collaborating on programming"
               width={540}
               height={400}

@@ -5,20 +5,20 @@ import TeamRegistrationModal from '../modal/TeamRegistrationModal';
 const heroImages = [
   // Column 1 (Offset down)
   {
-    src: "/assets/hero/arena.jpg",
+    src: "/assets/hero/IMG_2507.JPG",
     alt: "ICPC Regional Onsite Contest Arena",
     col: 1,
     aspect: "aspect-[3/4]",
   },
   // Column 2 (Top + Bottom)
   {
-    src: "/assets/hero/Team photo .jpg",
+    src: "/assets/hero/IMG_2863.JPG",
     alt: "Contestants and Teams from Across India",
     col: 2,
     aspect: "aspect-[4/5]",
   },
   {
-    src: "/assets/hero/first.jpg",
+    src: "/assets/hero/Team Photo2.JPG",
     alt: "ICPC Champions Celebration",
     col: 2,
     aspect: "aspect-[4/3]",
@@ -31,7 +31,7 @@ const heroImages = [
     aspect: "aspect-[4/5]",
   },
   {
-    src: "/assets/hero/second.jpg",
+    src: "/assets/hero/Contest Arena.jpg",
     alt: "ICPC Regional Runner-Up Teams",
     col: 3,
     aspect: "aspect-[4/3]",
@@ -110,11 +110,11 @@ export default function HeroSection() {
           </div>
 
           {/* Right Column: Staggered Multi-Column Image Collage (7 cols on lg/xl) */}
-          <div className="lg:col-span-6 xl:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-4 items-start w-full">
+          <div className="lg:col-span-6 xl:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 items-start w-full">
             
             {/* Column 1: Starts lower down (Offset) */}
             <div className="flex flex-col pt-8 sm:pt-14 lg:pt-20">
-              <div className="relative aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-gray-200/70 border border-gray-100/80 bg-gray-100 group">
+              <div className="relative aspect-[3/4] overflow-hidden shadow-lg shadow-gray-200/70 border border-gray-100/80 bg-gray-100 group">
                 <Image
                   src={heroImages[0].src}
                   alt={heroImages[0].alt}
@@ -127,8 +127,8 @@ export default function HeroSection() {
             </div>
 
             {/* Column 2: Starts at the top with 2 stacked images */}
-            <div className="flex flex-col gap-3.5 sm:gap-4 pt-0">
-              <div className="relative aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-gray-200/70 border border-gray-100/80 bg-gray-100 group">
+            <div className="flex flex-col gap-2 sm:gap-4 pt-0">
+              <div className="relative aspect-[4/5]   overflow-hidden shadow-lg shadow-gray-200/70 border border-gray-100/80 bg-gray-100 group">
                 <Image
                   src={heroImages[1].src}
                   alt={heroImages[1].alt}
@@ -138,7 +138,7 @@ export default function HeroSection() {
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
               </div>
-              <div className="relative aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-gray-200/70 border border-gray-100/80 bg-gray-100 group">
+              <div className="relative aspect-[4/3]  overflow-hidden shadow-lg shadow-gray-200/70 border border-gray-100/80 bg-gray-100 group">
                 <Image
                   src={heroImages[2].src}
                   alt={heroImages[2].alt}
@@ -150,8 +150,8 @@ export default function HeroSection() {
             </div>
 
             {/* Column 3: Starts slightly offset with 2 stacked images (hidden on smallest mobile, shown sm+) */}
-            <div className="hidden sm:flex flex-col gap-3.5 sm:gap-4 pt-4 sm:pt-8 lg:pt-10">
-              <div className="relative aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-gray-200/70 border border-gray-100/80 bg-gray-100 group">
+            <div className="hidden sm:flex flex-col gap-2 sm:gap-4 pt-4 sm:pt-8 lg:pt-10">
+              <div className="relative aspect-[4/5]   overflow-hidden shadow-lg shadow-gray-200/70 border border-gray-100/80 bg-gray-100 group">
                 <Image
                   src={heroImages[3].src}
                   alt={heroImages[3].alt}
@@ -160,7 +160,7 @@ export default function HeroSection() {
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
               </div>
-              <div className="relative aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-gray-200/70 border border-gray-100/80 bg-gray-100 group">
+              <div className="relative aspect-[4/3]  overflow-hidden shadow-lg shadow-gray-200/70 border border-gray-100/80 bg-gray-100 group">
                 <Image
                   src={heroImages[4].src}
                   alt={heroImages[4].alt}

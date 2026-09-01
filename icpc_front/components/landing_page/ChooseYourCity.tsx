@@ -11,6 +11,7 @@ const cities = [
     state: "Kerala",
     tag: "The home of the Amritapuri Regional.",
     tagColor: null,
+    href: "/reach-us/amritapuri",
   },
   {
     name: "Bengaluru",
@@ -20,6 +21,7 @@ const cities = [
     state: "Karnataka",
     tag: "Compete in India's technology hub.",
     tagColor: null,
+    href: "/reach-us/bengaluru",
   },
   {
     name: "Coimbatore",
@@ -29,6 +31,7 @@ const cities = [
     state: "Tamil Nadu",
     tag: "A major education and technology destination.",
     tagColor: null,
+    href: "/reach-us/coimbatore",
   },
   {
     name: "Mysuru",
@@ -38,6 +41,7 @@ const cities = [
     state: "Karnataka",
     tag: "Another opportunity to experience the Amritapuri Regional onsite.",
     tagColor: "#10B981",
+    href: "/reach-us/mysuru",
   },
 ];
 
@@ -56,9 +60,10 @@ export default function ChooseYourCity() {
 
         <MobileCarousel desktopGrid="grid-cols-2 lg:grid-cols-4 gap-4" cardWidth="w-[80%]">
           {cities.map((city) => (
-            <div
+            <Link
               key={city.name}
-              className="rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full"
+              href={city.href}
+              className="rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full cursor-pointer"
             >
               <div className="relative w-full h-40">
                 <Image
@@ -81,12 +86,18 @@ export default function ChooseYourCity() {
                 >
                   {city.tag}
                 </p>
+                <p
+                  className="mt-auto pt-3 text-sm font-semibold group-hover:opacity-80 transition-opacity duration-300"
+                  style={{ color: city.color }}
+                >
+                  Learn More →
+                </p>
               </div>
-            </div>
+            </Link>
           ))}
         </MobileCarousel>
 
-        <div className="mt-8 text-center pt-2">
+        {/* <div className="mt-8 text-center pt-2">
           <p className="text-sm font-semibold text-gray-700">Four locations. One ICPC Regional experience.</p>
           <div className="mt-3">
             <Link
@@ -99,7 +110,7 @@ export default function ChooseYourCity() {
               </svg>
             </Link>
           </div>
-        </div>
+        </div> */}
 
       </div>
     </section>

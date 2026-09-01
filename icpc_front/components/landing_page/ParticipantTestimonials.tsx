@@ -35,7 +35,7 @@ export default function ParticipantTestimonials() {
   },[])
 
   return (
-    <div className="border border-gray-200 rounded-2xl overflow-hidden flex h-full min-h-[220px]">
+    <div className="border border-gray-200 rounded-2xl overflow-hidden flex h-full w-full max-w-2xl" style={{ height: "280px" }}>
       <div className="relative w-36 sm:w-44 flex-shrink-0">
         <Image
           src="/assets/team_image.png"
@@ -51,7 +51,7 @@ export default function ParticipantTestimonials() {
             They came to compete. They left with an ICPC story.
           </h3>
           <span className="text-4xl text-orange-400 leading-none font-serif">&ldquo;</span>
-          <p className="text-sm text-gray-600 mt-1 leading-relaxed">{t.quote}</p>
+          <p className="text-sm text-gray-600 mt-1 leading-relaxed line-clamp-3">{t.quote}</p>
           <p className="text-sm font-bold text-gray-900 mt-3">— {t.author}</p>
           <p className="text-xs text-gray-500">{t.college}</p>
         </div>

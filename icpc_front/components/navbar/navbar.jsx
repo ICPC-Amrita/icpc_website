@@ -481,14 +481,14 @@ export default function Navbar({ open, hero, darkSection }) {
         </div>
 
         {/* Primary Header Button */}
-        <div className="hidden md:flex items-center mr-4">
+        {/* <div className="hidden md:flex items-center mr-4">
           <Link
             href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
             className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold px-4 py-2 rounded-lg text-xs lg:text-sm transition-all shadow-sm whitespace-nowrap"
           >
             Register Your Team
           </Link>
-        </div>
+        </div> */}
 
         {/* Mobile Menu Button - Only show on truly mobile devices */}
         <div className="flex md:hidden flex-1 justify-end items-center pr-4">
