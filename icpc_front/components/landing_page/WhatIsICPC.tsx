@@ -8,52 +8,49 @@ const icpcStats = [
   {
     icon: (
       <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="#3B82F6" strokeWidth="1.5" />
-        <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M17 20h5v-2a4 4 0 00-5.197-3.76M9 20H4v-2a4 4 0 015.197-3.76M15 7a4 4 0 11-8 0 4 4 0 018 0zm6 4a3 3 0 11-6 0 3 3 0 016 0zm-18 0a3 3 0 116 0 3 3 0 01-6 0z" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    value: "100+",
-    label: "Countries",
+    value: "~350",
+    label: "Onsite Opportunities",
+    desc: "One of India's major ICPC multisite regional opportunities.",
     color: "text-blue-500",
   },
   {
     icon: (
       <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
-        <path d="M12 3L2 9l10 6 10-6-10-6z" stroke="#10B981" strokeWidth="1.5" strokeLinejoin="round" />
-        <path d="M2 17l10 6 10-6" stroke="#10B981" strokeWidth="1.5" strokeLinejoin="round" />
-        <path d="M2 13l10 6 10-6" stroke="#10B981" strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    value: "Thousands",
-    label: "Universities",
+    value: "4",
+    label: "Locations",
+    desc: "Kollam, Bengaluru, Coimbatore and Mysuru.",
     color: "text-emerald-500",
   },
   {
     icon: (
       <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="7" r="3" stroke="#8B5CF6" strokeWidth="1.5" />
-        <path d="M5 20a7 7 0 0114 0" stroke="#8B5CF6" strokeWidth="1.5" strokeLinecap="round" />
-        <circle cx="19" cy="7" r="2.5" stroke="#8B5CF6" strokeWidth="1.2" />
-        <path d="M21.5 18a5.5 5.5 0 00-4-3" stroke="#8B5CF6" strokeWidth="1.2" strokeLinecap="round" />
-        <circle cx="5" cy="7" r="2.5" stroke="#8B5CF6" strokeWidth="1.2" />
-        <path d="M2.5 18a5.5 5.5 0 014-3" stroke="#8B5CF6" strokeWidth="1.2" strokeLinecap="round" />
+        <circle cx="9" cy="7" r="3" stroke="#8B5CF6" strokeWidth="1.5" />
+        <path d="M3 19a6 6 0 0112 0" stroke="#8B5CF6" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="18" cy="8" r="2.5" stroke="#8B5CF6" strokeWidth="1.2" />
+        <path d="M15 19a6 6 0 018 0" stroke="#8B5CF6" strokeWidth="1.2" strokeLinecap="round" />
       </svg>
     ),
-    value: "50,000+",
-    label: "Students",
+    value: "3",
+    label: "Contestants",
+    desc: "One team. One computer. Five hours of problem-solving.",
     color: "text-purple-500",
   },
   {
     icon: (
       <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
-        <path d="M8 21h8M12 17v4" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M5 3h14l-2 8H7L5 3z" stroke="#F59E0B" strokeWidth="1.5" strokeLinejoin="round" />
-        <path d="M7 11c0 2.761 2.239 5 5 5s5-2.239 5-5" stroke="#F59E0B" strokeWidth="1.5" />
-        <path d="M5 3H3v5a3 3 0 003 3M19 3h2v5a3 3 0 01-3 3" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" />
+        <text x="3" y="18" fontSize="15" fontWeight="700" fill="#F59E0B" stroke="none">₹</text>
       </svg>
     ),
-    value: "World",
-    label: "Finals",
+    value: "₹1,500",
+    label: "Per Team",
+    desc: "Preliminary-round registration fee for Indian teams.",
     color: "text-amber-500",
   },
 ];
@@ -68,57 +65,8 @@ const reasons = [
       </svg>
     ),
     bg: "bg-green-50",
-    title: "Improve Problem Solving",
-    desc: "Learn how top engineers think.",
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
-        <rect x="4" y="2" width="16" height="20" rx="2" stroke="#3B82F6" strokeWidth="1.5" />
-        <path d="M8 7h8M8 11h8M8 15h5" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M15 15l1.5 1.5L19 13" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    bg: "bg-blue-50",
-    title: "Strengthen Your Resume",
-    desc: "Recognized by leading technology companies.",
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
-        <circle cx="8" cy="8" r="3" stroke="#8B5CF6" strokeWidth="1.5" />
-        <circle cx="16" cy="8" r="3" stroke="#8B5CF6" strokeWidth="1.5" />
-        <path d="M2 19a6 6 0 0112 0" stroke="#8B5CF6" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M16 14a6 6 0 016 5" stroke="#8B5CF6" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
-    bg: "bg-purple-50",
-    title: "Work as a Team",
-    desc: "Compete in teams of three.",
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="7" width="20" height="14" rx="2" stroke="#F97316" strokeWidth="1.5" />
-        <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="#F97316" strokeWidth="1.5" />
-        <path d="M12 12v4M10 14h4" stroke="#F97316" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
-    bg: "bg-orange-50",
-    title: "Prepare for Placements",
-    desc: "Many coding interview skills overlap with ICPC preparation.",
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="8" r="5" stroke="#EC4899" strokeWidth="1.5" />
-        <path d="M7 13l-3 7 8-3 8 3-3-7" stroke="#EC4899" strokeWidth="1.5" strokeLinejoin="round" />
-        <path d="M12 3v10" stroke="#EC4899" strokeWidth="1.2" strokeLinecap="round" />
-      </svg>
-    ),
-    bg: "bg-pink-50",
-    title: "Win Recognition",
-    desc: "Certificates and regional rankings.",
+    title: "Build Problem-Solving Skills",
+    desc: "Learn to approach unfamiliar problems, identify patterns and develop efficient solutions.",
   },
   {
     icon: (
@@ -130,30 +78,90 @@ const reasons = [
       </svg>
     ),
     bg: "bg-yellow-50",
-    title: "Qualify for Higher Rounds",
-    desc: "Advance toward the Continental Championship.",
+    title: "Sharpen Your Competitive Programming Skills",
+    desc: "Practice algorithms, data structures, implementation and time management in a real contest environment.",
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
+        <rect x="4" y="2" width="16" height="20" rx="2" stroke="#3B82F6" strokeWidth="1.5" />
+        <path d="M8 7h8M8 11h8M8 15h5" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M15 15l1.5 1.5L19 13" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    bg: "bg-blue-50",
+    title: "Strengthen Your Technical Profile",
+    desc: "ICPC is a globally recognized programming competition and gives you an opportunity to demonstrate problem-solving ability beyond classroom academics.",
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="7" width="20" height="14" rx="2" stroke="#F97316" strokeWidth="1.5" />
+        <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="#F97316" strokeWidth="1.5" />
+        <path d="M12 12v4M10 14h4" stroke="#F97316" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    ),
+    bg: "bg-orange-50",
+    title: "Prepare for Technical Interviews",
+    desc: "The same foundations that matter in competitive programming — algorithms, data structures, logical thinking and efficient problem solving — are valuable in technical interviews.",
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
+        <circle cx="8" cy="8" r="3" stroke="#8B5CF6" strokeWidth="1.5" />
+        <circle cx="16" cy="8" r="3" stroke="#8B5CF6" strokeWidth="1.5" />
+        <path d="M2 19a6 6 0 0112 0" stroke="#8B5CF6" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M16 14a6 6 0 016 5" stroke="#8B5CF6" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    ),
+    bg: "bg-purple-50",
+    title: "Learn to Work as a Team",
+    desc: "Three people. One computer. Limited time. ICPC teaches teams to communicate, divide problems, make decisions and recover quickly when things don't go as planned.",
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="8" r="5" stroke="#EC4899" strokeWidth="1.5" />
+        <path d="M7 13l-3 7 8-3 8 3-3-7" stroke="#EC4899" strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="M12 3v10" stroke="#EC4899" strokeWidth="1.2" strokeLinecap="round" />
+      </svg>
+    ),
+    bg: "bg-pink-50",
+    title: "Earn Recognition",
+    desc: "Build your competitive programming record, earn participation recognition and compete against strong teams from across the country.",
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
+        <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="12" cy="12" r="10" stroke="#3B82F6" strokeWidth="1.5" />
+      </svg>
+    ),
+    bg: "bg-blue-50",
+    title: "Take the Next Step",
+    desc: "A regional contest can be the beginning of a much bigger ICPC journey.",
   },
 ];
 
 export default function WhatIsICPC() {
   return (
-    <section className="w-full bg-white px-6 sm:px-10 lg:px-16 xl:px-20 py-14">
+    <section id="why-icpc" className="w-full bg-white px-6 sm:px-10 lg:px-16 xl:px-20 py-14">
       {/* What is ICPC */}
       <div className="max-w-full mx-auto border border-gray-200 rounded-2xl p-8 sm:p-10">
         <div className="text-center ">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">What is ICPC?</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text- gray-900">What is ICPC?</h2>
           <div className="mx-auto mt-2 w-12 h-0.5 bg-blue-500 rounded-full" />
         </div>
 
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
           {/* Left: illustration */}
-          <div className="w-full lg:flex-1 flex justify-center">
+          <div className="w-full lg:flex-1 flex justify-center ">
             <Image
-              src="/assets/image2.png"
+              src="/assets/hero/Image 2.JPG"
               alt="Students collaborating on programming"
               width={540}
               height={400}
-              className="w-full h-auto max-w-sm sm:max-w-md lg:max-w-none object-contain select-none"
+              className="w-full h-auto max-w-sm sm:max-w-md lg:max-w-none object-contain select-none rounded-lg"
               draggable={false}
             />
           </div>
@@ -161,25 +169,30 @@ export default function WhatIsICPC() {
           {/* Right: content */}
           <div className="w-full lg:flex-1 flex flex-col gap-4">
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">
-              International Collegiate Programming Contest (ICPC)
+              Why ICPC Amritapuri?
             </h3>
-            <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
-              ICPC is the world&apos;s most prestigious university programming competition.
-              Every year, thousands of teams from universities worldwide compete
-              through regional contests to reach the World Finals.
+            <p className="text-base sm:text-lg font-semibold text-blue-600">
+              More than a contest. It&apos;s a chance to see what your team can do.
             </p>
-            <p className="text-sm sm:text-base text-blue-600 font-semibold italic">
-              Think of it as the Olympics of Programming.
+            <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
+              ICPC brings together university students who love solving difficult problems,
+              thinking under pressure and building things together.
+            </p>
+            <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
+              At Amritapuri, your journey starts with the online preliminary round and can take
+              you to an onsite regional contest — and, for the strongest teams, further toward
+              the Asia West Championship and the ICPC World Finals, according to the official
+              qualification structure.
             </p>
 
             {/* Stats row */}
-            <div className="flex flex-wrap gap-4 mt-1">
+            <div className="grid grid-cols-2 gap-3 mt-2">
               {icpcStats.map((stat) => (
-                <div key={stat.label} className="flex items-center gap-2 min-w-[110px]">
-                  <span className="shrink-0">{stat.icon}</span>
+                <div key={stat.label} className="flex items-start gap-2.5 p-3 rounded-lg bg-gray-50 border border-gray-100">
+                  <span className="shrink-0 mt-0.5">{stat.icon}</span>
                   <div className="leading-tight">
-                    <p className="text-sm font-bold text-gray-900">{stat.value}</p>
-                    <p className="text-xs text-gray-500">{stat.label}</p>
+                    <p className="text-sm font-bold text-gray-900">{stat.value} <span className="font-semibold text-gray-600">{stat.label}</span></p>
+                    <p className="text-xs text-gray-500 mt-0.5">{stat.desc}</p>
                   </div>
                 </div>
               ))}
@@ -203,10 +216,10 @@ export default function WhatIsICPC() {
         {/* Why participate */}
         <div className="mt-12">
           <div className="text-center mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">Why should you participate?</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">What do you get from participating?</h2>
           </div>
 
-          <MobileCarousel desktopGrid="grid-cols-3 lg:grid-cols-6 gap-4">
+          <MobileCarousel desktopGrid="grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
             {reasons.map((r) => (
               <div
                 key={r.title}

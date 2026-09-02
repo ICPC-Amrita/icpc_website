@@ -69,7 +69,7 @@ export default function Layout({ children }) {
                 />
             </noscript>
             <Navbar open={open} hero={hero} darkSection={false} />
-            <div className="max-w-screen bg-stone-300">
+            <div className="w-full bg-white">
                 {children}
             </div>
             

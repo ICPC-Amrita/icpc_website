@@ -103,6 +103,7 @@ export default function AdminLayout({ children }) {
     { href: '/admin', label: 'Analytics' },
     { href: '/admin/leaderboard', label: 'Leaderboard Manager' },
     { href: '/admin/ambassadors', label: 'Ambassadors' },
+    { href: '/admin/logs', label: 'Log Sessions' },
   ]
 
   return (

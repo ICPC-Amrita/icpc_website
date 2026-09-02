@@ -2,17 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 
 const cities = [
-  {label:"Kollam",href:"/reach-us/amritapuri"},
-  {label:"Bengaluru",href: "/reach-us/bengaluru"},
-  {label: "Coimbatore",href: "/reach-us/coimbatore"},
-  {label: "Mysuru",href: "/reach-us/mysuru"}
-  ];
+  { label: "Kollam", href: "/reach-us/amritapuri" },
+  { label: "Bengaluru", href: "/reach-us/bengaluru" },
+  { label: "Coimbatore", href: "/reach-us/coimbatore" },
+  { label: "Mysuru", href: "/reach-us/mysuru" },
+];
 
 const quickLinks = [
+  { label: "Why ICPC", href: "#why-icpc" },
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Dates", href: "#important-dates" },
+  { label: "Registration", href: "https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197" },
+  { label: "Selection", href: "#" },
+  { label: "Cities", href: "/reach-us" },
+  { label: "Preparation", href: "/beginner-guide" },
   { label: "Hall of Fame", href: "/halloffame" },
-  { label: "Past Results", href: "/onsite-ranklist" },
+  { label: "FAQs", href: "#faq" },
+  { label: "Contact", href: "mailto:icpc@am.amrita.edu" },
+];
+
+const officialLinks = [
   { label: "ICPC Global", href: "https://icpc.global" },
-  { label: "Your First ICPC Guide", href: "/beginners-guide" },
+  { label: "ICPC Asia West", href: "https://asiawest.icpc.global" },
 ];
 
 const socials = [
@@ -76,16 +87,19 @@ export default function SiteFooter() {
             height={72}
             className="object-contain w-auto h-16"
           />
+          <p className="text-[11px] font-semibold text-gray-700 text-center">
+            ICPC Asia Amritapuri Regional 2026
+          </p>
           <p className="text-[11px] text-gray-500 text-center leading-5">
-            Amrita School of Engineering, Amritapuri, Kollam, Kerala 690525
+            Amrita Vishwa Vidyapeetham<br />Amritapuri, Kollam, Kerala, India
           </p>
           <a href="mailto:icpc@am.amrita.edu" className="text-[11px] text-blue-500 hover:underline">
             icpc@am.amrita.edu
           </a>
         </div>
 
-        {/* Desktop: 4-col grid; mobile: 2-col for links only */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
+        {/* Desktop: 5-col grid; mobile: 2-col for links */}
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-8">
 
           {/* Brand — desktop only */}
           <div className="hidden lg:flex flex-col items-start gap-3">
@@ -97,41 +111,71 @@ export default function SiteFooter() {
               className="object-contain w-auto h-20"
             />
             <div className="text-xs text-gray-500 leading-relaxed">
-              <p>Amrita School of Engineering</p>
+              <p className="font-semibold text-gray-700">ICPC Asia Amritapuri Regional 2026</p>
+              <p>Amrita Vishwa Vidyapeetham</p>
               <p>Amritapuri, Kollam,</p>
-              <p>Kerala 690525</p>
+              <p>Kerala, India</p>
               <a href="mailto:icpc@am.amrita.edu" className="text-blue-500 hover:underline mt-1 block">
                 icpc@am.amrita.edu
               </a>
             </div>
           </div>
 
-          {/* Choose your city */}
+          {/* Quick Links (Col 1) */}
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
-              Choose your city
+              Quick Links
             </h4>
             <ul className="flex flex-col gap-2.5">
-              {cities.map((city) => (
-                <li key={city.label}>
-                  <Link href={city.href} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                    {city.label}
+              {quickLinks.slice(0, 5).map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links (Col 2) */}
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
-              Quick Links
+              Explore
             </h4>
             <ul className="flex flex-col gap-2.5">
-              {quickLinks.map((link) => (
+              {quickLinks.slice(5).map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                     {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Official Links & Cities */}
+          <div>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
+              Official Links
+            </h4>
+            <ul className="flex flex-col gap-2.5 mb-5">
+              {officialLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
+              Cities
+            </h4>
+            <ul className="flex flex-wrap gap-2">
+              {cities.map((city) => (
+                <li key={city.label}>
+                  <Link href={city.href} className="text-xs text-gray-500 hover:text-gray-900 transition-colors">
+                    {city.label}
                   </Link>
                 </li>
               ))}
@@ -143,13 +187,13 @@ export default function SiteFooter() {
             <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
               Follow Us
             </h4>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col gap-2">
               {socials.map((s) => (
                 <Link
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white border border-gray-200 hover:border-gray-300 hover:shadow-sm transition-all group"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white border border-gray-200 hover:border-gray-300 hover:shadow-sm transition-all group"
                 >
                   <span className={`${s.color} flex-shrink-0`}>{s.icon}</span>
                   <span className="text-xs text-gray-600 group-hover:text-gray-900 transition-colors whitespace-nowrap">

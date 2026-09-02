@@ -18,37 +18,48 @@ const Faq = () => {
 
   const faqData = [
     {
-      question: "When is the team accepted in the ICPC portal?",
-      answer: "On the same day of payment received it will be accepted in the ICPC Registration portal."
+      question: "Can beginners participate?",
+      answer: "Absolutely. ICPC is open to eligible university students, and you do not need to be an expert competitive programmer to participate."
     },
     {
-      question: "How can we know whether our payment is received?",
-      answer: "Your team will be accepted in the ICPC Registration portal."
+      question: "How many students are there in a team?",
+      answer: "An ICPC team consists of three contestants, subject to the official eligibility rules."
     },
     {
-      question: "Last date for payment?",
-      answer: "TBD"
+      question: "Does my team need a coach?",
+      answer: "Yes, follow the official ICPC team and coach requirements for your regional registration."
     },
     {
-      question: "How to cancel a team in ICPC Registration Site?",
-      answer: "Coach has to login with the credentials and \"CANCEL\""
+      question: "How much is registration?",
+      answer: "The preliminary-round registration fee for Indian teams is ₹1,500 per team."
     },
     {
-      question: "Last date of cancellation?",
-      answer: "Teams interested in particeipating in the contest hosted by other sites in India shall cancel their team registration in the ICPC Registration portal on or before October 8, 2025."
+      question: "Is the preliminary round online?",
+      answer: "Yes. The ICPC India Preliminary Round is conducted online."
     },
     {
-      question: "Should they register again for regional as they only registered for online?",
-      answer: "Selected teams are promoted from Preliminary round to Regional Round. There is NO need to register the team again for the Regional Round."
+      question: "How are teams selected for the onsite round?",
+      answer: "Selection is based on performance in the preliminary round and the applicable ICPC regional selection rules."
     },
     {
-      question: "Do all team members need to pay the registration fee individually, or should it be paid only once per team?",
-      answer: [
-        "The registration fee is ₹1500 per team (not per individual).",
-        "It needs to be paid only once per team, regardless of the number of team members.",
-        "If multiple members from the same team have mistakenly paid the fee, they may contact the organizers with the payment details.",
-        "The extra amount will be verified, and if eligible, the excess payment can be refunded as per the refund policy."
-      ]
+      question: "Where will the Amritapuri Regional be conducted?",
+      answer: "The 2026 Amritapuri multisite regional is being conducted across four locations: Kollam, Bengaluru, Coimbatore, and Mysuru."
+    },
+    {
+      question: "Do I have to travel to Kerala?",
+      answer: "Not necessarily. Amritapuri is a multisite regional with four announced locations (Kollam, Bengaluru, Coimbatore, and Mysuru), so you can choose the city that works best for your team."
+    },
+    {
+      question: "What if I have never participated in ICPC before?",
+      answer: "That's okay. Start with the Beginner Guide and preparation resources available on the site."
+    },
+    {
+      question: "What happens after the regional?",
+      answer: "Depending on performance and the applicable ICPC qualification rules, top teams can progress toward subsequent stages of the ICPC pathway, including the Asia West Championship and the ICPC World Finals."
+    },
+    {
+      question: "Where can I get registration help?",
+      answer: "Contact the official ICPC Amritapuri support team at: icpc@am.amrita.edu"
     }
   ];
 

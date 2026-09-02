@@ -115,7 +115,7 @@ export default function Layout({ children }) {
             
             {/* <BannerComponent /> */}
             <Navbar open={open} hero={hero} darkSection={darkSection} />
-            <div className="max-w-screen md:-mt-[6vw] max-md:-mt-[-9vw] bg-stone-30 bg-white">
+            <div className="max-w-screen bg-white">
                 {children}
                 {/* <Terminal/> */}
             </div>

@@ -375,21 +375,16 @@ export default function Navbar({ open, hero, darkSection }) {
     } else {
       return [
         { label: "Home", href: "/", type: "link" },
+        { label: "Why ICPC", href: "#why-icpc", type: "scroll" },
+        { label: "How It Works", href: "#how-it-works", type: "scroll" },
         { label: "Why Amrita", href: "/why-choose-amrita", type: "link" },
-        { label: "FAQ", href: "#faq", type: "scroll" },
-        // { label: "Hall of Fame", href: "/halloffame", type: "link" },
-        // { label: "Prelims Ranklist", href: "/prelims-ranklist", type: "link" },
-        { label: "Reach Us", type: "dropdown", items: locations },
-        // { label: "Promote", href: "/promote", type: "link" },
-        { label: "Join as Ambassador", href: "/ambassador-program", type: "link" },
-        // { label: "Workshop", href: "/workshop_1", type: "link" },
-        // { label: "Onsite Ranklist", href: "/onsite-ranklist", type: "link" },
-
-        // { label: "Organizers", href: "/organizers", type: "link" },
-        // { label: "Schedule", href: "/onsite-schedule", type: "link" },
-        // { label: "Winners", href: "/onsite-winners", type: "link" },
+        { label: "Dates", href: "#important-dates", type: "scroll" },
+        { label: "Cities", type: "dropdown", items: locations },
+        { label: "Preparation", href: "/beginner-guide", type: "link" },
+        { label: "Hall of Fame", href: "/halloffame", type: "link" },
+        { label: "Gallery", href: "/gallery", type: "link" },
+        { label: "FAQs", href: "#faq", type: "scroll" },
         { label: "Archive", type: "dropdown", items: archiveweblinks },
-        // { label: "Calendar", href: "/calendar", type: "link" },
       ];
     }
   };
@@ -416,13 +411,13 @@ export default function Navbar({ open, hero, darkSection }) {
         </Link>
 
         {/* Desktop Navigation - Show on all md+ screens including tablets */}
-        <div className="hidden md:flex flex-1 justify-center items-center space-x-[0.6vw] overflow-visible">
+        <div className="hidden md:flex flex-1 justify-center items-center space-x-[0.5vw] overflow-visible">
           {navigationItems.map((item, index) => (
             <div key={index} className="relative group">
               {item.type === "link" ? (
                 <Link
                   href={item.href}
-                  className={`px-2 py-2 ${textColor} transition-all duration-300 font-medium hover:bg-white/10 rounded-lg ${
+                  className={`px-2 py-2 ${textColor} transition-all duration-300 font-medium hover:bg-white/10 rounded-lg text-xs lg:text-sm ${
                     isTablet ? "text-[1.1vw]" : ""
                   }`}
                 >
@@ -434,7 +429,7 @@ export default function Navbar({ open, hero, darkSection }) {
                   onClick={(e) =>
                     handleSmoothScroll(e, item.href.substring(1), item.basePath)
                   }
-                  className={`px-2 py-2 ${textColor} transition-all duration-300 cursor-pointer font-medium hover:bg-white/10 rounded-lg ${
+                  className={`px-2 py-2 ${textColor} transition-all duration-300 cursor-pointer font-medium hover:bg-white/10 rounded-lg text-xs lg:text-sm ${
                     isTablet ? "text-[1.1vw]" : ""
                   }`}
                 >
@@ -443,7 +438,7 @@ export default function Navbar({ open, hero, darkSection }) {
               ) : item.type === "dropdown" ? (
                 <>
                   <button
-                    className={`px-2 py-2 ${textColor} transition-all duration-300 font-medium hover:bg-white/10 rounded-lg flex items-center gap-1 ${
+                    className={`px-2 py-2 ${textColor} transition-all duration-300 font-medium hover:bg-white/10 rounded-lg flex items-center gap-1 text-xs lg:text-sm ${
                       isTablet ? "text-[1.1vw]" : ""
                     }`}
                   >
@@ -472,7 +467,7 @@ export default function Navbar({ open, hero, darkSection }) {
                         <Link
                           href={subItem.href}
                           key={subIndex}
-                          className={`block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-600 transition-colors first:rounded-t-lg last:rounded-b-lg font-medium ${
+                          className={`block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-600 transition-colors first:rounded-t-lg last:rounded-b-lg font-medium text-xs lg:text-sm ${
                             isTablet ? "text-[1.1vw]" : ""
                           }`}
                         >
@@ -485,6 +480,16 @@ export default function Navbar({ open, hero, darkSection }) {
             </div>
           ))}
         </div>
+
+        {/* Primary Header Button */}
+        {/* <div className="hidden md:flex items-center mr-4">
+          <Link
+            href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
+            className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold px-4 py-2 rounded-lg text-xs lg:text-sm transition-all shadow-sm whitespace-nowrap"
+          >
+            Register Your Team
+          </Link>
+        </div> */}
 
         {/* Mobile Menu Button - Only show on truly mobile devices */}
         <div className="flex md:hidden flex-1 justify-end items-center pr-4">
