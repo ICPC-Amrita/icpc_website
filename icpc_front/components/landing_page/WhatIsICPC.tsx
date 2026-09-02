@@ -149,19 +149,19 @@ export default function WhatIsICPC() {
       {/* What is ICPC */}
       <div className="max-w-full mx-auto border border-gray-200 rounded-2xl p-8 sm:p-10">
         <div className="text-center ">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">What is ICPC?</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text- gray-900">What is ICPC?</h2>
           <div className="mx-auto mt-2 w-12 h-0.5 bg-blue-500 rounded-full" />
         </div>
 
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
           {/* Left: illustration */}
-          <div className="w-full lg:flex-1 flex justify-center">
+          <div className="w-full lg:flex-1 flex justify-center ">
             <Image
-              src="/assets/hero/icpc.JPG"
+              src="/assets/hero/Image 2.JPG"
               alt="Students collaborating on programming"
               width={540}
               height={400}
-              className="w-full h-auto max-w-sm sm:max-w-md lg:max-w-none object-contain select-none"
+              className="w-full h-auto max-w-sm sm:max-w-md lg:max-w-none object-contain select-none rounded-lg"
               draggable={false}
             />
           </div>

@@ -382,6 +382,7 @@ export default function Navbar({ open, hero, darkSection }) {
         { label: "Cities", type: "dropdown", items: locations },
         { label: "Preparation", href: "/beginner-guide", type: "link" },
         { label: "Hall of Fame", href: "/halloffame", type: "link" },
+        { label: "Gallery", href: "/gallery", type: "link" },
         { label: "FAQs", href: "#faq", type: "scroll" },
         { label: "Archive", type: "dropdown", items: archiveweblinks },
       ];

@@ -37,7 +37,7 @@ const dates = [
   },
   {
     title: "Regional Onsite",
-    date: "TBA",
+    date: "1-2 January 2027",
     status: "4 Multisite Locations",
     badgeColor: "bg-purple-50 text-purple-700 border-purple-200",
     icon: (
@@ -118,47 +118,54 @@ export default function ImportantDates() {
         {/* ============================================================ */}
         {/* SECTION 12 — IMPORTANT DATES                                  */}
         {/* ============================================================ */}
-        <div className="border border-gray-200 rounded-2xl p-6 sm:p-10 bg-white shadow-sm">
-          <div className="text-center mb-8 sm:mb-10">
-            {/* <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full  text-xs font-semibold uppercase tracking-wider mb-2.5">
-              Roadmap to Regional & World Finals
-            </div> */}
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight">
-              Important Dates
-            </h2>
-            <p className="mt-2 text-sm sm:text-base font-semibold text-blue-600">
-              Your road to ICPC Amritapuri 2026
-            </p>
-            <div className="mx-auto mt-3 w-12 h-0.5 bg-blue-500 rounded-full" />
-          </div>
+       <div className="border border-gray-200 rounded-2xl bg-white shadow-sm overflow-hidden">
+  <div className="p-6 sm:p-10">
+    <div className="max-w-md">
+      <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">
+        Important Dates
+      </h2>
 
-          {/* Dates Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 mb-4">
-            {dates.map((d) => (
-              <div
-                key={d.title}
-                className="p-4 sm:p-5 border border-gray-100 bg-gray-50/50 flex items-start gap-3.5"
-              >
-                <div className="p-2.5 sm:p-3 shrink-0 ">
-                  {d.icon}
-                </div>
-                <div className="flex-1 min-w-0">
-                  {/* <div className="flex items-center justify-between gap-1 mb-1">
-                    <span className={`text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full border ${d.badgeColor}`}>
-                      {d.status}
-                    </span>
-                  </div> */}
-                  <p className="text-xs sm:text-sm font-semibold text-gray-800 truncate">{d.title}</p>
-                  <p className="text-sm sm:text-base font-extrabold text-gray-900 mt-0.5">{d.date}</p>
-                </div>
+      <p className="text-gray-600 mt-2 text-sm sm:text-base">
+        Your road to ICPC Amritapuri 2026
+      </p>
+    </div>
+
+    <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {dates.map((d) => (
+        <li
+          key={d.title}
+          className="border border-gray-200 rounded-lg overflow-hidden"
+        >
+          <div className="flex items-start p-4 sm:p-5">
+            <div className="space-y-2 min-w-0">
+              <div className="shrink-0">
+                {d.icon}
               </div>
-            ))}
+
+              <p className="text-gray-800 text-sm sm:text-base font-semibold">
+                {d.title}
+              </p>
+
+              <p className="text-gray-900 text-base sm:text-lg font-extrabold">
+                {d.date}
+              </p>
+            </div>
           </div>
 
-          <p className="text-xs text-center text-gray-400 italic pt-2">
-            * Dates and qualification details are subject to official ICPC announcements.
-          </p>
-        </div>
+          <div className="py-3 px-4 border-t text-right">
+            <span className="text-gray-400 text-xs italic">
+              ICPC Amritapuri 2026
+            </span>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <p className="text-xs text-center text-gray-400 italic pt-6">
+      * Dates and qualification details are subject to official ICPC announcements.
+    </p>
+  </div>
+</div>
 
 
         {/* ============================================================ */}

@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { Calendar } from "lucide-react";
 import TeamRegistrationModal from '../modal/TeamRegistrationModal';
 
 const heroImages = [
@@ -51,13 +54,48 @@ export default function HeroSection() {
           <div className="lg:col-span-6 xl:col-span-5 flex flex-col items-start gap-4 sm:gap-5">
             
             {/* Supertitle / Eyebrow */}
-            <p className="text-xs sm:text-sm font-bold tracking-wider text-blue-600 uppercase">
+            <p className="text-xs sm:text-sm tracking-wider text-blue-600 uppercase font-bold">
               THE WORLD&apos;S PREMIER UNIVERSITY PROGRAMMING COMPETITION
             </p>
 
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[4rem] font-bold leading-[1.08] text-gray-950 tracking-tight">
-              Your ICPC Journey<br className="hidden sm:inline" /> Starts Here.
+            {/* Main Headline with Rough-Notation Animation */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[4rem] font-bold leading-[1.08] text-gray-950 tracking-tight relative">
+              Your ICPC Journey<br className="hidden sm:inline" />{" "}
+              <span className="relative inline-block whitespace-nowrap">
+                <span className="relative z-10">Starts Here.</span>
+                {/* Rough Annotation Animated Highlighter / Underline */}
+                <svg
+                  className="rough-annotation absolute -bottom-1 left-0 w-full h-4 overflow-visible pointer-events-none"
+                  viewBox="0 0 250 20"
+                  fill="none"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M 3 14 C 50 16, 120 11, 247 13"
+                    stroke="#facc15"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    className="opacity-80"
+                    style={{
+                      strokeDasharray: 260,
+                      strokeDashoffset: 260,
+                      animation: "rough-draw 0.7s ease-out 0.2s forwards",
+                    }}
+                  />
+                  <path
+                    d="M 5 16 C 70 18, 160 13, 245 15"
+                    stroke="#eab308"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    className="opacity-90"
+                    style={{
+                      strokeDasharray: 260,
+                      strokeDashoffset: 260,
+                      animation: "rough-draw 0.7s ease-out 0.4s forwards",
+                    }}
+                  />
+                </svg>
+              </span>
             </h1>
 
             {/* Sub-heading */}
@@ -102,10 +140,41 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            {/* Price & Date note */}
-            <p className="text-xs sm:text-sm text-gray-500 font-medium pt-0.5">
-              ₹1,500 per team · Preliminary Round: 3 October 2026
-            </p>
+            {/* Clear Important Dates with Big Lucide Calendar Icon & Big Date + Key Stats Badges */}
+            <div className="flex flex-col gap-3 pt-2 w-full">
+              <div className="inline-flex items-center gap-3 py-1 text-gray-900">
+                <Calendar className="size-6 sm:size-7 text-blue-600 shrink-0" strokeWidth={2.2} />
+                <span className="text-base sm:text-lg text-gray-700 font-medium">
+                  Preliminary Round:{" "}
+                  <strong className="text-blue-600 font-bold text-lg sm:text-xl">
+                    3 October 2026
+                  </strong>
+                </span>
+              </div>
+
+              {/* Slots & Prize Pool Highlights */}
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-sm sm:text-base">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 border border-blue-200/80 text-blue-900 font-medium rounded-md shadow-xs">
+                  <span className="font-bold text-blue-700 text-base">350+</span> Onsite Slots
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 border border-purple-200/80 text-purple-900 font-medium rounded-md shadow-xs">
+                  <span className="font-bold text-purple-700 text-base">20</span> Women Onsite Slots
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 border border-amber-200/80 text-amber-900 font-medium rounded-md shadow-xs">
+                  Prize Pool: <span className="font-bold text-amber-700 text-base">₹3 Lakhs</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Keyframe animation style for rough notation */}
+            <style>{`
+              @keyframes rough-draw {
+                to {
+                  stroke-dashoffset: 0;
+                }
+              }
+            `}</style>
+
 
           </div>
 
