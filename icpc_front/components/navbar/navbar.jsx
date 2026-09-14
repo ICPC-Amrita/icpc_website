@@ -375,6 +375,14 @@ export default function Navbar({ open, hero, darkSection }) {
     } else {
       return [
         { label: "Home", href: "/", type: "link" },
+        {
+          label: "Join Quest",
+          type: "dropdown",
+          items: [
+            { name: "About", href: "/joinquest" },
+            // { name: "Leaderboard", href: "/joinquest-leaderboard" }, // temporarily hidden
+          ],
+        },
         { label: "Why ICPC", href: "#why-icpc", type: "scroll" },
         { label: "How It Works", href: "#how-it-works", type: "scroll" },
         { label: "Why Amrita", href: "/why-choose-amrita", type: "link" },
