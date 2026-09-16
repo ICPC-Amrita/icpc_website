@@ -143,12 +143,13 @@ export default function HeroSection() {
             {/* Clear Important Dates with Big Lucide Calendar Icon & Big Date + Key Stats Badges */}
             <div className="flex flex-col gap-3 pt-2 w-full">
               <div className="inline-flex items-center gap-3 py-1 text-gray-900">
-                <Calendar className="size-6 sm:size-7 text-blue-600 shrink-0" strokeWidth={2.2} />
+                {/* <Calendar className="size-6 sm:size-7 text-blue-600 shrink-0" strokeWidth={2.2} /> */}
                 <span className="text-base sm:text-lg text-gray-700 font-medium">
-                  Preliminary Round:{" "}
+                  Mock Contest Starts from {" "}
                   <strong className="text-blue-600 font-bold text-lg sm:text-xl">
-                    3 October 2026
+                    25 September 2026
                   </strong>
+                  {" "}| Last date of payment: September 27
                 </span>
               </div>
 

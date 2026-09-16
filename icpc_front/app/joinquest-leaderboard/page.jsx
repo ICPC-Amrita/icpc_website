@@ -3,11 +3,10 @@
 import { useState, useMemo, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import { ChevronLeft, ChevronRight, Search, RefreshCw } from 'lucide-react';
-import TopThreeCard from '@/components/quest/TopThreeCard';
 import ContactUs2 from "@/components/footer/contact_us_2";
 
 const WEEKS = ["Week 1", "Week 2"];
-const CURRENT_WEEK = "Week 2";
+const CURRENT_WEEK = "Week 1";
 const ITEMS_PER_PAGE = 50;
 
 const displayWeek = (week) => week === CURRENT_WEEK ? `${week} *` : week;
@@ -15,7 +14,7 @@ const displayWeek = (week) => week === CURRENT_WEEK ? `${week} *` : week;
 export default function JoinQuestLeaderboardPage() {
   const [selectedWeek, setSelectedWeek] = useState(CURRENT_WEEK);
   const [searchQuery, setSearchQuery] = useState("");
-  const [dataByWeek, setDataByWeek] = useState({});
+  const [dataByWeek, setDataByWeek] = useState({ "Week 1": [], "Week 2": [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,57 +25,64 @@ export default function JoinQuestLeaderboardPage() {
         setLoading(true);
         const parsedData = { "Week 1": [], "Week 2": [] };
 
-        const fetchWeek = async (week, fileIndex) => {
-          try {
-            const res = await fetch(`/data/week${fileIndex}_updated.xlsx?t=${new Date().getTime()}`);
-            if (!res.ok) return;
+        const res = await fetch(`/data/data_quest_week1.xlsx?t=${new Date().getTime()}`);
+        if (!res.ok) {
+          throw new Error("Could not fetch leaderboard data file.");
+        }
 
-            const buf = await res.arrayBuffer();
-            const wb = XLSX.read(buf, { type: "array" });
-            const ws = wb.Sheets[wb.SheetNames[0]];
-            const rows = XLSX.utils.sheet_to_json(ws, { defval: "" });
+        const buf = await res.arrayBuffer();
+        const wb = XLSX.read(buf, { type: "array" });
 
-            parsedData[week] = rows.map(row => {
-              const get = (...keys) => {
-                for (const k of keys) {
-                  const m = Object.keys(row).find(rk => rk.trim().toLowerCase() === k.toLowerCase());
-                  if (m !== undefined) return String(row[m]).trim();
+        const parseSheet = (sheetName) => {
+          // Find matching sheet case-insensitively
+          const targetName = wb.SheetNames.find(
+            s => s.toLowerCase() === sheetName.toLowerCase() ||
+                 s.toLowerCase().includes(sheetName.toLowerCase())
+          );
+          if (!targetName) return [];
+
+          const ws = wb.Sheets[targetName];
+          if (!ws) return [];
+
+          const rows = XLSX.utils.sheet_to_json(ws, { defval: "" });
+
+          return rows.map((row, idx) => {
+            const get = (...keys) => {
+              for (const k of keys) {
+                const m = Object.keys(row).find(rk => rk.trim().toLowerCase() === k.toLowerCase());
+                if (m !== undefined && row[m] !== null && row[m] !== undefined) {
+                  const val = String(row[m]).trim();
+                  if (val !== "") return val;
                 }
-                return "";
-              };
-
-              const c1 = get("challenge 1", "challenge1_score", "c1", "1");
-              const c2 = get("challenge 2", "challenge2_score", "c2", "2");
-              const c3 = get("challenge 3", "challenge3_score", "c3", "3");
-              const c4 = get("challenge 4", "challenge4_score", "c4", "4");
-              const c5 = get("challenge 5", "challenge5_score", "c5", "5");
-              let total = get("total", "score", "total score");
-
-              if (!total && (c1 || c2 || c3 || c4 || c5)) {
-                total = (Number(c1) || 0) + (Number(c2) || 0) + (Number(c3) || 0) + (Number(c4) || 0) + (Number(c5) || 0);
               }
+              return "";
+            };
 
-              return {
-                rank: get("rank", "#"),
-                questId: get("quest id", "questid", "id"),
-                name: get("name", "participant name"),
-                c1,
-                c2,
-                c3,
-                c4,
-                c5,
-                total
-              };
-            }).filter(d => (d.questId || d.name) && Number(d.total) > 0);
-          } catch (e) {
-            console.error(`Error processing ${week} file:`, e);
-          }
+            const c1 = get("challenge 1", "c1", "sept15 pts", "sept15", "1");
+            const c2 = get("challenge 2", "c2", "sept16 pts", "sept16", "2");
+            const c3 = get("challenge 3", "c3", "sept17 pts", "sept17", "3");
+            const c4 = get("challenge 4", "c4", "sept18 pts", "sept18", "4");
+            let total = get("total points", "total", "score", "total score");
+
+            if (!total && (c1 || c2 || c3 || c4)) {
+              total = String((Number(c1) || 0) + (Number(c2) || 0) + (Number(c3) || 0) + (Number(c4) || 0));
+            }
+
+            return {
+              rank: get("rank", "#") || String(idx + 1),
+              questId: get("quest id", "questid", "id"),
+              name: get("name", "participant name"),
+              c1,
+              c2,
+              c3,
+              c4,
+              total: total || "0"
+            };
+          }).filter(d => d.questId || d.name);
         };
 
-        await Promise.all([
-          fetchWeek("Week 1", 1),
-          fetchWeek("Week 2", 2),
-        ]);
+        parsedData["Week 1"] = parseSheet("week-1-leaderboard");
+        parsedData["Week 2"] = parseSheet("week-2-leaderboard");
 
         setDataByWeek(parsedData);
         setError(null);
@@ -117,24 +123,6 @@ export default function JoinQuestLeaderboardPage() {
     return filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
   }, [filteredData, startIndex]);
 
-  const hasC1 = currentData.some(row => row.c1);
-  const hasC2 = currentData.some(row => row.c2);
-  const hasC3 = currentData.some(row => row.c3);
-  const hasC4 = currentData.some(row => row.c4);
-  const hasC5 = currentData.some(row => row.c5);
-
-  const weekNumber = WEEKS.indexOf(selectedWeek) + 1;
-  const topThree = currentData.slice(0, 3).map((row, index) => {
-    const rank = index + 1;
-    return {
-      rank,
-      name: row.name || row.questId,
-      questId: row.questId,
-      total: row.total,
-      image: `/quest/assets/week${weekNumber}rank${rank}.jpeg`,
-    };
-  });
-
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <div className="flex-grow w-full max-w-6xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 md:pt-32 pb-8">
@@ -143,22 +131,6 @@ export default function JoinQuestLeaderboardPage() {
           <h1 className="text-3xl font-bold text-foreground mb-2">Quest Leaderboard</h1>
           <p className="text-muted-foreground">Track your progress across all challenges and weeks.</p>
         </div>
-
-        {/* Top 3 Podium */}
-        {!loading && !error && topThree.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 gap-y-16 mb-8 pt-4 justify-items-center">
-            {topThree.map((entry) => (
-              <TopThreeCard
-                key={entry.questId || entry.rank}
-                rank={entry.rank}
-                name={entry.name}
-                questId={entry.questId}
-                total={entry.total}
-                image={entry.image}
-              />
-            ))}
-          </div>
-        )}
 
         {/* Week toggle & search */}
         <div className="mb-6 flex flex-col md:flex-row justify-between items-center gap-4 bg-card border border-border rounded-lg p-4 shadow-sm">
@@ -222,11 +194,10 @@ export default function JoinQuestLeaderboardPage() {
                       <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide w-20">Rank</th>
                       <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Quest ID</th>
                       <th className="text-left py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Name</th>
-                      {hasC1 && <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Challenge 1</th>}
-                      {hasC2 && <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Challenge 2</th>}
-                      {hasC3 && <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Challenge 3</th>}
-                      {hasC4 && <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Challenge 4</th>}
-                      {hasC5 && <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Challenge 5</th>}
+                      <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Challenge 1</th>
+                      <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Challenge 2</th>
+                      <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Challenge 3</th>
+                      <th className="text-center py-4 px-6 font-semibold text-foreground text-sm tracking-wide">Challenge 4</th>
                       <th className="text-center py-4 px-6 font-semibold text-primary text-sm tracking-wide">Total</th>
                     </tr>
                   </thead>
@@ -243,11 +214,10 @@ export default function JoinQuestLeaderboardPage() {
                         </td>
                         <td className="py-4 px-6 text-foreground">{row.questId}</td>
                         <td className="py-4 px-6 text-foreground">{row.name}</td>
-                        {hasC1 && <td className="py-4 px-6 text-center text-muted-foreground">{row.c1}</td>}
-                        {hasC2 && <td className="py-4 px-6 text-center text-muted-foreground">{row.c2}</td>}
-                        {hasC3 && <td className="py-4 px-6 text-center text-muted-foreground">{row.c3}</td>}
-                        {hasC4 && <td className="py-4 px-6 text-center text-muted-foreground">{row.c4}</td>}
-                        {hasC5 && <td className="py-4 px-6 text-center text-muted-foreground">{row.c5}</td>}
+                        <td className="py-4 px-6 text-center text-muted-foreground">{row.c1 || "-"}</td>
+                        <td className="py-4 px-6 text-center text-muted-foreground">{row.c2 || "-"}</td>
+                        <td className="py-4 px-6 text-center text-muted-foreground">{row.c3 || "-"}</td>
+                        <td className="py-4 px-6 text-center text-muted-foreground">{row.c4 || "-"}</td>
                         <td className="py-4 px-6 text-center font-medium text-primary">{row.total}</td>
                       </tr>
                     ))}
@@ -276,15 +246,12 @@ export default function JoinQuestLeaderboardPage() {
                     <div className="text-primary font-semibold">{row.total} pts</div>
                   </div>
 
-                  {(hasC1 || hasC2 || hasC3 || hasC4 || hasC5) && (
-                    <div className="grid grid-cols-5 gap-2 pt-2 border-t border-border text-center">
-                      {hasC1 && <div className="bg-blue-50/50 p-1 rounded"><div className="text-[10px] text-muted-foreground">C1</div><div className="text-xs">{row.c1}</div></div>}
-                      {hasC2 && <div className="bg-blue-50/50 p-1 rounded"><div className="text-[10px] text-muted-foreground">C2</div><div className="text-xs">{row.c2}</div></div>}
-                      {hasC3 && <div className="bg-blue-50/50 p-1 rounded"><div className="text-[10px] text-muted-foreground">C3</div><div className="text-xs">{row.c3}</div></div>}
-                      {hasC4 && <div className="bg-blue-50/50 p-1 rounded"><div className="text-[10px] text-muted-foreground">C4</div><div className="text-xs">{row.c4}</div></div>}
-                      {hasC5 && <div className="bg-blue-50/50 p-1 rounded"><div className="text-[10px] text-muted-foreground">C5</div><div className="text-xs">{row.c5}</div></div>}
-                    </div>
-                  )}
+                  <div className="grid grid-cols-4 gap-2 pt-2 border-t border-border text-center">
+                    <div className="bg-blue-50/50 dark:bg-blue-950/40 p-1 rounded"><div className="text-[10px] text-muted-foreground">C1</div><div className="text-xs">{row.c1 || "-"}</div></div>
+                    <div className="bg-blue-50/50 dark:bg-blue-950/40 p-1 rounded"><div className="text-[10px] text-muted-foreground">C2</div><div className="text-xs">{row.c2 || "-"}</div></div>
+                    <div className="bg-blue-50/50 dark:bg-blue-950/40 p-1 rounded"><div className="text-[10px] text-muted-foreground">C3</div><div className="text-xs">{row.c3 || "-"}</div></div>
+                    <div className="bg-blue-50/50 dark:bg-blue-950/40 p-1 rounded"><div className="text-[10px] text-muted-foreground">C4</div><div className="text-xs">{row.c4 || "-"}</div></div>
+                  </div>
                 </div>
               ))}
             </div>

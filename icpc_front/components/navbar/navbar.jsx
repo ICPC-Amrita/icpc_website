@@ -386,6 +386,7 @@ export default function Navbar({ open, hero, darkSection }) {
         { label: "Why ICPC", href: "#why-icpc", type: "scroll" },
         { label: "How It Works", href: "#how-it-works", type: "scroll" },
         { label: "Why Amrita", href: "/why-choose-amrita", type: "link" },
+        {label:"Ambassador Program",href:"/ambassador-program",type:"link"},
         { label: "Dates", href: "#important-dates", type: "scroll" },
         { label: "Cities", type: "dropdown", items: locations },
         { label: "Preparation", href: "/beginner-guide", type: "link" },
