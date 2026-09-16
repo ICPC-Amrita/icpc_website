@@ -1,4 +1,6 @@
 import MobileCarousel from "./MobileCarousel";
+import Link from "next/link";
+import { ExternalLink } from "lucide-react";
 
 const perks = [
   {
@@ -266,6 +268,54 @@ export default function HowICPCWorks() {
 
         </div>
 
+        {/* MANDATORY FINAL STEP: UNDERTAKING CTA
+        <div
+          id="undertaking-step"
+          className="mt-10 scroll-mt-28 rounded-2xl sm:rounded-3xl  dark:bg-neutral-900 border border-blue-200/80 dark:border-neutral-800  p-6 sm:p-8 lg:p-10 shadow-sm transition-all duration-300"
+        >
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-10">
+            <div className="flex-1">
+              <span className="inline-flex items-center rounded-full bg-blue-600 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wider text-white shadow-sm">
+                Mandatory Final Step
+              </span>
+
+              <h3 className="mt-3 text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">
+                5. Submit one undertaking per team
+              </h3>
+
+              <p className="mt-2.5 text-sm sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                After completing the registration and fee-payment requirements for your selected regional site(s), visit{" "}
+                <Link
+                  href="https://indiaicpc.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-blue-600 dark:text-blue-400 underline decoration-blue-500 underline-offset-2 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                >
+                  indiaicpc.in
+                </Link>{" "}
+                and submit the team undertaking to complete the ICPC India Preliminary Round formalities.
+              </p>
+
+              <div className="mt-3.5 rounded-xl bg-blue-100/60 dark:bg-blue-950/40 border border-blue-200/70 dark:border-blue-900/50 p-3 sm:p-3.5">
+                <p className="text-xs sm:text-sm font-semibold text-blue-800 dark:text-blue-300 leading-relaxed">
+                  Submit the undertaking only once per team. If registered for two regional sites, enter both site-specific ICPC Global Team IDs in the same submission. Do not submit a separate undertaking for each regional site.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex-shrink-0 flex sm:items-center">
+              <Link
+                href="https://indiaicpc.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-base px-6 py-3.5 rounded-xl shadow-sm hover:shadow transition-all whitespace-normal sm:whitespace-nowrap text-center group"
+              >
+                <span>Complete Undertaking Submission at India ICPC</span>
+                <ExternalLink className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </div>
+          </div>
+        </div> */}
 
         {/* SECTION: CHOOSING AMRITAPURI / PERKS */}
         <div className="mt-20 pt-12 border-t border-neutral-200/80 dark:border-neutral-800">
