@@ -268,7 +268,6 @@ export default function HowICPCWorks() {
 
         </div>
 
-        {/* MANDATORY FINAL STEP: UNDERTAKING CTA
         <div
           id="undertaking-step"
           className="mt-10 scroll-mt-28 rounded-2xl sm:rounded-3xl  dark:bg-neutral-900 border border-blue-200/80 dark:border-neutral-800  p-6 sm:p-8 lg:p-10 shadow-sm transition-all duration-300"
@@ -315,7 +314,7 @@ export default function HowICPCWorks() {
               </Link>
             </div>
           </div>
-        </div> */}
+        </div>
 
         {/* SECTION: CHOOSING AMRITAPURI / PERKS */}
         <div className="mt-20 pt-12 border-t border-neutral-200/80 dark:border-neutral-800">
