@@ -380,7 +380,7 @@ export default function Navbar({ open, hero, darkSection }) {
           type: "dropdown",
           items: [
             { name: "About", href: "/joinquest" },
-            // { name: "Leaderboard", href: "/joinquest-leaderboard" }, // temporarily hidden
+            { name: "Leaderboard", href: "/joinquest-leaderboard" },
           ],
         },
         { label: "Why ICPC", href: "#why-icpc", type: "scroll" },
