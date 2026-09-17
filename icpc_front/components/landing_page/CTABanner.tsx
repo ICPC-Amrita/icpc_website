@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { contestInfo } from "@/app/_constants/contestInfo";
 
 export default function CTABanner() {
   return (
@@ -22,28 +23,29 @@ export default function CTABanner() {
           aria-hidden
         />
         <div className="relative z-10 px-8 sm:px-12 py-10 max-w-xl">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
-            Start Your ICPC Journey.
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-white leading-tight">
+            Start your ICPC journey.
           </h2>
-          <p className="text-sm text-blue-100 mt-2 leading-relaxed">
-            You don&apos;t need to know if you can win. You just need to decide if you&apos;re ready to try. Three students. One team. One computer. Five hours. Thousands of teams across India. And one opportunity to discover what your team can do.
+          <p className="text-base text-blue-100 mt-3 leading-relaxed">
+            You don&apos;t need to know if you can win — you just need to decide if you&apos;re
+            ready to try.
           </p>
-          <p className="text-xs sm:text-sm text-blue-200 mt-2 font-medium">
-            ₹1,500 per team &nbsp;·&nbsp; Registration closes 25 September 2026
+          <p className="text-sm sm:text-base text-blue-200 mt-2 font-medium">
+            {contestInfo.registrationFee} per team &nbsp;·&nbsp; Registration closes {contestInfo.dates[1].date}
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
             <Link
               id="register-button"
-              href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
-              className="inline-flex items-center bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors"
+              href={contestInfo.registrationUrl}
+              className="inline-flex items-center bg-brass hover:bg-brass-light text-white font-semibold px-6 py-3 rounded-lg text-base transition-colors shadow-sm"
             >
-              Register Your Team →
+              Register your team
             </Link>
             <Link
               href="/beginner-guide"
-              className="inline-flex items-center border border-white text-white font-semibold px-5 py-2.5 rounded-lg text-sm hover:bg-white/10 transition-colors"
+              className="inline-flex items-center border border-white text-white font-semibold px-6 py-3 rounded-lg text-base hover:bg-white/10 transition-colors"
             >
-              New to ICPC? Start Here
+              New to ICPC? Start here
             </Link>
           </div>
         </div>

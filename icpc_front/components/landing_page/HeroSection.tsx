@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar } from "lucide-react";
 import TeamRegistrationModal from '../modal/TeamRegistrationModal';
+import { contestInfo } from "@/app/_constants/contestInfo";
 
 const heroImages = [
   // Column 1 (Offset down)
@@ -54,15 +55,15 @@ export default function HeroSection() {
           <div className="lg:col-span-6 xl:col-span-5 flex flex-col items-start gap-4 sm:gap-5">
             
             {/* Supertitle / Eyebrow */}
-            <p className="text-xs sm:text-sm tracking-wider text-blue-600 uppercase font-bold">
-              THE WORLD&apos;S PREMIER UNIVERSITY PROGRAMMING COMPETITION
+            <p className="text-sm sm:text-base tracking-wide text-contest-blue font-semibold">
+              The world&apos;s premier university programming competition
             </p>
 
             {/* Main Headline with Rough-Notation Animation */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[4rem] font-bold leading-[1.08] text-gray-950 tracking-tight relative">
-              Your ICPC Journey<br className="hidden sm:inline" />{" "}
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[4rem] xl:text-[4.5rem] font-bold leading-[1.05] text-ink tracking-tight relative">
+              Your ICPC journey<br className="hidden sm:inline" />{" "}
               <span className="relative inline-block whitespace-nowrap">
-                <span className="relative z-10">Starts Here.</span>
+                <span className="relative z-10">starts here.</span>
                 {/* Rough Annotation Animated Highlighter / Underline */}
                 <svg
                   className="rough-annotation absolute -bottom-1 left-0 w-full h-4 overflow-visible pointer-events-none"
@@ -99,24 +100,23 @@ export default function HeroSection() {
             </h1>
 
             {/* Sub-heading */}
-            <p className="text-xl sm:text-2xl font-bold text-blue-600 leading-snug">
-              ICPC Asia Amritapuri Regional 2026
+            <p className="text-2xl sm:text-3xl font-bold text-contest-blue leading-snug">
+              {contestInfo.regionalName}
             </p>
 
             {/* Description */}
-            <p className="text-base sm:text-lg text-gray-500 font-normal leading-relaxed max-w-xl">
-              Bring your best three-person team. Compete against talented programmers from across India.
-              Prove your problem-solving skills, experience the intensity of an ICPC Regional, and compete
-              for the opportunity to advance further in the ICPC journey.
+            <p className="text-lg sm:text-xl text-gray-600 font-normal leading-relaxed max-w-xl">
+              Bring your best three-person team and compete against talented programmers from
+              across India.
             </p>
 
             {/* Tagline & Locations */}
             <div className="space-y-1 pt-1">
-              <p className="text-base font-semibold text-gray-800">
-                One Regional. Four Locations. Hundreds of Onsite Opportunities.
+              <p className="text-lg font-semibold text-gray-800">
+                One regional. Four locations. {contestInfo.onsiteSlots} onsite opportunities.
               </p>
-              <p className="text-sm sm:text-base text-gray-500 font-medium">
-                Kollam · Bengaluru · Coimbatore · Mysuru
+              <p className="text-base sm:text-lg text-gray-500 font-medium">
+                {contestInfo.hostCities.join(" · ")}
               </p>
             </div>
 
@@ -124,47 +124,29 @@ export default function HeroSection() {
             <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <Link
                 id="register-button"
-                href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
-                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-base font-semibold px-6 py-3 rounded-lg transition-all shadow-sm hover:shadow whitespace-nowrap"
+                href={contestInfo.registrationUrl}
+                className="inline-flex items-center justify-center bg-contest-blue hover:bg-contest-blue-dark active:bg-contest-blue-dark text-white text-lg font-semibold px-7 py-3.5 rounded-lg transition-all shadow-sm hover:shadow whitespace-nowrap"
               >
-                Register Your Team
+                Register your team
               </Link>
               <Link
-                href="/beginner-guide"
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 text-base font-medium px-5 py-3 rounded-lg border border-gray-300 transition-all whitespace-nowrap"
+                href="/onsite-selection-process"
+                className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 active:bg-red-700 text-white text-lg font-semibold px-7 py-3.5 rounded-lg transition-all shadow-sm hover:shadow whitespace-nowrap"
               >
-                NEW TO ICPC? START HERE
-                <svg className="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                Selection process criteria
               </Link>
             </div>
 
-            {/* Clear Important Dates with Big Lucide Calendar Icon & Big Date + Key Stats Badges */}
-            <div className="flex flex-col gap-3 pt-2 w-full">
-              <div className="inline-flex items-center gap-3 py-1 text-gray-900">
-                {/* <Calendar className="size-6 sm:size-7 text-blue-600 shrink-0" strokeWidth={2.2} /> */}
-                <span className="text-base sm:text-lg text-gray-700 font-medium">
-                  Mock Contest Starts from {" "}
-                  <strong className="text-blue-600 font-bold text-lg sm:text-xl">
-                    25 September 2026
-                  </strong>
-                  {" "}| Last date of payment: September 27
-                </span>
-              </div>
-
-              {/* Slots & Prize Pool Highlights */}
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-sm sm:text-base">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 border border-blue-200/80 text-blue-900 font-medium rounded-md shadow-xs">
-                  <span className="font-bold text-blue-700 text-base">350+</span> Onsite Slots
-                </div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 border border-purple-200/80 text-purple-900 font-medium rounded-md shadow-xs">
-                  <span className="font-bold text-purple-700 text-base">20</span> Women Onsite Slots
-                </div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 border border-amber-200/80 text-amber-900 font-medium rounded-md shadow-xs">
-                  Prize Pool: <span className="font-bold text-amber-700 text-base">₹3 Lakhs</span>
-                </div>
-              </div>
+            {/* Important date line */}
+            <div className="flex items-center gap-3 pt-2 text-gray-900">
+              <Calendar className="size-5 sm:size-6 text-contest-blue shrink-0" strokeWidth={2.2} />
+              <span className="text-base sm:text-lg text-gray-700 font-medium">
+                Mock contest starts {" "}
+                <strong className="text-contest-blue font-bold">
+                  {contestInfo.mockContestDate}
+                </strong>
+                {" "}· payment closes {contestInfo.paymentDeadline}
+              </span>
             </div>
 
             {/* Keyframe animation style for rough notation */}

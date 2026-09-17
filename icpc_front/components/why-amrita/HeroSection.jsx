@@ -3,11 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Users, MapPin, CalendarDays, Trophy, Heart, Play, ArrowRight, X } from "lucide-react";
+import { contestInfo } from "@/app/_constants/contestInfo";
 
 const stats = [
   {
     icon: <Users className="w-7 h-7 text-blue-500" />,
-    value: "310+",
+    value: contestInfo.onsiteSlots,
     label: "Onsite Seats",
     sub: "Highest in Asia West",
   },
@@ -48,12 +49,12 @@ export default function HeroSection() {
       <div className="max-w-[100rem] mx-auto px-8 lg:px-16 pt-14 pb-0 flex flex-col lg:flex-row items-center gap-8 lg:gap-0">
         {/* Left */}
         <div className="flex-1 z-10">
-          <p className="text-gray-700 text-sm font-medium mb-2">Why ICPC Amrita?</p>
-          <h1 className="text-[2.75rem] lg:text-[3.4rem] font-extrabold text-gray-900 leading-tight mb-5">
+          <p className="text-gray-700 text-base font-medium mb-2">Why ICPC Amrita?</p>
+          <h1 className="font-display text-5xl lg:text-6xl font-bold text-ink leading-tight mb-5">
             The{" "}
-            <span className="text-blue-600">Best Start</span>
+            <span className="text-contest-blue">best start</span>
             <br />
-            for Your ICPC Journey
+            for your ICPC journey
           </h1>
           <p className="text-gray-500 text-[1.05rem] leading-relaxed max-w-lg mb-9">
             More seats. Amazing experiences. Unforgettable memories.
@@ -65,18 +66,17 @@ export default function HeroSection() {
           <div className="flex flex-wrap items-center gap-4">
             <a
               id="register-button"
-              href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
-              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-7 py-3.5 rounded-lg transition-colors"
+              href={contestInfo.registrationUrl}
+              className="inline-flex items-center gap-2 bg-contest-blue hover:bg-contest-blue-dark text-white font-semibold px-7 py-3.5 rounded-lg transition-colors"
             >
-              Register Your Team 
-              {/* <ArrowRight className="w-4 h-4" /> */}
+              Register your team
             </a>
             <button
               onClick={() => setIsVideoOpen(true)}
-              className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:underline"
+              className="inline-flex items-center gap-2 text-contest-blue font-semibold hover:underline"
             >
-              <span className="w-9 h-9 rounded-full border-2 border-blue-500 flex items-center justify-center">
-                <Play className="w-3.5 h-3.5 fill-blue-600 text-blue-600 ml-0.5" />
+              <span className="w-9 h-9 rounded-full border-2 border-contest-blue flex items-center justify-center">
+                <Play className="w-3.5 h-3.5 fill-contest-blue text-contest-blue ml-0.5" />
               </span>
               See last year&apos;s highlights
             </button>
@@ -100,7 +100,7 @@ export default function HeroSection() {
 
       {/* Stats bar */}
       <div className="mt-2 px-8 lg:px-16">
-        <div className="max-w-[100rem] mx-auto bg-[#0d1b3e] rounded-xl py-6 px-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-0 divide-x-0 lg:divide-x lg:divide-white/10">
+        <div className="max-w-[100rem] mx-auto bg-scoreboard rounded-xl py-6 px-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-0 divide-x-0 lg:divide-x lg:divide-white/10">
           {stats.map((stat, i) => (
             <div key={i} className="flex items-start gap-3 lg:px-8 first:pl-0 last:pr-0">
               <div className="flex-shrink-0 mt-0.5">{stat.icon}</div>

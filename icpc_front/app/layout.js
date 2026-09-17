@@ -37,19 +37,79 @@
 //   );
 // }
 // import localFont from "next/font/local";
-import { Montserrat } from "next/font/google"
+import { Montserrat, Space_Grotesk } from "next/font/google"
 import "./globals.css";
+import { contestInfo } from "./_constants/contestInfo";
 
-const montserrat = Montserrat({ 
+const montserrat = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'] // Adding common weights we'll need
 })
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+  variable: '--font-display',
+})
+
+const siteUrl = "https://amritaicpc.in";
+const title = `ICPC Amritapuri Regional ${contestInfo.year} | ICPC India`;
+const description = `Register for the ${contestInfo.regionalName} — ICPC's premier university programming contest in India. ${contestInfo.onsiteSlots} onsite slots across ${contestInfo.hostCities.join(", ")}. Open to student teams from across India.`;
+
 export const metadata = {
-  title: "ICPC Asia Amritapuri Regional Contest",
-  description: "Website for ICPC Amritapuri Regionals 2025",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: title,
+    template: "%s | ICPC Amritapuri",
+  },
+  description,
+  keywords: [
+    "ICPC",
+    "ICPC India",
+    "ICPC Amritapuri",
+    "ICPC Regional India",
+    "ICPC Asia West",
+    "competitive programming India",
+    "ACM ICPC",
+    "programming contest India",
+    "Amrita ICPC",
+  ],
+  alternates: {
+    canonical: "/",
+  },
   icons: {
-    icon: '/icon.png',
+    icon: "/icon.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: siteUrl,
+    siteName: "ICPC Amritapuri Regional",
+    title,
+    description,
+    images: [
+      {
+        url: "/assets/hero/icpc.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ICPC Amritapuri Regional contest",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/assets/hero/icpc.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
   },
 };
 
@@ -77,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }} />
         {/* End Google Tag Manager - GTM-NSVTMHRB */}
       </head>
-      <body className={montserrat.className}>
+      <body className={`${montserrat.className} ${spaceGrotesk.variable}`}>
         {/* Google Tag Manager (noscript) - GTM-MGVBWT6D */}
         <noscript>
           <iframe 

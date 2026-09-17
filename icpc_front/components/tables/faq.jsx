@@ -35,27 +35,11 @@ const Faq = () => {
     },
     {
       question: "Is the preliminary round online?",
-      answer: "Yes. The ICPC India Preliminary Round is conducted online."
-    },
-    {
-      question: "How are teams selected for the onsite round?",
-      answer: "Selection is based on performance in the preliminary round and the applicable ICPC regional selection rules."
-    },
-    {
-      question: "Where will the Amritapuri Regional be conducted?",
-      answer: "The 2026 Amritapuri multisite regional is being conducted across four locations: Kollam, Bengaluru, Coimbatore, and Mysuru."
+      answer: "Yes. The ICPC India Preliminary Round is conducted online, on 3 October 2026 from 1:30 PM to 4:30 PM."
     },
     {
       question: "Do I have to travel to Kerala?",
-      answer: "Not necessarily. Amritapuri is a multisite regional with four announced locations (Kollam, Bengaluru, Coimbatore, and Mysuru), so you can choose the city that works best for your team."
-    },
-    {
-      question: "What if I have never participated in ICPC before?",
-      answer: "That's okay. Start with the Beginner Guide and preparation resources available on the site."
-    },
-    {
-      question: "What happens after the regional?",
-      answer: "Depending on performance and the applicable ICPC qualification rules, top teams can progress toward subsequent stages of the ICPC pathway, including the Asia West Championship and the ICPC World Finals."
+      answer: "Not necessarily. Amritapuri is a multisite regional with four locations — Kollam, Bengaluru, Coimbatore, and Mysuru — so you can choose the city that works best for your team."
     },
     {
       question: "Where can I get registration help?",
@@ -66,8 +50,8 @@ const Faq = () => {
   return (
     <div id="faq" className="text-blue-950 flex justify-center flex-col items-center relative overflow-hidden pb-[5vw] min-h-[50vh]">
       <div className="min-w-[85vw] max-md:flex-1 flex relative flex-col justify-center">
-        <div className="text-[2.5vw] max-md:text-[4.5vw] font-semibold w-full max-md:h-auto flex justify-center items-center pointer-events-none mb-[2vw] max-md:mb-[3vw] max-md:px-[2vw]">
-          <div className="max-w-[85vw] flex-1 max-md:text-left">Frequently Asked Questions</div>
+        <div className="font-display text-4xl sm:text-5xl font-bold w-full max-md:h-auto flex justify-center items-center pointer-events-none mb-8 max-md:px-6 text-ink">
+          <div className="max-w-[85vw] flex-1 max-md:text-left">Frequently asked questions</div>
         </div>
         
         <div className="flex w-full justify-center max-w-[100vw] overflow-hidden items-center py-[1vw] max-md:w-[95vw] max-md:px-[2.5vw]">
@@ -81,7 +65,7 @@ const Faq = () => {
                     onClick={() => toggleItem(index)}
                     data-state={openItems[index] ? "open" : "closed"}
                   >
-                    <span className="text-sm sm:text-base font-medium leading-relaxed pr-4">
+                    <span className="text-base sm:text-lg font-medium leading-relaxed pr-4">
                       {item.question}
                     </span>
                     <svg

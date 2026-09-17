@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { contestInfo } from "@/app/_constants/contestInfo";
 
 export default function HeroSection() {
   return (
@@ -30,21 +31,21 @@ export default function HeroSection() {
           <div className="flex-1 max-w-xl">
 
             {/* Headline */}
-            <h1 className="text-5xl sm:text-6xl lg:text-[4.2rem] font-extrabold leading-[1.15] text-gray-900 mb-3">
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-[4.2rem] font-bold leading-[1.15] text-ink mb-3">
               Think ICPC is<br />
               only for coding<br />
-              <span className="text-blue-600">geniuses?</span>
+              <span className="text-contest-blue">geniuses?</span>
             </h1>
 
             {/* "Think again." handwriting line */}
-            <p className="font-caveat text-3xl sm:text-4xl font-bold text-gray-900 mb-5 think-again-underline">
+            <p className="font-caveat text-3xl sm:text-4xl font-bold text-ink mb-5 think-again-underline">
               Think again.
             </p>
 
             {/* Body copy */}
-            <p className="text-gray-600 text-base sm:text-[1.05rem] leading-relaxed mb-8 max-w-md">
+            <p className="text-gray-600 text-lg leading-relaxed mb-8 max-w-md">
               Every year, thousands of students like you take part in ICPC. You
-              don&apo s;t need to be the best. You just need to start with the
+              don&apos;t need to be the best. You just need to start with the
               courage to try.
             </p>
 
@@ -52,10 +53,10 @@ export default function HeroSection() {
             <div className="flex flex-row flex-wrap items-center gap-4 mb-10">
               <Link
                 id="register-button"
-                href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-3 sm:px-6 rounded-md transition-colors text-sm sm:text-base whitespace-nowrap"
+                href={contestInfo.registrationUrl}
+                className="inline-flex items-center gap-2 bg-contest-blue hover:bg-contest-blue-dark text-white font-semibold px-6 py-3.5 rounded-lg transition-colors text-base whitespace-nowrap"
               >
-                Register Your Team
+                Register your team
                 {/* <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg> */}

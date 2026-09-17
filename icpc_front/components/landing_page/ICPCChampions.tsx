@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const champions = [
   {
@@ -29,9 +30,9 @@ export default function ICPCChampions() {
     <div className="border border-gray-200 rounded-2xl p-5 sm:p-6 flex flex-col h-full">
       <div className="flex justify-between items-center mb-5">
         <h3 className="text-base font-bold text-gray-900">Champions since 2012</h3>
-        <a href="https://amritaicpc.in/halloffame" className="text-sm text-blue-500 hover:underline whitespace-nowrap">
+        <Link href="/halloffame" className="text-sm text-blue-500 hover:underline whitespace-nowrap">
           View all 13 years →
-        </a>
+        </Link>
       </div>
 
       <div className="grid grid-cols-3 gap-3 flex-1">

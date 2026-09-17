@@ -1,6 +1,8 @@
+import { contestInfo } from "@/app/_constants/contestInfo";
+
 const stats = [
   {
-    value: "310+",
+    value: contestInfo.onsiteSlots,
     label: "Onsite Slots",
     sub: "One of India's largest onsite capacity",
     icon: (
@@ -79,7 +81,7 @@ export default function Section5WhyAndWhatIf() {
         {/* Left box: Why Thousands Choose */}
         <div className="flex-1 bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-base flex-shrink-0">
+            <div className="w-9 h-9 rounded-full bg-contest-blue text-white flex items-center justify-center font-bold text-base flex-shrink-0">
               5
             </div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 leading-snug">
@@ -102,7 +104,7 @@ export default function Section5WhyAndWhatIf() {
         {/* Right box: What If I Don't Qualify */}
         <div className="flex-1 bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200 flex flex-col">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-base flex-shrink-0">
+            <div className="w-9 h-9 rounded-full bg-contest-blue text-white flex items-center justify-center font-bold text-base flex-shrink-0">
               6
             </div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">
