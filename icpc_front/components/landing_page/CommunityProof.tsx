@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { contestInfo } from "@/app/_constants/contestInfo";
+import ICPCChampions from "./ICPCChampions";
 
 export default function CommunityProof() {
   return (
@@ -16,7 +17,7 @@ export default function CommunityProof() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-stretch">
           <div className="p-6 rounded-xl border border-hairline bg-white hover:shadow-md transition-shadow text-center flex flex-col justify-center">
             <p className="font-display text-4xl sm:text-5xl font-bold text-contest-blue mb-1">
               {contestInfo.yearsRunning} years
@@ -27,18 +28,18 @@ export default function CommunityProof() {
             </p>
           </div>
 
+          <ICPCChampions />
+
           <Link
             href="/halloffame"
-            className="p-6 rounded-xl bg-contest-blue text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm hover:bg-contest-blue-dark transition-colors"
+            className="p-6 rounded-xl bg-contest-blue text-white flex flex-col justify-center items-center text-center gap-2 shadow-sm hover:bg-contest-blue-dark transition-colors"
           >
-            <div className="text-center sm:text-left">
-              <p className="text-lg font-bold">
-                Real teams. Real contests. Real ICPC journeys.
-              </p>
-              <p className="text-sm text-blue-100 mt-1">
-                Explore Hall of Fame winners and past rankings.
-              </p>
-            </div>
+            <p className="text-lg font-bold">
+              Real teams. Real contests. Real ICPC journeys.
+            </p>
+            <p className="text-sm text-blue-100">
+              Explore Hall of Fame winners and past rankings.
+            </p>
           </Link>
         </div>
       </div>

@@ -1,4 +1,3 @@
-import MobileCarousel from "./MobileCarousel";
 import Link from "next/link";
 import { ExternalLink, UserPlus, Code2, MapPin, FileCheck2, Trophy, Globe2, Medal } from "lucide-react";
 import { contestInfo } from "@/app/_constants/contestInfo";
@@ -22,7 +21,7 @@ const steps = [
   {
     icon: FileCheck2,
     title: "Undertaking",
-    desc: "Submit once at indiaicpc.in — required.",
+    desc: "Submit once at indiaicpc.in — mandatory.",
     required: true,
   },
 ];
@@ -37,52 +36,6 @@ const routes = [
     icon: Globe2,
     title: "Top-performing teams",
     desc: "Compete at Asia West; top finishers advance too.",
-  },
-];
-
-const perks = [
-  {
-    icon: (
-      <svg className="w-6 h-6 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
-        <path d="M22 2L11 13" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M22 2L15 22l-4-9-9-4 20-7z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    title: "Compete at scale",
-    desc: `${contestInfo.onsiteSlots} onsite slots — one of India's largest ICPC regionals.`,
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
-        <rect x="3" y="4" width="18" height="14" rx="2" />
-        <path d="M7 8h10M7 12h6" strokeLinecap="round" />
-        <path d="M14 15l1.5 1.5L18 13" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    title: "Dedicated support",
-    desc: "Live help through registration, verification, and contest day.",
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
-        <circle cx="9" cy="7" r="3" />
-        <path d="M3 19a6 6 0 0112 0" strokeLinecap="round" />
-        <circle cx="18" cy="8" r="2.5" />
-        <path d="M20.5 17.5a4.5 4.5 0 00-3.5-2" strokeLinecap="round" />
-      </svg>
-    ),
-    title: "Direct WF pathway",
-    desc: "Regional winners advance straight to the World Finals.",
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6 text-pink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
-        <circle cx="12" cy="12" r="10" />
-        <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" strokeLinecap="round" />
-      </svg>
-    ),
-    title: "Vibrant community",
-    desc: `Network with coders and mentors across ${contestInfo.hostCitiesCount} campuses.`,
   },
 ];
 
@@ -113,13 +66,13 @@ export default function HowICPCWorks() {
               <>
                 <div
                   className={`flex items-center justify-center size-20 rounded-full border-2 ${
-                    isRequired ? "bg-brass border-brass" : "bg-white border-contest-blue"
+                    isRequired ? "bg-red-600 border-red-600" : "bg-white border-contest-blue"
                   }`}
                 >
                   <Icon className={`size-8 ${isRequired ? "text-white" : "text-contest-blue"}`} strokeWidth={1.8} />
                 </div>
-                <p className={`mt-3 text-sm font-semibold ${isRequired ? "text-brass" : "text-contest-blue"}`}>
-                  Step {i + 1}{isRequired ? " · required" : ""}
+                <p className={`mt-3 text-sm font-semibold ${isRequired ? "text-red-600" : "text-contest-blue"}`}>
+                  Step {i + 1}{isRequired ? " · mandatory" : ""}
                 </p>
                 <h3 className="mt-0.5 text-lg font-bold text-ink leading-snug">{step.title}</h3>
                 <p className="mt-1 text-sm text-gray-500 leading-snug">{step.desc}</p>
@@ -136,7 +89,7 @@ export default function HowICPCWorks() {
                     className="flex flex-col items-center text-center w-40 group"
                   >
                     {content}
-                    <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brass group-hover:text-brass-light transition-colors">
+                    <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-red-600 group-hover:text-red-700 transition-colors">
                       Submit
                       <ExternalLink className="size-3.5" />
                     </span>
@@ -190,7 +143,7 @@ export default function HowICPCWorks() {
                 const node = (
                   <div
                     className={`relative z-10 flex-shrink-0 flex items-center justify-center size-14 rounded-full border-2 ${
-                      isRequired ? "bg-brass border-brass" : "bg-white border-contest-blue"
+                      isRequired ? "bg-red-600 border-red-600" : "bg-white border-contest-blue"
                     }`}
                   >
                     <Icon className={`size-6 ${isRequired ? "text-white" : "text-contest-blue"}`} strokeWidth={1.8} />
@@ -198,13 +151,13 @@ export default function HowICPCWorks() {
                 );
                 const text = (
                   <div className="pt-1">
-                    <p className={`text-sm font-semibold ${isRequired ? "text-brass" : "text-contest-blue"}`}>
-                      Step {i + 1}{isRequired ? " · required" : ""}
+                    <p className={`text-sm font-semibold ${isRequired ? "text-red-600" : "text-contest-blue"}`}>
+                      Step {i + 1}{isRequired ? " · mandatory" : ""}
                     </p>
                     <h3 className="mt-0.5 text-lg font-bold text-ink leading-snug">{step.title}</h3>
                     <p className="mt-1 text-sm text-gray-500 leading-snug">{step.desc}</p>
                     {isRequired && (
-                      <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brass">
+                      <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-red-600">
                         Submit at indiaicpc.in
                         <ExternalLink className="size-3.5" />
                       </span>
@@ -259,35 +212,6 @@ export default function HowICPCWorks() {
             <h3 className="text-lg font-bold text-white leading-snug">World Finals 2027</h3>
             <p className="mt-1 text-sm text-blue-100/90 leading-snug">The ultimate global stage</p>
           </div>
-        </div>
-
-        {/* SECTION: CHOOSING AMRITAPURI / PERKS */}
-        <div className="mt-24 pt-14 border-t border-hairline">
-          <div className="mb-12 text-center">
-            <h3 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-ink">
-              Choosing your ICPC regional?
-            </h3>
-            <p className="mt-3 text-lg text-neutral-500">
-              Don&apos;t just choose a contest. Choose the experience.
-            </p>
-          </div>
-
-          <MobileCarousel desktopGrid="grid-cols-2 lg:grid-cols-4 gap-5">
-            {perks.map((perk) => (
-              <div
-                key={perk.title}
-                className="flex flex-col justify-between rounded-xl bg-white p-7 shadow-sm ring-1 shadow-black/5 ring-black/10 hover:shadow-md transition-all h-full"
-              >
-                <div>
-                  <div className="size-14 rounded-xl bg-paper flex items-center justify-center ring-1 ring-black/5 mb-4">
-                    {perk.icon}
-                  </div>
-                  <h4 className="text-base font-bold text-ink mb-1.5">{perk.title}</h4>
-                  <p className="text-sm text-neutral-500 leading-relaxed">{perk.desc}</p>
-                </div>
-              </div>
-            ))}
-          </MobileCarousel>
         </div>
 
       </div>

@@ -4,8 +4,8 @@
 export const contestInfo = {
   year: "2026",
   regionalName: "ICPC Asia Amritapuri Regional 2026",
-  onsiteSlots: "360",
-  onsiteSlotsLabel: "Onsite Slots",
+  onsiteSlots: "380",
+  onsiteSlotsLabel: "Total Onsite Slots",
   womenOnsiteSlots: "20",
   womenOnsiteSlotsLabel: "Women Onsite Slots",
   prizePool: "₹3 Lakhs",
@@ -19,11 +19,11 @@ export const contestInfo = {
   yearsRunning: "13+",
 
   mockContestDate: "25 September 2026",
-  paymentDeadline: "September 27",
+  paymentDeadline: "27th September 2026",
 
   registrationUrl:
     "https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197",
-  undertakingUrl: "https://indiaicpc.in",
+  undertakingUrl: "https://indiaicpc.in/#undertaking",
 
   dates: [
     { title: "Registration opens", date: "15 June 2026", status: "Upcoming" },

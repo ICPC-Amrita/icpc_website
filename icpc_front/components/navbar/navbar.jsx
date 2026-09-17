@@ -390,6 +390,7 @@ export default function Navbar({ open, hero, darkSection }) {
             { name: "Ambassador Program", href: "/ambassador-program" },
             { name: "Hall of Fame", href: "/halloffame" },
             { name: "Gallery", href: "/gallery" },
+            { name: "Onsite Selection Process", href: "/onsite-selection-process" },
             ...archiveweblinks,
           ],
         },

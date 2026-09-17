@@ -1,7 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import MobileCarousel from "./MobileCarousel";
-import BeginnersSection from "./BeginnersSection";
+import ExpandableCard from "./ExpandableCard";
 import { contestInfo } from "@/app/_constants/contestInfo";
 
 const quickFacts = [
@@ -117,21 +116,10 @@ export default function WhatIsICPC() {
 
           <MobileCarousel desktopGrid="grid-cols-2 lg:grid-cols-4 gap-4">
             {reasons.map((r) => (
-              <div
-                key={r.title}
-                className="flex flex-col items-center text-center gap-3 p-5 rounded-xl border border-gray-100 hover:shadow-md transition-shadow h-full"
-              >
-                <div className={`w-14 h-14 rounded-xl ${r.bg} flex items-center justify-center shrink-0`}>
-                  {r.icon}
-                </div>
-                <p className="text-sm font-bold text-gray-900 leading-snug">{r.title}</p>
-                <p className="text-xs text-gray-500 leading-relaxed">{r.desc}</p>
-              </div>
+              <ExpandableCard key={r.title} icon={r.icon} iconBg={r.bg} title={r.title} desc={r.desc} />
             ))}
           </MobileCarousel>
         </div>
-
-        <BeginnersSection />
       </div>
     </section>
   );
