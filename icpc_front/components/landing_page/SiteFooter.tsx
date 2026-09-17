@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { contestInfo } from "@/app/_constants/contestInfo";
 
 const cities = [
   { label: "Kollam", href: "/reach-us/amritapuri" },
@@ -12,8 +13,8 @@ const quickLinks = [
   { label: "Why ICPC", href: "#why-icpc" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Dates", href: "#important-dates" },
-  { label: "Registration", href: "https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197" },
-  { label: "Selection", href: "#" },
+  { label: "Registration", href: contestInfo.registrationUrl },
+  { label: "Team Selection", href: "/team-selection-process" },
   { label: "Cities", href: "/reach-us" },
   { label: "Preparation", href: "/beginner-guide" },
   { label: "Hall of Fame", href: "/halloffame" },
@@ -75,7 +76,7 @@ const socials = [
 
 export default function SiteFooter() {
   return (
-    <footer className="w-full bg-gray-50 border-t border-gray-200">
+    <footer className="w-full bg-paper border-t border-hairline">
       <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 py-10">
 
         {/* Brand — full width, centered on mobile */}

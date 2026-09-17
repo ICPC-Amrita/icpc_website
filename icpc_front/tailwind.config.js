@@ -12,6 +12,18 @@ module.exports = {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			legend: '#6d3bbe',
+  			ink: '#0B1220',
+  			paper: '#F6F7FB',
+  			'contest-blue': {
+  				DEFAULT: '#1E4FD8',
+  				dark: '#1740B0',
+  			},
+  			brass: {
+  				DEFAULT: '#96661C',
+  				light: '#B8842B',
+  			},
+  			scoreboard: '#0D1B3E',
+  			hairline: '#E3E6ED',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -93,6 +105,9 @@ module.exports = {
   		},
   		backgroundImage: {
   			'dotted-gradient-line': 'linear-gradient(to right, #f1f1f1 10%, rgba(255, 255, 255, 0) 0%)'
+  		},
+  		fontFamily: {
+  			display: ['var(--font-display)', 'sans-serif'],
   		},
   		backgroundSize: {
   			'dotted-size': '10px 1px'

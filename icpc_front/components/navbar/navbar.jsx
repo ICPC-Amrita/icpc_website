@@ -253,6 +253,7 @@ import SideMenu from "./sidemenu/sidemenu";
 import Bars from "../svg/bars-3";
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { contestInfo } from "@/app/_constants/contestInfo";
 
 export default function Navbar({ open, hero, darkSection }) {
   const currentPath = usePathname();
@@ -276,11 +277,11 @@ export default function Navbar({ open, hero, darkSection }) {
   // Improved text color logic with better contrast
   const getTextColor = () => {
     if (hero) {
-      return "text-gray-900 hover:text-red-600"; // Dark text
+      return "text-gray-900 hover:text-contest-blue"; // Dark text
     } else if (darkSection) {
       return "text-white hover:text-gray-200"; // White text on dark sections
     } else {
-      return "text-gray-900 hover:text-red-600"; // Dark text with good contrast
+      return "text-gray-900 hover:text-contest-blue"; // Dark text with good contrast
     }
   };
 
@@ -375,25 +376,23 @@ export default function Navbar({ open, hero, darkSection }) {
     } else {
       return [
         { label: "Home", href: "/", type: "link" },
-        {
-          label: "Join Quest",
-          type: "dropdown",
-          items: [
-            { name: "About", href: "/joinquest" },
-            // { name: "Leaderboard", href: "/joinquest-leaderboard" }, // temporarily hidden
-          ],
-        },
         { label: "Why ICPC", href: "#why-icpc", type: "scroll" },
         { label: "How It Works", href: "#how-it-works", type: "scroll" },
-        { label: "Why Amrita", href: "/why-choose-amrita", type: "link" },
-        {label:"Ambassador Program",href:"/ambassador-program",type:"link"},
         { label: "Dates", href: "#important-dates", type: "scroll" },
-        { label: "Cities", type: "dropdown", items: locations },
         { label: "Preparation", href: "/beginner-guide", type: "link" },
-        { label: "Hall of Fame", href: "/halloffame", type: "link" },
-        { label: "Gallery", href: "/gallery", type: "link" },
         { label: "FAQs", href: "#faq", type: "scroll" },
-        { label: "Archive", type: "dropdown", items: archiveweblinks },
+        {
+          label: "Explore",
+          type: "dropdown",
+          items: [
+            { name: "Why Amrita", href: "/why-choose-amrita" },
+            { name: "Join Quest", href: "/joinquest" },
+            { name: "Ambassador Program", href: "/ambassador-program" },
+            { name: "Hall of Fame", href: "/halloffame" },
+            { name: "Gallery", href: "/gallery" },
+            ...archiveweblinks,
+          ],
+        },
       ];
     }
   };
@@ -476,7 +475,7 @@ export default function Navbar({ open, hero, darkSection }) {
                         <Link
                           href={subItem.href}
                           key={subIndex}
-                          className={`block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-red-600 transition-colors first:rounded-t-lg last:rounded-b-lg font-medium text-xs lg:text-sm ${
+                          className={`block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-contest-blue transition-colors first:rounded-t-lg last:rounded-b-lg font-medium text-xs lg:text-sm ${
                             isTablet ? "text-[1.1vw]" : ""
                           }`}
                         >
@@ -491,14 +490,16 @@ export default function Navbar({ open, hero, darkSection }) {
         </div>
 
         {/* Primary Header Button */}
-        {/* <div className="hidden md:flex items-center mr-4">
-          <Link
-            href="https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197"
-            className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold px-4 py-2 rounded-lg text-xs lg:text-sm transition-all shadow-sm whitespace-nowrap"
-          >
-            Register Your Team
-          </Link>
-        </div> */}
+        {currentPath === "/" && (
+          <div className="hidden md:flex items-center mr-4 flex-shrink-0">
+            <Link
+              href={contestInfo.registrationUrl}
+              className="bg-contest-blue hover:bg-contest-blue-dark active:bg-contest-blue-dark text-white font-semibold px-4 py-2 rounded-lg text-xs lg:text-sm transition-all shadow-sm whitespace-nowrap"
+            >
+              Register your team
+            </Link>
+          </div>
+        )}
 
         {/* Mobile Menu Button - Only show on truly mobile devices */}
         <div className="flex md:hidden flex-1 justify-end items-center pr-4">

@@ -37,12 +37,18 @@
 //   );
 // }
 // import localFont from "next/font/local";
-import { Montserrat } from "next/font/google"
+import { Montserrat, Space_Grotesk } from "next/font/google"
 import "./globals.css";
 
-const montserrat = Montserrat({ 
+const montserrat = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'] // Adding common weights we'll need
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+  variable: '--font-display',
 })
 
 export const metadata = {
@@ -77,7 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }} />
         {/* End Google Tag Manager - GTM-NSVTMHRB */}
       </head>
-      <body className={montserrat.className}>
+      <body className={`${montserrat.className} ${spaceGrotesk.variable}`}>
         {/* Google Tag Manager (noscript) - GTM-MGVBWT6D */}
         <noscript>
           <iframe 

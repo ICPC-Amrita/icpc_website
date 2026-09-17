@@ -100,7 +100,7 @@ function TeamRegistrationModalInner() {
           </svg>
         </button>
 
-        <h2 className="text-2xl font-bold mb-2 text-gray-900">Please Fill the details </h2>
+        <h2 className="text-2xl font-bold mb-2 text-ink">Tell us who&apos;s registering</h2>
         {/* <p className="text-gray-600 mb-6 text-sm"></p> */}
 
         {!success ? (
@@ -147,23 +147,22 @@ function TeamRegistrationModalInner() {
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition disabled:bg-blue-400"
+              className="w-full bg-contest-blue hover:bg-contest-blue-dark text-white font-semibold py-3 rounded-lg transition disabled:opacity-60"
             >
               {loading ? 'Submitting...' : 'Submit'}
             </button>
           </form>
         ) : (
           <div className="text-center py-8 animate-in fade-in zoom-in duration-300">
-            {/* <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> */}
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank you for the details, Please go to ICPC Global Page to register</h3>
-            <button 
+            <h3 className="text-2xl font-bold text-ink mb-2">Thanks! Now finish registering on the ICPC Global site.</h3>
+            <button
               onClick={() => window.location.href = 'https://icpc.global/'}
-              className='w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition mt-4'
+              className='w-full bg-contest-blue hover:bg-contest-blue-dark text-white font-semibold py-3 rounded-lg transition mt-4'
             >
-              Register in ICPC Global
+              Continue to ICPC Global
             </button>
           </div>
         )}

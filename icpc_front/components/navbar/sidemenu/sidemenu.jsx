@@ -80,6 +80,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname, useRouter } from 'next/navigation';
 import { Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
+import { contestInfo } from "@/app/_constants/contestInfo";
 
 export default function SideMenu({ openMenu, setOpenMenu, locations, navigationItems, textColor }) {
     const currentPath = usePathname();
@@ -131,7 +132,7 @@ export default function SideMenu({ openMenu, setOpenMenu, locations, navigationI
             }`}>
                 
                 {/* Header - Fixed height */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-blue-950 shrink-0">
+                <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-scoreboard shrink-0">
                     <h2 className="text-xl font-bold text-white">Menu</h2>
                     <button 
                         onClick={() => setOpenMenu(false)}
@@ -153,8 +154,8 @@ export default function SideMenu({ openMenu, setOpenMenu, locations, navigationI
                                     <Link 
                                         href={item.href}
                                         onClick={handleLinkClick}
-                                        className={`flex items-center justify-between p-4 text-gray-800 hover:bg-red-50 hover:text-red-600 transition-colors font-medium rounded-lg ${
-                                            currentPath === item.href ? 'bg-red-50 text-red-600' : ''
+                                        className={`flex items-center justify-between p-4 text-gray-800 hover:bg-blue-50 hover:text-contest-blue transition-colors font-medium rounded-lg ${
+                                            currentPath === item.href ? 'bg-blue-50 text-contest-blue' : ''
                                         }`}
                                     >
                                         {item.label}
@@ -163,7 +164,7 @@ export default function SideMenu({ openMenu, setOpenMenu, locations, navigationI
                                     <a 
                                         href={item.href}
                                         onClick={(e) => handleSmoothScroll(e, item.href.substring(1), item.basePath)}
-                                        className="flex items-center justify-between p-4 text-gray-800 hover:bg-red-50 hover:text-red-600 transition-colors cursor-pointer font-medium rounded-lg"
+                                        className="flex items-center justify-between p-4 text-gray-800 hover:bg-blue-50 hover:text-contest-blue transition-colors cursor-pointer font-medium rounded-lg"
                                     >
                                         {item.label}
                                     </a>
@@ -171,7 +172,7 @@ export default function SideMenu({ openMenu, setOpenMenu, locations, navigationI
                                     <div>
                                         <button
                                             onClick={() => toggleDropdown(index)}
-                                            className="flex items-center justify-between w-full p-4 text-gray-800 hover:bg-red-50 hover:text-red-600 transition-colors font-medium rounded-lg"
+                                            className="flex items-center justify-between w-full p-4 text-gray-800 hover:bg-blue-50 hover:text-contest-blue transition-colors font-medium rounded-lg"
                                         >
                                             {item.label}
                                             <svg 
@@ -196,8 +197,8 @@ export default function SideMenu({ openMenu, setOpenMenu, locations, navigationI
                                                         href={subItem.href}
                                                         key={subIndex}
                                                         onClick={handleLinkClick}
-                                                        className={`block p-3 text-gray-600 hover:bg-gray-50 hover:text-red-600 transition-colors rounded-lg font-medium ${
-                                                            currentPath === subItem.href ? 'bg-red-50 text-red-600' : ''
+                                                        className={`block p-3 text-gray-600 hover:bg-gray-50 hover:text-contest-blue transition-colors rounded-lg font-medium ${
+                                                            currentPath === subItem.href ? 'bg-blue-50 text-contest-blue' : ''
                                                         }`}
                                                     >
                                                         {subItem.name}
@@ -214,6 +215,13 @@ export default function SideMenu({ openMenu, setOpenMenu, locations, navigationI
 
                 {/* Footer - Fixed height */}
                 <div className="p-4 border-t border-gray-200 shrink-0">
+                    <Link
+                        href={contestInfo.registrationUrl}
+                        onClick={handleLinkClick}
+                        className="flex items-center justify-center w-full bg-contest-blue hover:bg-contest-blue-dark text-white font-semibold px-5 py-3 rounded-lg text-base transition-colors"
+                    >
+                        Register your team
+                    </Link>
                     {/* <div className="flex justify-center space-x-6">
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
                             className="text-gray-600 hover:text-blue-600 transition-colors" 

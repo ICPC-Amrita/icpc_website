@@ -7,8 +7,8 @@ const Sponsors = () => {
     return (
         <section className="text-blue-950 flex justify-center flex-col items-center relative overflow-hidden pb-[5vw] pt-[3vw] min-h-[50vh] bg-white">
             <div className="w-full max-w-[90vw] flex relative flex-col justify-center">
-                <div className="text-[2.5vw] max-md:text-[6vw] font-semibold w-full flex justify-center items-center pointer-events-none mb-[3vw]">
-                    <div className="text-blue-900 text-center">Past Sponsors</div>
+                <div className="font-display text-4xl sm:text-5xl font-bold w-full flex justify-center items-center pointer-events-none mb-10">
+                    <div className="text-ink text-center">Past Sponsors</div>
                 </div>
                 
                 <Fade>
