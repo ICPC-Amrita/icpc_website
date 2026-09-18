@@ -1,39 +1,39 @@
 const generalSteps = [
   {
-    title: "Check eligibility",
-    desc: "Only teams that solve at least one problem in the Preliminary Online Contest are eligible.",
+    title: "Filter",
+    desc: "Discard any team that could not solve a single problem in the Preliminary Online Contest.",
   },
   {
-    title: "Prepare the final ranking",
-    desc: "Rank all eligible teams using their final verified Preliminary Online Contest results.",
+    title: "Rank",
+    desc: "Rank all remaining teams by their Preliminary Online Contest result, after result verification is complete. This final verified ranking is the basis for every step below.",
   },
   {
-    title: "Ranks 1–50 — no limit",
-    desc: "All teams ranked from 1 to 50 are selected, regardless of their institution.",
+    title: "Ranks 1–50 — no institutional limit",
+    desc: "Select the top 50 ranked teams outright. Any number of teams from the same institution may be selected here (e.g., all 6 teams from one college, if they rank that high).",
   },
   {
-    title: "Ranks 51–100 — maximum X teams per institution",
-    desc: "Teams are selected in rank order. An institution can have at most X selected teams in total, including teams already selected in ranks 1–50.",
+    title: "Ranks 51–100 — capped at X per institution",
+    desc: "Select teams in rank order, up to X teams total from any one institution, counting teams already selected in ranks 1–50.",
   },
   {
-    title: "Ranks 101–200 — maximum Y teams per institution",
-    desc: "Teams continue to be selected in rank order. An institution can have at most Y selected teams in total, including all teams selected earlier.",
+    title: "Ranks 101–140 — capped at Y per institution",
+    desc: "Same process, up to Y teams total from any one institution, counting all teams already selected so far.",
   },
   {
-    title: "Ranks 201 onward — one team per institution per pass",
-    desc: "Take the highest-ranked remaining team from each institution, arrange these teams in ranking order, and select teams until the available slots are filled.",
+    title: "Ranks 141–360 — one team per institution per pass",
+    desc: "From the remaining ranked teams, take the highest-ranked not-yet-selected team from each institution, order this list by rank, and select down it with no more than one team per institution in this pass.",
   },
   {
     title: "Repeat",
-    desc: "If slots remain, repeat the previous step using the next-highest-ranked remaining team from each institution. This continues until all 360 General Slots are filled or no eligible teams remain.",
+    desc: "If slots remain, repeat the previous step with the next-highest-ranked unselected team from each institution. Continue until all 360 General Slots are filled or no eligible teams remain.",
   },
 ];
 
 const bands = [
-  { band: "Top tier", range: "1–50", cap: "No limit" },
+  { band: "Top tier", range: "1–50", cap: "No institutional limit" },
   { band: "Second tier", range: "51–100", cap: "X teams per institution" },
-  { band: "Third tier", range: "101–200", cap: "Y teams per institution" },
-  { band: "Remaining", range: "201 onward", cap: "One team per institution per pass" },
+  { band: "Third tier", range: "101–140", cap: "Y teams per institution" },
+  { band: "Remaining", range: "141–360", cap: "One team per institution per pass" },
 ];
 
 const womenSteps = [
