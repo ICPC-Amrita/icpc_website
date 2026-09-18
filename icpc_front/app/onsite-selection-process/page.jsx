@@ -1,53 +1,53 @@
 const generalSteps = [
   {
-    title: "Filter",
-    desc: "Discard any team that could not solve a single problem in the Preliminary Online Contest.",
+    title: "Check eligibility",
+    desc: "Only teams that solve at least one problem in the Preliminary Online Contest are eligible.",
   },
   {
-    title: "Rank",
-    desc: "Rank all remaining teams by their Preliminary Online Contest result, after result verification is complete. This final verified ranking is the basis for every step below.",
+    title: "Prepare the final ranking",
+    desc: "Rank all eligible teams using their final verified Preliminary Online Contest results.",
   },
   {
-    title: "Ranks 1–50 — no institutional limit",
-    desc: "Select the top 50 ranked teams outright. Any number of teams from the same institution may be selected here (e.g., all 6 teams from one college, if they rank that high).",
+    title: "Ranks 1–50 — no limit",
+    desc: "All teams ranked from 1 to 50 are selected, regardless of their institution.",
   },
   {
-    title: "Ranks 51–100 — capped at X per institution",
-    desc: "Select teams in rank order, up to X teams total from any one institution, counting teams already selected in ranks 1–50.",
+    title: "Ranks 51–100 — maximum X teams per institution",
+    desc: "Teams are selected in rank order. An institution can have at most X selected teams in total, including teams already selected in ranks 1–50.",
   },
   {
-    title: "Ranks 101–140 — capped at Y per institution",
-    desc: "Same process, up to Y teams total from any one institution, counting all teams already selected so far.",
+    title: "Ranks 101–200 — maximum Y teams per institution",
+    desc: "Teams continue to be selected in rank order. An institution can have at most Y selected teams in total, including all teams selected earlier.",
   },
   {
-    title: "Ranks 141–360 — one team per institution per pass",
-    desc: "From the remaining ranked teams, take the highest-ranked not-yet-selected team from each institution, order this list by rank, and select down it with no more than one team per institution in this pass.",
+    title: "Ranks 201 onward — one team per institution per pass",
+    desc: "Take the highest-ranked remaining team from each institution, arrange these teams in ranking order, and select teams until the available slots are filled.",
   },
   {
     title: "Repeat",
-    desc: "If slots remain, repeat the previous step with the next-highest-ranked unselected team from each institution. Continue until all 360 General Slots are filled or no eligible teams remain.",
+    desc: "If slots remain, repeat the previous step using the next-highest-ranked remaining team from each institution. This continues until all 360 General Slots are filled or no eligible teams remain.",
   },
 ];
 
 const bands = [
-  { band: "Top tier", range: "1–50", cap: "None" },
-  { band: "Second tier", range: "51–100", cap: "X per institution" },
-  { band: "Third tier", range: "101–140", cap: "Y per institution" },
-  { band: "Remaining", range: "141–360", cap: "1 per institution per pass, repeated" },
+  { band: "Top tier", range: "1–50", cap: "No limit" },
+  { band: "Second tier", range: "51–100", cap: "X teams per institution" },
+  { band: "Third tier", range: "101–200", cap: "Y teams per institution" },
+  { band: "Remaining", range: "201 onward", cap: "One team per institution per pass" },
 ];
 
 const womenSteps = [
   {
     title: "Exclude",
-    desc: "Remove from consideration any Women-Only Team already selected among the 360 General Teams — it has already earned its seat on merit and is not selected twice.",
+    desc: "Remove Women-Only Teams that have already been selected through General Selection — a team already seated on merit is not selected twice.",
   },
   {
     title: "Rank",
-    desc: "Rank the remaining eligible Women-Only Teams by their final verified Preliminary Online Contest ranking.",
+    desc: "Rank the remaining eligible Women-Only Teams using their final verified contest ranking.",
   },
   {
     title: "Select",
-    desc: "Select teams in rank order, up to Z teams total from any one institution, until all 20 Women-Only Slots are filled or the list is exhausted.",
+    desc: "Select teams in rank order, with a maximum of Z teams per institution, until all 20 Women-Only Slots are filled or no eligible teams remain.",
   },
 ];
 
@@ -65,9 +65,10 @@ export default function OnsiteSelectionProcess() {
             ICPC Amritapuri On-Site Contest
           </h1>
           <p className="mt-4 text-lg text-neutral-600 max-w-2xl mx-auto">
-            Every team starts from the same Preliminary Online Contest ranking. General
-            Selection runs first and fills 360 seats; the Women-Only Selection then fills
-            the remaining 20 from the teams left over.
+            Your journey to the ICPC Amritapuri On-Site Contest begins with the Preliminary
+            Online Contest. A total of 380 teams will be selected — 360 through General
+            Selection and 20 through Women-Only Selection — based on the final verified
+            ranking of the Preliminary Online Contest.
           </p>
         </div>
 
@@ -108,10 +109,9 @@ export default function OnsiteSelectionProcess() {
             General Team Selection — 360 Slots
           </h2>
           <p className="mt-3 text-neutral-600 leading-relaxed">
-            Teams are filtered once, ranked once, and then admitted in rank order — with
-            institutional caps that tighten further down the ranking, so a single college
-            cannot dominate the lower bands while top performers are still rewarded on merit
-            alone.
+            We select teams in ranking order, while applying institutional limits to ensure
+            opportunities are distributed across colleges. Your contest ranking matters, but
+            institutional limits also affect selection.
           </p>
 
           <ol className="mt-8 relative">
@@ -156,11 +156,10 @@ export default function OnsiteSelectionProcess() {
               Example
             </span>
             <p className="text-sm text-ink leading-relaxed">
-              Suppose <span className="font-semibold">X = 4</span> and a college already has{" "}
-              <span className="font-semibold">6 teams</span> selected among Ranks 1–50. That
-              college has already exceeded the cap of 4, so{" "}
-              <span className="font-semibold">no more of its teams</span> will be selected
-              for the General Slots from Rank 51 onward.
+              If <span className="font-semibold">X = 4</span> and an institution already has{" "}
+              <span className="font-semibold">4 teams</span> selected in the first 100
+              ranks, no additional teams from that institution can be selected under the X
+              cap in that stage.
             </p>
           </div>
         </section>
@@ -171,8 +170,9 @@ export default function OnsiteSelectionProcess() {
             Women-Only Slot Selection — 20 Slots
           </h2>
           <p className="mt-3 text-neutral-600 leading-relaxed">
-            These 20 slots are filled only after the 360 General Teams are finalized,
-            drawing solely from the Women-Only Teams left over.
+            The Women-Only Selection takes place after all 360 General Teams have been
+            selected. A Women-Only Team is a team where all contestants are women — the
+            coach&apos;s gender does not matter.
           </p>
 
           <ol className="mt-8 relative">
@@ -199,31 +199,43 @@ export default function OnsiteSelectionProcess() {
         {/* DEFINITION */}
         <section className="mb-16">
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">
-            Definition of a Women-Only Team
+            Can a Women-Only Team Qualify Through General Selection?
           </h2>
           <p className="mt-3 text-neutral-600 leading-relaxed">
-            A Women-Only Team is a team whose contestants are all women. The coach&apos;s
-            gender has no bearing on this classification.
-          </p>
-          <p className="mt-3 text-neutral-600 leading-relaxed">
-            A Women-Only Team can be selected on merit through General Selection alone.
-            When that happens, it is not selected a second time for a Women-Only Slot — the
-            Women-Only Selection draws only from Women-Only Teams not already seated through
-            General Selection.
+            Yes. A Women-Only Team can earn a seat through General Selection based on its
+            ranking. If it is selected there, it will not be selected again through
+            Women-Only Selection.
           </p>
         </section>
 
         {/* X, Y, Z */}
-        <section>
+        <section className="mb-16">
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">
-            Determination of X, Y and Z
+            Understanding Institutional Limits
           </h2>
           <p className="mt-3 text-neutral-600 leading-relaxed">
-            The institutional caps used above — X (ranks 51–100), Y (ranks 101–140) and Z
-            (Women-Only Selection) — are not fixed by this procedure. The Organizing
-            Committee determines and announces their values after the Preliminary Online
-            Contest and its result verification are complete, once the actual distribution
-            of teams across institutions is known.
+            The values of X, Y, and Z will be announced by the Organizing Committee after
+            the Preliminary Online Contest and result verification, once the actual
+            distribution of teams across institutions is known.
+          </p>
+        </section>
+
+        {/* QUICK SUMMARY */}
+        <section className="rounded-2xl border border-hairline bg-paper px-6 py-8 sm:px-8">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">
+            Quick Summary
+          </h2>
+          <ul className="mt-4 space-y-2 text-neutral-600 leading-relaxed list-disc list-outside pl-5">
+            <li>380 total teams will be selected.</li>
+            <li>General Selection fills 360 slots first.</li>
+            <li>Women-Only Selection fills the remaining 20 slots.</li>
+            <li>Selection is based on the final verified contest ranking.</li>
+            <li>Institutional limits apply at different stages.</li>
+            <li>Women-Only Teams selected through General Selection are not selected twice.</li>
+          </ul>
+          <p className="mt-6 text-sm font-semibold text-ink">
+            Prepare well. Compete strongly. Your ranking is the starting point for your
+            journey to Amritapuri!
           </p>
         </section>
 

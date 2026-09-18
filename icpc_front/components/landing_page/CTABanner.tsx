@@ -41,12 +41,6 @@ export default function CTABanner() {
             >
               Register your team
             </Link>
-            <Link
-              href="/beginner-guide"
-              className="inline-flex items-center border border-white text-white font-semibold px-6 py-3 rounded-lg text-base hover:bg-white/10 transition-colors"
-            >
-              New to ICPC? Start here
-            </Link>
           </div>
         </div>
       </div>
