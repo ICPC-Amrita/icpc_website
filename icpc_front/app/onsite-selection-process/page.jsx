@@ -22,16 +22,16 @@ const generalSteps = [
   {
     title: "Ranks 101–140 — capped at Y per institution",
     desc: "Same process, up to Y teams total from any one institution, counting all teams already selected so far.",
-    example: "If Y = 2 and College Q already has 3 teams selected so far, none of its teams ranked 101–140 are selected, since the Y cap has already been exceeded.",
+    example: "If Y = 2 and College Q already has 3 teams selected so far, none of its teams ranked 101–140 are selected, since it already exceeds the Y cap of 2.",
   },
   {
     title: "Ranks 141–360 — one team per institution per pass",
     desc: "From the remaining ranked teams, take the highest-ranked not-yet-selected team from each institution, order this list by rank, and select down it with no more than one team per institution in this pass.",
-    example: "College R's best unselected team is rank 145 and College S's is rank 150 — both are picked in this pass, but no other team from R or S is, even if it also ranks below 360.",
+    example: "College R's best unselected team is rank 145 and College S's is rank 150, both are picked in this pass, but no other team from R or S will be picked in this pass.",
   },
   {
     title: "Repeat",
-    desc: "If slots remain, repeat the previous step with the next-highest-ranked unselected team from each institution. Continue until all 360 General Slots are filled or no eligible teams remain.",
+    desc: "If slots remain, repeat step 6 with the next-highest-ranked unselected team from each institution. Continue until all 360 General Slots are filled or no eligible teams remain.",
     example: "In the next pass, College R's next-best unselected team (rank 210) becomes eligible, alongside the next-highest remaining team from every other institution.",
   },
 ];

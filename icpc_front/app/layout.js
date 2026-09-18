@@ -137,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }} />
         {/* End Google Tag Manager - GTM-NSVTMHRB */}
       </head>
-      <body className={`${montserrat.className} ${spaceGrotesk.variable}`}>
+      <body className={`${montserrat.className} ${spaceGrotesk.variable} overflow-x-hidden`}>
         {/* Google Tag Manager (noscript) - GTM-MGVBWT6D */}
         <noscript>
           <iframe 

@@ -57,7 +57,7 @@ export default function HowICPCWorks() {
         {/* THE FLOW: one horizontal line on desktop; a stacked list on smaller screens */}
 
         {/* Desktop / wide layout — fits one row, no scrolling, so only shown where it fits */}
-        <div className="hidden lg:flex items-start justify-center gap-4">
+        <div className="hidden 2xl:flex items-start justify-center gap-4">
 
           {steps.map((step, i) => {
             const Icon = step.icon;
@@ -133,7 +133,7 @@ export default function HowICPCWorks() {
         </div>
 
         {/* Narrower layout — stacked list, no horizontal scroll */}
-        <div className="lg:hidden max-w-md mx-auto">
+        <div className="2xl:hidden max-w-md mx-auto">
           <div className="relative">
             <div className="absolute left-7 top-7 bottom-7 w-px bg-hairline" aria-hidden="true" />
             <ol className="flex flex-col gap-8">
