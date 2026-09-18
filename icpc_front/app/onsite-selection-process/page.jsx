@@ -2,30 +2,37 @@ const generalSteps = [
   {
     title: "Filter",
     desc: "Discard any team that could not solve a single problem in the Preliminary Online Contest.",
+    example: "Team A solved 0 problems and is dropped. Team B solved 1 problem and stays in the pool.",
   },
   {
     title: "Rank",
     desc: "Rank all remaining teams by their Preliminary Online Contest result, after result verification is complete. This final verified ranking is the basis for every step below.",
+    example: "After verification, Team B moves from rank 42 to rank 39 once a wrong penalty is corrected.",
   },
   {
     title: "Ranks 1–50 — no institutional limit",
     desc: "Select the top 50 ranked teams outright. Any number of teams from the same institution may be selected here (e.g., all 6 teams from one college, if they rank that high).",
+    example: "College P has 6 teams ranked within the top 50 — all 6 are selected here.",
   },
   {
     title: "Ranks 51–100 — capped at X per institution",
     desc: "Select teams in rank order, up to X teams total from any one institution, counting teams already selected in ranks 1–50.",
+    example: "If X = 5 and College Q already has 3 teams selected from ranks 1–50, up to 2 more of its teams ranked 51–100 can be selected.",
   },
   {
     title: "Ranks 101–140 — capped at Y per institution",
     desc: "Same process, up to Y teams total from any one institution, counting all teams already selected so far.",
+    example: "If Y = 2 and College Q already has 3 teams selected so far, none of its teams ranked 101–140 are selected, since the Y cap has already been exceeded.",
   },
   {
     title: "Ranks 141–360 — one team per institution per pass",
     desc: "From the remaining ranked teams, take the highest-ranked not-yet-selected team from each institution, order this list by rank, and select down it with no more than one team per institution in this pass.",
+    example: "College R's best unselected team is rank 145 and College S's is rank 150 — both are picked in this pass, but no other team from R or S is, even if it also ranks below 360.",
   },
   {
     title: "Repeat",
     desc: "If slots remain, repeat the previous step with the next-highest-ranked unselected team from each institution. Continue until all 360 General Slots are filled or no eligible teams remain.",
+    example: "In the next pass, College R's next-best unselected team (rank 210) becomes eligible, alongside the next-highest remaining team from every other institution.",
   },
 ];
 
@@ -58,17 +65,25 @@ export default function OnsiteSelectionProcess() {
 
         {/* HEADER */}
         <div className="mb-12 text-center">
-          <p className="text-sm font-semibold text-contest-blue tracking-wide uppercase">
+          <p className="text-lg sm:text-xl font-semibold text-contest-blue tracking-wide uppercase">
             Selection Procedure
           </p>
           <h1 className="mt-2 font-display text-4xl sm:text-5xl font-bold tracking-tight text-ink">
             ICPC Amritapuri On-Site Contest
           </h1>
+          <div className="mt-4 flex items-center justify-center gap-1.5" aria-hidden="true">
+            <span className="h-1 w-8 rounded-full bg-contest-blue" />
+            <span className="h-1 w-8 rounded-full bg-icpc-red" />
+            <span className="h-1 w-8 rounded-full bg-icpc-yellow" />
+          </div>
           <p className="mt-4 text-lg text-neutral-600 max-w-2xl mx-auto">
             Your journey to the ICPC Amritapuri On-Site Contest begins with the Preliminary
-            Online Contest. A total of 380 teams will be selected — 360 through General
-            Selection and 20 through Women-Only Selection — based on the final verified
-            ranking of the Preliminary Online Contest.
+            Online Contest. A total of{" "}
+            <span className="font-semibold text-icpc-red">380 teams</span> will be selected —{" "}
+            <span className="font-semibold text-contest-blue">360</span> through General
+            Selection and <span className="font-semibold text-brass">20</span> through
+            Women-Only Selection — based on the final verified ranking of the Preliminary
+            Online Contest.
           </p>
         </div>
 
@@ -124,6 +139,12 @@ export default function OnsiteSelectionProcess() {
                 <div className="pt-1.5">
                   <h3 className="font-semibold text-ink leading-snug">{step.title}</h3>
                   <p className="mt-1 text-sm text-neutral-600 leading-relaxed">{step.desc}</p>
+                  {step.example && (
+                    <p className="mt-2 text-sm text-neutral-500 leading-relaxed">
+                      <span className="font-semibold text-contest-blue">Example: </span>
+                      {step.example}
+                    </p>
+                  )}
                 </div>
               </li>
             ))}
@@ -156,8 +177,8 @@ export default function OnsiteSelectionProcess() {
               Example
             </span>
             <p className="text-sm text-ink leading-relaxed">
-              If <span className="font-semibold">X = 4</span> and an institution already has{" "}
-              <span className="font-semibold">4 teams</span> selected in the first 100
+              If <span className="font-semibold">X = 5</span> and an institution already has{" "}
+              <span className="font-semibold">5 teams</span> selected in the first 100
               ranks, no additional teams from that institution can be selected under the X
               cap in that stage.
             </p>
@@ -201,11 +222,16 @@ export default function OnsiteSelectionProcess() {
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">
             Can a Women-Only Team Qualify Through General Selection?
           </h2>
-          <p className="mt-3 text-neutral-600 leading-relaxed">
-            Yes. A Women-Only Team can earn a seat through General Selection based on its
-            ranking. If it is selected there, it will not be selected again through
-            Women-Only Selection.
-          </p>
+          <div className="mt-3 flex gap-3 rounded-xl border border-icpc-red/30 bg-icpc-red/5 px-5 py-4">
+            <span className="mt-0.5 flex-shrink-0 text-xs font-bold uppercase tracking-wide text-icpc-red">
+              Yes
+            </span>
+            <p className="text-sm text-ink leading-relaxed">
+              A Women-Only Team can earn a seat through General Selection based on its
+              ranking. If it is selected there, it will not be selected again through
+              Women-Only Selection.
+            </p>
+          </div>
         </section>
 
         {/* X, Y, Z */}
@@ -213,11 +239,18 @@ export default function OnsiteSelectionProcess() {
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">
             Understanding Institutional Limits
           </h2>
-          <p className="mt-3 text-neutral-600 leading-relaxed">
-            The values of X, Y, and Z will be announced by the Organizing Committee after
-            the Preliminary Online Contest and result verification, once the actual
-            distribution of teams across institutions is known.
-          </p>
+          <div className="mt-3 flex gap-3 rounded-xl border border-icpc-yellow/40 bg-icpc-yellow/10 px-5 py-4">
+            <span className="mt-0.5 flex-shrink-0 text-xs font-bold uppercase tracking-wide text-icpc-yellow-dark">
+              To be announced
+            </span>
+            <p className="text-sm text-ink leading-relaxed">
+              The values of X, Y, and Z will be announced by the Organizing Committee after
+              the Preliminary Online Contest and result verification, once the actual
+              distribution of teams across institutions is known. The caps only tighten as
+              ranking bands progress, so{" "}
+              <span className="font-semibold">X is always greater than Y</span>.
+            </p>
+          </div>
         </section>
 
         {/* QUICK SUMMARY */}

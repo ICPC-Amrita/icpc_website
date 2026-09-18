@@ -18,6 +18,14 @@ module.exports = {
   				DEFAULT: '#1E4FD8',
   				dark: '#1740B0',
   			},
+  			'icpc-red': {
+  				DEFAULT: '#D6252C',
+  				dark: '#AE1D23',
+  			},
+  			'icpc-yellow': {
+  				DEFAULT: '#F4B72E',
+  				dark: '#C9931A',
+  			},
   			brass: {
   				DEFAULT: '#96661C',
   				light: '#B8842B',
