@@ -16,11 +16,11 @@ const generalSteps = [
     desc: "Select teams in rank order, up to X teams total from any one institution, counting teams already selected in ranks 1–50.",
   },
   {
-    title: "Ranks 101–200 — capped at Y per institution",
+    title: "Ranks 101–140 — capped at Y per institution",
     desc: "Same process, up to Y teams total from any one institution, counting all teams already selected so far.",
   },
   {
-    title: "Ranks 201 onward — one team per institution per pass",
+    title: "Ranks 141–360 — one team per institution per pass",
     desc: "From the remaining ranked teams, take the highest-ranked not-yet-selected team from each institution, order this list by rank, and select down it with no more than one team per institution in this pass.",
   },
   {
@@ -32,8 +32,8 @@ const generalSteps = [
 const bands = [
   { band: "Top tier", range: "1–50", cap: "None" },
   { band: "Second tier", range: "51–100", cap: "X per institution" },
-  { band: "Third tier", range: "101–200", cap: "Y per institution" },
-  { band: "Remaining", range: "201+", cap: "1 per institution per pass, repeated" },
+  { band: "Third tier", range: "101–140", cap: "Y per institution" },
+  { band: "Remaining", range: "141–360", cap: "1 per institution per pass, repeated" },
 ];
 
 const womenSteps = [
@@ -150,6 +150,19 @@ export default function OnsiteSelectionProcess() {
               </tbody>
             </table>
           </div>
+
+          <div className="mt-6 flex gap-3 rounded-xl border border-contest-blue/30 bg-contest-blue/5 px-5 py-4">
+            <span className="mt-0.5 flex-shrink-0 text-xs font-bold uppercase tracking-wide text-contest-blue">
+              Example
+            </span>
+            <p className="text-sm text-ink leading-relaxed">
+              Suppose <span className="font-semibold">X = 4</span> and a college already has{" "}
+              <span className="font-semibold">6 teams</span> selected among Ranks 1–50. That
+              college has already exceeded the cap of 4, so{" "}
+              <span className="font-semibold">no more of its teams</span> will be selected
+              for the General Slots from Rank 51 onward.
+            </p>
+          </div>
         </section>
 
         {/* WOMEN-ONLY SELECTION */}
@@ -206,7 +219,7 @@ export default function OnsiteSelectionProcess() {
             Determination of X, Y and Z
           </h2>
           <p className="mt-3 text-neutral-600 leading-relaxed">
-            The institutional caps used above — X (ranks 51–100), Y (ranks 101–200) and Z
+            The institutional caps used above — X (ranks 51–100), Y (ranks 101–140) and Z
             (Women-Only Selection) — are not fixed by this procedure. The Organizing
             Committee determines and announces their values after the Preliminary Online
             Contest and its result verification are complete, once the actual distribution
