@@ -1,19 +1,20 @@
 import Link from "next/link";
 import { contestInfo } from "@/app/_constants/contestInfo";
+import Reveal from "./Reveal";
 
 export default function AudienceSplit() {
   return (
     <section className="w-full bg-white px-6 sm:px-10 lg:px-16 xl:px-20 py-14">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-10">
+        <Reveal className="text-center mb-10">
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink tracking-tight">
             Wherever you&apos;re starting from, there&apos;s a way in.
           </h2>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Newcomers */}
-          <div className="flex flex-col rounded-2xl border border-hairline bg-paper p-8 sm:p-10">
+          <Reveal effect="left" className="flex flex-col rounded-2xl border border-hairline bg-paper p-8 sm:p-10">
             <p className="text-sm font-semibold text-contest-blue uppercase tracking-wide">
               First time at ICPC
             </p>
@@ -30,10 +31,10 @@ export default function AudienceSplit() {
             >
               Read the beginner guide
             </Link>
-          </div>
+          </Reveal>
 
           {/* Experienced */}
-          <div className="flex flex-col rounded-2xl border border-hairline bg-paper p-8 sm:p-10">
+          <Reveal effect="right" delay={0.12} className="flex flex-col rounded-2xl border border-hairline bg-paper p-8 sm:p-10">
             <p className="text-sm font-semibold text-brass uppercase tracking-wide">
               Been here before
             </p>
@@ -50,7 +51,7 @@ export default function AudienceSplit() {
             >
               Register your team
             </Link>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

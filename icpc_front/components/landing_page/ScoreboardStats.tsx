@@ -1,4 +1,5 @@
 import { contestInfo } from "@/app/_constants/contestInfo";
+import Reveal from "./Reveal";
 
 const stats = [
   { value: contestInfo.onsiteSlots, label: contestInfo.onsiteSlotsLabel },
@@ -13,8 +14,9 @@ export default function ScoreboardStats() {
       <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-20 py-8 sm:py-10">
         <div className="grid grid-cols-2 sm:grid-cols-4 divide-y divide-white/10 sm:divide-y-0 sm:divide-x">
           {stats.map((stat, i) => (
-            <div
+            <Reveal
               key={stat.label}
+              delay={i * 0.09}
               className={`flex flex-col items-center text-center px-4 py-5 sm:py-0 ${
                 i % 2 === 0 ? "border-white/10" : ""
               }`}
@@ -25,7 +27,7 @@ export default function ScoreboardStats() {
               <p className="mt-1.5 text-sm sm:text-base font-medium text-blue-100/90">
                 {stat.label}
               </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ExternalLink, UserPlus, Code2, MapPin, FileCheck2, Trophy, Globe2, Medal } from "lucide-react";
 import { contestInfo } from "@/app/_constants/contestInfo";
+import Reveal from "./Reveal";
 
 const steps = [
   {
@@ -46,12 +47,16 @@ export default function HowICPCWorks() {
 
         {/* SECTION HEADER */}
         <div className="mb-14 md:mb-20 text-center max-w-3xl mx-auto">
-          <h2 className="font-display text-5xl sm:text-6xl font-bold tracking-tight text-ink">
-            How ICPC works
-          </h2>
-          <p className="mt-4 text-lg sm:text-xl text-neutral-600">
-            From team registration to the World Finals stage — the official qualification pathway.
-          </p>
+          <Reveal>
+            <h2 className="font-display text-5xl sm:text-6xl font-bold tracking-tight text-ink">
+              How ICPC works
+            </h2>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <p className="mt-4 text-lg sm:text-xl text-neutral-600">
+              From team registration to the World Finals stage — the official qualification pathway.
+            </p>
+          </Reveal>
         </div>
 
         {/* THE FLOW: one horizontal line on desktop; a stacked list on smaller screens */}
@@ -80,7 +85,7 @@ export default function HowICPCWorks() {
             );
 
             return (
-              <div key={step.title} id={isRequired ? "undertaking-step" : undefined} className="flex items-start scroll-mt-28">
+              <Reveal key={step.title} delay={i * 0.12} id={isRequired ? "undertaking-step" : undefined} className="flex items-start scroll-mt-28">
                 {isRequired ? (
                   <Link
                     href={contestInfo.undertakingUrl}
@@ -98,12 +103,12 @@ export default function HowICPCWorks() {
                   <div className="flex flex-col items-center text-center w-40">{content}</div>
                 )}
                 <div className="w-10 h-px bg-hairline mt-10 shrink-0" aria-hidden="true" />
-              </div>
+              </Reveal>
             );
           })}
 
           {/* Fork: two alternative routes, not another step */}
-          <div className="flex flex-col justify-center gap-3 w-60">
+          <Reveal delay={0.5} className="flex flex-col justify-center gap-3 w-60">
             {routes.map((route) => {
               const Icon = route.icon;
               return (
@@ -117,18 +122,18 @@ export default function HowICPCWorks() {
               );
             })}
             <p className="text-xs text-gray-400 text-center -mt-0.5">based on where your team places</p>
-          </div>
+          </Reveal>
 
           <div className="w-10 h-px bg-hairline mt-10 shrink-0 self-center" aria-hidden="true" />
 
           {/* Final: both routes rejoin here */}
-          <div className="flex flex-col items-center text-center w-40 self-center">
+          <Reveal effect="scale" delay={0.62} className="flex flex-col items-center text-center w-40 self-center">
             <div className="flex items-center justify-center size-20 rounded-full bg-scoreboard">
               <Medal className="size-8 text-white" strokeWidth={1.8} />
             </div>
             <h3 className="mt-3 text-lg font-bold text-ink leading-snug">World Finals 2027</h3>
             <p className="mt-1 text-sm text-gray-500 leading-snug">The ultimate global stage</p>
-          </div>
+          </Reveal>
 
         </div>
 
@@ -165,7 +170,7 @@ export default function HowICPCWorks() {
                   </div>
                 );
                 return (
-                  <li key={step.title} id={isRequired ? "undertaking-step" : undefined} className="relative flex gap-4 scroll-mt-28">
+                  <Reveal as="li" key={step.title} id={isRequired ? "undertaking-step" : undefined} className="relative flex gap-4 scroll-mt-28">
                     {isRequired ? (
                       <Link href={contestInfo.undertakingUrl} target="_blank" rel="noopener noreferrer" className="contents">
                         {node}
@@ -177,7 +182,7 @@ export default function HowICPCWorks() {
                         {text}
                       </>
                     )}
-                  </li>
+                  </Reveal>
                 );
               })}
             </ol>
@@ -186,20 +191,22 @@ export default function HowICPCWorks() {
           <div className="flex justify-center py-3">
             <div className="w-px h-6 bg-hairline" aria-hidden="true" />
           </div>
-          <p className="text-sm text-gray-500 text-center mb-4">
-            Two routes forward, based on where your team places:
-          </p>
+          <Reveal>
+            <p className="text-sm text-gray-500 text-center mb-4">
+              Two routes forward, based on where your team places:
+            </p>
+          </Reveal>
           <div className="flex flex-col gap-3">
-            {routes.map((route) => {
+            {routes.map((route, i) => {
               const Icon = route.icon;
               return (
-                <div key={route.title} className="flex items-center gap-3 rounded-xl border border-hairline px-4 py-3">
+                <Reveal key={route.title} delay={i * 0.1} className="flex items-center gap-3 rounded-xl border border-hairline px-4 py-3">
                   <Icon className="size-5 text-contest-blue shrink-0" strokeWidth={1.8} />
                   <div className="min-w-0">
                     <p className="text-sm font-bold text-ink leading-snug">{route.title}</p>
                     <p className="text-xs text-gray-500 leading-snug">{route.desc}</p>
                   </div>
-                </div>
+                </Reveal>
               );
             })}
           </div>
@@ -207,11 +214,11 @@ export default function HowICPCWorks() {
           <div className="flex justify-center py-3">
             <div className="w-px h-6 bg-hairline" aria-hidden="true" />
           </div>
-          <div className="rounded-xl bg-scoreboard p-6 text-center">
+          <Reveal effect="scale" className="rounded-xl bg-scoreboard p-6 text-center">
             <Medal className="size-6 text-white mx-auto mb-2" strokeWidth={1.8} />
             <h3 className="text-lg font-bold text-white leading-snug">World Finals 2027</h3>
             <p className="mt-1 text-sm text-blue-100/90 leading-snug">The ultimate global stage</p>
-          </div>
+          </Reveal>
         </div>
 
       </div>

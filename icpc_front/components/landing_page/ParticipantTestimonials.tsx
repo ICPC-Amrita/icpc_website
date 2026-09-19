@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Reveal from "./Reveal";
 
 const testimonials = [
   {
@@ -54,16 +55,20 @@ export default function ParticipantTestimonials() {
     <section className="mx-auto max-w-5xl px-4 py-12 md:px-8 md:py-20">
       {/* Section Header */}
       <div className="text-center mb-8">
-        <h2 className="text-blue-900 dark:text-blue-400 font-bold text-4xl sm:text-5xl">
-          Testimonials
-        </h2>
-        <p className="mt-3 text-base sm:text-lg text-neutral-600 dark:text-neutral-400">
-          They came to compete. They left with an ICPC story.
-        </p>
+        <Reveal>
+          <h2 className="text-blue-900 dark:text-blue-400 font-bold text-4xl sm:text-5xl">
+            Testimonials
+          </h2>
+        </Reveal>
+        <Reveal delay={0.12}>
+          <p className="mt-3 text-base sm:text-lg text-neutral-600 dark:text-neutral-400">
+            They came to compete. They left with an ICPC story.
+          </p>
+        </Reveal>
       </div>
 
       {/* Single Testimonial Card */}
-      <div className="relative rounded-2xl bg-white p-6 sm:p-10 md:p-12 shadow-sm ring-1 shadow-black/5 ring-black/10 dark:bg-neutral-900 dark:shadow-white/5 dark:ring-white/10 transition-all duration-300">
+      <Reveal effect="scale" delay={0.2} className="relative rounded-2xl bg-white p-6 sm:p-10 md:p-12 shadow-sm ring-1 shadow-black/5 ring-black/10 dark:bg-neutral-900 dark:shadow-white/5 dark:ring-white/10">
         
         {/* Quote text */}
         <div className="relative">
@@ -166,7 +171,7 @@ export default function ParticipantTestimonials() {
 
         </div>
 
-      </div>
+      </Reveal>
     </section>
   );
-}
+}

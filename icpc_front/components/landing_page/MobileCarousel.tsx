@@ -1,6 +1,7 @@
 "use client";
 
 import { Children, useEffect, useRef, useState } from "react";
+import Reveal from "./Reveal";
 
 interface Props {
   children: React.ReactNode;
@@ -63,7 +64,7 @@ export default function MobileCarousel({
   return (
     <>
       {/* Mobile carousel */}
-      <div className="sm:hidden">
+      <Reveal className="sm:hidden">
         <div
           ref={scrollRef}
           className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1"
@@ -88,10 +89,16 @@ export default function MobileCarousel({
             />
           ))}
         </div>
-      </div>
+      </Reveal>
 
       {/* Desktop grid */}
-      <div className={`hidden sm:grid ${desktopGrid}`}>{children}</div>
+      <div className={`hidden sm:grid ${desktopGrid}`}>
+        {items.map((item, i) => (
+          <Reveal key={i} delay={(i % 4) * 0.1} className="h-full">
+            {item}
+          </Reveal>
+        ))}
+      </div>
     </>
   );
 }

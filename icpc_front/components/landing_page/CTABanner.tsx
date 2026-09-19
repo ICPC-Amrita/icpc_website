@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { contestInfo } from "@/app/_constants/contestInfo";
+import Reveal from "./Reveal";
 
 export default function CTABanner() {
   return (
     <section className="w-full bg-white px-6 sm:px-10 lg:px-16 xl:px-20 pb-14">
-      <div className="relative rounded-2xl overflow-hidden min-h-45 flex items-center">
+      <Reveal effect="scale" className="relative rounded-2xl overflow-hidden min-h-45 flex items-center">
         {/* Mobile background */}
         <Image
           src="/assets/mobile_bottom_banner.png"
@@ -22,7 +23,7 @@ export default function CTABanner() {
           className="object-cover object-right hidden sm:block"
           aria-hidden
         />
-        <div className="relative z-10 px-8 sm:px-12 py-10 max-w-xl">
+        <Reveal delay={0.25} className="relative z-10 px-8 sm:px-12 py-10 max-w-xl">
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-white leading-tight">
             Start your ICPC journey.
           </h2>
@@ -42,8 +43,8 @@ export default function CTABanner() {
               Register your team
             </Link>
           </div>
-        </div>
-      </div>
+        </Reveal>
+      </Reveal>
     </section>
   );
 }

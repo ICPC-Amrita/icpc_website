@@ -9,6 +9,7 @@ import ParticipantTestimonials from "@/components/landing_page/ParticipantTestim
 import CommunityProof from "@/components/landing_page/CommunityProof";
 import CTABanner from "@/components/landing_page/CTABanner";
 import SiteFooter from "@/components/landing_page/SiteFooter";
+import Reveal from "@/components/landing_page/Reveal";
 import Sponsors from "@/components/tables/sponsors";
 import Faq from "@/components/tables/faq";
 import { contestInfo } from "@/app/_constants/contestInfo";
@@ -62,8 +63,8 @@ export default function Trial(){
             <ChooseYourCity />
             <ParticipantTestimonials />
             <CommunityProof />
-            <Sponsors />
-            <Faq />
+            <Reveal><Sponsors /></Reveal>
+            <Reveal><Faq /></Reveal>
             <CTABanner />
             <SiteFooter />
         </main>

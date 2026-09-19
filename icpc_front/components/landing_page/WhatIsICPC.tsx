@@ -2,6 +2,7 @@ import Image from "next/image";
 import MobileCarousel from "./MobileCarousel";
 import ExpandableCard from "./ExpandableCard";
 import { contestInfo } from "@/app/_constants/contestInfo";
+import Reveal from "./Reveal";
 
 const quickFacts = [
   { value: contestInfo.teamSize, label: "Contestants per team" },
@@ -65,13 +66,13 @@ export default function WhatIsICPC() {
     <section id="why-icpc" className="w-full bg-white px-6 sm:px-10 lg:px-16 xl:px-20 py-14">
       {/* What is ICPC */}
       <div className="max-w-full mx-auto border border-hairline rounded-2xl p-8 sm:p-10">
-        <div className="text-center">
+        <Reveal className="text-center">
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">What is ICPC?</h2>
-        </div>
+        </Reveal>
 
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14 mt-10">
           {/* Left: illustration */}
-          <div className="w-full lg:flex-1 flex justify-center ">
+          <Reveal effect="scale" className="w-full lg:flex-1 flex justify-center ">
             <Image
               src="/assets/hero/Image 2.JPG"
               alt="Students collaborating on programming"
@@ -80,39 +81,45 @@ export default function WhatIsICPC() {
               className="w-full h-auto max-w-sm sm:max-w-md lg:max-w-none object-contain select-none rounded-lg"
               draggable={false}
             />
-          </div>
+          </Reveal>
 
           {/* Right: content */}
           <div className="w-full lg:flex-1 flex flex-col gap-4">
-            <h3 className="text-2xl sm:text-3xl font-bold text-ink leading-snug">
-              Why ICPC Amritapuri?
-            </h3>
-            <p className="text-lg sm:text-xl font-semibold text-contest-blue">
-              More than a contest. It&apos;s a chance to see what your team can do.
-            </p>
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-              ICPC brings together university students who love solving hard problems under
-              pressure. Your journey starts with the online prelims and can take you all the
-              way to the World Finals.
-            </p>
+            <Reveal effect="right">
+              <h3 className="text-2xl sm:text-3xl font-bold text-ink leading-snug">
+                Why ICPC Amritapuri?
+              </h3>
+            </Reveal>
+            <Reveal effect="right" delay={0.1}>
+              <p className="text-lg sm:text-xl font-semibold text-contest-blue">
+                More than a contest. It&apos;s a chance to see what your team can do.
+              </p>
+            </Reveal>
+            <Reveal effect="right" delay={0.2}>
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                ICPC brings together university students who love solving hard problems under
+                pressure. Your journey starts with the online prelims and can take you all the
+                way to the World Finals.
+              </p>
+            </Reveal>
 
             {/* Quick facts row */}
-            <div className="flex flex-wrap gap-x-8 gap-y-3 mt-2 pt-2 border-t border-hairline">
+            <Reveal delay={0.3} className="flex flex-wrap gap-x-8 gap-y-3 mt-2 pt-2 border-t border-hairline">
               {quickFacts.map((fact) => (
                 <div key={fact.label}>
                   <p className="text-2xl font-bold text-ink">{fact.value}</p>
                   <p className="text-sm text-gray-500">{fact.label}</p>
                 </div>
               ))}
-            </div>
+            </Reveal>
           </div>
         </div>
 
         {/* Why participate */}
         <div className="mt-12">
-          <div className="text-center mb-8">
+          <Reveal className="text-center mb-8">
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink">What do you get from participating?</h2>
-          </div>
+          </Reveal>
 
           <MobileCarousel desktopGrid="grid-cols-2 lg:grid-cols-4 gap-4">
             {reasons.map((r) => (

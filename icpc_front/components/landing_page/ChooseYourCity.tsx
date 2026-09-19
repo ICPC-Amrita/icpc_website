@@ -3,6 +3,7 @@ import Link from "next/link";
 import MobileCarousel from "./MobileCarousel";
 import ExpandableCard from "./ExpandableCard";
 import { contestInfo } from "@/app/_constants/contestInfo";
+import Reveal from "./Reveal";
 
 const perks = [
   {
@@ -91,12 +92,16 @@ export default function ChooseYourCity() {
       <div className="max-w-6xl mx-auto">
 
         <div className="text-center mb-10">
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
-            Choosing your ICPC regional?
-          </h2>
-          <p className="mt-3 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Don&apos;t just choose a contest. Choose the experience.
-          </p>
+          <Reveal>
+            <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
+              Choosing your ICPC regional?
+            </h2>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <p className="mt-3 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Don&apos;t just choose a contest. Choose the experience.
+            </p>
+          </Reveal>
         </div>
 
         <MobileCarousel desktopGrid="grid-cols-2 lg:grid-cols-4 gap-5">
@@ -107,11 +112,15 @@ export default function ChooseYourCity() {
 
         <div className="mt-14 pt-14 border-t border-hairline">
           <div className="text-center mb-8">
-            <h3 className="font-display text-3xl sm:text-4xl font-bold text-ink">One regional. Four locations.</h3>
-            <p className="mt-3 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Choose the location that works best for your team. The contest experience and
-              competitive standards remain the same everywhere.
-            </p>
+            <Reveal>
+              <h3 className="font-display text-3xl sm:text-4xl font-bold text-ink">One regional. Four locations.</h3>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <p className="mt-3 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Choose the location that works best for your team. The contest experience and
+                competitive standards remain the same everywhere.
+              </p>
+            </Reveal>
           </div>
 
           <MobileCarousel desktopGrid="grid-cols-2 lg:grid-cols-4 gap-4" cardWidth="w-[80%]">
@@ -121,12 +130,12 @@ export default function ChooseYourCity() {
                 href={city.href}
                 className="group rounded-xl border border-hairline bg-white overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full cursor-pointer"
               >
-                <div className="relative w-full h-40">
+                <div className="relative w-full h-40 overflow-hidden">
                   <Image
                     src={city.image}
                     alt={city.name}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                 </div>
 
