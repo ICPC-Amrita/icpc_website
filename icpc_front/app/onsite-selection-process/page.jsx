@@ -26,7 +26,7 @@ const generalSteps = [
   },
   {
     title: "Ranks 141–360 — one team per institution per pass",
-    desc: "From the remaining ranked teams, take the highest-ranked not-yet-selected team from each institution, order this list by rank, and select down it with no more than one team per institution in this pass.",
+    desc: "Look at remaining ranked teams from institutions with no teams selected yet in steps 1–5. Take the highest-ranked unselected team from each of those eligible institutions.",
     example: "College R's best unselected team is rank 145 and College S's is rank 150, both are picked in this pass, but no other team from R or S will be picked in this pass.",
   },
   {
