@@ -16,6 +16,9 @@ export const contestInfo = {
   hostCities: ["Kollam", "Bengaluru", "Coimbatore", "Mysuru"],
   teamSize: "3",
   registrationFee: "₹1,500",
+  contactEmail: "icpc@am.amrita.edu",
+  contactWhatsapp: "80890 62917",
+  contactWhatsappUrl: "https://wa.me/918089062917",
   yearsRunning: "13+",
 
   mockContestDate: "25 September 2026",

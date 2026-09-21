@@ -1,44 +1,124 @@
 import Link from "next/link";
-import { ExternalLink, UserPlus, Code2, MapPin, FileCheck2, Trophy, Globe2, Medal } from "lucide-react";
+import {
+  ExternalLink,
+  UserPlus,
+  CreditCard,
+  BadgeCheck,
+  FileCheck2,
+  MonitorPlay,
+  ShieldCheck,
+  ListChecks,
+  MapPin,
+  TriangleAlert,
+  type LucideIcon,
+} from "lucide-react";
 import { contestInfo } from "@/app/_constants/contestInfo";
 import Reveal from "./Reveal";
 
-const steps = [
+interface Step {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  /** Date / time line shown in the accent colour */
+  when?: string;
+  /** Extra caution shown under the description */
+  note?: string;
+  /** Show support contact details */
+  contact?: boolean;
+  /** Mandatory step — highlighted red and linked to the undertaking form */
+  required?: boolean;
+}
+
+const steps: Step[] = [
   {
     icon: UserPlus,
-    title: "Register",
-    desc: "Form a 3-person team with a faculty coach.",
+    title: "Register your team",
+    desc: "Form a team of 3 eligible students from the same college. A faculty coach from your college must register the team.",
   },
   {
-    icon: Code2,
-    title: "Online prelims",
-    desc: "Solve algorithmic problems from your college.",
+    icon: CreditCard,
+    title: "Make payment",
+    desc: `The registration fee is ${contestInfo.registrationFee} per team.`,
   },
   {
-    icon: MapPin,
-    title: "Regional onsite",
-    desc: `Compete at one of ${contestInfo.hostCitiesCount} host campuses.`,
+    icon: BadgeCheck,
+    title: "Registration confirmation",
+    desc: "Your registration will be reviewed and confirmed within 40 hours.",
+    contact: true,
   },
   {
     icon: FileCheck2,
-    title: "Undertaking",
-    desc: "Submit once at indiaicpc.in — mandatory.",
+    title: "Submit the undertaking",
+    desc: "Download the Undertaking Form, complete it and upload the signed form.",
+    when: "Before October 1, 2026",
     required: true,
+  },
+  {
+    icon: MonitorPlay,
+    title: "Practice contest",
+    desc: "Registered teams can practice on CodeChef using Safe Exam Browser (SEB). Setup instructions are emailed to registered teams.",
+    when: "Starts September 26, 2026",
+    note: "Safe Exam Browser does not work on Linux.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Online preliminary contest",
+    desc: "Compete from a proctored environment under the prescribed contest conditions. Coaches make the necessary arrangements for their teams.",
+    when: "October 3, 2026 · 1:30 PM – 4:30 PM",
+  },
+  {
+    icon: ListChecks,
+    title: "Onsite shortlisting",
+    desc: "Teams are shortlisted based on the published onsite selection criteria.",
+    when: "Notified by October 15, 2026",
+  },
+  {
+    icon: MapPin,
+    title: "Regional onsite contest",
+    desc: `Travel to your assigned site and compete across our ${contestInfo.hostCitiesCount} host campuses: ${contestInfo.hostCities.join(" · ")}.`,
+    when: "January 1–2, 2027",
   },
 ];
 
-const routes = [
-  {
-    icon: Trophy,
-    title: "Regional winner",
-    desc: "Advances straight to the World Finals.",
-  },
-  {
-    icon: Globe2,
-    title: "Top-performing teams",
-    desc: "Compete at Asia West; top finishers advance too.",
-  },
-];
+const COLUMNS = 4;
+
+function Contact() {
+  return (
+    <p className="mt-2 text-xs text-gray-500 leading-snug">
+      Questions?{" "}
+      <a href={`mailto:${contestInfo.contactEmail}`} className="font-semibold text-contest-blue hover:underline break-all">
+        {contestInfo.contactEmail}
+      </a>{" "}
+      or WhatsApp{" "}
+      <a
+        href={contestInfo.contactWhatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-semibold text-contest-blue hover:underline whitespace-nowrap"
+      >
+        {contestInfo.contactWhatsapp}
+      </a>
+    </p>
+  );
+}
+
+function Details({ step, centered }: { step: Step; centered?: boolean }) {
+  const accent = step.required ? "text-red-600" : "text-contest-blue";
+  return (
+    <>
+      <h3 className="mt-0.5 text-lg font-bold text-ink leading-snug">{step.title}</h3>
+      {step.when && <p className={`mt-1 text-sm font-semibold leading-snug ${accent}`}>{step.when}</p>}
+      <p className="mt-1 text-sm text-gray-500 leading-snug">{step.desc}</p>
+      {step.note && (
+        <p className={`mt-2 flex gap-1.5 text-xs font-medium text-amber-700 leading-snug ${centered ? "justify-center text-left" : ""}`}>
+          <TriangleAlert className="size-3.5 shrink-0 mt-px" />
+          <span>{step.note}</span>
+        </p>
+      )}
+      {step.contact && <Contact />}
+    </>
+  );
+}
 
 export default function HowICPCWorks() {
   return (
@@ -54,19 +134,17 @@ export default function HowICPCWorks() {
           </Reveal>
           <Reveal delay={0.12}>
             <p className="mt-4 text-lg sm:text-xl text-neutral-600">
-              From team registration to the World Finals stage — the official qualification pathway.
+              From team registration to the regional onsite — your path in {steps.length} steps.
             </p>
           </Reveal>
         </div>
 
-        {/* THE FLOW: one horizontal line on desktop; a stacked list on smaller screens */}
-
-        {/* Desktop / wide layout — fits one row, no scrolling, so only shown where it fits */}
-        <div className="hidden 2xl:flex items-start justify-center gap-4">
-
+        {/* Wide layout — two rows of four, connected by a line */}
+        <div className="hidden lg:grid grid-cols-4 gap-y-16">
           {steps.map((step, i) => {
             const Icon = step.icon;
             const isRequired = step.required;
+            const hasNext = (i + 1) % COLUMNS !== 0;
             const content = (
               <>
                 <div
@@ -79,66 +157,48 @@ export default function HowICPCWorks() {
                 <p className={`mt-3 text-sm font-semibold ${isRequired ? "text-red-600" : "text-contest-blue"}`}>
                   Step {i + 1}{isRequired ? " · mandatory" : ""}
                 </p>
-                <h3 className="mt-0.5 text-lg font-bold text-ink leading-snug">{step.title}</h3>
-                <p className="mt-1 text-sm text-gray-500 leading-snug">{step.desc}</p>
+                <Details step={step} centered />
+                {isRequired && (
+                  <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-red-600 group-hover:text-red-700 transition-colors">
+                    Submit
+                    <ExternalLink className="size-3.5" />
+                  </span>
+                )}
               </>
             );
 
             return (
-              <Reveal key={step.title} delay={i * 0.12} id={isRequired ? "undertaking-step" : undefined} className="flex items-start scroll-mt-28">
+              <Reveal
+                key={step.title}
+                delay={(i % COLUMNS) * 0.12}
+                id={isRequired ? "undertaking-step" : undefined}
+                className="relative flex justify-center px-3 scroll-mt-28"
+              >
+                {hasNext && (
+                  <div
+                    className="absolute top-10 left-[calc(50%+3.25rem)] right-[calc(-50%+3.25rem)] h-px bg-hairline"
+                    aria-hidden="true"
+                  />
+                )}
                 {isRequired ? (
                   <Link
                     href={contestInfo.undertakingUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex flex-col items-center text-center w-40 group"
+                    className="flex flex-col items-center text-center max-w-[15rem] group"
                   >
                     {content}
-                    <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-red-600 group-hover:text-red-700 transition-colors">
-                      Submit
-                      <ExternalLink className="size-3.5" />
-                    </span>
                   </Link>
                 ) : (
-                  <div className="flex flex-col items-center text-center w-40">{content}</div>
+                  <div className="flex flex-col items-center text-center max-w-[15rem]">{content}</div>
                 )}
-                <div className="w-10 h-px bg-hairline mt-10 shrink-0" aria-hidden="true" />
               </Reveal>
             );
           })}
-
-          {/* Fork: two alternative routes, not another step */}
-          <Reveal delay={0.5} className="flex flex-col justify-center gap-3 w-60">
-            {routes.map((route) => {
-              const Icon = route.icon;
-              return (
-                <div key={route.title} className="flex items-center gap-3 rounded-xl border border-hairline px-4 py-3">
-                  <Icon className="size-5 text-contest-blue shrink-0" strokeWidth={1.8} />
-                  <div className="min-w-0">
-                    <p className="text-sm font-bold text-ink leading-snug truncate">{route.title}</p>
-                    <p className="text-xs text-gray-500 leading-snug">{route.desc}</p>
-                  </div>
-                </div>
-              );
-            })}
-            <p className="text-xs text-gray-400 text-center -mt-0.5">based on where your team places</p>
-          </Reveal>
-
-          <div className="w-10 h-px bg-hairline mt-10 shrink-0 self-center" aria-hidden="true" />
-
-          {/* Final: both routes rejoin here */}
-          <Reveal effect="scale" delay={0.62} className="flex flex-col items-center text-center w-40 self-center">
-            <div className="flex items-center justify-center size-20 rounded-full bg-scoreboard">
-              <Medal className="size-8 text-white" strokeWidth={1.8} />
-            </div>
-            <h3 className="mt-3 text-lg font-bold text-ink leading-snug">World Finals 2027</h3>
-            <p className="mt-1 text-sm text-gray-500 leading-snug">The ultimate global stage</p>
-          </Reveal>
-
         </div>
 
-        {/* Narrower layout — stacked list, no horizontal scroll */}
-        <div className="2xl:hidden max-w-md mx-auto">
+        {/* Narrower layout — stacked timeline, no horizontal scroll */}
+        <div className="lg:hidden max-w-xl mx-auto">
           <div className="relative">
             <div className="absolute left-7 top-7 bottom-7 w-px bg-hairline" aria-hidden="true" />
             <ol className="flex flex-col gap-8">
@@ -155,12 +215,11 @@ export default function HowICPCWorks() {
                   </div>
                 );
                 const text = (
-                  <div className="pt-1">
+                  <div className="pt-1 min-w-0">
                     <p className={`text-sm font-semibold ${isRequired ? "text-red-600" : "text-contest-blue"}`}>
                       Step {i + 1}{isRequired ? " · mandatory" : ""}
                     </p>
-                    <h3 className="mt-0.5 text-lg font-bold text-ink leading-snug">{step.title}</h3>
-                    <p className="mt-1 text-sm text-gray-500 leading-snug">{step.desc}</p>
+                    <Details step={step} />
                     {isRequired && (
                       <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-red-600">
                         Submit at indiaicpc.in
@@ -187,38 +246,6 @@ export default function HowICPCWorks() {
               })}
             </ol>
           </div>
-
-          <div className="flex justify-center py-3">
-            <div className="w-px h-6 bg-hairline" aria-hidden="true" />
-          </div>
-          <Reveal>
-            <p className="text-sm text-gray-500 text-center mb-4">
-              Two routes forward, based on where your team places:
-            </p>
-          </Reveal>
-          <div className="flex flex-col gap-3">
-            {routes.map((route, i) => {
-              const Icon = route.icon;
-              return (
-                <Reveal key={route.title} delay={i * 0.1} className="flex items-center gap-3 rounded-xl border border-hairline px-4 py-3">
-                  <Icon className="size-5 text-contest-blue shrink-0" strokeWidth={1.8} />
-                  <div className="min-w-0">
-                    <p className="text-sm font-bold text-ink leading-snug">{route.title}</p>
-                    <p className="text-xs text-gray-500 leading-snug">{route.desc}</p>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-
-          <div className="flex justify-center py-3">
-            <div className="w-px h-6 bg-hairline" aria-hidden="true" />
-          </div>
-          <Reveal effect="scale" className="rounded-xl bg-scoreboard p-6 text-center">
-            <Medal className="size-6 text-white mx-auto mb-2" strokeWidth={1.8} />
-            <h3 className="text-lg font-bold text-white leading-snug">World Finals 2027</h3>
-            <p className="mt-1 text-sm text-blue-100/90 leading-snug">The ultimate global stage</p>
-          </Reveal>
         </div>
 
       </div>
