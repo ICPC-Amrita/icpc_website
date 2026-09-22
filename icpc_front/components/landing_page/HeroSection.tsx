@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar } from "lucide-react";
 import TeamRegistrationModal from '../modal/TeamRegistrationModal';
+import RegistrationCountdown from './RegistrationCountdown';
 import { contestInfo } from "@/app/_constants/contestInfo";
 
 const heroImages = [
@@ -118,6 +119,11 @@ export default function HeroSection() {
               <p className="text-base sm:text-lg text-gray-500 font-medium">
                 {contestInfo.hostCities.join(" · ")}
               </p>
+            </div>
+
+            {/* Registration Countdown */}
+            <div className="pt-2 w-full">
+              <RegistrationCountdown />
             </div>
 
             {/* Action Buttons */}

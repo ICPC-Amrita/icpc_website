@@ -23,6 +23,7 @@ export const contestInfo = {
 
   mockContestDate: "25 September 2026",
   paymentDeadline: "27th September 2026",
+  registrationDeadlineISO: "2026-09-25T00:00:00+05:30",
 
   registrationUrl:
     "https://icpc.global/login?redirect_uri=/private/teamRegistration/site/40197",

@@ -34,11 +34,13 @@ const steps: Step[] = [
     icon: UserPlus,
     title: "Register your team",
     desc: "Form a team of 3 eligible students from the same college. A faculty coach from your college must register the team.",
+    when: "Deadline: September 25, 2026",
   },
   {
     icon: CreditCard,
     title: "Make payment",
     desc: `The registration fee is ${contestInfo.registrationFee} per team.`,
+    when: "Deadline: September 27, 2026",
   },
   {
     icon: BadgeCheck,
