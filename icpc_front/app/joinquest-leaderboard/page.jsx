@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight, Search, RefreshCw } from 'lucide-react';
 import ContactUs2 from "@/components/footer/contact_us_2";
 
 const WEEKS = ["Week 1", "Week 2"];
-const CURRENT_WEEK = "Week 1";
+const CURRENT_WEEK = "Week 2";
 const ITEMS_PER_PAGE = 50;
 
 const displayWeek = (week) => week === CURRENT_WEEK ? `${week} *` : week;
@@ -58,10 +58,24 @@ export default function JoinQuestLeaderboardPage() {
               return "";
             };
 
-            const c1 = get("challenge 1", "c1", "sept15 pts", "sept15", "1");
-            const c2 = get("challenge 2", "c2", "sept16 pts", "sept16", "2");
-            const c3 = get("challenge 3", "c3", "sept17 pts", "sept17", "3");
-            const c4 = get("challenge 4", "c4", "sept18 pts", "sept18", "4");
+            // Point columns are named per-day (e.g. "sept15 Pts", "sept21 Pts") and
+            // differ by week, so fall back to positional matching on any "* Pts" header.
+            const ptsKeys = Object.keys(row).filter(k => /pts$/i.test(k.trim()));
+            const getPts = (idx, ...fallbackKeys) => {
+              const v = get(...fallbackKeys);
+              if (v) return v;
+              const key = ptsKeys[idx];
+              if (key !== undefined && row[key] !== null && row[key] !== undefined) {
+                const val = String(row[key]).trim();
+                if (val !== "") return val;
+              }
+              return "";
+            };
+
+            const c1 = getPts(0, "challenge 1", "c1");
+            const c2 = getPts(1, "challenge 2", "c2");
+            const c3 = getPts(2, "challenge 3", "c3");
+            const c4 = getPts(3, "challenge 4", "c4");
             let total = get("total points", "total", "score", "total score");
 
             if (!total && (c1 || c2 || c3 || c4)) {
