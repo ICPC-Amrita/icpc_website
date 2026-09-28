@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { contestInfo } from "@/app/_constants/contestInfo";
 import Reveal from "./Reveal";
 
@@ -34,15 +33,6 @@ export default function CTABanner() {
           <p className="text-sm sm:text-base text-blue-200 mt-2 font-medium">
             {contestInfo.registrationFee} per team &nbsp;·&nbsp; Registration closes {contestInfo.dates[1].date}
           </p>
-          <div className="flex flex-wrap gap-3 mt-6">
-            <Link
-              id="register-button"
-              href={contestInfo.registrationUrl}
-              className="inline-flex items-center bg-brass hover:bg-brass-light text-white font-semibold px-6 py-3 rounded-lg text-base transition-colors shadow-sm"
-            >
-              Register your team
-            </Link>
-          </div>
         </Reveal>
       </Reveal>
     </section>

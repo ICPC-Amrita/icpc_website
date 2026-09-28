@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar } from "lucide-react";
 import TeamRegistrationModal from '../modal/TeamRegistrationModal';
 import RegistrationCountdown from './RegistrationCountdown';
 import { contestInfo } from "@/app/_constants/contestInfo";
@@ -129,13 +128,6 @@ export default function HeroSection() {
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <Link
-                id="register-button"
-                href={contestInfo.registrationUrl}
-                className="inline-flex items-center justify-center bg-contest-blue hover:bg-contest-blue-dark active:bg-contest-blue-dark text-white text-lg font-semibold px-7 py-3.5 rounded-lg transition-all shadow-sm hover:shadow whitespace-nowrap"
-              >
-                Register your team
-              </Link>
-              <Link
                 href="/onsite-selection-process"
                 className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 active:bg-red-700 text-white text-lg font-semibold px-7 py-3.5 rounded-lg transition-all shadow-sm hover:shadow whitespace-nowrap"
               >
@@ -145,13 +137,8 @@ export default function HeroSection() {
 
             {/* Important date line */}
             <div className="flex items-center gap-3 pt-2 text-gray-900">
-              <Calendar className="size-5 sm:size-6 text-contest-blue shrink-0" strokeWidth={2.2} />
               <span className="text-base sm:text-lg text-gray-700 font-medium">
-                Mock contest starts {" "}
-                <strong className="text-contest-blue font-bold">
-                  {contestInfo.mockContestDate}
-                </strong>
-                {" "}· payment closes {contestInfo.paymentDeadline}
+                The mock contest dates will be notified via email to the registered participants
               </span>
             </div>
 

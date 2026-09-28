@@ -253,7 +253,6 @@ import SideMenu from "./sidemenu/sidemenu";
 import Bars from "../svg/bars-3";
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { contestInfo } from "@/app/_constants/contestInfo";
 
 export default function Navbar({ open, hero, darkSection }) {
   const currentPath = usePathname();
@@ -496,18 +495,6 @@ export default function Navbar({ open, hero, darkSection }) {
             </div>
           ))}
         </div>
-
-        {/* Primary Header Button */}
-        {currentPath === "/" && (
-          <div className="hidden md:flex items-center mr-4 flex-shrink-0">
-            <Link
-              href={contestInfo.registrationUrl}
-              className="bg-contest-blue hover:bg-contest-blue-dark active:bg-contest-blue-dark text-white font-semibold px-4 py-2 rounded-lg text-xs lg:text-sm transition-all shadow-sm whitespace-nowrap"
-            >
-              Register your team
-            </Link>
-          </div>
-        )}
 
         {/* Mobile Menu Button - Only show on truly mobile devices */}
         <div className="flex md:hidden flex-1 justify-end items-center pr-4">

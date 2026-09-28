@@ -45,12 +45,6 @@ export default function AudienceSplit() {
               Bring your strongest team and go straight for the {contestInfo.onsiteSlots} onsite
               slots and a {contestInfo.prizePool} prize pool.
             </p>
-            <Link
-              href={contestInfo.registrationUrl}
-              className="mt-6 inline-flex w-fit items-center gap-2 bg-contest-blue hover:bg-contest-blue-dark text-white text-base font-semibold px-6 py-3 rounded-lg transition-all shadow-sm"
-            >
-              Register your team
-            </Link>
           </Reveal>
         </div>
       </div>

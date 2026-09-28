@@ -64,13 +64,6 @@ export default function HeroSection() {
             to begin their journey.
           </p>
           <div className="flex flex-wrap items-center gap-4">
-            <a
-              id="register-button"
-              href={contestInfo.registrationUrl}
-              className="inline-flex items-center gap-2 bg-contest-blue hover:bg-contest-blue-dark text-white font-semibold px-7 py-3.5 rounded-lg transition-colors"
-            >
-              Register your team
-            </a>
             <button
               onClick={() => setIsVideoOpen(true)}
               className="inline-flex items-center gap-2 text-contest-blue font-semibold hover:underline"

@@ -79,8 +79,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname, useRouter } from 'next/navigation';
-import { Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
-import { contestInfo } from "@/app/_constants/contestInfo";
 
 export default function SideMenu({ openMenu, setOpenMenu, locations, navigationItems, textColor }) {
     const currentPath = usePathname();
@@ -211,48 +209,6 @@ export default function SideMenu({ openMenu, setOpenMenu, locations, navigationI
                             </div>
                         ))}
                     </nav>
-                </div>
-
-                {/* Footer - Fixed height */}
-                <div className="p-4 border-t border-gray-200 shrink-0">
-                    <Link
-                        href={contestInfo.registrationUrl}
-                        onClick={handleLinkClick}
-                        className="flex items-center justify-center w-full bg-contest-blue hover:bg-contest-blue-dark text-white font-semibold px-5 py-3 rounded-lg text-base transition-colors"
-                    >
-                        Register your team
-                    </Link>
-                    {/* <div className="flex justify-center space-x-6">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
-                            className="text-gray-600 hover:text-blue-600 transition-colors" 
-                            aria-label="Facebook">
-                            <Facebook size={20} />
-                        </a>
-                        
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" 
-                            className="text-gray-600 hover:text-sky-500 transition-colors" 
-                            aria-label="Twitter">
-                            <Twitter size={20} />
-                        </a>
-                        
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" 
-                            className="text-gray-600 hover:text-blue-700 transition-colors" 
-                            aria-label="LinkedIn">
-                            <Linkedin size={20} />
-                        </a>
-                        
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" 
-                            className="text-gray-600 hover:text-pink-600 transition-colors" 
-                            aria-label="Instagram">
-                            <Instagram size={20} />
-                        </a>
-                        
-                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" 
-                            className="text-gray-600 hover:text-red-600 transition-colors" 
-                            aria-label="Youtube">
-                            <Youtube size={20} />
-                        </a>
-                    </div> */}
                 </div>
             </div>
         </>

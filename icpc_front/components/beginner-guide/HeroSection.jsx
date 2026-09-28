@@ -1,6 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
-import { contestInfo } from "@/app/_constants/contestInfo";
 
 export default function HeroSection() {
   return (
@@ -51,16 +49,6 @@ export default function HeroSection() {
 
             {/* CTA buttons */}
             <div className="flex flex-row flex-wrap items-center gap-4 mb-10">
-              <Link
-                id="register-button"
-                href={contestInfo.registrationUrl}
-                className="inline-flex items-center gap-2 bg-contest-blue hover:bg-contest-blue-dark text-white font-semibold px-6 py-3.5 rounded-lg transition-colors text-base whitespace-nowrap"
-              >
-                Register your team
-                {/* <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg> */}
-              </Link>
               {/* <a
                 href="#how-to-start"
                 className="inline-flex items-center gap-2 border border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold px-4 py-3 sm:px-6 rounded-md transition-colors text-sm sm:text-base whitespace-nowrap"

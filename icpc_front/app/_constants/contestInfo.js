@@ -21,7 +21,6 @@ export const contestInfo = {
   contactWhatsappUrl: "https://wa.me/918089062917",
   yearsRunning: "13+",
 
-  mockContestDate: "25 September 2026",
   paymentDeadline: "27th September 2026",
   registrationDeadlineISO: "2026-09-26T00:00:00+05:30",
 
