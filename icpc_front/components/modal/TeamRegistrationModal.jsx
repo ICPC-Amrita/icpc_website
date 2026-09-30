@@ -22,9 +22,10 @@ function TeamRegistrationModalInner() {
     const campaign = searchParams.get('utm_campaign') || ''
 
 
-    if (source || medium || campaign) {
-      setIsOpen(true)
-    }
+    // Ambassador UTM modal disabled
+    // if (source || medium || campaign) {
+    //   setIsOpen(true)
+    // }
   }, [searchParams])
 
   const handleClose = () => {
