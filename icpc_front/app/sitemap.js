@@ -6,6 +6,7 @@ const routes = [
   "/why-choose-amrita",
   "/why-sponsor-us",
   "/contest-guidelines",
+  "/contest-environment-rules-instructions",
   "/team-selection-process",
   "/onsite-selection-process",
   "/onsite-schedule",
