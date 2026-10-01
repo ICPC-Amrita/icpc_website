@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Search, RefreshCw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Search, RefreshCw, Download } from 'lucide-react';
+import * as XLSX from 'xlsx';
 import ContactUs2 from "@/components/footer/contact_us_2";
 
 const ITEMS_PER_PAGE = 10;
@@ -61,7 +62,23 @@ export default function Leaderboard() {
     }
   };
 
-  const getRankDisplay = (index) => {
+  const handleDownload = () => {
+    const rows = ambassadorsList.map((a, i) => ({
+      'Rank': i + 1,
+      'Ambassador Name': a.name,
+      'Ref ID': a.refId || '',
+      'UTM Pop-up Registrations': a.utmRegistrations || 0,
+      'ICPC Official Registrations': a.icpcOfficialRegistrations || 0,
+      'Payment Completed Teams': a.paymentCompletedTeams || 0,
+    }));
+    const ws = XLSX.utils.json_to_sheet(rows);
+    ws['!cols'] = [{ wch: 8 }, { wch: 32 }, { wch: 18 }, { wch: 26 }, { wch: 28 }, { wch: 26 }];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Leaderboard');
+    XLSX.writeFile(wb, 'ambassador-leaderboard.xlsx');
+  };
+
+  const getRankDisplay =(index) => {
     const rank = startIndex + index + 1;
     if (rank === 1) return "#1";
     if (rank === 2) return "#2";
@@ -92,6 +109,14 @@ export default function Leaderboard() {
               className="block w-full pl-8 pr-3 py-1.5 border border-border rounded-md leading-5 bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-xs sm:text-sm"
             />
           </div>
+          <button
+            onClick={handleDownload}
+            disabled={isLoading || ambassadorsList.length === 0}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-md bg-primary text-primary-foreground hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+          >
+            <Download className="h-4 w-4" />
+            Download XLSX
+          </button>
         </div>
 
         {/* Loading state */}
