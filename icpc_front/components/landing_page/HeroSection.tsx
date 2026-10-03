@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import TeamRegistrationModal from '../modal/TeamRegistrationModal';
 import RegistrationCountdown from './RegistrationCountdown';
 import { contestInfo } from "@/app/_constants/contestInfo";
@@ -125,28 +124,24 @@ export default function HeroSection() {
               <RegistrationCountdown />
             </div>
 
-            {/* Action Buttons */}
+            {/* Question paper links */}
             <div className="flex flex-nowrap items-stretch gap-2 sm:gap-3 pt-2 w-full">
-              <Link
-                href="/onsite-selection-process"
-                className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 active:bg-red-700 text-white text-sm sm:text-base xl:text-lg font-semibold px-3 sm:px-5 xl:px-6 py-3 sm:py-3.5 rounded-lg transition-all shadow-sm hover:shadow text-center"
-              >
-                Selection process criteria
-              </Link>
-              <Link
-                href="/contest-environment-rules-instructions"
-                className="inline-flex items-center justify-center bg-contest-blue hover:opacity-90 active:opacity-90 text-white text-sm sm:text-base xl:text-lg font-semibold px-3 sm:px-5 xl:px-6 py-3 sm:py-3.5 rounded-lg transition-all shadow-sm hover:shadow text-center"
-              >
-                Contest rules and instructions
-              </Link>
+              {[1, 2, 3].map((n) => (
+                <a
+                  key={n}
+                  href="#"
+                  aria-disabled="true"
+                  onClick={(e) => e.preventDefault()}
+                  className="inline-flex items-center justify-center bg-red-600 cursor-not-allowed text-white text-sm sm:text-base xl:text-lg font-semibold px-3 sm:px-5 xl:px-6 py-3 sm:py-3.5 rounded-lg shadow-sm text-center"
+                >
+                  Question link {n}
+                </a>
+              ))}
             </div>
+            <p className="text-base sm:text-lg text-gray-700 font-medium">
+              On 3rd Oct, 5 minutes after the contest starts, that is, at 1:35pm, the question paper PDF will be uploaded here. Your coach may print that PDF and give it to the teams.
+            </p>
 
-            {/* Important date line */}
-            <div className="flex items-center gap-3 pt-2 text-gray-900">
-              <span className="text-base sm:text-lg text-gray-700 font-medium">
-                The mock contest dates will be notified via email to the registered participants
-              </span>
-            </div>
 
             {/* Keyframe animation style for rough notation */}
             <style>{`

@@ -387,6 +387,8 @@ export default function Navbar({ open, hero, darkSection }) {
         { label: "How It Works", href: "#how-it-works", type: "scroll" },
         { label: "Dates", href: "#important-dates", type: "scroll" },
         { label: "Preparation", href: "/beginner-guide", type: "link" },
+        { label: "Selection Process", href: "/onsite-selection-process", type: "link", cta: "bg-red-600 hover:bg-red-700" },
+        { label: "Contest Rules", href: "/contest-environment-rules-instructions", type: "link", cta: "bg-contest-blue hover:opacity-90" },
         { label: "FAQs", href: "#faq", type: "scroll" },
         {
           label: "Explore",
@@ -396,7 +398,6 @@ export default function Navbar({ open, hero, darkSection }) {
             { name: "Ambassador Program", href: "/ambassador-program" },
             { name: "Hall of Fame", href: "/halloffame" },
             { name: "Gallery", href: "/gallery" },
-            { name: "Onsite Selection Process", href: "/onsite-selection-process" },
             ...archiveweblinks,
           ],
         },
@@ -427,7 +428,7 @@ export default function Navbar({ open, hero, darkSection }) {
 
         {/* Desktop Navigation - Show on all md+ screens including tablets */}
         <div className="hidden md:flex flex-1 justify-center items-center space-x-[0.5vw] overflow-visible">
-          {navigationItems.map((item, index) => (
+          {navigationItems.filter((item) => !item.cta).map((item, index) => (
             <div key={index} className="relative group">
               {item.type === "link" ? (
                 <Link
@@ -494,6 +495,21 @@ export default function Navbar({ open, hero, darkSection }) {
               ) : null}
             </div>
           ))}
+        </div>
+
+        {/* Desktop CTA buttons (far right) */}
+        <div className="hidden md:flex items-center gap-2 mr-[2vw] flex-shrink-0">
+          {navigationItems
+            .filter((item) => item.cta)
+            .map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`${item.cta} text-white font-semibold text-xs lg:text-sm px-3 py-2 rounded-lg shadow-sm hover:shadow transition-all whitespace-nowrap`}
+              >
+                {item.label}
+              </Link>
+            ))}
         </div>
 
         {/* Mobile Menu Button - Only show on truly mobile devices */}
