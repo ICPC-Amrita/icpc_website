@@ -143,10 +143,10 @@ export default function HeroSection() {
                 Question link 2
               </a>
               <a
-                href="#"
-                aria-disabled="true"
-                onClick={(e) => e.preventDefault()}
-                className="inline-flex items-center justify-center bg-red-600 cursor-not-allowed text-white text-sm sm:text-base xl:text-lg font-semibold px-3 sm:px-5 xl:px-6 py-3 sm:py-3.5 rounded-lg shadow-sm text-center"
+                href="https://drive.google.com/drive/folders/13fnHKEHSOhAMbPPMFm1VCw_qCE4SjGMI?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 active:bg-red-700 text-white text-sm sm:text-base xl:text-lg font-semibold px-3 sm:px-5 xl:px-6 py-3 sm:py-3.5 rounded-lg transition-all shadow-sm hover:shadow text-center"
               >
                 Question link 3
               </a>
