@@ -126,17 +126,30 @@ export default function HeroSection() {
 
             {/* Question paper links */}
             <div className="flex flex-nowrap items-stretch gap-2 sm:gap-3 pt-2 w-full">
-              {[1, 2, 3].map((n) => (
-                <a
-                  key={n}
-                  href="#"
-                  aria-disabled="true"
-                  onClick={(e) => e.preventDefault()}
-                  className="inline-flex items-center justify-center bg-red-600 cursor-not-allowed text-white text-sm sm:text-base xl:text-lg font-semibold px-3 sm:px-5 xl:px-6 py-3 sm:py-3.5 rounded-lg shadow-sm text-center"
-                >
-                  Question link {n}
-                </a>
-              ))}
+              <a
+                href="/onlineQP.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 active:bg-red-700 text-white text-sm sm:text-base xl:text-lg font-semibold px-3 sm:px-5 xl:px-6 py-3 sm:py-3.5 rounded-lg transition-all shadow-sm hover:shadow text-center"
+              >
+                Question link 1
+              </a>
+              <a
+                href="https://indiaicpc.in/onlineQP.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 active:bg-red-700 text-white text-sm sm:text-base xl:text-lg font-semibold px-3 sm:px-5 xl:px-6 py-3 sm:py-3.5 rounded-lg transition-all shadow-sm hover:shadow text-center"
+              >
+                Question link 2
+              </a>
+              <a
+                href="#"
+                aria-disabled="true"
+                onClick={(e) => e.preventDefault()}
+                className="inline-flex items-center justify-center bg-red-600 cursor-not-allowed text-white text-sm sm:text-base xl:text-lg font-semibold px-3 sm:px-5 xl:px-6 py-3 sm:py-3.5 rounded-lg shadow-sm text-center"
+              >
+                Question link 3
+              </a>
             </div>
             <p className="text-base sm:text-lg text-gray-700 font-medium">
               On 3rd Oct, 5 minutes after the contest starts, that is, at 1:35pm, the question paper PDF will be uploaded here. Your coach may print that PDF and give it to the teams.
