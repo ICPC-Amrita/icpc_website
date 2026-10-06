@@ -15,6 +15,7 @@ const routes = [
   "/halloffame",
   "/ambassador",
   "/ambassador-program",
+  "/ambassador-hall-of-fame",
   "/promote",
   "/reach-us/amritapuri",
   "/reach-us/bengaluru",

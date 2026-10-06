@@ -383,7 +383,7 @@ export default function Navbar({ open, hero, darkSection }) {
             { name: "Leaderboard", href: "/joinquest-leaderboard" },
           ],
         },
-        { label: "Why ICPC", href: "#why-icpc", type: "scroll" },
+        { label: "Ambassador Hall of Fame", href: "/ambassador-hall-of-fame", type: "link" },
         { label: "How It Works", href: "#how-it-works", type: "scroll" },
         { label: "Dates", href: "#important-dates", type: "scroll" },
         { label: "Preparation", href: "/beginner-guide", type: "link" },

@@ -1,0 +1,258 @@
+[
+  {
+    "rank": 1,
+    "name": "Amartya Singh",
+    "institution": "KIET Group of Institutions (Deemed to be University), Ghaziabad",
+    "teams": 111,
+    "tier": "Elite",
+    "image": "/ambassadors/amartya-singh.webp"
+  },
+  {
+    "rank": 2,
+    "name": "Dharun Kaarthick S",
+    "institution": "Amrita Vishwa Vidyapeetham, Nagercoil",
+    "teams": 62,
+    "tier": "Platinum",
+    "image": "/ambassadors/dharun-kaarthick-s.webp"
+  },
+  {
+    "rank": 3,
+    "name": "Jai Agarwal",
+    "institution": "Swami Vivekananda Yoga Anusandhana Samsthana (S-VYASA), Bengaluru",
+    "teams": 52,
+    "tier": "Platinum",
+    "image": "/ambassadors/jai-agarwal.webp"
+  },
+  {
+    "rank": 4,
+    "name": "Aniket Kedia",
+    "institution": "National Institute of Technology, Kurukshetra",
+    "teams": 48,
+    "tier": "Gold",
+    "image": "/ambassadors/aniket-kedia.webp"
+  },
+  {
+    "rank": 5,
+    "name": "Ravi Asati",
+    "institution": "S. B. Jain Institute of Technology, Management and Research, Nagpur",
+    "teams": 38,
+    "tier": "Gold",
+    "image": "/ambassadors/ravi-asati.webp"
+  },
+  {
+    "rank": 6,
+    "name": "Tanmay Agrawal",
+    "institution": "Indian Institute of Technology (BHU), Varanasi",
+    "teams": 34,
+    "tier": "Gold",
+    "image": "/ambassadors/tanmay-agrawal.webp"
+  },
+  {
+    "rank": 7,
+    "name": "Chithra R",
+    "institution": "Chennai Institute of Technology",
+    "teams": 32,
+    "tier": "Gold",
+    "image": "/ambassadors/chithra-r.webp"
+  },
+  {
+    "rank": 8,
+    "name": "JANANI S",
+    "institution": "Chennai Institute of Technology",
+    "teams": 27,
+    "tier": "Gold",
+    "image": "/ambassadors/janani-s.webp"
+  },
+  {
+    "rank": 9,
+    "name": "Aditya Sai Vemparala",
+    "institution": "Indian Institute of Technology, Kanpur",
+    "teams": 25,
+    "tier": "Gold",
+    "image": "/ambassadors/aditya-sai-vemparala.webp"
+  },
+  {
+    "rank": 10,
+    "name": "Raushan Prakash",
+    "institution": "Oriental Institute of Science and Technology (OIST), Bhopal",
+    "teams": 18,
+    "tier": "Silver",
+    "image": "/ambassadors/raushan-prakash.webp"
+  },
+  {
+    "rank": 11,
+    "name": "Kartikay Pandey",
+    "institution": "Veermata Jijabai Technological Institute (VJTI), Mumbai",
+    "teams": 18,
+    "tier": "Silver",
+    "image": "/ambassadors/kartikay-pandey.webp"
+  },
+  {
+    "rank": 12,
+    "name": "Pooja Rajesh",
+    "institution": "Muthoot Institute of Technology and Science, Kochi",
+    "teams": 17,
+    "tier": "Silver",
+    "image": "/ambassadors/pooja-rajesh.webp"
+  },
+  {
+    "rank": 13,
+    "name": "Sahil Gurudutt Nayak",
+    "institution": "Sardar Patel Institute of Technology (SPIT), Mumbai",
+    "teams": 17,
+    "tier": "Silver",
+    "image": "/ambassadors/sahil-gurudutt-nayak.webp"
+  },
+  {
+    "rank": 14,
+    "name": "Karan Aggarwal",
+    "institution": "Sant Longowal Institute of Engineering and Technology",
+    "teams": 11,
+    "tier": "Bronze",
+    "image": "/ambassadors/karan-aggarwal.webp"
+  },
+  {
+    "rank": 15,
+    "name": "Vishruth Hegde",
+    "institution": "KLE Technological University",
+    "teams": 11,
+    "tier": "Bronze",
+    "image": "/ambassadors/vishruth-hegde.webp"
+  },
+  {
+    "rank": 16,
+    "name": "Shruti Pawar",
+    "institution": "Walchand College of Engineering, Sangli",
+    "teams": 10,
+    "tier": "Bronze",
+    "image": "/ambassadors/shruti-pawar.webp"
+  },
+  {
+    "rank": 17,
+    "name": "Bibin Sanju S",
+    "institution": "Sri Shakthi Institute of Engineering and Technology, Coimbatore",
+    "teams": 10,
+    "tier": "Bronze",
+    "image": "/ambassadors/bibin-sanju-s.webp"
+  },
+  {
+    "rank": 18,
+    "name": "Dharanidharan T",
+    "institution": "Sri Eshwar College of Engineering",
+    "teams": 10,
+    "tier": "Bronze",
+    "image": "/ambassadors/dharanidharan-t.webp"
+  },
+  {
+    "rank": 19,
+    "name": "Shrutisri Satheeshkumar",
+    "institution": "Sri Shakthi Institute of Engineering and Technology, Coimbatore",
+    "teams": 9,
+    "tier": "Starter",
+    "image": "/ambassadors/shrutisri-satheeshkumar.webp"
+  },
+  {
+    "rank": 20,
+    "name": "Harsh Pravin Modi",
+    "institution": "Dwarkadas J Sanghvi College of Engineering",
+    "teams": 9,
+    "tier": "Starter",
+    "image": "/ambassadors/harsh-pravin-modi.webp"
+  },
+  {
+    "rank": 21,
+    "name": "Darsh Rustagi",
+    "institution": "Rishihood University",
+    "teams": 8,
+    "tier": "Starter",
+    "image": "/ambassadors/darsh-rustagi.webp"
+  },
+  {
+    "rank": 22,
+    "name": "Saketh Balliwar",
+    "institution": "IIIT-Delhi",
+    "teams": 7,
+    "tier": "Starter",
+    "image": "/ambassadors/saketh-balliwar.webp"
+  },
+  {
+    "rank": 23,
+    "name": "SHUBH TIWARI",
+    "institution": "KIET Group of Institutions (Deemed to be University), Ghaziabad",
+    "teams": 7,
+    "tier": "Starter",
+    "image": "/ambassadors/shubh-tiwari.webp"
+  },
+  {
+    "rank": 24,
+    "name": "Hemhalatha V R",
+    "institution": "Chennai Institute of Technology",
+    "teams": 7,
+    "tier": "Starter",
+    "image": "/ambassadors/hemhalatha-v-r.webp"
+  },
+  {
+    "rank": 25,
+    "name": "Spandan Mishra",
+    "institution": "National Institute of Technology, Rourkela",
+    "teams": 7,
+    "tier": "Starter",
+    "image": "/ambassadors/spandan-mishra.webp"
+  },
+  {
+    "rank": 26,
+    "name": "Prajwal Kumar K",
+    "institution": "Indian Institute of Information Technology, Kottayam",
+    "teams": 7,
+    "tier": "Starter",
+    "image": "/ambassadors/prajwal-kumar-k.webp"
+  },
+  {
+    "rank": 27,
+    "name": "Parthasarathi V",
+    "institution": "SRM Easwari Engineering College, Chennai",
+    "teams": 6,
+    "tier": "Starter",
+    "image": "/ambassadors/parthasarathi-v.webp"
+  },
+  {
+    "rank": 28,
+    "name": "Tribhuvnesh Sharma",
+    "institution": "Indian Institute of Technology, Patna",
+    "teams": 6,
+    "tier": "Starter",
+    "image": "/ambassadors/tribhuvnesh-sharma.webp"
+  },
+  {
+    "rank": 29,
+    "name": "Rugved Dusane",
+    "institution": "MIT World Peace University, Pune",
+    "teams": 6,
+    "tier": "Starter",
+    "image": "/ambassadors/rugved-dusane.webp"
+  },
+  {
+    "rank": 30,
+    "name": "Harshvardhan Rathod",
+    "institution": "MIT World Peace University, Pune",
+    "teams": 6,
+    "tier": "Starter",
+    "image": "/ambassadors/harshvardhan-rathod.webp"
+  },
+  {
+    "rank": 31,
+    "name": "Raja Kumar",
+    "institution": "Sant Longowal Institute of Engineering and Technology",
+    "teams": 5,
+    "tier": "Starter",
+    "image": "/ambassadors/raja-kumar.webp"
+  },
+  {
+    "rank": 32,
+    "name": "Ashwikha",
+    "institution": "St. Joseph's College of Engineering",
+    "teams": 5,
+    "tier": "Starter",
+    "image": "/ambassadors/ashwikha.webp"
+  }
+]
