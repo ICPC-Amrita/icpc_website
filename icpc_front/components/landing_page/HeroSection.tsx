@@ -119,11 +119,8 @@ export default function HeroSection() {
               </p>
             </div>
 
-            {/* 2026 Final Rank List */}
+            {/* Teams selected for onsite */}
             <div className="pt-2 w-full">
-              <p className="text-base sm:text-lg font-semibold text-gray-800 leading-snug mb-3">
-                2026 ICPC Asia West Amritapuri Preliminary Contest (Online) Final Rank List
-              </p>
               <Link
                 href="/selected-amritapuri"
                 className="inline-flex items-center justify-center bg-contest-blue hover:opacity-90 active:opacity-80 text-white text-base sm:text-lg font-semibold px-6 sm:px-8 py-3.5 rounded-lg transition-all shadow-sm hover:shadow"
