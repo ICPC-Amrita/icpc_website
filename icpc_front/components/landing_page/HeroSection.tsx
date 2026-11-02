@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import TeamRegistrationModal from '../modal/TeamRegistrationModal';
-import RegistrationCountdown from './RegistrationCountdown';
 import { contestInfo } from "@/app/_constants/contestInfo";
 
 const heroImages = [
@@ -119,41 +119,15 @@ export default function HeroSection() {
               </p>
             </div>
 
-            {/* Registration Countdown */}
+            {/* 2026 Final Rank List */}
             <div className="pt-2 w-full">
-              <RegistrationCountdown />
+              <Link
+                href="/prelims-ranklist"
+                className="inline-flex items-center justify-center bg-contest-blue hover:opacity-90 active:opacity-80 text-white text-base sm:text-lg font-semibold px-6 sm:px-8 py-3.5 rounded-lg transition-all shadow-sm hover:shadow"
+              >
+                2026 Final Rank List
+              </Link>
             </div>
-
-            {/* Question paper links */}
-            <div className="flex flex-nowrap items-stretch gap-2 sm:gap-3 pt-2 w-full">
-              <a
-                href="/onlineQP.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 active:bg-red-700 text-white text-sm sm:text-base xl:text-lg font-semibold px-3 sm:px-5 xl:px-6 py-3 sm:py-3.5 rounded-lg transition-all shadow-sm hover:shadow text-center"
-              >
-                Question link 1
-              </a>
-              <a
-                href="https://indiaicpc.in/onlineQP.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 active:bg-red-700 text-white text-sm sm:text-base xl:text-lg font-semibold px-3 sm:px-5 xl:px-6 py-3 sm:py-3.5 rounded-lg transition-all shadow-sm hover:shadow text-center"
-              >
-                Question link 2
-              </a>
-              <a
-                href="https://drive.google.com/drive/folders/13fnHKEHSOhAMbPPMFm1VCw_qCE4SjGMI?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 active:bg-red-700 text-white text-sm sm:text-base xl:text-lg font-semibold px-3 sm:px-5 xl:px-6 py-3 sm:py-3.5 rounded-lg transition-all shadow-sm hover:shadow text-center"
-              >
-                Question link 3
-              </a>
-            </div>
-            <p className="text-base sm:text-lg text-gray-700 font-medium">
-              On 3rd Oct, 5 minutes after the contest starts, that is, at 1:35pm, the question paper PDF will be uploaded here. Your coach may print that PDF and give it to the teams.
-            </p>
 
 
             {/* Keyframe animation style for rough notation */}

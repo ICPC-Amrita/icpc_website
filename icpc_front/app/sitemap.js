@@ -10,7 +10,7 @@ const routes = [
   "/team-selection-process",
   "/onsite-selection-process",
   "/onsite-schedule",
-  "/onsite-ranklist",
+  "/prelims-ranklist",
   "/organizers",
   "/gallery",
   "/halloffame",

@@ -24,6 +24,7 @@ const normalizeHeader = (header) => {
 
 export default function FinalTeams({
     year = '2026',
+    roundLabel = 'Onsite Round',
     dataFile = '/data/Amritapuri Final Ranklist 2026.csv',
 }) {
     const [teamsData, setTeamsData] = useState([]);
@@ -125,7 +126,7 @@ export default function FinalTeams({
             {/* Header */}
             <div className="mb-8 text-center">
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                    Final Rank List for ICPC Amritapuri Onsite Round {year}
+                    Final Rank List for ICPC Amritapuri {roundLabel} {year}
                 </h1>
                 {teamsData.length > 0 && (
                     <p className="text-gray-600">
