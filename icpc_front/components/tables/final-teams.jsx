@@ -1,75 +1,93 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Papa from 'papaparse';
-import { Search, Download, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
 
-export default function SelectedTeams() {
+// Preferred order for the centre filter buttons; any other centre found in
+// the data is appended after these.
+const SITE_ORDER = ['Amritapuri', 'Bengaluru', 'Bangalore', 'Coimbatore', 'Mysuru'];
+
+// Accept both the current column names and the ones used by older ranklists.
+const HEADER_ALIASES = {
+    'user handle': 'Username',
+    username: 'Username',
+    'total time': 'Total Time',
+    total_time: 'Total Time',
+    time: 'Total Time',
+};
+
+const normalizeHeader = (header) => {
+    const key = header.trim().toLowerCase();
+    return HEADER_ALIASES[key] ?? header.trim();
+};
+
+export default function FinalTeams({
+    year = '2026',
+    dataFile = '/data/Amritapuri Final Ranklist 2026.csv',
+}) {
     const [teamsData, setTeamsData] = useState([]);
+    const [loadError, setLoadError] = useState(false);
     const [searchedVal, setSearchedVal] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const teamsPerPage = 40;
     const [selectedSite, setSelectedSite] = useState("");
-    const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-    const [showTimer, setShowTimer] = useState(true);
-    
+    const teamsPerPage = 40;
+
     useEffect(() => {
-        const prelimsDate = new Date('2025-11-24T23:59:59').getTime();
-        
-        const updateCountdown = () => {
-            const now = new Date().getTime();
-            const distance = prelimsDate - now;
+        let cancelled = false;
 
-            setShowTimer(distance > 0);
+        const fetchCSVData = async () => {
+            try {
+                const response = await fetch(dataFile);
+                if (!response.ok) throw new Error(`Failed to load ${dataFile}`);
 
-            if (distance > 0) {
-                setTimeLeft({
-                    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-                    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-                    seconds: Math.floor((distance % (1000 * 60)) / 1000)
+                const csvText = await response.text();
+                const parsedData = Papa.parse(csvText, {
+                    header: true,
+                    skipEmptyLines: 'greedy',
+                    transformHeader: normalizeHeader,
                 });
-            } else {
-                setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+                // Drop blank / incomplete rows.
+                const validData = parsedData.data.filter(row =>
+                    row['Rank']?.toString().trim() &&
+                    row['Team Name']?.toString().trim()
+                );
+
+                if (!cancelled) setTeamsData(validData);
+            } catch (err) {
+                console.error(err);
+                if (!cancelled) setLoadError(true);
             }
         };
 
-        updateCountdown();
-        const interval = setInterval(updateCountdown, 1000);
-
-        return () => clearInterval(interval);
-    }, []);
-
-    useEffect(() => {
-        const fetchCSVData = async () => {
-            const response = await fetch('/data/Amritapuri Final Ranklist 2025.csv');
-            const csvText = await response.text();
-            const parsedData = Papa.parse(csvText, {
-                header: true,
-                skipEmptyLines: 'greedy',
-                transformHeader: (header) => header.trim(),
-            });
-            // Filter out empty rows (rows without valid Rank or Team Name)
-            const validData = parsedData.data.filter(row => 
-                row['Rank'] && row['Rank'].toString().trim() !== '' &&
-                row['Team Name'] && row['Team Name'].toString().trim() !== ''
-            );
-            setTeamsData(validData);
-        };
-
         fetchCSVData();
-    }, []);
+        return () => { cancelled = true; };
+    }, [dataFile]);
+
+    const showPenalty = useMemo(
+        () => teamsData.some(row => row['Penalty']?.toString().trim()),
+        [teamsData]
+    );
+
+    const sites = useMemo(() => {
+        const found = [...new Set(teamsData.map(row => row['Site']?.trim()).filter(Boolean))];
+        const ordered = SITE_ORDER.filter(site => found.includes(site));
+        const extra = found.filter(site => !SITE_ORDER.includes(site)).sort();
+        return [...ordered, ...extra];
+    }, [teamsData]);
 
     const filteredTeams = teamsData.filter((row) => {
+        const needle = searchedVal.toLowerCase();
         const matchesSearch =
             !searchedVal.length ||
-            row['Team Name']?.toLowerCase().includes(searchedVal.toLowerCase()) ||
-            row['Rank']?.toString().toLowerCase().includes(searchedVal.toLowerCase()) ||
-            row['Institution']?.toLowerCase().includes(searchedVal.toLowerCase()) ||
-            row['Site']?.toLowerCase().includes(searchedVal.toLowerCase()) ||
-            row['Username']?.toLowerCase().includes(searchedVal.toLowerCase());
+            row['Team Name']?.toLowerCase().includes(needle) ||
+            row['Rank']?.toString().toLowerCase().includes(needle) ||
+            row['Institution']?.toLowerCase().includes(needle) ||
+            row['Site']?.toLowerCase().includes(needle) ||
+            row['Username']?.toLowerCase().includes(needle);
 
-        const matchesSite = !selectedSite || row['Site'] === selectedSite;
+        const matchesSite = !selectedSite || row['Site']?.trim() === selectedSite;
 
         return matchesSearch && matchesSite;
     });
@@ -102,25 +120,25 @@ export default function SelectedTeams() {
         if (currentPage < totalPages) setCurrentPage(currentPage + 1);
     };
 
-    const handleSiteFilter = (site) => {
-        setSelectedSite(site);
-    };
-
     return (
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 md:pt-32 pb-8">
             {/* Header */}
             <div className="mb-8 text-center">
-                <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                    Final Rank List for ICPC Amritapuri Onsite Round 2025
-
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                    Final Rank List for ICPC Amritapuri Onsite Round {year}
                 </h1>
+                {teamsData.length > 0 && (
+                    <p className="text-gray-600">
+                        {teamsData.length} teams across {sites.length} centres
+                    </p>
+                )}
             </div>
 
-            {/* Search and Download */}
-            <div className="flex flex-col md:flex-row justify-center items-center gap-3 mb-6">
+            {/* Search */}
+            <div className="flex justify-center mb-6">
                 {/* Search Input */}
                 <div className="flex min-h-[3rem] w-full md:w-96 px-4 gap-2 bg-white items-center border border-gray-300 shadow-sm">
-                    <Search className="w-5 h-5 text-gray-400" />
+                    <Search className="w-5 h-5 text-gray-400 flex-shrink-0" />
                     <input
                         type="text"
                         className="text-sm md:text-base text-gray-900 flex-1 min-h-[3rem] outline-none bg-transparent"
@@ -132,63 +150,47 @@ export default function SelectedTeams() {
             </div>
 
             {/* Site Filters */}
-            <div className="flex flex-wrap justify-center gap-2 mb-6">
-                <button
-                    className={`px-4 md:px-6 py-2 text-sm font-medium transition-colors ${
-                        selectedSite === ""
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                    }`}
-                    onClick={() => handleSiteFilter("")}
-                >
-                    All Centres
-                </button>
-                <button
-                    className={`px-4 md:px-6 py-2 text-sm font-medium transition-colors ${
-                        selectedSite === "Amritapuri"
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                    }`}
-                    onClick={() => handleSiteFilter("Amritapuri")}
-                >
-                    Amritapuri
-                </button>
-                <button
-                    className={`px-4 md:px-6 py-2 text-sm font-medium transition-colors ${
-                        selectedSite === "Coimbatore"
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                    }`}
-                    onClick={() => handleSiteFilter("Coimbatore")}
-                >
-                    Coimbatore
-                </button>
-                <button
-                    className={`px-4 md:px-6 py-2 text-sm font-medium transition-colors ${
-                        selectedSite === "Bangalore"
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                    }`}
-                    onClick={() => handleSiteFilter("Bangalore")}
-                >
-                    Bangalore
-                </button>
-                <button
-                    className={`px-4 md:px-6 py-2 text-sm font-medium transition-colors ${
-                        selectedSite === "Mysuru"
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                    }`}
-                    onClick={() => handleSiteFilter("Mysuru")}
-                >
-                    Mysuru
-                </button>
-            </div>
+            {sites.length > 1 && (
+                <div className="flex flex-wrap justify-center gap-2 mb-6">
+                    <button
+                        className={`px-4 md:px-6 py-2 text-sm font-medium transition-colors ${
+                            selectedSite === ""
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                        }`}
+                        onClick={() => setSelectedSite("")}
+                    >
+                        All Centres
+                    </button>
+                    {sites.map((site) => (
+                        <button
+                            key={site}
+                            className={`px-4 md:px-6 py-2 text-sm font-medium transition-colors ${
+                                selectedSite === site
+                                    ? 'bg-blue-600 text-white'
+                                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                            }`}
+                            onClick={() => setSelectedSite(site)}
+                        >
+                            {site}
+                        </button>
+                    ))}
+                </div>
+            )}
+
+            {/* Error Message */}
+            {loadError && (
+                <div className="text-center py-12 bg-white border border-gray-200">
+                    <p className="text-gray-600">Could not load the ranklist. Please try again later.</p>
+                </div>
+            )}
 
             {/* No Results Message */}
-            {filteredTeams.length === 0 && (
+            {!loadError && filteredTeams.length === 0 && (
                 <div className="text-center py-12 bg-white border border-gray-200">
-                    <p className="text-gray-600">No teams found matching your search.</p>
+                    <p className="text-gray-600">
+                        {teamsData.length === 0 ? 'Loading ranklist...' : 'No teams found matching your search.'}
+                    </p>
                 </div>
             )}
 
@@ -205,7 +207,9 @@ export default function SelectedTeams() {
                                     <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Username</th>
                                     <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Score</th>
                                     <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Total Time</th>
-                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Penalty</th>
+                                    {showPenalty && (
+                                        <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Penalty</th>
+                                    )}
                                     <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Site</th>
                                 </tr>
                             </thead>
@@ -235,11 +239,13 @@ export default function SelectedTeams() {
                                             <div className="text-gray-700 font-semibold">{entry['Score']}</div>
                                         </td>
                                         <td className="py-4 px-4">
-                                            <div className="text-gray-600">{entry['total_time']}</div>
+                                            <div className="text-gray-600">{entry['Total Time']}</div>
                                         </td>
-                                        <td className="py-4 px-4">
-                                            <div className="text-gray-600">{entry['Penalty']}</div>
-                                        </td>
+                                        {showPenalty && (
+                                            <td className="py-4 px-4">
+                                                <div className="text-gray-600">{entry['Penalty']}</div>
+                                            </td>
+                                        )}
                                         <td className="py-4 px-4">
                                             <div className="text-gray-700">{entry['Site']}</div>
                                         </td>
@@ -280,11 +286,13 @@ export default function SelectedTeams() {
                                     </div>
                                     <div className="flex flex-wrap gap-3 text-sm text-gray-600">
                                         <div>
-                                            <span className="font-medium">Time:</span> {entry['total_time']}
+                                            <span className="font-medium">Time:</span> {entry['Total Time']}
                                         </div>
-                                        <div>
-                                            <span className="font-medium">Penalty:</span> {entry['Penalty']}
-                                        </div>
+                                        {showPenalty && (
+                                            <div>
+                                                <span className="font-medium">Penalty:</span> {entry['Penalty']}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
