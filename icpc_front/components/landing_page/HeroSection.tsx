@@ -125,10 +125,10 @@ export default function HeroSection() {
                 2026 ICPC Asia West Amritapuri Preliminary Contest (Online) Final Rank List
               </p>
               <Link
-                href="/prelims-ranklist"
+                href="/selected-amritapuri"
                 className="inline-flex items-center justify-center bg-contest-blue hover:opacity-90 active:opacity-80 text-white text-base sm:text-lg font-semibold px-6 sm:px-8 py-3.5 rounded-lg transition-all shadow-sm hover:shadow"
               >
-                2026 Final Rank List
+                Teams Selected for Amritapuri Onsite Round
               </Link>
             </div>
 

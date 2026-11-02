@@ -11,6 +11,7 @@ const routes = [
   "/onsite-selection-process",
   "/onsite-schedule",
   "/prelims-ranklist",
+  "/selected-amritapuri",
   "/organizers",
   "/gallery",
   "/halloffame",
