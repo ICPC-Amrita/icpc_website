@@ -27,6 +27,8 @@ export default function FinalTeams({
     roundLabel = 'Onsite Round',
     title,
     dataFile = '/data/Amritapuri Final Ranklist 2026.csv',
+    showRank = true,
+    sortByTeamName = false,
 }) {
     const [teamsData, setTeamsData] = useState([]);
     const [loadError, setLoadError] = useState(false);
@@ -79,12 +81,21 @@ export default function FinalTeams({
         return [...ordered, ...extra];
     }, [teamsData]);
 
-    const filteredTeams = teamsData.filter((row) => {
+    const sortedTeams = useMemo(() => {
+        if (!sortByTeamName) return teamsData;
+        return [...teamsData].sort((a, b) =>
+            (a['Team Name'] || '').localeCompare(b['Team Name'] || '', undefined, {
+                sensitivity: 'base',
+            })
+        );
+    }, [teamsData, sortByTeamName]);
+
+    const filteredTeams = sortedTeams.filter((row) => {
         const needle = searchedVal.toLowerCase();
         const matchesSearch =
             !searchedVal.length ||
             row['Team Name']?.toLowerCase().includes(needle) ||
-            row['Rank']?.toString().toLowerCase().includes(needle) ||
+            (showRank && row['Rank']?.toString().toLowerCase().includes(needle)) ||
             row['Institution']?.toLowerCase().includes(needle) ||
             row['Site']?.toLowerCase().includes(needle) ||
             row['Username']?.toLowerCase().includes(needle);
@@ -203,7 +214,9 @@ export default function FinalTeams({
                         <table className="w-full">
                             <thead className="bg-gray-50 border-b border-gray-200">
                                 <tr>
-                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Rank</th>
+                                    {showRank && (
+                                        <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Rank</th>
+                                    )}
                                     <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Team Name</th>
                                     <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Institution</th>
                                     <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Username</th>
@@ -225,9 +238,11 @@ export default function FinalTeams({
                                             hover:bg-blue-50
                                         `}
                                     >
-                                        <td className="py-4 px-4">
-                                            <div className="text-gray-700 font-semibold">{entry['Rank']}</div>
-                                        </td>
+                                        {showRank && (
+                                            <td className="py-4 px-4">
+                                                <div className="text-gray-700 font-semibold">{entry['Rank']}</div>
+                                            </td>
+                                        )}
                                         <td className="py-4 px-4">
                                             <div className="font-semibold text-gray-900">{entry['Team Name']}</div>
                                         </td>
@@ -270,9 +285,11 @@ export default function FinalTeams({
                             <div className="flex items-start justify-between mb-3">
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold">
-                                            Rank {entry['Rank']}
-                                        </span>
+                                        {showRank && (
+                                            <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold">
+                                                Rank {entry['Rank']}
+                                            </span>
+                                        )}
                                         <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold">
                                             Score: {entry['Score']}
                                         </span>

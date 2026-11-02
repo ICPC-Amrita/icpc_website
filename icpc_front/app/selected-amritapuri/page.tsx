@@ -12,6 +12,8 @@ export default function page2(){
         <FinalTeams
             title="Teams Selected for ICPC Amritapuri Onsite Round 2026"
             dataFile="/data/Amritapuri Final Ranklist 2026.csv"
+            showRank={false}
+            sortByTeamName
         />
         </div>
     )
