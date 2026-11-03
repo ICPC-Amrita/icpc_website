@@ -15,12 +15,19 @@ const HEADER_ALIASES = {
     'total time': 'Total Time',
     total_time: 'Total Time',
     time: 'Total Time',
+    'women only': 'WomenOnly',
+    womenonly: 'WomenOnly',
+    'iswomenonly': 'WomenOnly',
 };
 
 const normalizeHeader = (header) => {
     const key = header.trim().toLowerCase();
     return HEADER_ALIASES[key] ?? header.trim();
 };
+
+// Flags may arrive as true/false, 1/0, yes/no or be missing entirely.
+const isFlagSet = (value) =>
+    ['true', '1', 'yes', 'y'].includes(String(value ?? '').trim().toLowerCase());
 
 export default function FinalTeams({
     year = '2026',
@@ -35,6 +42,7 @@ export default function FinalTeams({
     const [searchedVal, setSearchedVal] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedSite, setSelectedSite] = useState("");
+    const [showWomenOnly, setShowWomenOnly] = useState(false);
     const teamsPerPage = 40;
 
     useEffect(() => {
@@ -52,10 +60,11 @@ export default function FinalTeams({
                     transformHeader: normalizeHeader,
                 });
 
-                // Drop blank / incomplete rows.
+                // Drop blank / incomplete rows. The rank column is optional
+                // because selection lists ship without one.
                 const validData = parsedData.data.filter(row =>
-                    row['Rank']?.toString().trim() &&
-                    row['Team Name']?.toString().trim()
+                    row['Team Name']?.toString().trim() &&
+                    (!showRank || row['Rank']?.toString().trim())
                 );
 
                 if (!cancelled) setTeamsData(validData);
@@ -67,10 +76,20 @@ export default function FinalTeams({
 
         fetchCSVData();
         return () => { cancelled = true; };
-    }, [dataFile]);
+    }, [dataFile, showRank]);
 
     const showPenalty = useMemo(
         () => teamsData.some(row => row['Penalty']?.toString().trim()),
+        [teamsData]
+    );
+
+    const hasTentativeTeams = useMemo(
+        () => teamsData.some(row => isFlagSet(row['Tentative'])),
+        [teamsData]
+    );
+
+    const hasWomenOnlyTeams = useMemo(
+        () => teamsData.some(row => isFlagSet(row['WomenOnly'])),
         [teamsData]
     );
 
@@ -101,8 +120,9 @@ export default function FinalTeams({
             row['Username']?.toLowerCase().includes(needle);
 
         const matchesSite = !selectedSite || row['Site']?.trim() === selectedSite;
+        const matchesWomenOnly = !showWomenOnly || isFlagSet(row['WomenOnly']);
 
-        return matchesSearch && matchesSite;
+        return matchesSearch && matchesSite && matchesWomenOnly;
     });
 
     // Calculate total pages
@@ -111,7 +131,7 @@ export default function FinalTeams({
     // Reset to page 1 when search or filter changes
     useEffect(() => {
         setCurrentPage(1);
-    }, [searchedVal, selectedSite]);
+    }, [searchedVal, selectedSite, showWomenOnly]);
 
     // Adjust current page if it exceeds total pages
     useEffect(() => {
@@ -163,17 +183,20 @@ export default function FinalTeams({
             </div>
 
             {/* Site Filters */}
-            {sites.length > 1 && (
+            {(sites.length > 1 || hasWomenOnlyTeams) && (
                 <div className="flex flex-wrap justify-center gap-2 mb-6">
                     <button
                         className={`px-4 md:px-6 py-2 text-sm font-medium transition-colors ${
-                            selectedSite === ""
+                            selectedSite === "" && !showWomenOnly
                                 ? 'bg-blue-600 text-white'
                                 : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
                         }`}
-                        onClick={() => setSelectedSite("")}
+                        onClick={() => {
+                            setSelectedSite("");
+                            setShowWomenOnly(false);
+                        }}
                     >
-                        All Centres
+                        {hasWomenOnlyTeams ? 'All Teams' : 'All Centres'}
                     </button>
                     {sites.map((site) => (
                         <button
@@ -183,11 +206,39 @@ export default function FinalTeams({
                                     ? 'bg-blue-600 text-white'
                                     : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
                             }`}
-                            onClick={() => setSelectedSite(site)}
+                            onClick={() => {
+                                setShowWomenOnly(false);
+                                setSelectedSite(site);
+                            }}
                         >
                             {site}
                         </button>
                     ))}
+                    {hasWomenOnlyTeams && (
+                        <button
+                            className={`px-4 md:px-6 py-2 text-sm font-medium transition-colors ${
+                                showWomenOnly
+                                    ? 'bg-pink-600 text-white'
+                                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                            }`}
+                            onClick={() => {
+                                setSelectedSite("");
+                                setShowWomenOnly(!showWomenOnly);
+                            }}
+                        >
+                            Women Only Slot
+                        </button>
+                    )}
+                </div>
+            )}
+
+            {/* Tentative Legend */}
+            {hasTentativeTeams && (
+                <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-amber-900 bg-amber-50 border border-amber-300 px-4 py-3 mb-6">
+                    <span className="inline-flex items-center rounded-full bg-amber-600 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-white">
+                        Tentative
+                    </span>
+                    <span>Teams highlighted in amber are tentative and awaiting confirmation.</span>
                 </div>
             )}
 
@@ -234,7 +285,9 @@ export default function FinalTeams({
                                         key={index}
                                         className={`
                                             border-b border-gray-200 last:border-b-0 transition-colors duration-150
-                                            ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+                                            ${isFlagSet(entry['Tentative'])
+                                                ? 'bg-amber-200 border-l-[6px] border-l-amber-500'
+                                                : index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
                                             hover:bg-blue-50
                                         `}
                                     >
@@ -244,7 +297,19 @@ export default function FinalTeams({
                                             </td>
                                         )}
                                         <td className="py-4 px-4">
-                                            <div className="font-semibold text-gray-900">{entry['Team Name']}</div>
+                                            <div className="flex flex-wrap items-center gap-2">
+                                                <span className="font-semibold text-gray-900">{entry['Team Name']}</span>
+                                                {isFlagSet(entry['Tentative']) && (
+                                                    <span className="inline-flex items-center rounded-full bg-amber-600 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-white shadow-sm">
+                                                        Tentative
+                                                    </span>
+                                                )}
+                                                {isFlagSet(entry['WomenOnly']) && (
+                                                    <span className="inline-flex items-center rounded-full border border-pink-200 bg-pink-50 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-pink-700">
+                                                        Women
+                                                    </span>
+                                                )}
+                                            </div>
                                         </td>
                                         <td className="py-4 px-4">
                                             <div className="text-gray-600 text-sm">{entry['Institution']}</div>
@@ -280,11 +345,15 @@ export default function FinalTeams({
                     {currentTeams.map((entry, index) => (
                         <div
                             key={index}
-                            className="bg-white border border-gray-200 p-4 shadow-sm"
+                            className={`p-4 shadow-sm border ${
+                                isFlagSet(entry['Tentative'])
+                                    ? 'bg-amber-200 border-amber-300 border-l-[6px] border-l-amber-500'
+                                    : 'bg-white border-gray-200'
+                            }`}
                         >
                             <div className="flex items-start justify-between mb-3">
                                 <div className="flex-1 min-w-0">
-                                    <div className="flex items-center gap-2 mb-2">
+                                    <div className="flex flex-wrap items-center gap-2 mb-2">
                                         {showRank && (
                                             <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold">
                                                 Rank {entry['Rank']}
@@ -293,6 +362,16 @@ export default function FinalTeams({
                                         <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold">
                                             Score: {entry['Score']}
                                         </span>
+                                        {isFlagSet(entry['Tentative']) && (
+                                            <span className="px-2 py-1 bg-amber-600 text-white text-xs font-bold uppercase tracking-wide">
+                                                Tentative
+                                            </span>
+                                        )}
+                                        {isFlagSet(entry['WomenOnly']) && (
+                                            <span className="px-2 py-1 bg-pink-50 border border-pink-200 text-pink-700 text-xs font-semibold uppercase tracking-wide">
+                                                Women
+                                            </span>
+                                        )}
                                     </div>
                                     <div className="font-semibold text-gray-900 mb-1 break-words">
                                         {entry['Team Name']}
