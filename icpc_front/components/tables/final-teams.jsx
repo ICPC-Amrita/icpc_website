@@ -35,6 +35,7 @@ export default function FinalTeams({
     title,
     dataFile = '/data/Amritapuri Final Ranklist 2026.csv',
     showRank = true,
+    showScore = true,
     sortByTeamName = false,
 }) {
     const [teamsData, setTeamsData] = useState([]);
@@ -271,8 +272,12 @@ export default function FinalTeams({
                                     <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Team Name</th>
                                     <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Institution</th>
                                     <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Username</th>
-                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Score</th>
-                                    <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Total Time</th>
+                                    {showScore && (
+                                        <>
+                                            <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Score</th>
+                                            <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Total Time</th>
+                                        </>
+                                    )}
                                     {showPenalty && (
                                         <th className="text-left py-4 px-4 font-semibold text-gray-900 text-sm tracking-wide">Penalty</th>
                                     )}
@@ -317,12 +322,16 @@ export default function FinalTeams({
                                         <td className="py-4 px-4">
                                             <div className="text-gray-600 text-sm">{entry['Username']}</div>
                                         </td>
-                                        <td className="py-4 px-4">
-                                            <div className="text-gray-700 font-semibold">{entry['Score']}</div>
-                                        </td>
-                                        <td className="py-4 px-4">
-                                            <div className="text-gray-600">{entry['Total Time']}</div>
-                                        </td>
+                                        {showScore && (
+                                            <>
+                                                <td className="py-4 px-4">
+                                                    <div className="text-gray-700 font-semibold">{entry['Score']}</div>
+                                                </td>
+                                                <td className="py-4 px-4">
+                                                    <div className="text-gray-600">{entry['Total Time']}</div>
+                                                </td>
+                                            </>
+                                        )}
                                         {showPenalty && (
                                             <td className="py-4 px-4">
                                                 <div className="text-gray-600">{entry['Penalty']}</div>
@@ -359,9 +368,11 @@ export default function FinalTeams({
                                                 Rank {entry['Rank']}
                                             </span>
                                         )}
-                                        <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold">
-                                            Score: {entry['Score']}
-                                        </span>
+                                        {showScore && (
+                                            <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold">
+                                                Score: {entry['Score']}
+                                            </span>
+                                        )}
                                         {isFlagSet(entry['Tentative']) && (
                                             <span className="px-2 py-1 bg-amber-600 text-white text-xs font-bold uppercase tracking-wide">
                                                 Tentative
@@ -383,9 +394,11 @@ export default function FinalTeams({
                                         <span className="font-medium">Username:</span> {entry['Username']}
                                     </div>
                                     <div className="flex flex-wrap gap-3 text-sm text-gray-600">
-                                        <div>
-                                            <span className="font-medium">Time:</span> {entry['Total Time']}
-                                        </div>
+                                        {showScore && (
+                                            <div>
+                                                <span className="font-medium">Time:</span> {entry['Total Time']}
+                                            </div>
+                                        )}
                                         {showPenalty && (
                                             <div>
                                                 <span className="font-medium">Penalty:</span> {entry['Penalty']}
