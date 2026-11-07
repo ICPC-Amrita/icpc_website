@@ -38,10 +38,6 @@ const Faq = () => {
       answer: "Yes. The ICPC India Preliminary Round is conducted online, on 3 October 2026 from 1:30 PM to 4:30 PM."
     },
     {
-      question: "Do I have to travel to Kerala?",
-      answer: "Not necessarily. Amritapuri is a multisite regional with four locations — Kollam, Bengaluru, Coimbatore, and Mysuru — so you can choose the city that works best for your team."
-    },
-    {
       question: "Where can I get registration help?",
       answer: "Contact the official ICPC Amritapuri support team at: icpc@am.amrita.edu"
     }
