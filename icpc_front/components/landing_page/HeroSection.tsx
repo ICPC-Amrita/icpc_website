@@ -119,14 +119,28 @@ export default function HeroSection() {
               </p>
             </div>
 
-            {/* Teams selected for onsite */}
+            {/* Teams selected for onsite + waiting lists (same combined width) */}
             <div className="pt-2 w-full">
-              <Link
-                href="/selected-amritapuri"
-                className="inline-flex items-center justify-center bg-contest-blue hover:opacity-90 active:opacity-80 text-white text-base sm:text-lg font-semibold px-6 sm:px-8 py-3.5 rounded-lg transition-all shadow-sm hover:shadow"
-              >
-                Teams Selected for Amritapuri Onsite Round
-              </Link>
+              <div className="inline-grid w-fit max-w-full grid-cols-[repeat(2,minmax(0,1fr))] gap-2 sm:gap-3">
+                <Link
+                  href="/selected-amritapuri"
+                  className="col-span-2 inline-flex items-center justify-center bg-contest-blue hover:opacity-90 active:opacity-80 text-white text-base sm:text-lg font-semibold px-6 sm:px-8 py-3.5 rounded-lg transition-all shadow-sm hover:shadow"
+                >
+                  Teams Selected for Amritapuri Onsite Round
+                </Link>
+                <Link
+                  href="/amritapuri-waitlist"
+                  className="inline-flex items-center justify-center text-center bg-white border-2 border-contest-blue text-contest-blue hover:bg-contest-blue hover:text-white active:opacity-80 text-sm sm:text-base font-semibold px-3 sm:px-4 py-3 rounded-lg transition-all shadow-sm hover:shadow"
+                >
+                  General Waitlist
+                </Link>
+                <Link
+                  href="/amritapuri-waitlist-women"
+                  className="inline-flex items-center justify-center text-center bg-white border-2 border-contest-blue text-contest-blue hover:bg-contest-blue hover:text-white active:opacity-80 text-sm sm:text-base font-semibold px-3 sm:px-4 py-3 rounded-lg transition-all shadow-sm hover:shadow"
+                >
+                  Women Only Waitlist
+                </Link>
+              </div>
             </div>
 
 
