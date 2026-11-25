@@ -77,9 +77,6 @@ export const metadata = {
   alternates: {
     canonical: "/",
   },
-  icons: {
-    icon: "/icon.png",
-  },
   openGraph: {
     type: "website",
     locale: "en_IN",
