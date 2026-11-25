@@ -16,7 +16,7 @@ const headerSponsors = [
   {
     title: "ICPC Global Sponsor Programming Tools",
     name: "JetBrains",
-    href: "https://www.jetbrains.com/",
+    href: "https://www.jetbrains.com/icpc/?utm_campaign=sponsor&utm_medium=email&utm_source=icpc",
     src: "/jetbrains_logo.svg",
     imgClassName: "h-4 sm:h-5 w-auto object-contain",
   },
@@ -69,10 +69,10 @@ export default function HeroSection() {
           className="w-full border-y border-blue-100 bg-gradient-to-r from-blue-50/70 via-white to-blue-50/70"
           style={{ animation: "sponsor-strip-in 0.5s ease-out both" }}
         >
-          <div className="w-full flex flex-wrap items-center justify-center gap-x-5 gap-y-2 px-6 py-2 sm:px-10 lg:px-16 xl:px-20">
+          <div className="w-full flex flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 py-3 sm:px-10 lg:px-16 xl:px-20">
 
             {/* Section Label */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2.5">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-contest-blue opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-contest-blue" />
@@ -82,10 +82,10 @@ export default function HeroSection() {
               </span>
             </div>
 
-            <span className="hidden sm:block h-5 w-px bg-gray-300/80" aria-hidden="true" />
+            <span className="hidden sm:block h-6 w-px bg-gray-300/80" aria-hidden="true" />
 
             {/* Sponsor Logos with Titles */}
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:gap-x-8">
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 sm:gap-x-14">
               {headerSponsors.map((sponsor, idx) => (
                 <a
                   key={sponsor.name}
@@ -96,7 +96,7 @@ export default function HeroSection() {
                   style={{
                     animation: `sponsor-logo-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) ${0.12 * (idx + 1)}s both`,
                   }}
-                  className="group inline-flex flex-col items-center gap-0.5 rounded-lg px-2.5 py-0.5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/80 hover:shadow-sm"
+                  className="group inline-flex flex-col items-center gap-1.5 rounded-lg px-3.5 py-1 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/80 hover:shadow-sm"
                 >
                   <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider text-gray-500 leading-none text-center">
                     {sponsor.title}
