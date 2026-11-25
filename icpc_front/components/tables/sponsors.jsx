@@ -16,7 +16,7 @@ const mainSponsors = [
     {
         tier: "ICPC Global Sponsor Programming Tools",
         name: "JetBrains",
-        href: "https://www.jetbrains.com/",
+        href: "https://www.jetbrains.com/icpc/?utm_campaign=sponsor&utm_medium=email&utm_source=icpc",
         src: "/jetbrains_logo.svg",
         imgClassName: "h-9 md:h-11 lg:h-12 w-auto object-contain",
         width: 120,
@@ -35,7 +35,7 @@ const pastSponsors = [
     },
     {
         name: "JetBrains",
-        href: "https://www.jetbrains.com/",
+        href: "https://www.jetbrains.com/icpc/?utm_campaign=sponsor&utm_medium=email&utm_source=icpc",
         src: "/jetbrains_logo.svg",
         imgClassName: "max-h-7 md:max-h-8 w-auto object-contain",
         width: 120,
